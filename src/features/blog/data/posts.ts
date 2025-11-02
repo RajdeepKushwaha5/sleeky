@@ -16,6 +16,10 @@ function parseFrontmatter(fileContent: string) {
 }
 
 function getMDXFiles(dir: string) {
+  // Return empty array if directory doesn't exist (e.g., when using only Medium posts)
+  if (!fs.existsSync(dir)) {
+    return [];
+  }
   return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
 }
 
@@ -48,13 +52,13 @@ function convertMediumPostsToPosts(mediumPosts: MediumPost[]): Post[] {
     // Parse RFC 2822 date format to Date object, then format as YYYY-MM-DD
     const parseDate = (dateStr: string) => {
       const date = new Date(dateStr);
-      return date.toISOString().split('T')[0]; // Convert to YYYY-MM-DD format
+      return date.toISOString().split("T")[0]; // Convert to YYYY-MM-DD format
     };
 
     // Create a URL-safe slug by encoding the Medium post ID
     const createSlug = (id: string) => {
       // Extract the post ID from the URL and make it URL-safe
-      const postId = id.split('/').pop() || id;
+      const postId = id.split("/").pop() || id;
       return `medium-${postId}`;
     };
 
@@ -63,12 +67,14 @@ function convertMediumPostsToPosts(mediumPosts: MediumPost[]): Post[] {
         title: mediumPost.title,
         description: mediumPost.description,
         image: mediumPost.image,
-        category: 'medium', // Special category for Medium posts
-        icon: 'ExternalLink', // Use external link icon
+        category: "medium", // Special category for Medium posts
+        icon: "ExternalLink", // Use external link icon
         new: false,
         pinned: false,
         createdAt: parseDate(mediumPost.publishedAt), // Convert to YYYY-MM-DD format
-        updatedAt: mediumPost.updatedAt ? parseDate(mediumPost.updatedAt) : parseDate(mediumPost.publishedAt),
+        updatedAt: mediumPost.updatedAt
+          ? parseDate(mediumPost.updatedAt)
+          : parseDate(mediumPost.publishedAt),
       } as PostMetadata,
       slug: createSlug(mediumPost.id), // Create URL-safe slug
       content: mediumPost.content,
@@ -81,7 +87,9 @@ function convertMediumPostsToPosts(mediumPosts: MediumPost[]): Post[] {
 }
 
 export function getAllPosts() {
-  const mdxPosts = getMDXData(path.join(process.cwd(), "src/features/blog/content"));
+  const mdxPosts = getMDXData(
+    path.join(process.cwd(), "src/features/blog/content")
+  );
   const mediumPosts = convertMediumPostsToPosts(getMediumPosts());
 
   // Combine and sort all posts
