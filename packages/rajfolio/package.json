@@ -1,0 +1,49 @@
+{
+  "name": "rajfolio",
+  "version": "0.0.3",
+  "description": "A simple CLI wrapper for adding components from rajdeepsingh.dev component registry using shadcn.",
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "bin": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "start:dev": "node dist/index.js",
+    "publish:release": "pnpm build && pnpm publish --access public",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "rajfolio",
+    "cli",
+    "shadcn",
+    "components",
+    "registry"
+  ],
+  "author": "Rajdeep Singh <rajdeepsingh10789@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://rajdeepsingh.dev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RajdeepKushwaha5/sleeky.git",
+    "directory": "packages/rajfolio"
+  },
+  "funding": "https://github.com/sponsors/RajdeepKushwaha5",
+  "bugs": {
+    "url": "https://github.com/RajdeepKushwaha5/sleeky/issues"
+  },
+  "devDependencies": {
+    "tsup": "^8.5.0"
+  },
+  "packageManager": "pnpm@10.10.0"
+}
