@@ -6,7 +6,8 @@
 
 A modern, responsive portfolio website showcasing my work as a Full Stack Web Developer & Blockchain Developer. Built with Next.js 16, featuring real-time integrations, AI chatbot, and a component registry system.
 
-![Portfolio Preview](./public/og-image.png)
+<img width="1896" height="968" alt="image" src="https://github.com/user-attachments/assets/34d0ac73-f7a7-44d0-8982-4eefe924c064" />
+
 
 ## ✨ Features
 
