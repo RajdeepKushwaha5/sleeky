@@ -6,8 +6,10 @@ import { Activity } from "@/features/profile/components/activity";
 import { Awards } from "@/features/profile/components/awards";
 import { Blog } from "@/features/profile/components/blog";
 import { Certifications } from "@/features/profile/components/certifications";
+import { Contact } from "@/features/profile/components/contact";
 import { Experiences } from "@/features/profile/components/experiences";
 import { GitHubContributions } from "@/features/profile/components/github-contributions";
+import { LiveStatus } from "@/features/profile/components/live-status";
 import { Overview } from "@/features/profile/components/overview";
 import { ProfileCover } from "@/features/profile/components/profile-cover";
 import { ProfileHeader } from "@/features/profile/components/profile-header";
@@ -33,6 +35,9 @@ export default function Page() {
         <Separator />
 
         <Overview />
+        <Separator />
+
+        <LiveStatus />
         <Separator />
 
         <SocialLinks />
@@ -63,6 +68,9 @@ export default function Page() {
         <Separator />
 
         <Certifications />
+        <Separator />
+
+        <Contact />
         <Separator />
       </div>
     </>

@@ -2,7 +2,6 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 
 import { DesktopNav } from "@/components/desktop-nav";
-import { NavItemGitHub } from "@/components/nav-item-github";
 import { MAIN_NAV } from "@/config/site";
 import { getAllPosts } from "@/features/blog/data/posts";
 import { cn } from "@/lib/utils";
@@ -51,7 +50,6 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-2">
           <CommandMenu posts={posts} />
-          <NavItemGitHub />
           <ToggleTheme />
           <MobileNav className="sm:hidden" items={MAIN_NAV} />
         </div>

@@ -24,6 +24,10 @@ export const MAIN_NAV: NavItem[] = [
     href: "/#projects",
   },
   {
+    title: "Contact Me",
+    href: "/#contact",
+  },
+  {
     title: "Resume",
     href: "https://drive.google.com/file/d/1dWRhT2GSx4StZk2kqGU2UpJLNZCVnuoA/view",
     external: true,
@@ -32,7 +36,8 @@ export const MAIN_NAV: NavItem[] = [
 
 export const GITHUB_USERNAME = "RajdeepKushwaha5";
 export const SOURCE_CODE_GITHUB_REPO = "RajdeepKushwaha5/sleeky";
-export const SOURCE_CODE_GITHUB_URL = "https://github.com/RajdeepKushwaha5/sleeky";
+export const SOURCE_CODE_GITHUB_URL =
+  "https://github.com/RajdeepKushwaha5/sleeky";
 
 export const UTM_PARAMS = {
   utm_source: "rajdeep-singh.vercel.app",

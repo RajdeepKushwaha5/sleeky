@@ -3,7 +3,7 @@ import { USER } from "@/features/profile/data/user";
 import { cn } from "@/lib/utils";
 import { FlipSentences } from "@/registry/flip-sentences";
 
-import { PronounceMyName } from "./pronounce-my-name";
+import { ProfileStatusTooltip } from "./profile-status-tooltip";
 import { VerifiedIcon } from "./verified-icon";
 
 export function ProfileHeader() {
@@ -11,13 +11,15 @@ export function ProfileHeader() {
     <div className="screen-line-after flex border-x border-edge">
       <div className="shrink-0 border-r border-edge">
         <div className="mx-0.5 my-[3px]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            className="size-32 rounded-full ring-1 ring-border ring-offset-2 ring-offset-background select-none sm:size-40"
-            alt={`${USER.displayName}'s avatar`}
-            src={USER.avatar}
-            fetchPriority="high"
-          />
+          <SimpleTooltip content={<ProfileStatusTooltip />}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="size-32 cursor-help rounded-full ring-1 ring-border ring-offset-2 ring-offset-background select-none sm:size-40"
+              alt={`${USER.displayName}'s avatar`}
+              src={USER.avatar}
+              fetchPriority="high"
+            />
+          </SimpleTooltip>
         </div>
       </div>
 
@@ -43,15 +45,6 @@ export function ProfileHeader() {
             <SimpleTooltip content="Verified">
               <VerifiedIcon className="size-[0.6em] translate-y-px text-info select-none" />
             </SimpleTooltip>
-            {USER.namePronunciationUrl && (
-              <>
-                &nbsp;
-                <PronounceMyName
-                  className="translate-y-px"
-                  namePronunciationUrl={USER.namePronunciationUrl}
-                />
-              </>
-            )}
           </h1>
 
           <div className="h-12 border-t border-edge py-1 pl-4 sm:h-auto">
