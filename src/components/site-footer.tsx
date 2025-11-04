@@ -62,7 +62,7 @@ export function SiteFooter() {
             </a>
 
             <a
-              href="https://www.linkedin.com/in/rajdeep-singh-kushwaha"
+              href="https://www.linkedin.com/in/rajdeepsingh5"
               target="_blank"
               rel="noopener"
               className="group flex items-center gap-2 rounded-lg border border-edge bg-card/50 px-4 py-2 transition-all hover:border-accent/50 hover:bg-accent/10"
