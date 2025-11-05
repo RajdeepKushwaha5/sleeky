@@ -72,7 +72,7 @@ export function LiveStatus() {
               <OfflineCard
                 icon="vscode"
                 title={isDiscordOnline ? "Online" : "Offline"}
-                subtitle={`Not coding • Today: ${wakaStats.todayFormatted}`}
+                subtitle={`VS Code • Today: ${wakaStats.todayFormatted}`}
                 isOnline={isDiscordOnline}
               />
             ) : wakaStats.yesterdaySeconds > 0 ? (
