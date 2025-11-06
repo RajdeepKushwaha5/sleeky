@@ -17,11 +17,11 @@ export function SiteFooter() {
 
           {/* Built by */}
           <div className="mb-6 flex items-center justify-center gap-2 text-center">
-            <Code2 className="h-4 w-4 text-accent" />
+            <Code2 className="h-4 w-4 text-foreground" />
             <p className="font-mono text-sm text-foreground">
               Crafted by{" "}
               <a
-                className="link font-semibold text-accent transition-colors hover:text-accent/80"
+                className="link font-semibold text-foreground transition-colors hover:text-accent/80"
                 href="https://x.com/rajdeeptwts"
                 target="_blank"
                 rel="noopener"
