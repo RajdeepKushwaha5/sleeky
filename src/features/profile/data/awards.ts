@@ -7,7 +7,7 @@ export const AWARDS: Award[] = [
     title: "DigitalOcean Hacktoberfest",
     date: "2025-10",
     grade: "Open Source",
-    description: "Successfully completed Hacktoberfest 2025 by making 12 pull requests to various open source organizations and projects",
+    description: "Successfully completed Hacktoberfest 2025 by contributing 12 pull requests to a diverse range of open-source projects and organizations, including DataTalksClub, Microsoft, Amazon, and others.",
     referenceLink: "https://hacktoberfest.com/"
   },
   {
