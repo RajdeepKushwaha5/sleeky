@@ -32,11 +32,11 @@ When someone submits the contact form, you'll receive a Telegram message with:
 
 ### 1. Telegram Bot Configuration
 
-The following environment variables are already configured in `.env.local`:
+Add the following environment variables to your `.env.local` file:
 
 ```env
-TELEGRAM_BOT_TOKEN=8263388828:AAH8Kh8XpUneYuFP4b2hu7SY5sT-MYGC_EA
-TELEGRAM_CHAT_ID=5792669341
+TELEGRAM_BOT_TOKEN=your_telegram_bot_token_here
+TELEGRAM_CHAT_ID=your_telegram_chat_id_here
 ```
 
 ### 2. Navigation
