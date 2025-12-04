@@ -1,280 +1,169 @@
-# Rajdeep Singh - Portfolio
+<p align="center">
+  <a href="https://rajdeep-singh.vercel.app">
+    <img src="public/icon.png" alt="Rajdeep Singh" width="80" height="80" />
+  </a>
+</p>
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit-blue?style=for-the-badge&logo=vercel)](https://rajdeep-singh.vercel.app/)
-[![GitHub](https://img.shields.io/badge/GitHub-View_Code-black?style=for-the-badge&logo=github)](https://github.com/RajdeepKushwaha5/sleeky)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+<h1 align="center">Rajdeep Singh — Portfolio</h1>
 
-A modern, responsive portfolio website showcasing my work as a Full Stack Web Developer & Blockchain Developer. Built with Next.js 16, featuring real-time integrations, AI chatbot, and a component registry system.
+<p align="center">
+  <strong>A sleek, modern portfolio built with Next.js 16</strong><br />
+  Real-time integrations • AI Assistant • Stunning animations
+</p>
 
-<img width="1896" height="968" alt="image" src="https://github.com/user-attachments/assets/34d0ac73-f7a7-44d0-8982-4eefe924c064" />
+<p align="center">
+  <a href="https://rajdeep-singh.vercel.app">
+    <img src="https://img.shields.io/badge/🚀_Live_Demo-Visit_Site-0070f3?style=for-the-badge" alt="Live Demo" />
+  </a>
+  <a href="https://github.com/RajdeepKushwaha5/sleeky/stargazers">
+    <img src="https://img.shields.io/github/stars/RajdeepKushwaha5/sleeky?style=for-the-badge&color=yellow" alt="Stars" />
+  </a>
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge" alt="License" />
+  </a>
+</p>
 
+<br />
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/34d0ac73-f7a7-44d0-8982-4eefe924c064" alt="Portfolio Preview" width="100%" />
+</p>
+
+---
 
 ## ✨ Features
 
-### 🚀 Core Features
+|     | Feature            | Description                                               |
+| :-: | ------------------ | --------------------------------------------------------- |
+| ⚡  | **Lightning Fast** | Next.js 16 with Turbopack for blazing performance         |
+| 🎨  | **Sleek Design**   | Glassmorphism navbar, smooth animations, dark/light modes |
+| 🤖  | **AI Assistant**   | Chat with RJDP's Assistant powered by Google Gemini       |
+| 🎵  | **Live Status**    | Real-time Discord, Spotify & VS Code activity             |
+| 📊  | **Coding Stats**   | WakaTime integration for coding metrics                   |
+| 📝  | **MDX Blog**       | Write posts with Markdown + React components              |
+| 📱  | **Responsive**     | Optimized for mobile, tablet, and desktop                 |
+| 🔍  | **SEO Ready**      | Meta tags, structured data, sitemap & more                |
 
-- **Responsive Design**: Optimized for all devices and screen sizes
-- **Dark/Light Mode**: Automatic theme switching with system preference detection
-- **SEO Optimized**: Meta tags, structured data, and performance optimizations
-- **Fast Loading**: Built with Next.js and optimized for Core Web Vitals
-
-### 🎯 Live Integrations
-
-- **Real-time Discord Status**: Shows online/offline status and activities
-- **Spotify Integration**: Displays currently playing music via Discord
-- **VS Code Activity**: Live coding session tracking
-- **WakaTime Stats**: Coding time and language statistics
-
-### 🤖 AI Features
-
-- **RJDP's Assistant**: AI chatbot powered by Google Gemini
-- **Context-Aware**: Knows about my skills, projects, and experience
-- **Smart Responses**: Provides relevant information about my work
-
-### 📝 Content Management
-
-- **MDX Blog**: Write blog posts in Markdown with JSX components
-- **Medium Integration**: Sync blog posts from Medium automatically
-- **Component Registry**: Reusable UI components with CLI tool
-
-### 🔧 Developer Experience
-
-- **TypeScript**: Full type safety throughout the application
-- **ESLint + Prettier**: Code quality and formatting
-- **Git Hooks**: Automated linting and formatting on commits
-- **Component CLI**: `rajfolio` - Add components from registry
+---
 
 ## 🛠️ Tech Stack
 
-### Frontend
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=nextjs,react,typescript,tailwind,vercel" alt="Tech Stack" />
+</p>
 
-- **Framework**: [Next.js 16](https://nextjs.org/) with App Router
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
-- **UI Components**: [shadcn/ui](https://ui.shadcn.com/) + [Radix UI](https://www.radix-ui.com/)
-- **Icons**: [Lucide React](https://lucide.dev/)
-- **Animations**: [Framer Motion](https://www.framer.dev/motion)
+| Category       | Technologies                         |
+| -------------- | ------------------------------------ |
+| **Framework**  | Next.js 16, React 19, TypeScript     |
+| **Styling**    | Tailwind CSS v4, shadcn/ui, Radix UI |
+| **Animation**  | Framer Motion                        |
+| **AI**         | Google Generative AI (Gemini)        |
+| **Real-time**  | Lanyard API, WakaTime API            |
+| **Deployment** | Vercel                               |
 
-### Backend & APIs
-
-- **AI**: [Google Generative AI (Gemini)](https://ai.google.dev/)
-- **Real-time Data**: [Lanyard API](https://github.com/Phineas/lanyard)
-- **Coding Stats**: [WakaTime API](https://wakatime.com/developers)
-- **Notifications**: Telegram Bot API
-- **Deployment**: [Vercel](https://vercel.com/)
-
-### Development Tools
-
-- **Build Tool**: Turbopack
-- **Linting**: ESLint
-- **Formatting**: Prettier
-- **Git Hooks**: Husky + lint-staged
-- **Package Manager**: pnpm
+---
 
 ## 🚀 Quick Start
 
-### Prerequisites
-
-- Node.js 18+
-- pnpm (recommended) or npm
-- Git
-
-### Installation
-
-1. **Clone the repository**
-
-   ```bash
-   git clone https://github.com/RajdeepKushwaha5/sleeky.git
-   cd sleeky
-   ```
-
-2. **Install dependencies**
-
-   ```bash
-   pnpm install
-   # or
-   npm install
-   ```
-
-3. **Set up environment variables**
-
-   ```bash
-   cp .env.example .env.local
-   ```
-
-   Edit `.env.local` and add your API keys:
-
-   ```env
-   # Required for chatbot functionality
-   GOOGLE_AI_API_KEY=your_google_ai_api_key
-
-   # Required for contact form notifications
-   TELEGRAM_BOT_TOKEN=your_telegram_bot_token
-   TELEGRAM_CHAT_ID=your_telegram_chat_id
-
-   # Optional: Custom app URL
-   APP_URL=https://your-domain.com
-   ```
-
-4. **Run development server**
-
-   ```bash
-   pnpm dev
-   # or
-   npm run dev
-   ```
-
-5. **Open your browser**
-   Navigate to [http://localhost:1408](http://localhost:1408)
-
-## 📖 Usage
-
-### Development Commands
-
 ```bash
+# Clone the repository
+git clone https://github.com/RajdeepKushwaha5/sleeky.git
+cd sleeky
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env.local
+
 # Start development server
-pnpm dev
-
-# Build for production
-pnpm build
-
-# Start production server
-pnpm start
-
-# Preview production build
-pnpm preview
-
-# Run linting
-pnpm lint
-
-# Fix linting issues
-pnpm lint:fix
-
-# Type checking
-pnpm check-types
-
-# Format code
-pnpm format:write
+npm run dev
 ```
 
-### Component Registry
+Open **[http://localhost:1408](http://localhost:1408)** in your browser.
 
-Add components from the registry using the CLI:
-
-```bash
-# Install globally
-pnpm add -g rajfolio
-
-# Add a component
-rajfolio add button
-
-# Add multiple components
-rajfolio add button card dialog
-```
-
-### Blog Management
-
-#### Writing Blog Posts
-
-Create new posts in `src/content/blog/` as `.mdx` files:
-
-```mdx
----
-title: "My Blog Post"
-description: "A description of my post"
-date: "2024-01-01"
-tags: ["nextjs", "react"]
 ---
 
-# My Blog Post
+## ⚙️ Environment Variables
 
-Content goes here...
+```env
+# App URL
+APP_URL=https://rajdeep-singh.vercel.app
+
+# AI Chatbot (Required for assistant)
+GOOGLE_GENERATIVE_AI_API_KEY=your_gemini_api_key
+
+# Notifications (Optional)
+TELEGRAM_BOT_TOKEN=your_bot_token
+TELEGRAM_CHAT_ID=your_chat_id
+
+# Coding Stats (Optional)
+WAKATIME_API_KEY=your_wakatime_key
 ```
 
-#### Medium Integration
-
-Sync posts from Medium:
-
-```bash
-pnpm medium:sync
-```
+---
 
 ## 📁 Project Structure
 
 ```
 sleeky/
 ├── src/
-│   ├── app/                    # Next.js App Router
-│   │   ├── (app)/             # Main application routes
-│   │   ├── (docs)/            # Blog and documentation
-│   │   └── api/               # API routes
-│   ├── components/            # Reusable UI components
-│   │   ├── ui/               # shadcn/ui components
-│   │   └── [feature]/        # Feature-specific components
-│   ├── features/             # Feature-based organization
-│   ├── hooks/                # Custom React hooks
-│   ├── lib/                  # Utilities and helpers
-│   ├── config/               # Configuration files
-│   └── styles/               # Global styles
-├── packages/
-│   └── rajfolio/             # Component registry CLI
-├── public/                   # Static assets
-└── [config files]           # Various configuration files
+│   ├── app/            # Next.js App Router pages
+│   ├── components/     # Reusable UI components
+│   ├── features/       # Feature modules (profile, blog)
+│   ├── hooks/          # Custom React hooks
+│   ├── lib/            # Utilities & helpers
+│   └── config/         # Site configuration
+├── public/             # Static assets
+└── packages/rajfolio/  # Component registry CLI
 ```
-
-## 🤝 Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. **Fork the repository**
-2. **Create a feature branch**
-   ```bash
-   git checkout -b feature/amazing-feature
-   ```
-3. **Make your changes**
-4. **Run tests and linting**
-   ```bash
-   pnpm lint
-   pnpm check-types
-   ```
-5. **Commit your changes**
-   ```bash
-   git commit -m 'Add amazing feature'
-   ```
-6. **Push to the branch**
-   ```bash
-   git push origin feature/amazing-feature
-   ```
-7. **Open a Pull Request**
-
-### Development Guidelines
-
-- Follow the existing code style
-- Write meaningful commit messages
-- Update documentation for new features
-- Test your changes thoroughly
-- Ensure TypeScript types are correct
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- [shadcn/ui](https://ui.shadcn.com/) for the amazing component library
-- [Vercel](https://vercel.com/) for hosting and analytics
-- [Lanyard](https://github.com/Phineas/lanyard) for Discord integration
-- [WakaTime](https://wakatime.com/) for coding statistics
-
-## 📞 Contact
-
-**Rajdeep Singh**
-
-- **Email**: rajdeepsingh10789@gmail.com
-- **Website**: [https://rajdeep-singh.vercel.app/](https://rajdeep-singh.vercel.app/)
-- **GitHub**: [@RajdeepKushwaha5](https://github.com/RajdeepKushwaha5)
-- **LinkedIn**: [Rajdeep Singh](https://www.linkedin.com/in/rajdeepsingh5/)
 
 ---
 
-⭐ **Star this repo** if you found it helpful!
+## 📜 Scripts
+
+| Command         | Description                  |
+| --------------- | ---------------------------- |
+| `npm run dev`   | Start dev server (port 1408) |
+| `npm run build` | Production build             |
+| `npm run start` | Start production server      |
+| `npm run lint`  | Run ESLint                   |
+
+---
+
+## 🎨 Customization
+
+| File                                       | Purpose                    |
+| ------------------------------------------ | -------------------------- |
+| `src/features/profile/data/user.ts`        | Personal information       |
+| `src/config/site.ts`                       | Site metadata & navigation |
+| `src/features/profile/data/projects.ts`    | Project showcase           |
+| `src/features/profile/data/experiences.ts` | Work experience            |
+
+---
+
+## 📄 License
+
+MIT License — feel free to use this for your own portfolio!
+
+---
+
+<p align="center">
+  Made with ❤️ by <a href="https://rajdeep-singh.vercel.app">Rajdeep Singh</a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/RajdeepKushwaha5">
+    <img src="https://img.shields.io/badge/GitHub-@RajdeepKushwaha5-181717?style=flat&logo=github" />
+  </a>
+  <a href="https://twitter.com/rajdeeptwts">
+    <img src="https://img.shields.io/badge/Twitter-@rajdeeptwts-1DA1F2?style=flat&logo=twitter" />
+  </a>
+  <a href="https://linkedin.com/in/rajdeepsingh5">
+    <img src="https://img.shields.io/badge/LinkedIn-Rajdeep_Singh-0A66C2?style=flat&logo=linkedin" />
+  </a>
+</p>
+
+<p align="center">
+  ⭐ Star this repo if you found it helpful!
+</p>

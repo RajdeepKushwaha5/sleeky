@@ -2,7 +2,7 @@ import "@/styles/globals.css";
 
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import type { WebSite, WithContext } from "schema-dts";
+import type { Person, WebSite, WithContext } from "schema-dts";
 
 import { Providers } from "@/components/providers";
 import { META_THEME_COLORS, SITE_INFO } from "@/config/site";
@@ -15,7 +15,47 @@ function getWebSiteJsonLd(): WithContext<WebSite> {
     "@type": "WebSite",
     name: SITE_INFO.name,
     url: SITE_INFO.url,
-    alternateName: [USER.username],
+    alternateName: [USER.username, "RJDP", "Rajdeep"],
+    description: SITE_INFO.description,
+    author: {
+      "@type": "Person",
+      name: USER.displayName,
+    },
+  };
+}
+
+function getPersonJsonLd(): WithContext<Person> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: USER.displayName,
+    givenName: USER.firstName,
+    familyName: USER.lastName,
+    url: SITE_INFO.url,
+    image: USER.avatar,
+    jobTitle: USER.jobTitle,
+    description: USER.bio,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Jaipur",
+      addressCountry: "India",
+    },
+    sameAs: [
+      "https://github.com/RajdeepKushwaha5",
+      "https://linkedin.com/in/rajdeepsingh5",
+      "https://twitter.com/rajdeeptwts",
+    ],
+    knowsAbout: [
+      "Web Development",
+      "Full Stack Development",
+      "Blockchain Development",
+      "React",
+      "Next.js",
+      "Node.js",
+      "TypeScript",
+      "Ethereum",
+      "Solana",
+    ],
   };
 }
 
@@ -127,6 +167,12 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(getWebSiteJsonLd()).replace(/</g, "\\u003c"),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(getPersonJsonLd()).replace(/</g, "\\u003c"),
           }}
         />
       </head>
