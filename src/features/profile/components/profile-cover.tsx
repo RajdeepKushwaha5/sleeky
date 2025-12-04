@@ -47,8 +47,36 @@ export function ProfileCover() {
           "bg-zinc-50 dark:bg-zinc-950"
         )}
       >
-        {/* Subtle grid background */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:24px_24px] dark:bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)]" />
+        {/* Diagonal lines background pattern */}
+        <div 
+          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.04]"
+          style={{
+            backgroundImage: `repeating-linear-gradient(
+              -45deg,
+              transparent,
+              transparent 8px,
+              currentColor 8px,
+              currentColor 9px
+            )`,
+          }}
+        />
+        
+        {/* Secondary diagonal lines (opposite direction) for depth */}
+        <div 
+          className="absolute inset-0 opacity-[0.015] dark:opacity-[0.02]"
+          style={{
+            backgroundImage: `repeating-linear-gradient(
+              45deg,
+              transparent,
+              transparent 16px,
+              currentColor 16px,
+              currentColor 17px
+            )`,
+          }}
+        />
+
+        {/* Subtle grid overlay */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.01)_1px,transparent_1px)] bg-[size:32px_32px] dark:bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)]" />
 
         {/* Small RJDP mark - top left corner */}
         <motion.div

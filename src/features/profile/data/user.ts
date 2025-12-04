@@ -28,14 +28,25 @@ export const USER: User = {
     // Add more jobs as needed
   ],
   about: `
-Hi, I'm Rajdeep Singh 👋
-Full Stack Web Developer & Blockchain Developer
+## Hey there! I'm Rajdeep 👋
 
-Passionate about bridging creativity and functionality. I design and build modern, responsive, and scalable web applications from the ground up.
+I'm a **Full Stack Web Developer** and **Blockchain Enthusiast** who loves turning complex problems into elegant, user-friendly solutions.
 
-With a solid foundation in both front-end and back-end development, I specialize in delivering clean code, seamless user experiences, and production-ready solutions. My expertise spans across the MERN stack to the depths of blockchain technologies like Ethereum and Solana.
+### What I Do
 
-I'm driven by the thrill of building real-world applications, constantly learning emerging technologies, and contributing to impactful digital experiences. Whether it's a real-time chat app, an e-commerce platform, or a decentralized application (dApp), I love turning ideas into reliable products.
+🚀 **Build Modern Web Apps** — From responsive frontends to robust backends, I craft seamless digital experiences using the MERN stack (MongoDB, Express, React, Node.js).
+
+⛓️ **Explore Web3** — I develop decentralized applications (dApps) on Ethereum and Solana, bridging the gap between traditional web and blockchain technology.
+
+💡 **Solve Real Problems** — Whether it's an e-commerce platform, real-time chat application, or a DeFi protocol, I focus on building products that actually make a difference.
+
+### My Philosophy
+
+I believe great software is a blend of **clean code**, **intuitive design**, and **scalable architecture**. I'm constantly learning, experimenting, and pushing my boundaries to stay ahead in this ever-evolving tech landscape.
+
+When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community.
+
+*Let's build something amazing together!* ✨
   `,
   avatar: "https://github.com/RajdeepKushwaha5.png", // Update with your avatar URL
   ogImage: "https://yourwebsite.com/og-image.png", // Update with your OG image URL
