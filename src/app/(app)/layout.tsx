@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 
 import { Chatbot } from "@/components/chatbot";
+import { DictionarySection } from "@/components/dictionary-section";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { SideRuler } from "@/components/side-ruler";
@@ -21,6 +22,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       <SiteHeader />
       <main className="max-w-screen overflow-x-hidden px-2 pt-20">{children}</main>
       <SiteFooter />
+      <DictionarySection />
       <ScrollTop />
       <Chatbot />
     </>

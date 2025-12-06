@@ -93,7 +93,7 @@ export function SideRuler({ side }: SideRulerProps) {
           exit={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.3 }}
           className={cn(
-            "absolute top-8 text-[10px] font-mono text-zinc-600 dark:text-zinc-400 uppercase tracking-wider font-semibold",
+            "absolute top-8 text-xs font-mono text-zinc-600 dark:text-zinc-400 uppercase tracking-wider font-semibold",
             isLeft ? "right-6 -rotate-90 origin-right" : "left-6 rotate-90 origin-left"
           )}
         >
