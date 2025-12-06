@@ -39,10 +39,21 @@ function RJDPMarkMotion() {
   }, []);
 
   return (
-    <RJDPMark
-      data-visible={visible}
-      className="translate-y-2 opacity-0 transition-[opacity,translate] duration-300 data-[visible=true]:translate-y-0 data-[visible=true]:opacity-100"
-    />
+    <div className="relative flex items-center h-full">
+      {/* Full name - visible when NOT scrolled */}
+      <span
+        data-visible={!visible}
+        className="absolute font-semibold text-lg tracking-tight translate-y-2 opacity-0 transition-[opacity,translate] duration-300 data-[visible=true]:translate-y-0 data-[visible=true]:opacity-100 whitespace-nowrap"
+      >
+        Rajdeep S.
+      </span>
+
+      {/* RJDP logo - visible when scrolled */}
+      <RJDPMark
+        data-visible={visible}
+        className="translate-y-2 opacity-0 transition-[opacity,translate] duration-300 data-[visible=true]:translate-y-0 data-[visible=true]:opacity-100"
+      />
+    </div>
   );
 }
 

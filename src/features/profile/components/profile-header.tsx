@@ -41,7 +41,7 @@ export function ProfileHeader() {
           )}
         >
           <div className="line-clamp-1 font-mono text-xs text-zinc-300 select-none max-sm:hidden dark:text-zinc-700">
-            {'<Developer type="Full Stack" status="Building cool stuff" />'}
+            Web Dev • AI • dApps & Blockchain
           </div>
         </div>
 

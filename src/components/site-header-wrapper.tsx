@@ -20,8 +20,8 @@ export function SiteHeaderClient({ logo, nav, actions }: SiteHeaderClientProps) 
   });
 
   return (
-    <header 
-      data-scrolled={scrolled} 
+    <header
+      data-scrolled={scrolled}
       className="fixed left-0 right-0 top-0 z-50 flex justify-center px-4 pt-4 transition-all duration-500"
     >
       <div

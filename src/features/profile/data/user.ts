@@ -9,9 +9,11 @@ export const USER: User = {
   pronouns: "he/him",
   bio: "Passionate about bridging creativity and functionality. Full Stack Web Developer & Blockchain Developer.",
   flipSentences: [
-    "Passionate about bridging creativity and functionality.",
-    "Full Stack Web Developer & Blockchain Developer",
-    "MERN Stack & Blockchain Expert",
+    "Full Stack Developer",
+    "Blockchain Developer",
+    "Open Source Contributor",
+    "Artificial Intelligence",
+    "Playing with Large Language Models",
   ],
   address: "Jaipur, India", // Update with your location
   phoneNumber: "KzkxICoqKioqNjIzMzE=", // Update with your phone number (base64 encoded) - 5 digits hidden
