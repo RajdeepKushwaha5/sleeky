@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
+
 import { cn } from "@/lib/utils";
 
 interface SideRulerProps {
@@ -47,7 +48,10 @@ export function SideRuler({ side }: SideRulerProps) {
       });
     };
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    const observer = new IntersectionObserver(
+      observerCallback,
+      observerOptions
+    );
 
     SECTION_IDS.forEach((section) => {
       const element = document.getElementById(section.id);
@@ -72,11 +76,11 @@ export function SideRuler({ side }: SideRulerProps) {
   return (
     <div
       className={cn(
-        "fixed top-0 bottom-0 z-[100] hidden xl:block pointer-events-none",
+        "pointer-events-none fixed top-0 bottom-0 z-[100] hidden xl:block",
         isLeft ? "left-0" : "right-0"
       )}
     >
-      <div className="relative h-full w-16 flex flex-col">
+      <div className="relative flex h-full w-16 flex-col">
         {/* Vertical line */}
         <div
           className={cn(
@@ -93,8 +97,10 @@ export function SideRuler({ side }: SideRulerProps) {
           exit={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.3 }}
           className={cn(
-            "absolute top-8 text-xs font-mono text-zinc-600 dark:text-zinc-400 uppercase tracking-wider font-semibold",
-            isLeft ? "right-6 -rotate-90 origin-right" : "left-6 rotate-90 origin-left"
+            "absolute top-8 font-mono text-base font-semibold tracking-wider text-zinc-600 uppercase dark:text-zinc-400",
+            isLeft
+              ? "right-6 origin-right -rotate-90"
+              : "left-6 origin-left rotate-90"
           )}
         >
           {activeSection}
@@ -131,7 +137,7 @@ export function SideRuler({ side }: SideRulerProps) {
                 {isMajorMark && (
                   <div
                     className={cn(
-                      "absolute top-1/2 -translate-y-1/2 text-[9px] font-mono text-zinc-400 dark:text-zinc-600",
+                      "absolute top-1/2 -translate-y-1/2 font-mono text-[9px] text-zinc-400 dark:text-zinc-600",
                       isLeft ? "right-4" : "left-4"
                     )}
                   >
@@ -149,7 +155,7 @@ export function SideRuler({ side }: SideRulerProps) {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.8 }}
           className={cn(
-            "absolute bottom-8 w-2 h-2 rounded-full bg-zinc-400 dark:bg-zinc-600",
+            "absolute bottom-8 h-2 w-2 rounded-full bg-zinc-400 dark:bg-zinc-600",
             isLeft ? "right-[14px]" : "left-[14px]"
           )}
         />
