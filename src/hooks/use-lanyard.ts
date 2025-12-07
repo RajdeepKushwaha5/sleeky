@@ -103,8 +103,21 @@ export function useLanyard(userId: string) {
                 message.t === "INIT_STATE" ||
                 message.t === "PRESENCE_UPDATE"
               ) {
-                setData(message.d);
+                const newData = message.d;
+                setData(newData);
                 setIsLoading(false);
+
+                // Save last played Spotify song to localStorage
+                if (newData?.listening_to_spotify && newData.spotify) {
+                  try {
+                    localStorage.setItem(
+                      "lastPlayedSpotify",
+                      JSON.stringify(newData.spotify)
+                    );
+                  } catch {
+                    // Ignore localStorage errors
+                  }
+                }
               }
               break;
           }
@@ -144,4 +157,14 @@ export function useLanyard(userId: string) {
   }, [userId]);
 
   return { data, isLoading, error };
+}
+
+// Helper function to get the last played Spotify song from localStorage
+export function getLastPlayedSpotify(): LanyardData["spotify"] | null {
+  try {
+    const stored = localStorage.getItem("lastPlayedSpotify");
+    return stored ? JSON.parse(stored) : null;
+  } catch {
+    return null;
+  }
 }

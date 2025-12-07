@@ -1,12 +1,16 @@
 "use client";
 
-import { useLanyard } from "@/hooks/use-lanyard";
+import { useState } from "react";
+
+import type { LanyardData } from "@/hooks/use-lanyard";
+import { getLastPlayedSpotify, useLanyard } from "@/hooks/use-lanyard";
 import { useWakaTime } from "@/hooks/use-wakatime";
 
 import { Panel, PanelContent, PanelHeader, PanelTitle } from "../panel";
 import { DiscordStatus } from "./discord-status";
 import { OfflineCard } from "./offline-card";
 import { SpotifyCard } from "./spotify-card";
+import { SpotifyOfflineCard } from "./spotify-offline-card";
 import { VsCodeCard } from "./vscode-card";
 import { VsCodeOfflineCard } from "./vscode-offline-card";
 
@@ -15,6 +19,9 @@ const DISCORD_USER_ID = "993454036751745125";
 export function LiveStatus() {
   const { data, isLoading } = useLanyard(DISCORD_USER_ID);
   const { stats: wakaStats } = useWakaTime();
+  const [lastPlayedSpotify] = useState<LanyardData["spotify"] | null>(() =>
+    getLastPlayedSpotify()
+  );
 
   // Check status
   const hasSpotify = data?.listening_to_spotify && data.spotify;
@@ -41,12 +48,14 @@ export function LiveStatus() {
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-            {/* Spotify Section - Show only when actually listening */}
+            {/* Spotify Section - Show currently playing or last played */}
             {hasSpotify && data ? (
               <SpotifyCard
                 spotify={data.spotify!}
                 status={data.discord_status}
               />
+            ) : lastPlayedSpotify ? (
+              <SpotifyOfflineCard lastPlayed={lastPlayedSpotify} />
             ) : (
               <OfflineCard
                 icon="spotify"
