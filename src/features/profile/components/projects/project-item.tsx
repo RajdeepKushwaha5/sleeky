@@ -31,7 +31,7 @@ export function ProjectItem({
   return (
     <CollapsibleWithContext defaultOpen={project.isExpanded} asChild>
       <div className={className} data-project-item>
-        <div className="flex cursor-none items-center hover:bg-accent2">
+        <div className="flex items-center hover:bg-accent2">
           {project.logo ? (
             <Image
               src={project.logo}
