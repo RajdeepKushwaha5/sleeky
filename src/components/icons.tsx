@@ -88,9 +88,6 @@ export const Icons = {
     <svg viewBox="0 0 24 24" {...props}>
       <path d="m12 3 10 17H2L12 3Z" fill="currentColor" />
     </svg>
-    // <svg viewBox="0 0 24 24" {...props}>
-    //   <path d="m12 1.608 12 20.784H0Z" fill="currentColor" />
-    // </svg>
   ),
   meta: (props: IconProps) => (
     <svg viewBox="0 0 24 24" {...props}>
@@ -115,12 +112,6 @@ export const Icons = {
         fill="currentColor"
       />
     </svg>
-    // <svg viewBox="0 0 24 24" {...props}>
-    //   <path
-    //     d="M0 0v11.408h11.408V0zm12.594 0v11.408H24V0zM0 12.594V24h11.408V12.594zm12.594 0V24H24V12.594z"
-    //     fill="currentColor"
-    //   />
-    // </svg>
   ),
   accenture: (props: IconProps) => (
     <svg viewBox="0 0 24 24" {...props}>
@@ -129,12 +120,6 @@ export const Icons = {
         fill="currentColor"
       />
     </svg>
-    // <svg viewBox="0 0 24 24" {...props}>
-    //   <path
-    //     d="m.66 16.95 13.242-4.926L.66 6.852V0l22.68 9.132v5.682L.66 24Z"
-    //     fill="currentColor"
-    //   />
-    // </svg>
   ),
   coursera: (props: IconProps) => (
     <svg viewBox="0 0 24 24" {...props}>

@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import type { ProfilePage as PageSchema, WithContext } from "schema-dts";
 
+import { FadeIn } from "@/components/ui/scroll-animations";
 import { About } from "@/features/profile/components/about";
 import { Activity } from "@/features/profile/components/activity";
 import { Awards } from "@/features/profile/components/awards";
@@ -17,9 +18,9 @@ import { ProfileHeader } from "@/features/profile/components/profile-header";
 import { Projects } from "@/features/profile/components/projects";
 import { SocialLinks } from "@/features/profile/components/social-links";
 import { TeckStack } from "@/features/profile/components/teck-stack";
+import { TestimonialsMarquee as Testimonials } from "@/features/profile/components/testimonials-marquee";
 import { USER } from "@/features/profile/data/user";
 import { cn } from "@/lib/utils";
-import { FadeIn } from "@/components/ui/scroll-animations";
 
 export default function Page() {
   return (
@@ -57,22 +58,7 @@ export default function Page() {
         <Separator />
 
         <FadeIn delay={0.1}>
-          <GitHubContributions />
-        </FadeIn>
-        <Separator />
-
-        <FadeIn delay={0.1}>
-          <Activity />
-        </FadeIn>
-        <Separator />
-
-        <FadeIn delay={0.1}>
-          <TeckStack />
-        </FadeIn>
-        <Separator />
-
-        <FadeIn delay={0.1}>
-          <Blog />
+          <Projects />
         </FadeIn>
         <Separator />
 
@@ -82,7 +68,27 @@ export default function Page() {
         <Separator />
 
         <FadeIn delay={0.1}>
-          <Projects />
+          <TeckStack />
+        </FadeIn>
+        <Separator />
+
+        <FadeIn delay={0.1}>
+          <Testimonials />
+        </FadeIn>
+        <Separator />
+
+        <FadeIn delay={0.1}>
+          <Blog />
+        </FadeIn>
+        <Separator />
+
+        <FadeIn delay={0.1}>
+          <GitHubContributions />
+        </FadeIn>
+        <Separator />
+
+        <FadeIn delay={0.1}>
+          <Activity />
         </FadeIn>
         <Separator />
 

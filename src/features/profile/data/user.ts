@@ -23,7 +23,7 @@ export const USER: User = {
   jobTitle: "Full Stack Web Developer & Blockchain Developer", // Update with your job title
   jobs: [
     {
-      title: "freelancing",
+      title: "Freelancer",
       company: "Self-Employed",
       website: "https://rajdeep-singh.vercel.app",
     },
@@ -42,13 +42,7 @@ I'm a **Full Stack Web Developer** and **Blockchain Enthusiast** who loves turni
 
 💡 **Solve Real Problems** — Whether it's an e-commerce platform, real-time chat application, or a DeFi protocol, I focus on building products that actually make a difference.
 
-### My Philosophy
 
-I believe great software is a blend of **clean code**, **intuitive design**, and **scalable architecture**. I'm constantly learning, experimenting, and pushing my boundaries to stay ahead in this ever-evolving tech landscape.
-
-When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community.
-
-*Let's build something amazing together!* ✨
   `,
   avatar: "https://github.com/RajdeepKushwaha5.png", // Update with your avatar URL
   ogImage: "https://yourwebsite.com/og-image.png", // Update with your OG image URL

@@ -46,7 +46,7 @@ export function useSound(url: string) {
         bufferRef.current = decoded;
       })
       .catch((err) => {
-        console.log(`Failed to load click sound from ${url}:`, err);
+        console.error(`Failed to load click sound from ${url}:`, err);
       });
   }, [url]);
 

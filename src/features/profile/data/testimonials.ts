@@ -2,129 +2,41 @@ import type { Testimonial } from "../types/testimonials";
 
 export const TESTIMONIALS_1: Testimonial[] = [
   {
-    handle: "@rauchg",
-    avatar:
-      "https://pbs.twimg.com/profile_images/1783856060249595904/8TfcCN0r_400x400.jpg",
-    displayName: "Guillermo Rauch",
-    bio: "CEO @Vercel",
-    url: "https://x.com/rauchg/status/1978913158514237669",
+    handle: "@manan78796",
+    avatar: "https://unavatar.io/twitter/manan78796",
+    displayName: "Manan Vala",
+    bio: "Twitter User",
+    url: "https://x.com/manan78796",
+    content: "I really liked your portfolio. Amazing!",
+  },
+  {
+    handle: "Umair Manzoor",
+    avatar: "https://ui-avatars.com/api/?name=Umair+Manzoor&background=random",
+    displayName: "Umair Manzoor",
+    bio: "Game Developer",
+    url: "https://www.linkedin.com/in/umair-manzoor/?lipi=urn%3Ali%3Apage%3Ad_flagship3_people_connections%3BW0ym3cR3S7OizmhAftmOZA%3D%3D",
     content:
-      "awesome. Love the components, especially slide-to-unlock. Great job",
-  },
-  {
-    handle: "@theorcdev",
-    avatar:
-      "https://pbs.twimg.com/profile_images/1756766826736893952/6Gvg6jha_400x400.jpg",
-    displayName: "OrcDev",
-    bio: "Creator of 8bitcn.com",
-    url: "https://x.com/theorcdev/status/1980378575170859446",
-    content:
-      "Seriously, this is one of the best portfolio templates I've ever seen.",
-  },
-  {
-    handle: "@iamsahaj_xyz",
-    avatar:
-      "https://pbs.twimg.com/profile_images/1954573702768504833/LW-j7iTr_400x400.jpg",
-    displayName: "Sahaj",
-    bio: "Creator of tweakcn.com",
-    url: "https://x.com/iamsahaj_xyz/status/1982814244501381239",
-    content:
-      "remember seeing it on @mannupaaji's review. it's one of the best looking ones I've seen",
-  },
-  {
-    handle: "@steventey",
-    avatar:
-      "https://pbs.twimg.com/profile_images/1923813473240203264/owJG92AC_400x400.jpg",
-    displayName: "Steven Tey",
-    bio: "Founder @Dub.co",
-    url: "https://x.com/steventey/status/1936934909370830924",
-    content: "whoa, this is really dope – needs to get added to @shadcn UI 👀",
-  },
-  {
-    handle: "@kapehe_ok",
-    avatar:
-      "https://pbs.twimg.com/profile_images/1868745200010428416/jKSU2o_W_400x400.jpg",
-    displayName: "Kap",
-    bio: "Head of Developer Community @Vercel",
-    url: "https://x.com/kapehe_ok/status/1948104774358106612",
-    content: "one of my favorite projects that submitted! you are crushing it!",
-  },
-  {
-    handle: "@initjean",
-    avatar:
-      "https://pbs.twimg.com/profile_images/1962676904013492224/crWj9Gfa_400x400.jpg",
-    displayName: "Jean P.D. Meijer",
-    bio: "Building analog.now",
-    url: "https://x.com/initjean/status/1948159885960438151",
-    content:
-      "congrats you deserve it! react wheel picker is so smooth, its insane 🐐",
-  },
-  {
-    handle: "@GithubProjects",
-    avatar:
-      "https://pbs.twimg.com/profile_images/1679831765744259073/hoVtsOZ9_400x400.jpg",
-    displayName: "GitHub Projects Community",
-    bio: "UNOFFICIAL, but followed by @github",
-    url: "https://x.com/GithubProjects/status/1931034244337271044",
-    content:
-      "Everything you'd want in a picker, minus the styling headaches. Awesome job!",
+      "Hey, Hope you are ballin, Actually I saw this portfolio site and I love it. How did you achieve it? I'm a game developer but It looks good and has theme I want.",
   },
 ];
 
 export const TESTIMONIALS_2: Testimonial[] = [
   {
-    handle: "@mannupaaji",
-    avatar:
-      "https://pbs.twimg.com/profile_images/1417752099488636931/cs2R59eW_400x400.jpg",
-    displayName: "Manu Arora",
-    bio: "Creator of ui.aceternity.com",
-    url: "https://x.com/mannupaaji/status/1944755561117163597",
-    content: "Great work on the portfolio",
+    handle: "@infysoubhagya",
+    avatar: "https://unavatar.io/twitter/infysoubhagya",
+    displayName: "Soubhagya Adhikary",
+    bio: "Twitter User",
+    url: "https://x.com/infysoubhagya",
+    content: "Crazy dude 🔥",
   },
   {
-    handle: "@MaxPrilutskiy",
+    handle: "@ZuhaibHanfi",
     avatar:
-      "https://pbs.twimg.com/profile_images/1913274259985854464/rWnStpCJ_400x400.jpg",
-    displayName: "Max Prilutskiy",
-    bio: "Creator of Lingo.dev",
-    url: "https://x.com/MaxPrilutskiy/status/1923952193893466379",
-    content: "i like your style! :)",
-  },
-  {
-    handle: "@aaronmahlke",
-    avatar:
-      "https://pbs.twimg.com/profile_images/1900513355447603200/mDqwmkZT_400x400.jpg",
-    displayName: "Aaron",
-    bio: "Founding Design Engineer @Mail0",
-    url: "https://x.com/aaronmahlke/status/1955606729657344490",
-    content: "super cool portfolio!",
-  },
-  {
-    handle: "@jordwalke",
-    avatar:
-      "https://pbs.twimg.com/profile_images/1333329963383103489/ee7VrWQy_400x400.jpg",
-    displayName: "jordwalke",
-    bio: "Creator of React",
-    url: "https://x.com/jordwalke/status/1937165909778657589",
-    content: "Looks great.\nAlso, cool wheel picker!",
-  },
-  {
-    handle: "@YonathanDejene",
-    avatar:
-      "https://pbs.twimg.com/profile_images/1875548702971985920/Fp6h28Es_400x400.jpg",
-    displayName: "Yonaries",
-    bio: "Making orabrowser.com",
-    url: "https://x.com/YonathanDejene/status/1984529637309886639",
-    content: "incredible portfolio i've seen by far",
-  },
-  {
-    handle: "@zaidmukaddam",
-    avatar:
-      "https://pbs.twimg.com/profile_images/1927419360492011520/bitKDhjx_400x400.jpg",
-    displayName: "Zaid",
-    bio: "Creator of scira.ai",
-    url: "https://x.com/zaidmukaddam/status/1984599685974409374",
-    content: "super clean",
+      "https://unavatar.io/twitter/ZuhaibHanfi?fallback=https://ui-avatars.com/api/?name=Hanfi.jsx&background=random",
+    displayName: "Hanfi.jsx",
+    bio: "Twitter User",
+    url: "https://x.com/ZuhaibHanfi",
+    content: "Finally I found #1 Congrats bro you've put such great efforts 🙌🏻",
   },
 ];
 
