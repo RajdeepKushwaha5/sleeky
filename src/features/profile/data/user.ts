@@ -32,7 +32,7 @@ export const USER: User = {
   about: `
 ## Hey there! I'm Rajdeep 👋
 
-I'm a **Full Stack Web Developer** and **Blockchain Enthusiast** who loves turning complex problems into elegant, user-friendly solutions.
+I'm a **Full Stack Web Developer** and **Blockchain Developer** who loves turning complex problems into elegant, user-friendly solutions.
 
 ### What I Do
 
