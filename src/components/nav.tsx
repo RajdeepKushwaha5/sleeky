@@ -22,7 +22,7 @@ export function Nav({
       {items.map(({ title, href, external }) => {
         const active =
           activeId === href ||
-          (href === "/" 
+          (href === "/"
             ? ["/", "/index"].includes(activeId || "")
             : activeId?.startsWith(href));
 
@@ -46,11 +46,15 @@ export function NavItem({
   external?: boolean;
 }) {
   const baseClasses = cn(
-    "relative px-3 py-1.5 text-sm font-medium rounded-lg",
+    "relative rounded-none px-3 py-1.5 text-sm font-medium",
     "transition-all duration-200 ease-out",
-    "hover:bg-accent hover:text-accent-foreground",
-    active 
-      ? "text-foreground bg-accent" 
+    "border border-transparent",
+    "hover:border-foreground/20 hover:bg-accent/50 hover:text-accent-foreground",
+    "before:absolute before:top-0 before:left-0 before:h-2 before:w-2 before:border-t before:border-l before:border-transparent before:transition-all",
+    "after:absolute after:right-0 after:bottom-0 after:h-2 after:w-2 after:border-r after:border-b after:border-transparent after:transition-all",
+    "hover:before:border-foreground/25 hover:after:border-foreground/25",
+    active
+      ? "border-foreground/25 bg-accent/70 text-foreground before:border-foreground/25 after:border-foreground/25"
       : "text-muted-foreground"
   );
 
@@ -62,15 +66,23 @@ export function NavItem({
         rel="noopener noreferrer"
         className={cn(baseClasses, "inline-flex items-center gap-1")}
       >
-        {children}
+        <span className="relative">
+          {children}
+          <div className="absolute right-0 -bottom-0.5 left-0 h-px bg-gradient-to-r from-transparent via-foreground/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+        </span>
         <ExternalLink className="h-3 w-3 opacity-50" />
       </a>
     );
   }
 
   return (
-    <Link className={baseClasses} {...props}>
-      {children}
+    <Link className={cn(baseClasses, "group")} {...props}>
+      <span className="relative">
+        {children}
+        {active && (
+          <div className="absolute right-0 -bottom-0.5 left-0 h-px bg-gradient-to-r from-transparent via-foreground/30 to-transparent" />
+        )}
+      </span>
     </Link>
   );
 }
