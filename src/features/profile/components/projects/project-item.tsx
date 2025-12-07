@@ -31,7 +31,7 @@ export function ProjectItem({
   return (
     <CollapsibleWithContext defaultOpen={project.isExpanded} asChild>
       <div className={className} data-project-item>
-        <div className="flex items-center hover:bg-accent2 cursor-none">
+        <div className="flex cursor-none items-center hover:bg-accent2">
           {project.logo ? (
             <Image
               src={project.logo}
@@ -79,17 +79,53 @@ export function ProjectItem({
                 </dl>
               </div>
 
-              <SimpleTooltip content="Open Project Link">
-                <a
-                  className="relative flex size-6 shrink-0 items-center justify-center text-muted-foreground after:absolute after:-inset-2 hover:text-foreground"
-                  href={addQueryParams(project.link, UTM_PARAMS)}
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <LinkIcon className="pointer-events-none size-4" />
-                  <span className="sr-only">Open Project Link</span>
-                </a>
-              </SimpleTooltip>
+              {(() => {
+                const isGitHubLink = project.link.includes("github.com");
+                const hasGitHubUrl = !!project.githubUrl;
+                const shouldShowGitHubButton = hasGitHubUrl && !isGitHubLink;
+
+                return (
+                  <>
+                    <SimpleTooltip
+                      content={
+                        isGitHubLink ? "View on GitHub" : "Open Project Link"
+                      }
+                    >
+                      <a
+                        className="relative flex size-6 shrink-0 items-center justify-center text-muted-foreground after:absolute after:-inset-2 hover:text-foreground"
+                        href={addQueryParams(project.link, UTM_PARAMS)}
+                        target="_blank"
+                        rel="noopener"
+                      >
+                        {isGitHubLink ? (
+                          <Icons.github className="pointer-events-none size-4" />
+                        ) : (
+                          <LinkIcon className="pointer-events-none size-4" />
+                        )}
+                        <span className="sr-only">
+                          {isGitHubLink
+                            ? "View on GitHub"
+                            : "Open Project Link"}
+                        </span>
+                      </a>
+                    </SimpleTooltip>
+
+                    {shouldShowGitHubButton && (
+                      <SimpleTooltip content="View on GitHub">
+                        <a
+                          className="relative flex size-6 shrink-0 items-center justify-center text-muted-foreground after:absolute after:-inset-2 hover:text-foreground"
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener"
+                        >
+                          <Icons.github className="pointer-events-none size-4" />
+                          <span className="sr-only">View on GitHub</span>
+                        </a>
+                      </SimpleTooltip>
+                    )}
+                  </>
+                );
+              })()}
 
               <div
                 className="shrink-0 text-muted-foreground [&_svg]:size-4"

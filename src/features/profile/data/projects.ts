@@ -8,6 +8,7 @@ export const PROJECTS: Project[] = [
       start: "2025-08-08",
     },
     link: "https://upcode-coding-and-interview-platfor.vercel.app/",
+    githubUrl: "https://github.com/RajdeepKushwaha5/UPCODE",
     skills: [
       "Next.js",
       "Socket.io",
@@ -33,6 +34,7 @@ export const PROJECTS: Project[] = [
       start: "2025-09-03",
     },
     link: "https://treebio1.vercel.app/",
+    githubUrl: "https://github.com/RajdeepKushwaha5/TreeBio",
     skills: [
       "Next.js",
       "TypeScript",
@@ -57,6 +59,7 @@ export const PROJECTS: Project[] = [
       start: "2025-10-15",
     },
     link: "https://bharat-os.vercel.app/",
+    githubUrl: "https://github.com/RajdeepKushwaha5/BharatOS",
     skills: [
       "Next.js",
       "React",
@@ -79,6 +82,7 @@ export const PROJECTS: Project[] = [
       start: "2025-10-09",
     },
     link: "https://exist-io.vercel.app/",
+    githubUrl: "https://github.com/RajdeepKushwaha5/exist-io",
     skills: [
       "Next.js",
       "React",
@@ -101,6 +105,7 @@ export const PROJECTS: Project[] = [
       start: "2025-10-21",
     },
     link: "https://devfolio-showcase.vercel.app/",
+    githubUrl: "https://github.com/RajdeepKushwaha5/DevFolio",
     skills: [
       "Next.js",
       "React",
@@ -123,6 +128,7 @@ export const PROJECTS: Project[] = [
       start: "2025-10-07",
     },
     link: "https://rajdeepkushwaha5.github.io/strike/",
+    githubUrl: "https://github.com/RajdeepKushwaha5/strike",
     skills: [
       "React",
       "TypeScript",
@@ -144,6 +150,7 @@ export const PROJECTS: Project[] = [
       start: "2025-07-18",
     },
     link: "https://agent-verse-mocha.vercel.app/",
+    githubUrl: "https://github.com/RajdeepKushwaha5/AgentVerse",
     skills: [
       "Next.js",
       "TypeScript",
@@ -166,6 +173,7 @@ export const PROJECTS: Project[] = [
       start: "2025-08-17",
     },
     link: "https://go-tiny-liart.vercel.app/",
+    githubUrl: "https://github.com/RajdeepKushwaha5/GoTiny",
     skills: [
       "Next.js",
       "TypeScript",
@@ -210,14 +218,8 @@ export const PROJECTS: Project[] = [
       start: "2025-07-17",
     },
     link: "https://ev-adoption-forecasting-ouj8effthzovtxnlwvnase.streamlit.app/",
-    skills: [
-      "Python",
-      "Streamlit",
-      "AI/ML",
-      "Time Series",
-      "Prophet",
-      "ARIMA",
-    ],
+    githubUrl: "https://github.com/RajdeepKushwaha5/EV-Adoption-Forecasting",
+    skills: ["Python", "Streamlit", "AI/ML", "Time Series", "Prophet", "ARIMA"],
     description: `Time-series forecasting models (Prophet, ARIMA, Random Forest) to predict EV adoption trends with interactive dashboards.
 - Multiple forecasting models (Prophet, ARIMA, Random Forest)
 - Interactive data visualization dashboards

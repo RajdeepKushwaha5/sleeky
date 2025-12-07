@@ -135,11 +135,47 @@ function Separator({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "relative flex h-8 w-full border-x border-edge",
-        "before:absolute before:-left-[100vw] before:-z-1 before:h-8 before:w-[200vw]",
-        "before:bg-[repeating-linear-gradient(315deg,var(--pattern-foreground)_0,var(--pattern-foreground)_1px,transparent_0,transparent_50%)] before:bg-size-[10px_10px] before:[--pattern-foreground:var(--color-edge)]/56",
+        "relative flex h-8 w-full items-center justify-center border-x border-edge",
         className
       )}
-    />
+    >
+      {/* Extended background */}
+      <div className="absolute -left-[100vw] -z-1 h-8 w-[200vw] bg-background" />
+
+      {/* Blueprint construction marks pattern */}
+      <div className="absolute inset-0 -z-1 flex items-center overflow-hidden">
+        {/* Horizontal construction line */}
+        <div className="h-px w-full bg-foreground/10" />
+
+        {/* Measurement tick marks */}
+        <div className="absolute inset-0 flex items-center justify-around px-4">
+          {[...Array(12)].map((_, i) => (
+            <div key={i} className="flex flex-col items-center gap-0.5">
+              <div className="h-2 w-px bg-foreground/20" />
+              <div className="h-1 w-px bg-foreground/10" />
+            </div>
+          ))}
+        </div>
+
+        {/* Corner detail markers */}
+        <div className="absolute top-1/2 left-4 flex -translate-y-1/2 items-center gap-1 opacity-30">
+          <div className="h-px w-2 bg-foreground" />
+          <div className="h-1 w-1 rounded-full bg-foreground" />
+        </div>
+        <div className="absolute top-1/2 right-4 flex -translate-y-1/2 items-center gap-1 opacity-30">
+          <div className="h-1 w-1 rounded-full bg-foreground" />
+          <div className="h-px w-2 bg-foreground" />
+        </div>
+      </div>
+
+      {/* Center technical annotation */}
+      <div className="relative z-10 flex items-center gap-2 bg-background px-3">
+        <div className="h-1 w-1 rounded-full bg-foreground/30" />
+        <div className="h-px w-6 bg-foreground/20" />
+        <div className="h-1 w-1 rounded-full bg-foreground/40" />
+        <div className="h-px w-6 bg-foreground/20" />
+        <div className="h-1 w-1 rounded-full bg-foreground/30" />
+      </div>
+    </div>
   );
 }

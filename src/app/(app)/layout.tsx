@@ -1,10 +1,9 @@
 import dynamic from "next/dynamic";
 
 import { Chatbot } from "@/components/chatbot";
-import { DictionarySection } from "@/components/dictionary-section";
+import { SideRuler } from "@/components/side-ruler";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { SideRuler } from "@/components/side-ruler";
 
 const ScrollTop = dynamic(() =>
   import("@/components/scroll-top").then((mod) => mod.ScrollTop)
@@ -20,9 +19,11 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       <SideRuler side="right" />
 
       <SiteHeader />
-      <main className="max-w-screen overflow-x-hidden px-2 pt-20">{children}</main>
+      <main className="max-w-screen overflow-x-hidden px-2 pt-20">
+        {children}
+      </main>
       <SiteFooter />
-      <DictionarySection />
+
       <ScrollTop />
       <Chatbot />
     </>
