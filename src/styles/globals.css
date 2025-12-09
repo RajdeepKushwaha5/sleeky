@@ -5,6 +5,23 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Smooth theme transitions */
+*,
+*::before,
+*::after {
+  transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+  transition-duration: 200ms;
+  transition-timing-function: ease-out;
+}
+
+/* Disable transitions during page load to prevent flash */
+.no-transitions,
+.no-transitions *,
+.no-transitions *::before,
+.no-transitions *::after {
+  transition: none !important;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -326,56 +343,57 @@
     @apply scroll-mt-22;
   }
 
-  /* Thanks https://theme-toggle.rdsx.dev */
-  /* polygon */
-  /* ::view-transition-group(root) {
-    animation-duration: 0.8s;
-    animation-timing-function: linear(
-      0 0%,
-      0.1684 2.66%,
-      0.3165 5.49%,
-      0.446 8.52%,
-      0.5581 11.78%,
-      0.6535 15.29%,
-      0.7341 19.11%,
-      0.8011 23.3%,
-      0.8557 27.93%,
-      0.8962 32.68%,
-      0.9283 38.01%,
-      0.9529 44.08%,
-      0.9711 51.14%,
-      0.9833 59.06%,
-      0.9915 68.74%,
-      1 100%
-    );
+  /* Circular Theme Transition - View Transitions API */
+  /* CSS custom properties for transition origin set via JavaScript */
+  :root {
+    --theme-transition-x: 50%;
+    --theme-transition-y: 50%;
+    --theme-transition-radius: 100vmax;
   }
-  ::view-transition-new(root) {
-    animation-name: reveal-light;
+
+  /* Slow, smooth circular reveal animation */
+  ::view-transition-group(root) {
+    animation-duration: 800ms;
+    animation-timing-function: ease-out;
   }
-  ::view-transition-old(root),
-  .dark::view-transition-old(root) {
+
+  ::view-transition-old(root) {
     animation: none;
-    z-index: -1;
+    z-index: 1;
   }
+
+  ::view-transition-new(root) {
+    animation: circular-reveal 800ms ease-out forwards;
+    z-index: 2;
+    mix-blend-mode: normal;
+  }
+
+  /* Dark mode: reveal from click point outward */
   .dark::view-transition-new(root) {
-    animation-name: reveal-dark;
+    animation: circular-reveal 800ms ease-out forwards;
   }
-  @keyframes reveal-dark {
+
+  /* Light mode: reveal from click point outward */
+  html:not(.dark)::view-transition-new(root) {
+    animation: circular-reveal 800ms ease-out forwards;
+  }
+
+  @keyframes circular-reveal {
     from {
-      clip-path: polygon(50% -71%, -50% 71%, -50% 71%, 50% -71%);
+      clip-path: circle(0px at var(--theme-transition-x) var(--theme-transition-y));
     }
     to {
-      clip-path: polygon(50% -71%, -50% 71%, 50% 171%, 171% 50%);
+      clip-path: circle(var(--theme-transition-radius) at var(--theme-transition-x) var(--theme-transition-y));
     }
   }
-  @keyframes reveal-light {
-    from {
-      clip-path: polygon(171% 50%, 50% 171%, 50% 171%, 171% 50%);
-    }
-    to {
-      clip-path: polygon(171% 50%, 50% 171%, -50% 71%, 50% -71%);
-    }
-  } */
+
+  /* Disable default transitions during view transition to prevent conflicts */
+  html.theme-transitioning,
+  html.theme-transitioning *,
+  html.theme-transitioning *::before,
+  html.theme-transitioning *::after {
+    transition: none !important;
+  }
 }
 
 @layer components {
