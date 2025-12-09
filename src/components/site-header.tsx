@@ -21,6 +21,10 @@ const MobileNav = dynamic(() =>
   import("@/components/mobile-nav").then((mod) => mod.MobileNav)
 );
 
+const AudioPlayer = dynamic(() =>
+  import("@/components/audio-player").then((mod) => mod.AudioPlayer)
+);
+
 export function SiteHeader() {
   const posts = getAllPosts();
 
@@ -28,9 +32,9 @@ export function SiteHeader() {
     <SiteHeaderClient
       logo={
         <BrandContextMenu>
-          <Link 
-            href="/" 
-            aria-label="Home" 
+          <Link
+            href="/"
+            aria-label="Home"
             className="group flex items-center gap-2 [&_svg]:h-9 [&_svg]:transition-transform [&_svg]:duration-300 [&_svg]:hover:scale-110"
           >
             <SiteHeaderMark />
@@ -40,6 +44,7 @@ export function SiteHeader() {
       nav={<DesktopNav items={MAIN_NAV} />}
       actions={
         <div className="flex items-center gap-1">
+          <AudioPlayer />
           <CommandMenu posts={posts} />
           <ToggleTheme />
           <MobileNav className="sm:hidden" items={MAIN_NAV} />

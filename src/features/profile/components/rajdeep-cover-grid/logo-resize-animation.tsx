@@ -28,9 +28,8 @@ export function LogoResizeAnimation({
     <motion.div
       className="relative"
       initial={{ width: maxWidth }}
-      whileInView={{ width: [maxWidth, minWidth, maxWidth] }}
-      viewport={{ once: true }}
-      transition={{ duration: 1, delay: 0.4 }}
+      animate={{ width: [maxWidth, minWidth, maxWidth] }}
+      transition={{ duration: 0.6, delay: 0.2 }}
       onUpdate={(latest) => {
         setWidth(latest.width as number);
       }}

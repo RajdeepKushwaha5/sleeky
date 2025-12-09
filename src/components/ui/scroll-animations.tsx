@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 
 import { cn } from "@/lib/utils";
@@ -15,18 +15,15 @@ interface FadeInProps {
   once?: boolean;
 }
 
+// SLEEKY: All animations now load instantly on mount for a quick, snappy feel
 export function FadeIn({
   children,
   className,
   delay = 0,
-  duration = 0.5,
+  duration = 0.3, // Faster duration for sleeky effect
   direction = "up",
-  distance = 30,
-  once = true,
+  distance = 20, // Reduced distance for quicker animations
 }: FadeInProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once, margin: "-50px" });
-
   const getInitialPosition = () => {
     switch (direction) {
       case "up":
@@ -46,9 +43,8 @@ export function FadeIn({
 
   return (
     <motion.div
-      ref={ref}
       initial={{ opacity: 0, ...initial }}
-      animate={isInView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, ...initial }}
+      animate={{ opacity: 1, x: 0, y: 0 }}
       transition={{ duration, delay, ease: "easeOut" }}
       className={className}
     >
@@ -79,7 +75,9 @@ export function Parallax({
   const y = useTransform(
     scrollYProgress,
     [0, 1],
-    direction === "up" ? [100 * speed, -100 * speed] : [-100 * speed, 100 * speed]
+    direction === "up"
+      ? [100 * speed, -100 * speed]
+      : [-100 * speed, 100 * speed]
   );
 
   return (
@@ -97,21 +95,17 @@ interface ScaleInProps {
   once?: boolean;
 }
 
+// SLEEKY: Instant animation on mount
 export function ScaleIn({
   children,
   className,
   delay = 0,
-  duration = 0.5,
-  once = true,
+  duration = 0.3, // Faster
 }: ScaleInProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once, margin: "-50px" });
-
   return (
     <motion.div
-      ref={ref}
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+      initial={{ opacity: 0, scale: 0.9 }} // Less dramatic scale for speed
+      animate={{ opacity: 1, scale: 1 }}
       transition={{ duration, delay, ease: "easeOut" }}
       className={className}
     >
@@ -129,24 +123,20 @@ interface SlideInProps {
   once?: boolean;
 }
 
+// SLEEKY: Instant animation on mount
 export function SlideIn({
   children,
   className,
   delay = 0,
-  duration = 0.6,
+  duration = 0.4, // Faster
   direction = "left",
-  once = true,
 }: SlideInProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once, margin: "-50px" });
-
-  const x = direction === "left" ? -100 : 100;
+  const x = direction === "left" ? -50 : 50; // Reduced distance for speed
 
   return (
     <motion.div
-      ref={ref}
       initial={{ opacity: 0, x }}
-      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x }}
+      animate={{ opacity: 1, x: 0 }}
       transition={{ duration, delay, ease: "easeOut" }}
       className={className}
     >
@@ -162,20 +152,16 @@ interface StaggerChildrenProps {
   once?: boolean;
 }
 
+// SLEEKY: Stagger still works but triggers immediately
 export function StaggerChildren({
   children,
   className,
-  staggerDelay = 0.1,
-  once = true,
+  staggerDelay = 0.05, // Faster stagger
 }: StaggerChildrenProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once, margin: "-50px" });
-
   return (
     <motion.div
-      ref={ref}
       initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
+      animate="visible"
       variants={{
         hidden: {},
         visible: {
@@ -192,11 +178,11 @@ export function StaggerChildren({
 }
 
 export const staggerItemVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 10 }, // Reduced distance
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: "easeOut" },
+    transition: { duration: 0.3, ease: "easeOut" }, // Faster
   },
 };
 
@@ -207,32 +193,28 @@ interface RevealProps {
   once?: boolean;
 }
 
+// SLEEKY: Instant reveal animation
 export function Reveal({
   children,
   className,
   width = "fit-content",
-  once = true,
 }: RevealProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once, margin: "-50px" });
-
   return (
     <div
-      ref={ref}
       className={cn("relative overflow-hidden", className)}
       style={{ width }}
     >
       <motion.div
-        initial={{ opacity: 0, y: 75 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 75 }}
-        transition={{ duration: 0.5, delay: 0.25 }}
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, delay: 0.1 }}
       >
         {children}
       </motion.div>
       <motion.div
         initial={{ left: 0 }}
-        animate={isInView ? { left: "100%" } : { left: 0 }}
-        transition={{ duration: 0.5, ease: "easeIn" }}
+        animate={{ left: "100%" }}
+        transition={{ duration: 0.3, ease: "easeIn" }}
         className="absolute inset-0 z-20 bg-gradient-to-r from-blue-600 to-purple-600"
       />
     </div>
