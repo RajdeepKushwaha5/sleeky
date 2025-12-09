@@ -353,7 +353,7 @@
 
   /* Slow, smooth circular reveal animation */
   ::view-transition-group(root) {
-    animation-duration: 800ms;
+    animation-duration: 1200ms;
     animation-timing-function: ease-out;
   }
 
@@ -363,19 +363,19 @@
   }
 
   ::view-transition-new(root) {
-    animation: circular-reveal 800ms ease-out forwards;
+    animation: circular-reveal 1200ms ease-out forwards;
     z-index: 2;
     mix-blend-mode: normal;
   }
 
   /* Dark mode: reveal from click point outward */
   .dark::view-transition-new(root) {
-    animation: circular-reveal 800ms ease-out forwards;
+    animation: circular-reveal 1200ms ease-out forwards;
   }
 
   /* Light mode: reveal from click point outward */
   html:not(.dark)::view-transition-new(root) {
-    animation: circular-reveal 800ms ease-out forwards;
+    animation: circular-reveal 1200ms ease-out forwards;
   }
 
   @keyframes circular-reveal {
