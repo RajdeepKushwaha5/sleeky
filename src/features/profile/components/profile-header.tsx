@@ -30,7 +30,7 @@ export function ProfileHeader() {
       </div>
 
       {/* Architectural dimension line - bottom */}
-      <div className="pointer-events-none absolute right-8 -bottom-px left-8 z-10 flex items-center gap-1 opacity-25">
+      <div className="pointer-events-none absolute right-8 -bottom-px left-8 z-10 flex items-center gap-1 opacity-50">
         <div className="h-1 w-1 rounded-full bg-foreground" />
         <div className="h-px flex-1 bg-foreground" />
         <div className="font-mono text-[9px] text-foreground/60 select-none">
@@ -83,18 +83,18 @@ export function ProfileHeader() {
             <div className="h-1 w-1 rounded-full bg-foreground" />
           </div>
 
-          <div className="relative z-10 line-clamp-1 font-mono text-xs text-zinc-300 select-none max-sm:hidden dark:text-zinc-700">
+          <div className="relative z-10 line-clamp-1 pb-2 font-mono text-xs text-zinc-500 select-none max-sm:hidden dark:text-zinc-500">
             Web Dev • AI • dApps & Blockchain
           </div>
         </div>
 
         <div className="relative border-t border-edge">
           {/* Technical label */}
-          <div className="pointer-events-none absolute -top-2 left-2 bg-background px-1 font-mono text-[9px] text-muted-foreground/40 select-none">
+          <div className="pointer-events-none absolute -top-2 left-2 bg-background px-1 font-mono text-[9px] text-muted-foreground/60 select-none">
             ID: PROFILE-001
           </div>
 
-          <h1 className="flex items-center pl-4 text-3xl font-semibold">
+          <h1 className="flex items-center py-2 pl-4 text-3xl font-semibold">
             {USER.displayName}
             &nbsp;
             <SimpleTooltip content="Verified">
@@ -102,7 +102,7 @@ export function ProfileHeader() {
             </SimpleTooltip>
           </h1>
 
-          <div className="relative h-12 border-t border-edge py-1 pl-4 sm:h-auto">
+          <div className="relative h-12 border-t border-edge py-2 pl-4 sm:h-auto">
             {/* Blueprint measurement dots - left */}
             <div className="pointer-events-none absolute top-1/2 left-1 flex -translate-y-1/2 flex-col gap-1 opacity-20">
               <div className="h-1 w-1 rounded-full bg-foreground" />

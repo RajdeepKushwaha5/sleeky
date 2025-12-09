@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 
 import { Chatbot } from "@/components/chatbot";
+import { KeyboardNavigation } from "@/components/keyboard-navigation";
 import { SideRuler } from "@/components/side-ruler";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -26,6 +27,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
       <ScrollTop />
       <Chatbot />
+      <KeyboardNavigation />
     </>
   );
 }

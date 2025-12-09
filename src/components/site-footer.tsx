@@ -44,7 +44,7 @@ export function SiteFooter() {
           {/* Blueprint measurement line */}
           <div className="mb-4 flex items-center gap-2">
             <div className="h-px flex-1 bg-gradient-to-r from-transparent via-foreground/20 to-foreground/20" />
-            <span className="font-mono text-[10px] text-muted-foreground/50">
+            <span className="font-mono text-[10px] text-muted-foreground/70">
               SECTION A-A
             </span>
             <div className="h-px flex-1 bg-gradient-to-l from-transparent via-foreground/20 to-foreground/20" />
@@ -154,7 +154,7 @@ export function SiteFooter() {
               <div className="h-px w-8 bg-foreground/20" />
               <div className="h-px w-6 bg-foreground/10" />
             </div>
-            <div className="font-mono text-[10px] text-muted-foreground/40">
+            <div className="font-mono text-[10px] text-muted-foreground/60">
               DETAIL
             </div>
             <div className="flex flex-col gap-0.5">
@@ -170,7 +170,7 @@ export function SiteFooter() {
               <div className="h-1 w-1 rounded-full bg-foreground/20" />
               <div className="h-1 w-1 rounded-full bg-foreground/20" />
             </div>
-            <p className="font-mono text-xs text-muted-foreground/70">
+            <p className="font-mono text-xs text-muted-foreground">
               © {currentYear} Rajdeep Singh. All rights reserved.
             </p>
             <div className="absolute -bottom-3 left-1/2 flex -translate-x-1/2 gap-1">
@@ -184,11 +184,11 @@ export function SiteFooter() {
         {/* Blueprint scale notation */}
         <div className="screen-line-before screen-line-after relative flex w-full before:z-1 after:z-1">
           <div className="mx-auto flex items-center justify-center gap-3 border-x border-edge bg-background px-4 py-2">
-            <span className="font-mono text-[10px] text-muted-foreground/40">
+            <span className="font-mono text-[10px] text-muted-foreground/60">
               SCALE 1:1
             </span>
             <div className="h-3 w-px bg-foreground/20" />
-            <span className="font-mono text-[10px] text-muted-foreground/40">
+            <span className="font-mono text-[10px] text-muted-foreground/60">
               REV. {currentYear}
             </span>
           </div>

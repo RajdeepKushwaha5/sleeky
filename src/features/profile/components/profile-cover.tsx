@@ -27,9 +27,20 @@ export function ProfileCover() {
           "bg-zinc-50 dark:bg-zinc-950"
         )}
       >
-        {/* Animated GIF Background */}
+        {/* Animated GIF Background - Light mode */}
         <div
-          className="absolute inset-0 z-0"
+          className="absolute inset-0 z-0 dark:hidden"
+          style={{
+            backgroundImage: "url('/assets/giphy.gif')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        />
+
+        {/* Animated GIF Background - Dark mode */}
+        <div
+          className="absolute inset-0 z-0 hidden dark:block"
           style={{
             backgroundImage: "url('/assets/kiminonawa-sky.gif')",
             backgroundSize: "cover",
