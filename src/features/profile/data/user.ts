@@ -16,7 +16,7 @@ export const USER: User = {
     "Playing with Large Language Models",
   ],
   address: "Jaipur, India", // Update with your location
-  phoneNumber: "KzkxICoqKioqNjIzMzE=", // Update with your phone number (base64 encoded) - 5 digits hidden
+  phoneNumber: "KzkxIDcwNzM1IDI2MTEz", // +91 70735 26113 (base64 encoded)
   email: "cmFqZGVlcHNpbmdoMTA3ODlAZ21haWwuY29t", // Update with your email (base64 encoded)
   website: "https://rajdeep-singh.vercel.app", // Update with your website URL
   coverImage: "/assets/cover-image.png", // Add your cover image path here
