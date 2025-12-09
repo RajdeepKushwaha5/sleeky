@@ -1,3 +1,5 @@
+"use client";
+
 import { GlobeIcon, MapPinIcon, MarsIcon, VenusIcon } from "lucide-react";
 
 import { USER } from "@/features/profile/data/user";

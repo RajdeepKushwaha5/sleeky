@@ -25,6 +25,7 @@ export function PhoneItem({ phoneNumber }: { phoneNumber: string }) {
       icon={PhoneIcon}
       content={isClient ? getMaskedNumber() : "[Phone protected]"}
       href={isClient ? `tel:${phoneNumberDecoded}` : "#"}
+      copyValue={isClient ? phoneNumberDecoded : undefined}
     />
   );
 }
