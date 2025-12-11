@@ -299,14 +299,6 @@ function RightSideRuler({ activeSection }: { activeSection: string }) {
             );
           })}
         </div>
-
-        {/* Bottom dot */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.3, delay: 0.2 }}
-          className="absolute bottom-8 left-[14px] h-2 w-2 rounded-full bg-zinc-400 dark:bg-zinc-600"
-        />
       </div>
     </div>
   );
