@@ -139,7 +139,7 @@ sleeky/
 
 | File                                       | Purpose                    |
 | ------------------------------------------ | -------------------------- |
-| `src/features/profile/data/user.ts`        | Personal information       |
+| `src/features/profile/data/user.ts`        | Personal info              |
 | `src/config/site.ts`                       | Site metadata & navigation |
 | `src/features/profile/data/projects.ts`    | Project showcase           |
 | `src/features/profile/data/experiences.ts` | Work experience            |
@@ -153,7 +153,7 @@ MIT License — feel free to use this for your own portfolio!
 ---
 
 <p align="center">
-  Made with ❤️ by <a href="https://rajdeep-singh.vercel.app">Rajdeep Singh</a>
+  Made by <a href="https://rajdeep-singh.vercel.app">Rajdeep Singh</a>
 </p>
 
 <p align="center">

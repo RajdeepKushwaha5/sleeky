@@ -15,7 +15,7 @@ export const USER: User = {
     "Artificial Intelligence",
     "Playing with Large Language Models",
   ],
-  address: "Jaipur, India", // Update with your location
+  address: "India 🇮🇳", // Update with your location
   phoneNumber: "KzkxIDcwNzM1IDI2MTEz", // +91  (base64 encoded)
   email: "cmFqZGVlcHNpbmdoMTA3ODlAZ21haWwuY29t", // Update with your email (base64 encoded)
   website: "https://rajdeep-singh.vercel.app", // Update with your website URL
