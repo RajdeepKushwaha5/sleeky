@@ -1,6 +1,13 @@
 "use client";
 
-import { GlobeIcon, MapPinIcon, MarsIcon, VenusIcon } from "lucide-react";
+import {
+  ClockIcon,
+  GlobeIcon,
+  MapPinIcon,
+  MarsIcon,
+  NavigationIcon,
+  VenusIcon,
+} from "lucide-react";
 
 import { USER } from "@/features/profile/data/user";
 import { urlToName } from "@/utils/url";
@@ -13,7 +20,7 @@ import { PhoneItem } from "./phone-item";
 
 export function Overview() {
   return (
-    <Panel>
+    <Panel id="overview">
       <h2 className="sr-only">Overview</h2>
 
       <PanelContent className="space-y-2">
@@ -29,6 +36,12 @@ export function Overview() {
         })}
 
         <IntroItem icon={MapPinIcon} content={USER.address} />
+
+        {/* Cyber-style Coordinates */}
+        <IntroItem icon={NavigationIcon} content="~26.9°N / 75.8°E" />
+
+        {/* Timezone */}
+        <IntroItem icon={ClockIcon} content="IST (GMT+5:30)" />
 
         <PhoneItem phoneNumber={USER.phoneNumber} />
 

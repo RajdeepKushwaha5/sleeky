@@ -8,7 +8,7 @@ export function GitHubContributions() {
   const contributions = getGitHubContributions();
 
   return (
-    <Panel>
+    <Panel id="github">
       <h2 className="sr-only">GitHub Contributions</h2>
 
       <Suspense fallback={<GitHubContributionFallback />}>

@@ -35,7 +35,7 @@ export function LiveStatus() {
   const isDiscordOnline = data?.discord_status !== "offline";
 
   return (
-    <Panel>
+    <Panel id="live">
       <PanelHeader className="flex items-center justify-between py-4">
         <PanelTitle>Live Activity</PanelTitle>
         {data && <DiscordStatus status={data.discord_status} />}

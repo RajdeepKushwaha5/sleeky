@@ -12,17 +12,18 @@ interface SideRulerProps {
 
 const SECTION_IDS = [
   { id: "overview", label: "Overview" },
-  { id: "live", label: "Live Status" },
-  { id: "social", label: "Social Links" },
+  { id: "live", label: "Live" },
+  { id: "social", label: "Social" },
   { id: "about", label: "About" },
+  { id: "projects", label: "Projects" },
+  { id: "experience", label: "Experience" },
+  { id: "stack", label: "Tech Stack" },
+  { id: "testimonials", label: "Testimonials" },
+  { id: "blog", label: "Blog" },
   { id: "github", label: "GitHub" },
   { id: "activity", label: "Activity" },
-  { id: "tech", label: "Tech Stack" },
-  { id: "blog", label: "Blog" },
-  { id: "experience", label: "Experience" },
-  { id: "projects", label: "Projects" },
   { id: "awards", label: "Awards" },
-  { id: "certs", label: "Certifications" },
+  { id: "certs", label: "Certs" },
   { id: "book-call", label: "Book Call" },
   { id: "contact", label: "Contact" },
 ];
@@ -53,6 +54,74 @@ function AnimatedLetter({ letter, index }: { letter: string; index: number }) {
   );
 }
 
+// Navigation dots component for section navigation
+function NavigationDots({ activeSection }: { activeSection: string }) {
+  const handleNavigate = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      // Update URL hash for bookmarking
+      window.history.pushState(null, "", `#${sectionId}`);
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  return (
+    <div className="flex flex-col items-center">
+      {SECTION_IDS.map((section, index) => {
+        const isActive = activeSection === section.label;
+        return (
+          <motion.button
+            key={section.id}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.2, delay: index * 0.03 }}
+            onClick={() => handleNavigate(section.id)}
+            className="group relative flex cursor-pointer items-center justify-center p-2"
+            title={section.label}
+            aria-label={`Navigate to ${section.label}`}
+            type="button"
+          >
+            {/* Dot */}
+            <motion.div
+              className={cn(
+                "h-2 w-2 rounded-full transition-all duration-300",
+                isActive
+                  ? "scale-125 bg-zinc-800 dark:bg-zinc-200"
+                  : "bg-zinc-300 hover:bg-zinc-400 dark:bg-zinc-600 dark:hover:bg-zinc-500"
+              )}
+              whileHover={{ scale: 1.3 }}
+              whileTap={{ scale: 0.9 }}
+            />
+
+            {/* Tooltip label on hover - positioned to the right */}
+            <div className="pointer-events-none absolute left-6 z-50 opacity-0 transition-all duration-200 group-hover:translate-x-1 group-hover:opacity-100">
+              <div className="relative flex items-center">
+                {/* Arrow pointing left */}
+                <div className="h-0 w-0 border-t-4 border-r-4 border-b-4 border-l-0 border-solid border-t-transparent border-r-zinc-800 border-b-transparent dark:border-r-zinc-200" />
+                {/* Label */}
+                <div className="rounded-r bg-zinc-800 px-2 py-1 font-mono text-[10px] font-medium whitespace-nowrap text-white shadow-lg dark:bg-zinc-200 dark:text-zinc-900">
+                  {section.label}
+                </div>
+              </div>
+            </div>
+
+            {/* Active indicator ring */}
+            {isActive && (
+              <motion.div
+                layoutId="activeDotRing"
+                className="absolute h-4 w-4 rounded-full border border-zinc-400 dark:border-zinc-500"
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              />
+            )}
+          </motion.button>
+        );
+      })}
+    </div>
+  );
+}
+
 // LEFT side section indicator - Large animated section names
 function LeftSectionIndicator({ activeSection }: { activeSection: string }) {
   return (
@@ -60,6 +129,11 @@ function LeftSectionIndicator({ activeSection }: { activeSection: string }) {
       <div className="relative flex h-full w-24 flex-col items-center justify-center">
         {/* Decorative vertical line */}
         <div className="absolute top-0 right-4 bottom-0 w-px bg-gradient-to-b from-transparent via-zinc-300/50 to-transparent dark:via-zinc-700/50" />
+
+        {/* Navigation dots - centered vertically, right side of the line */}
+        <div className="pointer-events-auto absolute top-1/2 right-2 z-[200] -translate-y-1/2">
+          <NavigationDots activeSection={activeSection} />
+        </div>
 
         {/* Top decorative corner bracket */}
         <div className="absolute top-20 right-6">
@@ -167,22 +241,6 @@ function LeftSectionIndicator({ activeSection }: { activeSection: string }) {
             <div className="-mt-0.5 h-4 w-px bg-foreground" />
           </motion.div>
         </div>
-
-        {/* Animated dot indicator */}
-        <motion.div
-          className="absolute right-[14px] bottom-12"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.6, 1, 0.6],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
-          <div className="h-2 w-2 rounded-full bg-gradient-to-br from-zinc-400 to-zinc-500 shadow-sm dark:from-zinc-500 dark:to-zinc-600" />
-        </motion.div>
       </div>
     </div>
   );

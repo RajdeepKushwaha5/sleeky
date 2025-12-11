@@ -6,7 +6,7 @@ import { SocialLinkItem } from "./social-link-item";
 
 export function SocialLinks() {
   return (
-    <Panel>
+    <Panel id="social">
       <h2 className="sr-only">Social Links</h2>
 
       <div className="relative">

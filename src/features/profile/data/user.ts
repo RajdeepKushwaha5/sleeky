@@ -36,11 +36,11 @@ I'm a **Full Stack Web Developer** and **Blockchain Developer** who loves turnin
 
 ### What I Do
 
-🚀 **Build Modern Web Apps** — From responsive frontends to robust backends, I craft seamless digital experiences using the MERN stack (MongoDB, Express, React, Node.js).
+→ **Build Modern Web Apps** — From responsive frontends to robust backends, I craft seamless digital experiences using the MERN stack (MongoDB, Express, React, Node.js).
 
-⛓️ **Explore Web3** — I develop decentralized applications (dApps) on Ethereum and Solana, bridging the gap between traditional web and blockchain technology.
+→ **Explore Web3** — I develop decentralized applications (dApps) on Ethereum and Solana, bridging the gap between traditional web and blockchain technology.
 
-💡 **Solve Real Problems** — Whether it's an e-commerce platform, real-time chat application, or a DeFi protocol, I focus on building products that actually make a difference.
+→ **Solve Real Problems** — Whether it's an e-commerce platform, real-time chat application, or a DeFi protocol, I focus on building products that actually make a difference.
 
 
   `,
