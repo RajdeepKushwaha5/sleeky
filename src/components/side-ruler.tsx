@@ -228,19 +228,6 @@ function LeftSectionIndicator({ activeSection }: { activeSection: string }) {
             />
           ))}
         </div>
-
-        {/* Bottom decorative corner bracket */}
-        <div className="absolute right-6 bottom-20">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.25, delay: 0.1 }}
-            className="flex flex-col items-end gap-0.5 opacity-40"
-          >
-            <div className="h-px w-3 bg-foreground" />
-            <div className="-mt-0.5 h-4 w-px bg-foreground" />
-          </motion.div>
-        </div>
       </div>
     </div>
   );
