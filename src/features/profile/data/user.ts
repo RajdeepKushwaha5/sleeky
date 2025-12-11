@@ -16,15 +16,15 @@ export const USER: User = {
     "Playing with Large Language Models",
   ],
   address: "Jaipur, India", // Update with your location
-  phoneNumber: "KzkxIDcwNzM1IDI2MTEz", // +91 70735 26113 (base64 encoded)
+  phoneNumber: "KzkxIDcwNzM1IDI2MTEz", // +91  (base64 encoded)
   email: "cmFqZGVlcHNpbmdoMTA3ODlAZ21haWwuY29t", // Update with your email (base64 encoded)
   website: "https://rajdeep-singh.vercel.app", // Update with your website URL
   coverImage: "/assets/cover-image.png", // Add your cover image path here
   jobTitle: "Full Stack Web Developer & Blockchain Developer", // Update with your job title
   jobs: [
     {
-      title: "Freelancer",
-      company: "Self-Employed",
+      title: "Open to Work",
+      company: "",
       website: "https://rajdeep-singh.vercel.app",
     },
     // Add more jobs as needed

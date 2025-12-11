@@ -200,10 +200,14 @@ Your response (one word only):`;
 
     const relevanceCheck = await model.generateContent(relevanceCheckPrompt);
     const relevanceResponse = await relevanceCheck.response;
-    const isValid = relevanceResponse.text().trim().toUpperCase().includes("VALID");
+    const isValid = relevanceResponse
+      .text()
+      .trim()
+      .toUpperCase()
+      .includes("VALID");
 
     let prompt: string;
-    
+
     if (!isValid) {
       // Generate a roast for unrelated questions
       prompt = `${PORTFOLIO_CONTEXT}
