@@ -169,8 +169,8 @@
   /* zinc-200 */
   --border: oklch(0.92 0.004 286.32);
 
-  /* color-mix */
-  --edge: color-mix(in oklab, var(--border) 64%, var(--background));
+  /* color-mix - reduced opacity for less visual competition */
+  --edge: color-mix(in oklab, var(--border) 45%, var(--background));
 
   /* zinc-200 */
   --input: oklch(0.92 0.004 286.32);
@@ -305,7 +305,7 @@
   ::before,
   ::backdrop,
   ::file-selector-button {
-    @apply border-border outline-ring/50;
+    @apply border-border outline-ring/80;
   }
 
   ::selection {
@@ -321,6 +321,18 @@
     @apply bg-background font-sans text-foreground antialiased;
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
+    /* Responsive font scaling for tablet optimization */
+    font-size: clamp(0.875rem, 0.8rem + 0.25vw, 1rem);
+  }
+
+  /* Tablet-specific text adjustments */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    body {
+      font-size: 0.9375rem; /* 15px - slightly larger for tablet readability */
+    }
+    h1, h2, h3 {
+      letter-spacing: -0.01em;
+    }
   }
 
   /* Custom scrollbar styling. Thanks @shadcn-ui */

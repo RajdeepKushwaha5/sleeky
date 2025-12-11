@@ -8,6 +8,7 @@ export const fontSans = FontSans({
   display: "swap",
   subsets: ["latin"],
   variable: "--font-sans",
+  preload: true,
 });
 
 export const fontMono = FontMono({
@@ -15,4 +16,5 @@ export const fontMono = FontMono({
   display: "swap",
   subsets: ["latin"],
   variable: "--font-mono",
+  preload: true,
 });

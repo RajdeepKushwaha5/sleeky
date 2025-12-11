@@ -7,8 +7,9 @@ export const AWARDS: Award[] = [
     title: "DigitalOcean Hacktoberfest",
     date: "2025-10",
     grade: "Open Source",
-    description: "Successfully completed Hacktoberfest 2025 by contributing 12 pull requests to a diverse range of open-source projects and organizations, including DataTalksClub, Microsoft, Amazon, and others.",
-    referenceLink: "https://hacktoberfest.com/"
+    description:
+      "Successfully completed Hacktoberfest 2025 by contributing 12 pull requests to a diverse range of open-source projects and organizations, including DataTalksClub, Microsoft, Amazon, and others.",
+    referenceLink: "https://www.holopin.io/@rajdeepkushwaha5#badges",
   },
   {
     id: "hackathon-win-2025",
@@ -16,7 +17,8 @@ export const AWARDS: Award[] = [
     title: "Hackathon Winner",
     date: "2025-10",
     grade: "Competition",
-    description: "Won 1st place in a hackathon competition for innovative project development",
-    referenceLink: "#"
-  }
+    description:
+      "Won 1st place in a hackathon competition for innovative project development",
+    referenceLink: "https://coderarmy.in/winners",
+  },
 ];

@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
@@ -25,6 +26,12 @@ const SECTION_IDS = [
   { id: "book-call", label: "Book Call" },
   { id: "contact", label: "Contact" },
 ];
+
+// Route-based section mapping for non-home pages
+const ROUTE_SECTIONS: Record<string, string> = {
+  "/blog": "Blog",
+  "/components": "Components",
+};
 
 // Animated letter component for staggered reveal
 function AnimatedLetter({ letter, index }: { letter: string; index: number }) {
@@ -247,10 +254,33 @@ function RightSideRuler({ activeSection }: { activeSection: string }) {
   );
 }
 
-export function SideRuler({ side }: SideRulerProps) {
-  const [activeSection, setActiveSection] = useState(SECTION_IDS[0].label);
+// Get section label from route
+function getSectionFromRoute(pathname: string): string | null {
+  for (const [route, label] of Object.entries(ROUTE_SECTIONS)) {
+    if (pathname.startsWith(route)) {
+      return label;
+    }
+  }
+  return null;
+}
 
+export function SideRuler({ side }: SideRulerProps) {
+  const pathname = usePathname();
+  const [scrollSection, setScrollSection] = useState(SECTION_IDS[0].label);
+
+  // Compute route-based section (no useEffect needed)
+  const routeSection = getSectionFromRoute(pathname);
+
+  // Final active section: route takes priority, otherwise use scroll detection
+  const activeSection = routeSection ?? scrollSection;
+
+  // Handle home page intersection observer and hash changes
   useEffect(() => {
+    // Skip if not on home page (route section takes over)
+    if (pathname !== "/") {
+      return;
+    }
+
     const observerOptions = {
       root: null,
       rootMargin: "-50% 0px -50% 0px",
@@ -262,7 +292,7 @@ export function SideRuler({ side }: SideRulerProps) {
         if (entry.isIntersecting) {
           const section = SECTION_IDS.find((s) => s.id === entry.target.id);
           if (section) {
-            setActiveSection(section.label);
+            setScrollSection(section.label);
           }
         }
       });
@@ -280,10 +310,28 @@ export function SideRuler({ side }: SideRulerProps) {
       }
     });
 
+    // Also check URL hash on mount and hash change
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace("#", "");
+      if (hash) {
+        const section = SECTION_IDS.find((s) => s.id === hash);
+        if (section) {
+          setScrollSection(section.label);
+        }
+      }
+    };
+
+    // Check initial hash
+    handleHashChange();
+
+    // Listen for hash changes
+    window.addEventListener("hashchange", handleHashChange);
+
     return () => {
       observer.disconnect();
+      window.removeEventListener("hashchange", handleHashChange);
     };
-  }, []);
+  }, [pathname]);
 
   // Render different components based on side
   // LEFT = Large animated section names

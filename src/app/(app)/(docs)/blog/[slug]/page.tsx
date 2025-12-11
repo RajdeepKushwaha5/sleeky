@@ -14,6 +14,8 @@ import { SITE_INFO } from "@/config/site";
 import { PostKeyboardShortcuts } from "@/features/blog/components/post-keyboard-shortcuts";
 import { LLMCopyButtonWithViewOptions } from "@/features/blog/components/post-page-actions";
 import { PostShareMenu } from "@/features/blog/components/post-share-menu";
+import { RelatedPosts } from "@/features/blog/components/related-posts";
+import { SocialShareButtons } from "@/features/blog/components/social-share-buttons";
 import {
   findNeighbour,
   getAllPosts,
@@ -107,7 +109,8 @@ export default async function Page({
     notFound();
   }
 
-  const toc = post.metadata.category === 'medium' ? [] : getTableOfContents(post.content);
+  const toc =
+    post.metadata.category === "medium" ? [] : getTableOfContents(post.content);
 
   const allPosts = getAllPosts();
   const { previous, next } = findNeighbour(allPosts, slug);
@@ -183,10 +186,10 @@ export default async function Page({
         <InlineTOC items={toc} />
 
         <div>
-          {post.metadata.category === 'medium' ? (
+          {post.metadata.category === "medium" ? (
             // For Medium posts, render HTML content directly
             <div
-              className="prose prose-neutral dark:prose-invert max-w-none"
+              className="prose max-w-none prose-neutral dark:prose-invert"
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
           ) : (
@@ -194,6 +197,15 @@ export default async function Page({
             <MDX code={post.content} />
           )}
         </div>
+
+        {/* Social Sharing Buttons */}
+        <SocialShareButtons
+          url={getPostUrl(post)}
+          title={post.metadata.title}
+        />
+
+        {/* Related Posts Section */}
+        <RelatedPosts currentSlug={slug} posts={allPosts} maxPosts={3} />
       </Prose>
 
       <div className="screen-line-before h-4 w-full" />

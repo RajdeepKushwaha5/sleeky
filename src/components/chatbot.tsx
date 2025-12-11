@@ -221,6 +221,7 @@ export function Chatbot() {
                   onKeyPress={handleKeyPress}
                   placeholder="Ask me anything..."
                   disabled={isLoading}
+                  aria-label="Chat message"
                   className="flex-1 rounded-lg border border-edge bg-background px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                 />
                 <button

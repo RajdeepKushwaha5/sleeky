@@ -24,7 +24,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       <SideRuler side="right" />
 
       <SiteHeader />
-      <main className="max-w-screen overflow-x-hidden px-2 pt-20">
+      <main
+        id="main-content"
+        className="max-w-screen overflow-x-hidden px-2 pt-20"
+      >
         {children}
       </main>
       <SiteFooter />
