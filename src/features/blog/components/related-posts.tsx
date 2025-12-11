@@ -51,7 +51,7 @@ export function RelatedPosts({
   }
 
   return (
-    <section className="mt-12 border-t border-edge pt-8">
+    <section className="not-prose mt-12 border-t border-edge pt-8">
       <div className="mb-6 flex items-center justify-between">
         <h2 className="text-xl font-semibold">Related Posts</h2>
         <Link
@@ -64,7 +64,7 @@ export function RelatedPosts({
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {relatedPosts.map((post) => (
-          <PostItem key={post.slug} post={post} />
+          <PostItem key={post.slug} post={post} compact />
         ))}
       </div>
     </section>

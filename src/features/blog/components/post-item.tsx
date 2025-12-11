@@ -12,9 +12,11 @@ import { calculateReadingTime, formatReadingTime } from "../lib/reading-time";
 export function PostItem({
   post,
   shouldPreloadImage,
+  compact = false,
 }: {
   post: Post;
   shouldPreloadImage?: boolean;
+  compact?: boolean;
 }) {
   const readingTime = calculateReadingTime(post.content);
 
@@ -23,9 +25,14 @@ export function PostItem({
       href={`/blog/${post.slug}`}
       prefetch={true}
       className={cn(
-        "group/post flex flex-col gap-2 p-3 sm:p-2",
-        "max-sm:screen-line-before max-sm:screen-line-after",
-        "sm:nth-[2n+1]:screen-line-before sm:nth-[2n+1]:screen-line-after"
+        "group/post flex flex-col gap-2",
+        compact
+          ? "overflow-hidden rounded-lg border border-edge/50 bg-card/30 p-3 transition-colors hover:bg-card/60"
+          : [
+              "p-3 sm:p-2",
+              "max-sm:screen-line-before max-sm:screen-line-after",
+              "sm:nth-[2n+1]:screen-line-before sm:nth-[2n+1]:screen-line-after",
+            ]
       )}
     >
       {post.metadata.image && (
@@ -73,16 +80,26 @@ export function PostItem({
         </div>
       )}
 
-      <div className="flex flex-col gap-1 p-2">
-        <h3 className="text-lg leading-snug font-medium text-balance underline-offset-4 group-hover/post:underline">
+      <div className={cn("flex flex-col gap-1", !compact && "p-2")}>
+        <h3
+          className={cn(
+            "font-medium text-balance underline-offset-4 group-hover/post:underline",
+            compact ? "text-base leading-snug" : "text-lg leading-snug"
+          )}
+        >
           {post.metadata.title}
           {post.metadata.new && (
             <span className="ml-2 inline-block size-2 -translate-y-px rounded-full bg-info" />
           )}
         </h3>
 
-        <dl className="flex items-center gap-3 text-sm text-muted-foreground">
-          <div>
+        <dl
+          className={cn(
+            "flex items-center gap-2 text-muted-foreground",
+            compact ? "text-xs" : "flex-nowrap gap-3 text-sm"
+          )}
+        >
+          <div className="whitespace-nowrap">
             <dt className="sr-only">Published on</dt>
             <dd>
               <time dateTime={dayjs(post.metadata.createdAt).toISOString()}>
@@ -91,8 +108,8 @@ export function PostItem({
             </dd>
           </div>
           <span className="text-muted-foreground/50">•</span>
-          <div className="flex items-center gap-1">
-            <Clock className="size-3.5" aria-hidden="true" />
+          <div className="flex items-center gap-1 whitespace-nowrap">
+            <Clock className="size-3" aria-hidden="true" />
             <dt className="sr-only">Reading time</dt>
             <dd>{formatReadingTime(readingTime)}</dd>
           </div>
