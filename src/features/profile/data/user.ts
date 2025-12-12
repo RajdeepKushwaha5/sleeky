@@ -45,8 +45,7 @@ I'm a **Full Stack Web Developer** and **Blockchain Developer** who loves turnin
 
   `,
   avatar: "https://github.com/RajdeepKushwaha5.png", // Update with your avatar URL
-  ogImage:
-    "/og/simple?title=Rajdeep%20Singh%20%E2%80%93%20Full%20Stack%20Web%20Developer%20%26%20Blockchain%20Developer", // Dynamic OG image
+  ogImage: "/assets/og-image.jpg", // Custom OG image for social media sharing
   namePronunciationUrl: "/audio/rajdeep.mp3", // Update with your name pronunciation audio
   keywords: [
     "rajdeep",
