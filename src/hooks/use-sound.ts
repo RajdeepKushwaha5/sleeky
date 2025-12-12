@@ -52,6 +52,9 @@ export function useSound(url: string) {
 
   const play = useCallback(() => {
     if (audioCtxRef.current && bufferRef.current) {
+      if (audioCtxRef.current.state === "suspended") {
+        audioCtxRef.current.resume();
+      }
       const source = audioCtxRef.current.createBufferSource();
       source.buffer = bufferRef.current;
       source.connect(audioCtxRef.current.destination);
