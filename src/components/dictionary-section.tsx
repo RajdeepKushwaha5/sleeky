@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-
-import { cn } from "@/lib/utils";
+import React from "react";
 
 export function DictionarySection() {
   return (

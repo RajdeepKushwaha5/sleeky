@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 
 import { Chatbot } from "@/components/chatbot";
+import { GradientMesh } from "@/components/gradient-mesh";
 import { KeyboardNavigation } from "@/components/keyboard-navigation";
 import { NoiseOverlay } from "@/components/noise-overlay";
 import { SideRuler } from "@/components/side-ruler";
@@ -14,6 +15,9 @@ const ScrollTop = dynamic(() =>
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
+      {/* Animated gradient mesh background */}
+      <GradientMesh />
+
       {/* Noise/grain overlay for premium feel */}
       <NoiseOverlay />
 

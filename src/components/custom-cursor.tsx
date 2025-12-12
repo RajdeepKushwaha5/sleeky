@@ -1,109 +1,137 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, useMotionValue, useSpring } from "motion/react";
 import { useEffect, useState } from "react";
 
-interface CustomCursorProps {
-  targetSelector: string;
-}
-
-export function CustomCursor({ targetSelector }: CustomCursorProps) {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+/**
+ * Custom Cursor Component
+ * Animated dot that follows the mouse with a trailing ring effect
+ */
+export function CustomCursor() {
+  const [isHovering, setIsHovering] = useState(false);
+  const [isClicking, setIsClicking] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      const closest = target.closest(targetSelector);
+  // Raw mouse position
+  const cursorX = useMotionValue(-100);
+  const cursorY = useMotionValue(-100);
 
-      if (closest) {
-        setPosition({ x: e.clientX, y: e.clientY });
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+  // Smooth spring animation for the main dot
+  const springConfig = { stiffness: 500, damping: 28 };
+  const dotX = useSpring(cursorX, springConfig);
+  const dotY = useSpring(cursorY, springConfig);
+
+  // Slower spring for the trailing ring
+  const ringSpringConfig = { stiffness: 150, damping: 20 };
+  const ringX = useSpring(cursorX, ringSpringConfig);
+  const ringY = useSpring(cursorY, ringSpringConfig);
+
+  useEffect(() => {
+    // Only show custom cursor on non-touch devices
+    const isTouchDevice =
+      "ontouchstart" in window || navigator.maxTouchPoints > 0;
+    if (isTouchDevice) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      cursorX.set(e.clientX);
+      cursorY.set(e.clientY);
+      if (!isVisible) setIsVisible(true);
+    };
+
+    const handleMouseDown = () => setIsClicking(true);
+    const handleMouseUp = () => setIsClicking(false);
+
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const isClickable =
+        target.tagName === "A" ||
+        target.tagName === "BUTTON" ||
+        target.closest("a") ||
+        target.closest("button") ||
+        target.classList.contains("cursor-pointer") ||
+        window.getComputedStyle(target).cursor === "pointer";
+
+      setIsHovering(!!isClickable);
     };
 
     const handleMouseLeave = () => {
       setIsVisible(false);
     };
 
-    document.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseleave", handleMouseLeave);
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousedown", handleMouseDown);
+    window.addEventListener("mouseup", handleMouseUp);
+    window.addEventListener("mouseover", handleMouseOver);
+    document.documentElement.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseleave", handleMouseLeave);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mousedown", handleMouseDown);
+      window.removeEventListener("mouseup", handleMouseUp);
+      window.removeEventListener("mouseover", handleMouseOver);
+      document.documentElement.removeEventListener(
+        "mouseleave",
+        handleMouseLeave
+      );
     };
-  }, [targetSelector]);
+  }, [cursorX, cursorY, isVisible]);
 
-  if (!isVisible) return null;
+  // Don't render on touch devices
+  if (
+    typeof window !== "undefined" &&
+    ("ontouchstart" in window || navigator.maxTouchPoints > 0)
+  ) {
+    return null;
+  }
 
   return (
-    <motion.div
-      className="pointer-events-none fixed z-[9999] mix-blend-difference"
-      style={{
-        left: position.x,
-        top: position.y,
-      }}
-      initial={{ opacity: 0, scale: 0.5 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.5 }}
-      transition={{ duration: 0.15, ease: "easeOut" }}
-    >
-      {/* Custom cursor SVG */}
-      <svg
-        width="32"
-        height="32"
-        viewBox="0 0 32 32"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="translate-x-[-50%] translate-y-[-50%]"
+    <>
+      {/* Hide default cursor globally */}
+      <style jsx global>{`
+        @media (pointer: fine) {
+          * {
+            cursor: none !important;
+          }
+        }
+      `}</style>
+
+      {/* Main dot */}
+      <motion.div
+        className="pointer-events-none fixed top-0 left-0 z-[9999] mix-blend-difference"
+        style={{
+          x: dotX,
+          y: dotY,
+        }}
+        animate={{
+          scale: isClicking ? 0.8 : isHovering ? 1.5 : 1,
+          opacity: isVisible ? 1 : 0,
+        }}
+        transition={{
+          scale: { type: "spring", stiffness: 500, damping: 28 },
+          opacity: { duration: 0.2 },
+        }}
       >
-        {/* Pointer cursor */}
-        <path
-          d="M5 3L5 19L9 15L12 22L14.5 21L11.5 14L16 14L5 3Z"
-          className="fill-white dark:fill-black"
-          stroke="currentColor"
-          strokeWidth="0.5"
-        />
+        <div className="h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white" />
+      </motion.div>
 
-        {/* Click/Touch icon overlay */}
-        <g transform="translate(17, 17)">
-          {/* Outer circle */}
-          <circle
-            cx="7"
-            cy="7"
-            r="6"
-            className="fill-none stroke-white dark:stroke-black"
-            strokeWidth="1.5"
-          />
-
-          {/* Inner dot */}
-          <circle
-            cx="7"
-            cy="7"
-            r="2.5"
-            className="fill-white dark:fill-black"
-          />
-
-          {/* Ripple effect */}
-          <motion.circle
-            cx="7"
-            cy="7"
-            r="6"
-            className="fill-none stroke-white dark:stroke-black"
-            strokeWidth="1"
-            initial={{ scale: 0.8, opacity: 0.8 }}
-            animate={{ scale: 1.3, opacity: 0 }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              ease: "easeOut",
-            }}
-          />
-        </g>
-      </svg>
-    </motion.div>
+      {/* Trailing ring */}
+      <motion.div
+        className="pointer-events-none fixed top-0 left-0 z-[9998]"
+        style={{
+          x: ringX,
+          y: ringY,
+        }}
+        animate={{
+          scale: isClicking ? 0.9 : isHovering ? 1.8 : 1,
+          opacity: isVisible ? (isHovering ? 0.8 : 0.4) : 0,
+        }}
+        transition={{
+          scale: { type: "spring", stiffness: 200, damping: 20 },
+          opacity: { duration: 0.2 },
+        }}
+      >
+        <div className="h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full border border-foreground/30 dark:border-white/30" />
+      </motion.div>
+    </>
   );
 }

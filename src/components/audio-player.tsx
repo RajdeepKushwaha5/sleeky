@@ -35,8 +35,11 @@ export function AudioPlayer() {
       setIsLoaded(true);
     });
 
-    audio.addEventListener("error", (e) => {
-      console.error("Audio error:", e);
+    audio.addEventListener("error", () => {
+      const mediaError = audio.error;
+      if (mediaError) {
+        console.error("Audio error:", mediaError.code, mediaError.message);
+      }
     });
 
     audio.addEventListener("ended", () => {
@@ -61,7 +64,7 @@ export function AudioPlayer() {
     // Try to play click sound, but don't let it block music
     try {
       playClick();
-    } catch (e) {
+    } catch {
       // Ignore click sound errors
     }
 
