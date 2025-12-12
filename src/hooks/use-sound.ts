@@ -1,5 +1,22 @@
 import { useCallback, useEffect, useRef } from "react";
 
+// Singleton AudioContext to prevent hitting browser limits (especially on iOS)
+let globalAudioCtx: AudioContext | null = null;
+
+function getAudioContext() {
+  if (!globalAudioCtx) {
+    const AudioContextClass =
+      window.AudioContext ||
+      (window as unknown as { webkitAudioContext: typeof AudioContext })
+        .webkitAudioContext;
+
+    if (AudioContextClass) {
+      globalAudioCtx = new AudioContextClass();
+    }
+  }
+  return globalAudioCtx;
+}
+
 /**
  * Custom React hook to load and play a sound from a given URL using the Web Audio API.
  *
@@ -11,7 +28,7 @@ import { useCallback, useEffect, useRef } from "react";
  *
  * @remarks
  * - If the Web Audio API is not supported in the browser, a warning is logged and playback is disabled.
- * - The audio context and buffer are managed internally using React refs.
+ * - The audio context and buffer are managed internally using a singleton context.
  * - Errors during fetching or decoding the audio are logged to the console.
  *
  * @example
@@ -22,22 +39,15 @@ import { useCallback, useEffect, useRef } from "react";
  * ```
  */
 export function useSound(url: string) {
-  const audioCtxRef = useRef<AudioContext | null>(null);
   const bufferRef = useRef<AudioBuffer | null>(null);
 
   useEffect(() => {
-    const AudioContextClass =
-      window.AudioContext ||
-      (window as unknown as { webkitAudioContext: typeof AudioContext })
-        .webkitAudioContext;
+    const audioCtx = getAudioContext();
 
-    if (!AudioContextClass) {
+    if (!audioCtx) {
       console.warn("Web Audio API is not supported in this browser.");
       return;
     }
-
-    const audioCtx = new AudioContextClass();
-    audioCtxRef.current = audioCtx;
 
     fetch(url)
       .then((res) => res.arrayBuffer())
@@ -46,18 +56,19 @@ export function useSound(url: string) {
         bufferRef.current = decoded;
       })
       .catch((err) => {
-        console.error(`Failed to load click sound from ${url}:`, err);
+        console.error(`Failed to load sound from ${url}:`, err);
       });
   }, [url]);
 
   const play = useCallback(() => {
-    if (audioCtxRef.current && bufferRef.current) {
-      if (audioCtxRef.current.state === "suspended") {
-        audioCtxRef.current.resume();
+    const audioCtx = getAudioContext();
+    if (audioCtx && bufferRef.current) {
+      if (audioCtx.state === "suspended") {
+        audioCtx.resume();
       }
-      const source = audioCtxRef.current.createBufferSource();
+      const source = audioCtx.createBufferSource();
       source.buffer = bufferRef.current;
-      source.connect(audioCtxRef.current.destination);
+      source.connect(audioCtx.destination);
       source.start(0);
     }
   }, []);

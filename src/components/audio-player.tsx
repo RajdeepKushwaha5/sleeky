@@ -44,35 +44,75 @@ export function AudioPlayer() {
     const audio = audioRef.current;
     if (!audio) return;
 
-    playClick();
+    // Try to play click sound, but don't let it block music
+    try {
+      playClick();
+    } catch (e) {
+      // Ignore click sound errors
+    }
 
     if (isPlaying) {
-      // Smooth fade out
-      const fadeOut = setInterval(() => {
-        if (audio.volume > 0.05) {
-          audio.volume = Math.max(0, audio.volume - 0.05);
-        } else {
-          clearInterval(fadeOut);
-          audio.pause();
-          audio.volume = 0.3;
-        }
-      }, 50);
+      // Check if volume control is supported (it's often not on iOS)
+      // We do this by trying to set volume and checking if it changed
+      const originalVolume = audio.volume;
+      audio.volume = 0.5;
+      const volumeControlSupported = audio.volume === 0.5;
+      audio.volume = originalVolume;
+
+      if (volumeControlSupported) {
+        // Smooth fade out
+        const fadeOut = setInterval(() => {
+          if (audio.volume > 0.05) {
+            audio.volume = Math.max(0, audio.volume - 0.05);
+          } else {
+            clearInterval(fadeOut);
+            audio.pause();
+            audio.volume = 0.3;
+          }
+        }, 50);
+      } else {
+        // Instant pause for iOS
+        audio.pause();
+      }
       setIsPlaying(false);
     } else {
-      audio.volume = 0;
-      audio.play().catch(() => {
-        // Autoplay might be blocked
-        console.log("Audio playback requires user interaction");
-      });
-      // Smooth fade in
-      const fadeIn = setInterval(() => {
-        if (audio.volume < 0.25) {
-          audio.volume = Math.min(0.3, audio.volume + 0.05);
-        } else {
-          clearInterval(fadeIn);
-          audio.volume = 0.3;
-        }
-      }, 50);
+      // For iOS, we need to be careful not to silence the audio
+      // Set volume to target immediately in case we're on iOS
+      audio.volume = 0.3;
+
+      const playPromise = audio.play();
+
+      if (playPromise !== undefined) {
+        playPromise.catch((error) => {
+          console.log("Audio playback failed:", error);
+          // If playback failed, it might be due to interaction requirements
+          // We can't do much here except update state
+          setIsPlaying(false);
+        });
+      }
+
+      // Check for volume support again
+      const originalVolume = audio.volume;
+      audio.volume = 0.5;
+      const volumeControlSupported = audio.volume === 0.5;
+      audio.volume = originalVolume; // reset to 0.3 or whatever it was
+
+      if (volumeControlSupported) {
+        // Start silence and fade in
+        audio.volume = 0;
+
+        // Smooth fade in
+        const fadeIn = setInterval(() => {
+          if (audio.volume < 0.25) {
+            audio.volume = Math.min(0.3, audio.volume + 0.05);
+          } else {
+            clearInterval(fadeIn);
+            audio.volume = 0.3;
+          }
+        }, 50);
+      }
+      // Else: we already set volume to 0.3 and called play(), so it should just work
+
       setIsPlaying(true);
     }
   }, [isPlaying, playClick]);
