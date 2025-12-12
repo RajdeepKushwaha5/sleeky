@@ -42,11 +42,15 @@ I'm a **Full Stack Web Developer** and **Blockchain Developer** who loves turnin
 
 → **Solve Real Problems** — Whether it's an e-commerce platform, real-time chat application, or a DeFi protocol, I focus on building products that actually make a difference.
 
+---
 
+### Let's Build Something Together 🚀
+
+I'm always open to collaborating on exciting projects, freelance opportunities, or just having a chat about tech. Feel free to reach out!
   `,
   avatar: "https://github.com/RajdeepKushwaha5.png", // Update with your avatar URL
   ogImage: "/assets/og-image.jpg", // Custom OG image for social media sharing
-  namePronunciationUrl: "/audio/rajdeep.mp3", // Update with your name pronunciation audio
+
   keywords: [
     "rajdeep",
     "rajdeepsingh",

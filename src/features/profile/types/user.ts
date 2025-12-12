@@ -36,8 +36,8 @@ export type User = {
   coverImage: string;
   /** Open Graph image URL for social sharing */
   ogImage: string;
-  /** Audio URL for name pronunciation */
-  namePronunciationUrl: string;
+  /** Audio URL for name pronunciation (optional) */
+  namePronunciationUrl?: string;
   /** SEO keywords list for metadata */
   keywords: string[];
   /** Profile/site start date in YYYY-MM-DD */
