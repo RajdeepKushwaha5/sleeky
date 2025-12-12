@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { Clock, PinIcon } from "lucide-react";
+import { Clock, MoveUpRight, PinIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -52,17 +52,10 @@ export function PostItem({
 
           <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-black/10 ring-inset dark:ring-white/10" />
 
-          {/* Hover overlay with play button */}
+          {/* Hover overlay with read button */}
           <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover/post:opacity-100">
-            <div className="flex h-16 w-16 scale-75 transform items-center justify-center rounded-full bg-blue-600 shadow-xl transition-transform duration-300 group-hover/post:scale-100 dark:bg-blue-500">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="ml-1 h-8 w-8 text-white"
-              >
-                <path d="M8 5.14v14l11-7-11-7z" />
-              </svg>
+            <div className="flex h-16 w-16 scale-75 transform items-center justify-center rounded-full bg-white shadow-xl transition-transform duration-300 group-hover/post:scale-100">
+              <MoveUpRight className="h-8 w-8 text-black" />
             </div>
           </div>
 

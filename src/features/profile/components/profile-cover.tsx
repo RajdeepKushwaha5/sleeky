@@ -16,7 +16,7 @@ export function ProfileCover() {
           "bg-zinc-50 dark:bg-zinc-950"
         )}
       >
-        {/* Animated GIF Background - Light mode */}
+        {/* Animated GIF Background - Light mode with warm tint */}
         <div
           className="absolute inset-0 z-0 dark:hidden"
           style={{
@@ -24,8 +24,11 @@ export function ProfileCover() {
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
+            filter: "sepia(20%) saturate(120%) hue-rotate(-10deg)",
           }}
         />
+        {/* Warm orange overlay for light mode */}
+        <div className="absolute inset-0 z-[0.5] bg-gradient-to-br from-orange-100/30 via-amber-50/20 to-yellow-100/30 dark:hidden" />
 
         {/* Animated GIF Background - Dark mode */}
         <div

@@ -14,18 +14,29 @@ const AUDIO_SRC = "/audio/interstellar_chase_2.mp3";
 export function AudioPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const playClick = useSound("/audio/ui-sounds/click.wav");
 
-  // Initialize audio element
+  // Initialize audio element with iOS-compatible settings
   useEffect(() => {
-    const audio = new Audio(AUDIO_SRC);
+    const audio = new Audio();
+
+    // iOS-specific attributes
+    audio.setAttribute("playsinline", "true");
+    audio.setAttribute("webkit-playsinline", "true");
+
+    audio.src = AUDIO_SRC;
     audio.loop = true;
-    audio.volume = 0.3; // Calm, ambient volume
-    audio.preload = "metadata";
+    audio.volume = 0.3;
+    audio.preload = "auto"; // Use 'auto' for better iOS compatibility
 
     audio.addEventListener("canplaythrough", () => {
       setIsLoaded(true);
+    });
+
+    audio.addEventListener("error", (e) => {
+      console.error("Audio error:", e);
     });
 
     audio.addEventListener("ended", () => {
@@ -34,13 +45,16 @@ export function AudioPlayer() {
 
     audioRef.current = audio;
 
+    // Try to load the audio
+    audio.load();
+
     return () => {
       audio.pause();
       audio.src = "";
     };
   }, []);
 
-  const togglePlay = useCallback(() => {
+  const togglePlay = useCallback(async () => {
     const audio = audioRef.current;
     if (!audio) return;
 
@@ -52,70 +66,41 @@ export function AudioPlayer() {
     }
 
     if (isPlaying) {
-      // Check if volume control is supported (it's often not on iOS)
-      // We do this by trying to set volume and checking if it changed
-      const originalVolume = audio.volume;
-      audio.volume = 0.5;
-      const volumeControlSupported = audio.volume === 0.5;
-      audio.volume = originalVolume;
-
-      if (volumeControlSupported) {
-        // Smooth fade out
-        const fadeOut = setInterval(() => {
-          if (audio.volume > 0.05) {
-            audio.volume = Math.max(0, audio.volume - 0.05);
-          } else {
-            clearInterval(fadeOut);
-            audio.pause();
-            audio.volume = 0.3;
-          }
-        }, 50);
-      } else {
-        // Instant pause for iOS
-        audio.pause();
-      }
+      // Pause the audio
+      audio.pause();
       setIsPlaying(false);
     } else {
-      // For iOS, we need to be careful not to silence the audio
-      // Set volume to target immediately in case we're on iOS
-      audio.volume = 0.3;
+      // iOS workaround: reload and play in the same user gesture
+      try {
+        // Reset the audio for iOS
+        audio.currentTime = 0;
+        audio.volume = 0.3;
 
-      const playPromise = audio.play();
+        // For iOS, we need to call load() then play() in the same gesture
+        if (!hasInteracted) {
+          audio.load();
+          setHasInteracted(true);
+        }
 
-      if (playPromise !== undefined) {
-        playPromise.catch((error) => {
-          console.log("Audio playback failed:", error);
-          // If playback failed, it might be due to interaction requirements
-          // We can't do much here except update state
+        // Attempt to play - this must happen within the user gesture
+        await audio.play();
+        setIsPlaying(true);
+      } catch (error) {
+        console.error("Audio playback failed:", error);
+
+        // Fallback: try muted start, then unmute
+        try {
+          audio.muted = true;
+          await audio.play();
+          audio.muted = false;
+          setIsPlaying(true);
+        } catch (fallbackError) {
+          console.error("Fallback playback also failed:", fallbackError);
           setIsPlaying(false);
-        });
+        }
       }
-
-      // Check for volume support again
-      const originalVolume = audio.volume;
-      audio.volume = 0.5;
-      const volumeControlSupported = audio.volume === 0.5;
-      audio.volume = originalVolume; // reset to 0.3 or whatever it was
-
-      if (volumeControlSupported) {
-        // Start silence and fade in
-        audio.volume = 0;
-
-        // Smooth fade in
-        const fadeIn = setInterval(() => {
-          if (audio.volume < 0.25) {
-            audio.volume = Math.min(0.3, audio.volume + 0.05);
-          } else {
-            clearInterval(fadeIn);
-            audio.volume = 0.3;
-          }
-        }, 50);
-      }
-      // Else: we already set volume to 0.3 and called play(), so it should just work
-
-      setIsPlaying(true);
     }
-  }, [isPlaying, playClick]);
+  }, [isPlaying, hasInteracted, playClick]);
 
   return (
     <Button
@@ -177,7 +162,7 @@ export function AudioPlayer() {
       )}
 
       <span className="sr-only">
-        {isPlaying ? "Pause" : "Play"} Chris Cornell - Seasons
+        {isPlaying ? "Pause" : "Play"} ambient music
       </span>
     </Button>
   );
