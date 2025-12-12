@@ -93,26 +93,36 @@ export const metadata: Metadata = {
   ],
   creator: "RajdeepKushwaha5",
   openGraph: {
+    title: `${USER.displayName} – ${USER.jobTitle}`,
+    description: SITE_INFO.description,
     siteName: SITE_INFO.name,
-    url: "/",
-    type: "profile",
-    firstName: USER.firstName,
-    lastName: USER.lastName,
-    username: USER.username,
-    gender: USER.gender,
+    url: SITE_INFO.url,
+    type: "website",
+    locale: "en_US",
     images: [
       {
-        url: SITE_INFO.ogImage,
+        url: `${SITE_INFO.url}${SITE_INFO.ogImage}`,
         width: 1200,
         height: 630,
-        alt: SITE_INFO.name,
+        alt: `${USER.displayName} – ${USER.jobTitle}`,
+        type: "image/jpeg",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    creator: "@rajdeeptwts", // Twitter username
-    images: [SITE_INFO.ogImage],
+    site: "@rajdeeptwts",
+    creator: "@rajdeeptwts",
+    title: `${USER.displayName} – ${USER.jobTitle}`,
+    description: SITE_INFO.description,
+    images: [
+      {
+        url: `${SITE_INFO.url}${SITE_INFO.ogImage}`,
+        width: 1200,
+        height: 630,
+        alt: `${USER.displayName} – ${USER.jobTitle}`,
+      },
+    ],
   },
   icons: {
     icon: [
