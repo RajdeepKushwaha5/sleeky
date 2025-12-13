@@ -68,7 +68,7 @@ export function Contact() {
         {/* Cool Intro Card */}
         <div className="mb-6 flex items-start gap-4">
           <div className="relative shrink-0 grayscale dark:grayscale-0">
-            <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 opacity-75 blur-md" />
+            <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-[#2c4036] via-[#415d4e] to-[#2c4036] opacity-100 blur-md" />
             <div className="relative h-14 w-14 overflow-hidden rounded-full border-2 border-background ring-2 ring-white/10 sm:h-16 sm:w-16">
               <img
                 src="/final_about.png"

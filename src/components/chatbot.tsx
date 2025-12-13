@@ -145,7 +145,7 @@ export function Chatbot() {
             {/* Header */}
             <div className="flex items-center gap-3 border-b border-border/50 p-4">
               <div className="relative shrink-0 grayscale dark:grayscale-0">
-                <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 opacity-75 blur-md" />
+                <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-[#2c4036] via-[#415d4e] to-[#2c4036] opacity-100 blur-md" />
                 <div className="relative h-12 w-12 overflow-hidden rounded-full border-2 border-background ring-2 ring-white/10">
                   <img
                     src="/final_about.png"

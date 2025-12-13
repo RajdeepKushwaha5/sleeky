@@ -13,7 +13,7 @@ export function About() {
         <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
           {/* Image - Cool Round Style */}
           <div className="relative shrink-0 grayscale dark:grayscale-0">
-            <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 opacity-75 blur-md" />
+            <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-[#2c4036] via-[#415d4e] to-[#2c4036] opacity-100 blur-md" />
             <div className="relative aspect-square h-24 w-24 overflow-hidden rounded-full border-2 border-background ring-2 ring-white/10 sm:h-32 sm:w-32">
               <img
                 src="/final_about.png"
