@@ -102,39 +102,37 @@ export function Chatbot() {
   return (
     <>
       {/* Floating Button */}
-      <Magnetic>
-        <motion.button
-          onClick={() => setIsOpen(!isOpen)}
-          className="fixed right-4 bottom-4 z-50 flex h-14 w-14 items-center justify-center rounded-full border border-border/50 bg-card/80 text-foreground shadow-lg transition-all hover:scale-110 hover:bg-card md:right-6 md:bottom-6"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          aria-label="Toggle chatbot"
-        >
-          <AnimatePresence mode="wait">
-            {isOpen ? (
-              <motion.div
-                key="close"
-                initial={{ rotate: -90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: 90, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <X className="h-6 w-6" />
-              </motion.div>
-            ) : (
-              <motion.div
-                key="open"
-                initial={{ rotate: 90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: -90, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <MessageCircle className="h-6 w-6" />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.button>
-      </Magnetic>
+      <motion.button
+        onClick={() => setIsOpen(!isOpen)}
+        className="fixed right-4 bottom-4 z-50 flex h-14 w-14 items-center justify-center rounded-full border border-border/50 bg-card/80 text-foreground shadow-lg transition-all hover:scale-110 hover:bg-card md:right-6 md:bottom-6"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        aria-label="Toggle chatbot"
+      >
+        <AnimatePresence mode="wait">
+          {isOpen ? (
+            <motion.div
+              key="close"
+              initial={{ rotate: -90, opacity: 0 }}
+              animate={{ rotate: 0, opacity: 1 }}
+              exit={{ rotate: 90, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <X className="h-6 w-6" />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="open"
+              initial={{ rotate: 90, opacity: 0 }}
+              animate={{ rotate: 0, opacity: 1 }}
+              exit={{ rotate: -90, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <MessageCircle className="h-6 w-6" />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.button>
 
       {/* Chat Window */}
       <AnimatePresence>
@@ -147,26 +145,35 @@ export function Chatbot() {
             className="fixed right-4 bottom-20 z-50 flex h-[500px] w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-2xl border border-border/50 bg-card/95 shadow-2xl backdrop-blur-xl md:right-6 md:bottom-24 md:w-[380px]"
           >
             {/* Header */}
-            <div className="flex items-center gap-3 border-b border-border/50 p-4">
-              <div className="relative shrink-0 grayscale dark:grayscale-0">
-                <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-[#2c4036] via-[#415d4e] to-[#2c4036] opacity-100 blur-md" />
-                <div className="relative h-12 w-12 overflow-hidden rounded-full border-2 border-background ring-2 ring-white/10">
-                  <img
-                    src="/final_about.png"
-                    alt="Rajdeep's Assistant"
-                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-110"
-                  />
+            <div className="flex items-center justify-between border-b border-border/50 p-4">
+              <div className="flex items-center gap-3">
+                <div className="relative shrink-0 grayscale dark:grayscale-0">
+                  <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-[#2c4036] via-[#415d4e] to-[#2c4036] opacity-100 blur-md" />
+                  <div className="relative h-12 w-12 overflow-hidden rounded-full border-2 border-background ring-2 ring-white/10">
+                    <img
+                      src="/final_about.png"
+                      alt="Rajdeep's Assistant"
+                      className="h-full w-full object-cover transition-transform duration-500 hover:scale-110"
+                    />
+                  </div>
+                  <div className="absolute right-0 bottom-0 z-10 h-3 w-3 rounded-full border-2 border-card bg-emerald-500" />
                 </div>
-                <div className="absolute right-0 bottom-0 z-10 h-3 w-3 rounded-full border-2 border-card bg-emerald-500" />
+                <div>
+                  <h3 className="font-serif text-lg font-medium text-foreground/90 italic">
+                    RJDP&apos;s Assistant
+                  </h3>
+                  <p className="font-mono text-xs text-foreground/40">
+                    AI-Powered Helper
+                  </p>
+                </div>
               </div>
-              <div>
-                <h3 className="font-serif text-lg font-medium text-foreground/90 italic">
-                  RJDP&apos;s Assistant
-                </h3>
-                <p className="font-mono text-xs text-foreground/40">
-                  AI-Powered Helper
-                </p>
-              </div>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="rounded-full p-2 text-foreground/50 transition-colors hover:bg-foreground/5 hover:text-foreground"
+                aria-label="Close chat"
+              >
+                <X className="h-5 w-5" />
+              </button>
             </div>
 
             {/* Messages */}

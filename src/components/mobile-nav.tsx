@@ -1,5 +1,6 @@
 "use client";
 
+import { ChevronRight, ExternalLink } from "lucide-react";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -34,95 +35,57 @@ export function MobileNav({
       </DropdownMenuTrigger>
 
       <DropdownMenuContent
-        className="relative w-72 overflow-hidden border-edge/80 bg-popover/95 p-0 backdrop-blur-md"
+        className="relative w-80 overflow-hidden border-none bg-popover/95 p-6 backdrop-blur-md"
         align="end"
         sideOffset={12}
       >
         {/* Blueprint-style decorative corner brackets */}
-        <div className="pointer-events-none absolute top-1.5 left-1.5 h-3 w-3 border-t-2 border-l-2 border-foreground/20" />
-        <div className="pointer-events-none absolute top-1.5 right-1.5 h-3 w-3 border-t-2 border-r-2 border-foreground/20" />
-        <div className="pointer-events-none absolute bottom-1.5 left-1.5 h-3 w-3 border-b-2 border-l-2 border-foreground/20" />
-        <div className="pointer-events-none absolute right-1.5 bottom-1.5 h-3 w-3 border-r-2 border-b-2 border-foreground/20" />
+        <div className="absolute top-2 left-2 h-4 w-4 border-t-2 border-l-2 border-foreground/20" />
+        <div className="absolute top-2 right-2 h-4 w-4 border-t-2 border-r-2 border-foreground/20" />
+        <div className="absolute bottom-2 left-2 h-4 w-4 border-b-2 border-l-2 border-foreground/20" />
+        <div className="absolute right-2 bottom-2 h-4 w-4 border-r-2 border-b-2 border-foreground/20" />
 
         {/* Header section with title */}
-        <div className="border-b border-edge/60 px-4 py-3">
-          <div className="flex items-center gap-2">
-            <div className="h-1.5 w-1.5 rounded-full bg-foreground/40" />
-            <span className="text-xs font-medium tracking-wider text-muted-foreground uppercase">
-              Navigation
-            </span>
-          </div>
+        <div className="mb-6 flex items-center gap-2 px-2">
+          <div className="h-1.5 w-1.5 rounded-full bg-foreground/40" />
+          <span className="text-xs font-semibold tracking-widest text-muted-foreground uppercase">
+            Navigation
+          </span>
         </div>
 
         {/* Menu items */}
-        <div className="p-2">
+        <div className="space-y-1">
           {items.map((link) => (
             <DropdownMenuItem
               key={link.href}
               asChild
-              className="group relative mb-1 rounded-lg border border-transparent px-4 py-3 transition-all hover:border-edge/40 hover:bg-accent/30"
+              className="group relative rounded-none border-none px-2 py-3 focus:bg-transparent"
             >
               {link.external ? (
                 <a
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between"
+                  className="flex items-center justify-between transition-opacity hover:opacity-70"
                 >
-                  <span
-                    className={cn(
-                      "text-base font-medium",
-                      link.title === "Resume" && "text-foreground"
-                    )}
-                  >
+                  <span className="text-xl font-medium tracking-tight text-foreground/80 group-hover:text-foreground">
                     {link.title}
                   </span>
-                  <svg
-                    className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                    />
-                  </svg>
+                  <ExternalLink className="h-4 w-4 text-muted-foreground transition-transform group-hover:scale-110" />
                 </a>
               ) : (
                 <Link
                   href={link.href}
-                  className="flex items-center justify-between"
+                  className="flex items-center justify-between transition-opacity hover:opacity-70"
                 >
-                  <span className="text-base font-medium">{link.title}</span>
-                  <svg
-                    className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
+                  <span className="text-xl font-medium tracking-tight text-foreground/80 group-hover:text-foreground">
+                    {link.title}
+                  </span>
+                  <ChevronRight className="h-5 w-5 text-muted-foreground/50 transition-transform group-hover:translate-x-1 group-hover:text-foreground" />
                 </Link>
               )}
             </DropdownMenuItem>
           ))}
-        </div>
-
-        {/* Footer decoration */}
-        <div className="border-t border-edge/60 px-4 py-2">
-          <div className="flex items-center gap-2 opacity-40">
-            <div className="h-px flex-1 bg-foreground/20" />
-            <div className="h-1 w-1 rounded-full bg-foreground/30" />
-            <div className="h-px flex-1 bg-foreground/20" />
-          </div>
         </div>
       </DropdownMenuContent>
     </DropdownMenu>
