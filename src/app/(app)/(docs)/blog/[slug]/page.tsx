@@ -10,6 +10,7 @@ import { InlineTOC } from "@/components/inline-toc";
 import { MDX } from "@/components/mdx";
 import { SidebarTOC } from "@/components/sidebar-toc";
 import { Button } from "@/components/ui/button";
+import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { Prose } from "@/components/ui/typography";
 import { SITE_INFO } from "@/config/site";
 import { PostKeyboardShortcuts } from "@/features/blog/components/post-keyboard-shortcuts";
@@ -118,6 +119,7 @@ export default async function Page({
 
   return (
     <>
+      <ScrollProgress />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -167,7 +169,7 @@ export default async function Page({
         </div>
       </div>
 
-      <div className="screen-line-before screen-line-after">
+      <div className="screen-line-after screen-line-before">
         <div
           className={cn(
             "h-8",

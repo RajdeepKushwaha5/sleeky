@@ -47,7 +47,7 @@ export function ProjectCard({
           </>
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-muted/30">
-            <span className="font-serif text-6xl font-medium italic text-foreground/10 select-none">
+            <span className="font-serif text-6xl font-medium text-foreground/10 italic select-none">
               {project.title.charAt(0)}
             </span>
           </div>
@@ -86,7 +86,7 @@ export function ProjectCard({
             target="_blank"
             className="group/title block"
           >
-            <h3 className="font-serif text-lg font-medium italic text-foreground/90 transition-colors group-hover/title:text-foreground">
+            <h3 className="font-serif text-lg font-medium text-foreground/90 italic transition-colors group-hover/title:text-foreground">
               {project.title}
             </h3>
           </Link>
@@ -122,11 +122,11 @@ export function ProjectCard({
                 <MoveRight className="size-3 transition-transform duration-300 group-hover/btn:translate-x-1" />
               </button>
             </DialogTrigger>
-            <DialogContent className="max-w-2xl rounded-2xl">
+            <DialogContent className="max-h-[85vh] w-[calc(100vw-2rem)] max-w-2xl overflow-y-auto rounded-2xl p-4 sm:p-6">
               <DialogHeader>
-                <div className="mb-2 flex items-center gap-3">
+                <div className="mb-2 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-3">
                   {project.logo && (
-                    <div className="relative size-12 overflow-hidden rounded-xl">
+                    <div className="relative size-12 shrink-0 overflow-hidden rounded-xl">
                       <Image
                         src={project.logo}
                         alt={project.title}
@@ -135,11 +135,11 @@ export function ProjectCard({
                       />
                     </div>
                   )}
-                  <div>
-                    <DialogTitle className="font-serif text-xl italic">
+                  <div className="text-left">
+                    <DialogTitle className="font-serif text-xl leading-tight font-medium italic">
                       {project.title}
                     </DialogTitle>
-                    <DialogDescription className="font-mono text-xs">
+                    <DialogDescription className="mt-1 font-mono text-xs">
                       {project.period.start} - {project.period.end || "Present"}
                     </DialogDescription>
                   </div>
@@ -164,12 +164,12 @@ export function ProjectCard({
                   </p>
                 </div>
 
-                <div className="flex gap-3 pt-2">
+                <div className="flex flex-wrap gap-3 pt-2">
                   {project.githubUrl && (
                     <Link
                       href={project.githubUrl}
                       target="_blank"
-                      className="inline-flex items-center gap-2 rounded-full border border-border/50 bg-card/60 px-4 py-2 text-sm font-medium transition-colors hover:bg-accent"
+                      className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-border/50 bg-card/60 px-4 py-2 text-sm font-medium transition-colors hover:bg-accent sm:flex-none"
                     >
                       <Github className="size-4" />
                       View Source
@@ -178,7 +178,7 @@ export function ProjectCard({
                   <Link
                     href={project.link}
                     target="_blank"
-                    className="inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-colors hover:bg-foreground/90"
+                    className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-colors hover:bg-foreground/90 sm:flex-none"
                   >
                     <ExternalLink className="size-4" />
                     Visit Live
@@ -192,4 +192,3 @@ export function ProjectCard({
     </div>
   );
 }
-

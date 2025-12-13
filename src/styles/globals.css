@@ -321,22 +321,28 @@
     @apply motion-safe:scroll-smooth;
   } */
 
-  body {
-    @apply bg-background font-sans text-foreground antialiased;
-    font-synthesis-weight: none;
-    text-rendering: optimizeLegibility;
-    /* Responsive font scaling for tablet optimization */
-    font-size: clamp(0.875rem, 0.8rem + 0.25vw, 1rem);
-  }
-
   /* Tablet-specific text adjustments */
   @media (min-width: 768px) and (max-width: 1024px) {
     body {
-      font-size: 0.9375rem; /* 15px - slightly larger for tablet readability */
+      font-size: 0.9375rem; /* 15px */
     }
-    h1, h2, h3 {
-      letter-spacing: -0.01em;
-    }
+  }
+
+  /* Global typography refinements */
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight;
+  }
+  
+  p {
+    @apply leading-relaxed;
+  }
+
+  body {
+    @apply bg-background font-sans text-foreground antialiased leading-relaxed;
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    /* Responsive font scaling */
+    font-size: clamp(0.9rem, 0.85rem + 0.3vw, 1.05rem); /* Slightly increased base size */
   }
 
   /* Custom scrollbar styling. Thanks @shadcn-ui */

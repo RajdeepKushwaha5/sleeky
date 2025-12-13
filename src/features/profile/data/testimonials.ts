@@ -10,6 +10,14 @@ export const TESTIMONIALS_1: Testimonial[] = [
     content: "I really liked your portfolio. Amazing!",
   },
   {
+    handle: "@immachakata",
+    avatar: "https://unavatar.io/twitter/immachakata",
+    displayName: "Isaac",
+    bio: "Twitter User",
+    url: "https://x.com/immachakata/status/1999508693386211536?s=20",
+    content: "Nice one",
+  },
+  {
     handle: "Umair Manzoor",
     avatar: "https://ui-avatars.com/api/?name=Umair+Manzoor&background=random",
     displayName: "Umair Manzoor",
