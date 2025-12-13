@@ -145,7 +145,7 @@ export function Chatbot() {
             {/* Header */}
             <div className="flex items-center gap-3 border-b border-border/50 p-4">
               <div className="relative shrink-0 grayscale dark:grayscale-0">
-                <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-teal-500 via-blue-500 to-purple-500 opacity-75 blur-md" />
+                <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 opacity-75 blur-md" />
                 <div className="relative h-12 w-12 overflow-hidden rounded-full border-2 border-background ring-2 ring-white/10">
                   <img
                     src="/final_about.png"
@@ -156,7 +156,7 @@ export function Chatbot() {
                 <div className="absolute right-0 bottom-0 z-10 h-3 w-3 rounded-full border-2 border-card bg-emerald-500" />
               </div>
               <div>
-                <h3 className="font-serif text-lg font-medium italic text-foreground/90">
+                <h3 className="font-serif text-lg font-medium text-foreground/90 italic">
                   RJDP&apos;s Assistant
                 </h3>
                 <p className="font-mono text-xs text-foreground/40">
@@ -173,19 +173,21 @@ export function Chatbot() {
                   className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}
                 >
                   <div
-                    className={`max-w-[80%] rounded-2xl px-4 py-3 ${message.sender === "user"
-                      ? "bg-foreground text-background"
-                      : "border border-border/50 bg-card/80 text-foreground/80"
-                      }`}
+                    className={`max-w-[80%] rounded-2xl px-4 py-3 ${
+                      message.sender === "user"
+                        ? "bg-foreground text-background"
+                        : "border border-border/50 bg-card/80 text-foreground/80"
+                    }`}
                   >
                     <p className="text-sm leading-relaxed whitespace-pre-wrap">
                       {message.text}
                     </p>
                     <p
-                      className={`mt-2 font-mono text-[10px] ${message.sender === "user"
-                        ? "text-background/50"
-                        : "text-foreground/30"
-                        }`}
+                      className={`mt-2 font-mono text-[10px] ${
+                        message.sender === "user"
+                          ? "text-background/50"
+                          : "text-foreground/30"
+                      }`}
                     >
                       {message.timestamp.toLocaleTimeString([], {
                         hour: "2-digit",
@@ -234,4 +236,3 @@ export function Chatbot() {
     </>
   );
 }
-

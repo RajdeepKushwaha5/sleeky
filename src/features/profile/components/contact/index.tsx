@@ -68,7 +68,7 @@ export function Contact() {
         {/* Cool Intro Card */}
         <div className="mb-6 flex items-start gap-4">
           <div className="relative shrink-0 grayscale dark:grayscale-0">
-            <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-teal-500 via-blue-500 to-purple-500 opacity-75 blur-md" />
+            <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 opacity-75 blur-md" />
             <div className="relative h-14 w-14 overflow-hidden rounded-full border-2 border-background ring-2 ring-white/10 sm:h-16 sm:w-16">
               <img
                 src="/final_about.png"
@@ -78,10 +78,10 @@ export function Contact() {
             </div>
           </div>
           <div className="flex-1 rounded-2xl rounded-tl-none border border-border/50 bg-foreground/5 px-5 py-4">
-            <p className="mb-1 font-mono text-xs uppercase tracking-wider text-foreground/40">
+            <p className="mb-1 font-mono text-xs tracking-wider text-foreground/40 uppercase">
               RJDP
             </p>
-            <p className="font-serif text-lg italic text-foreground/80">
+            <p className="font-serif text-lg text-foreground/80 italic">
               Let&apos;s build something cool together ↓
             </p>
           </div>
@@ -159,5 +159,3 @@ export function Contact() {
     </Panel>
   );
 }
-
-
