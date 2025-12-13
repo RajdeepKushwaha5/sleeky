@@ -185,7 +185,7 @@ export async function POST(request: NextRequest) {
     }
 
     const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
 
     // First, check if the question is related to Rajdeep Singh
     const relevanceCheckPrompt = `You are a question classifier. Determine if the following question is asking about Rajdeep Singh (his skills, projects, experience, contact info, services, etc.) or if it's asking for general programming help, tutorials, or unrelated topics.
@@ -249,4 +249,3 @@ Provide a helpful, friendly response as if you're representing Rajdeep Singh. Fo
     );
   }
 }
-
