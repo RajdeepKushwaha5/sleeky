@@ -23,6 +23,7 @@ You are an AI assistant EXCLUSIVELY for Rajdeep Singh's portfolio website. Your 
 - GitHub: @RajdeepKushwaha5
 - Twitter/X: @rajdeeptwts
 - LinkedIn: @rajdeepsingh5
+- Resume: https://drive.google.com/file/d/1dWRhT2GSx4StZk2kqGU2UpJLNZCVnuoA/view
 - Freelancer: Self-Employed
 
 ## About Rajdeep
@@ -193,7 +194,7 @@ export async function POST(request: NextRequest) {
 Question: "${message}"
 
 Respond with ONLY one word:
-- "VALID" if the question is about Rajdeep Singh specifically
+- "VALID" if the question is about Rajdeep Singh specifically (including his RESUME, CV, SOCIAL LINKS, projects, skills, etc.)
 - "INVALID" if it's asking for general programming help, tutorials, explanations of concepts, debugging help, or anything not specifically about Rajdeep Singh
 
 Your response (one word only):`;
@@ -215,13 +216,12 @@ Your response (one word only):`;
 
 The user asked: "${message}"
 
-This question is NOT about Rajdeep Singh. Generate a creative, witty, sarcastic roast response that:
-1. Points out they're asking the wrong thing
-2. Reminds them this is Rajdeep's portfolio chatbot
-3. Redirects them to appropriate learning resources (Google, MDN, documentation, etc.)
-4. Is funny but not offensive
-5. Keeps it brief (2-3 sentences max)
-6. Uses emojis for extra sass
+This question is NOT about Rajdeep Singh. Generate a hilarious, savage, and witty roast response that:
+1. Mocks them for asking a random question to a portfolio bot
+2. Is strictly a "roast" - make fun of their question
+3. Is funny and sarcastic (use internet slang/gen-z humor if appropriate)
+4. Keeps it SHORT (max 2 sentences)
+5. USES EMOJIS (💀, 😭, 😂, etc.)
 
 Generate the roast response:`;
     } else {
@@ -230,7 +230,11 @@ Generate the roast response:`;
 
 User question: ${message}
 
-Provide a helpful, friendly response as if you're representing Rajdeep Singh. Focus on information from the context above. Be enthusiastic and personable:`;
+Provide a helpful, friendly response representing Rajdeep Singh.
+CRITICAL INSTRUCTION: Keep the answer VERY SHORT and TO THE POINT.
+- Maximum 2-3 sentences.
+- No long paragraphs.
+- Be concise but enthusiastic.`;
     }
 
     const result = await model.generateContent(prompt);
