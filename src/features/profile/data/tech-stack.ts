@@ -231,4 +231,25 @@ export const TECH_STACK: TechStack[] = [
     categories: ["Tools", "Writing"],
     theme: true,
   },
+  {
+    key: "postman",
+    title: "Postman",
+    href: "https://www.postman.com/",
+    categories: ["Tools", "API"],
+    theme: true,
+  },
+  {
+    key: "npm",
+    title: "npm",
+    href: "https://www.npmjs.com/",
+    categories: ["Tools", "Package Manager"],
+    theme: true,
+  },
+  {
+    key: "pnpm",
+    title: "pnpm",
+    href: "https://pnpm.io/",
+    categories: ["Tools", "Package Manager"],
+    theme: true,
+  },
 ];

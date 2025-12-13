@@ -30,23 +30,21 @@ export const USER: User = {
     // Add more jobs as needed
   ],
   about: `
-## Hey there! I'm Rajdeep 👋
+## Rajdeep Singh
 
-I'm a **Full Stack Web Developer** and **Blockchain Developer** who loves turning complex problems into elegant, user-friendly solutions.
+Full Stack Web Developer and Blockchain Developer building elegant solutions for complex problems.
 
 ### What I Do
 
-→ **Build Modern Web Apps** — From responsive frontends to robust backends, I craft seamless digital experiences using the MERN stack (MongoDB, Express, React, Node.js).
-
-→ **Explore Web3** — I develop decentralized applications (dApps) on Ethereum and Solana, bridging the gap between traditional web and blockchain technology.
-
-→ **Solve Real Problems** — Whether it's an e-commerce platform, real-time chat application, or a DeFi protocol, I focus on building products that actually make a difference.
+- **Modern Web Apps** — Responsive frontends and robust backends using the MERN stack.
+- **Web3 Development** — Decentralized applications on Ethereum and Solana.
+- **Product-Focused** — E-commerce, real-time apps, DeFi protocols that make a difference.
 
 ---
 
-### Let's Build Something Together 🚀
+### Open to Collaborate
 
-I'm always open to collaborating on exciting projects, freelance opportunities, or just having a chat about tech. Feel free to reach out!
+Available for projects, freelance work, or tech discussions. Let's connect.
   `,
   avatar: "https://github.com/RajdeepKushwaha5.png", // Update with your avatar URL
   ogImage: "/assets/og-image.jpg", // Custom OG image for social media sharing

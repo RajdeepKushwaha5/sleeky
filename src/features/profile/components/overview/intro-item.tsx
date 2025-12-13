@@ -31,10 +31,10 @@ export function IntroItem({
   return (
     <div className="flex items-center gap-4 font-mono text-sm">
       <div
-        className="flex size-6 shrink-0 items-center justify-center rounded-lg border border-muted-foreground/15 bg-muted ring-1 ring-edge ring-offset-1 ring-offset-background"
+        className="flex size-6 shrink-0 items-center justify-center rounded-full border border-border/30 bg-card/80"
         aria-hidden
       >
-        <Icon className="pointer-events-none size-4 text-muted-foreground" />
+        <Icon className="pointer-events-none size-3.5 text-foreground/60" />
       </div>
 
       <p className="text-balance">
@@ -55,14 +55,14 @@ export function IntroItem({
       {copyValue && (
         <button
           onClick={handleCopy}
-          className="ml-auto flex size-6 shrink-0 items-center justify-center rounded-md border border-muted-foreground/15 bg-muted/50 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+          className="ml-auto flex size-6 shrink-0 items-center justify-center rounded-full border border-border/30 bg-card/80 text-foreground/50 transition-colors hover:bg-foreground/10 hover:text-foreground"
           title={copied ? "Copied!" : "Copy to clipboard"}
           aria-label={copied ? "Copied!" : "Copy to clipboard"}
         >
           {copied ? (
-            <CheckIcon className="size-3.5 text-green-500" />
+            <CheckIcon className="size-3 text-green-500" />
           ) : (
-            <CopyIcon className="size-3.5" />
+            <CopyIcon className="size-3" />
           )}
         </button>
       )}

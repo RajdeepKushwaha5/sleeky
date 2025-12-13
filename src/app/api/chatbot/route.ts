@@ -185,7 +185,7 @@ export async function POST(request: NextRequest) {
     }
 
     const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     // First, check if the question is related to Rajdeep Singh
     const relevanceCheckPrompt = `You are a question classifier. Determine if the following question is asking about Rajdeep Singh (his skills, projects, experience, contact info, services, etc.) or if it's asking for general programming help, tutorials, or unrelated topics.
@@ -198,10 +198,11 @@ Respond with ONLY one word:
 
 Your response (one word only):`;
 
-    const relevanceCheck = await model.generateContent(relevanceCheckPrompt);
-    const relevanceResponse = await relevanceCheck.response;
-    const isValid = relevanceResponse
-      .text()
+    const relevanceResult = await model.generateContent(relevanceCheckPrompt);
+    const relevanceResponse = await relevanceResult.response;
+    const relevanceText = relevanceResponse.text();
+
+    const isValid = (relevanceText || "")
       .trim()
       .toUpperCase()
       .includes("VALID");
@@ -248,3 +249,4 @@ Provide a helpful, friendly response as if you're representing Rajdeep Singh. Fo
     );
   }
 }
+

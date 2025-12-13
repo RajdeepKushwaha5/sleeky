@@ -43,7 +43,7 @@ export function SiteHeader() {
       }
       nav={<DesktopNav items={MAIN_NAV} />}
       actions={
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1 sm:flex-col sm:gap-4">
           <AudioPlayer />
           <CommandMenu posts={posts} />
           <ToggleTheme />

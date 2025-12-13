@@ -8,7 +8,7 @@ interface VsCodeOfflineCardProps {
 
 export function VsCodeOfflineCard({ yesterdayTime }: VsCodeOfflineCardProps) {
   return (
-    <div className="relative overflow-hidden rounded-lg border border-edge bg-card/50 transition-all">
+    <div className="relative overflow-hidden rounded-lg border border-border/50 bg-card/80 transition-all">
       <div className="flex gap-3 p-3">
         {/* VS Code Logo */}
         <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-md bg-[#007ACC]/10 ring-1 ring-edge">

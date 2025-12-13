@@ -25,7 +25,7 @@ export function ScrollTop({
       className={cn(
         "[--bottom:1rem] lg:[--bottom:2rem]",
         "fixed left-4 bottom-[calc(var(--bottom,1rem)+env(safe-area-inset-bottom,0px))] z-50 lg:left-8",
-        "border border-border bg-background shadow-lg hover:bg-accent",
+        "rounded-full border border-border/50 bg-background/80 backdrop-blur-xl shadow-lg hover:bg-accent",
         "transition-all duration-300 data-[visible=false]:pointer-events-none data-[visible=false]:opacity-0",
         className
       )}
@@ -39,3 +39,4 @@ export function ScrollTop({
     </Button>
   );
 }
+

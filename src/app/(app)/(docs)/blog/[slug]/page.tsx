@@ -8,6 +8,7 @@ import type { BlogPosting as PageSchema, WithContext } from "schema-dts";
 
 import { InlineTOC } from "@/components/inline-toc";
 import { MDX } from "@/components/mdx";
+import { SidebarTOC } from "@/components/sidebar-toc";
 import { Button } from "@/components/ui/button";
 import { Prose } from "@/components/ui/typography";
 import { SITE_INFO } from "@/config/site";
@@ -176,37 +177,43 @@ export default async function Page({
         />
       </div>
 
-      <Prose className="px-4">
-        <h1 className="screen-line-after mb-6 font-semibold">
-          {post.metadata.title}
-        </h1>
+      <div className="relative flex gap-8 px-4">
+        {/* Main Content */}
+        <Prose className="min-w-0 flex-1">
+          <h1 className="screen-line-after mb-6 font-semibold">
+            {post.metadata.title}
+          </h1>
 
-        <p className="lead mt-6 mb-6">{post.metadata.description}</p>
+          <p className="lead mt-6 mb-6">{post.metadata.description}</p>
 
-        <InlineTOC items={toc} />
+          <InlineTOC items={toc} />
 
-        <div>
-          {post.metadata.category === "medium" ? (
-            // For Medium posts, render HTML content directly
-            <div
-              className="prose max-w-none prose-neutral dark:prose-invert"
-              dangerouslySetInnerHTML={{ __html: post.content }}
-            />
-          ) : (
-            // For regular MDX posts, use the MDX component
-            <MDX code={post.content} />
-          )}
-        </div>
+          <div>
+            {post.metadata.category === "medium" ? (
+              // For Medium posts, render HTML content directly
+              <div
+                className="prose max-w-none prose-neutral dark:prose-invert"
+                dangerouslySetInnerHTML={{ __html: post.content }}
+              />
+            ) : (
+              // For regular MDX posts, use the MDX component
+              <MDX code={post.content} />
+            )}
+          </div>
 
-        {/* Social Sharing Buttons */}
-        <SocialShareButtons
-          url={getPostUrl(post)}
-          title={post.metadata.title}
-        />
+          {/* Social Sharing Buttons */}
+          <SocialShareButtons
+            url={getPostUrl(post)}
+            title={post.metadata.title}
+          />
 
-        {/* Related Posts Section */}
-        <RelatedPosts currentSlug={slug} posts={allPosts} maxPosts={3} />
-      </Prose>
+          {/* Related Posts Section */}
+          <RelatedPosts currentSlug={slug} posts={allPosts} maxPosts={3} />
+        </Prose>
+
+        {/* Sidebar TOC */}
+        <SidebarTOC items={toc} />
+      </div>
 
       <div className="screen-line-before h-4 w-full" />
     </>

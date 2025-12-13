@@ -27,7 +27,7 @@ export function TestimonialsMarquee() {
           ).map((item) => (
             <MarqueeItem
               key={item.handle}
-              className="mx-0 h-full w-sm border-r border-edge"
+              className="mx-2 h-full w-sm rounded-2xl border border-border/50 bg-card/80"
             >
               <TestimonialItem {...item} />
             </MarqueeItem>
@@ -35,7 +35,7 @@ export function TestimonialsMarquee() {
         </MarqueeContent>
       </Marquee>
 
-      <div className="screen-line-before screen-line-after relative flex h-4 w-full" />
+      <div className="relative flex h-4 w-full" />
 
       <Marquee>
         <MarqueeFade side="left" />
@@ -47,7 +47,7 @@ export function TestimonialsMarquee() {
           ).map((item) => (
             <MarqueeItem
               key={item.handle}
-              className="mx-0 h-full w-sm border-r border-edge"
+              className="mx-2 h-full w-sm rounded-2xl border border-border/50 bg-card/80"
             >
               <TestimonialItem {...item} />
             </MarqueeItem>

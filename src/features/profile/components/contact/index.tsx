@@ -1,14 +1,7 @@
 "use client";
 
-import {
-  CheckCircle2,
-  Loader2,
-  Mail,
-  MessageSquare,
-  Send,
-  User,
-  XCircle,
-} from "lucide-react";
+import { CheckCircle2, Loader2, Send, XCircle } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
 
 import { Panel, PanelContent, PanelHeader, PanelTitle } from "../panel";
@@ -46,16 +39,12 @@ export function Contact() {
 
       setStatus("success");
       setFormData({ name: "", email: "", message: "" });
-
-      // Reset success message after 5 seconds
       setTimeout(() => setStatus("idle"), 5000);
     } catch (error) {
       setStatus("error");
       setErrorMessage(
         error instanceof Error ? error.message : "Failed to send message"
       );
-
-      // Reset error message after 5 seconds
       setTimeout(() => setStatus("idle"), 5000);
     }
   };
@@ -72,121 +61,103 @@ export function Contact() {
   return (
     <Panel id="contact">
       <PanelHeader>
-        <PanelTitle>Contact Me</PanelTitle>
+        <PanelTitle>Contact</PanelTitle>
       </PanelHeader>
 
       <PanelContent>
-        <div className="mx-auto max-w-2xl">
-          <p className="mb-6 text-muted-foreground">
-            Have a question or want to work together? Feel free to reach out!
-          </p>
-
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Name Field */}
-            <div className="space-y-2">
-              <label
-                htmlFor="name"
-                className="flex items-center gap-2 text-sm font-medium"
-              >
-                <User className="h-4 w-4" />
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                placeholder="Your name"
-                className="w-full rounded-lg border border-edge bg-card/50 px-4 py-2.5 text-foreground transition-all placeholder:text-muted-foreground/50 focus:border-accent focus:ring-2 focus:ring-accent/20 focus:outline-none"
+        {/* Cool Intro Card */}
+        <div className="mb-6 flex items-start gap-4">
+          <div className="relative shrink-0 grayscale dark:grayscale-0">
+            <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-teal-500 via-blue-500 to-purple-500 opacity-75 blur-md" />
+            <div className="relative h-14 w-14 overflow-hidden rounded-full border-2 border-background ring-2 ring-white/10 sm:h-16 sm:w-16">
+              <img
+                src="/final_about.png"
+                alt="Rajdeep"
+                className="h-full w-full object-cover transition-transform duration-500 hover:scale-110"
               />
             </div>
-
-            {/* Email Field */}
-            <div className="space-y-2">
-              <label
-                htmlFor="email"
-                className="flex items-center gap-2 text-sm font-medium"
-              >
-                <Mail className="h-4 w-4" />
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                placeholder="your.email@example.com"
-                className="w-full rounded-lg border border-edge bg-card/50 px-4 py-2.5 text-foreground transition-all placeholder:text-muted-foreground/50 focus:border-accent focus:ring-2 focus:ring-accent/20 focus:outline-none"
-              />
-            </div>
-
-            {/* Message Field */}
-            <div className="space-y-2">
-              <label
-                htmlFor="message"
-                className="flex items-center gap-2 text-sm font-medium"
-              >
-                <MessageSquare className="h-4 w-4" />
-                Message
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                required
-                placeholder="Your message..."
-                rows={6}
-                className="w-full resize-none rounded-lg border border-edge bg-card/50 px-4 py-2.5 text-foreground transition-all placeholder:text-muted-foreground/50 focus:border-accent focus:ring-2 focus:ring-accent/20 focus:outline-none"
-              />
-            </div>
-
-            {/* Status Messages */}
-            {status === "success" && (
-              <div className="flex items-center gap-2 rounded-lg border border-green-500/20 bg-green-500/10 px-4 py-3 text-green-600 dark:text-green-500">
-                <CheckCircle2 className="h-5 w-5" />
-                <span>
-                  Message sent successfully! I&apos;ll get back to you soon.
-                </span>
-              </div>
-            )}
-
-            {status === "error" && (
-              <div className="flex items-center gap-2 rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3 text-red-600 dark:text-red-500">
-                <XCircle className="h-5 w-5" />
-                <span>
-                  {errorMessage || "Failed to send message. Please try again."}
-                </span>
-              </div>
-            )}
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              disabled={status === "loading"}
-              className="group relative w-full overflow-hidden rounded-lg bg-accent px-6 py-3 font-medium text-accent-foreground transition-all hover:bg-accent/90 disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              <span className="flex items-center justify-center gap-2">
-                {status === "loading" ? (
-                  <>
-                    <Loader2 className="h-5 w-5 animate-spin" />
-                    Sending...
-                  </>
-                ) : (
-                  <>
-                    <Send className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-                    Send Message
-                  </>
-                )}
-              </span>
-            </button>
-          </form>
+          </div>
+          <div className="flex-1 rounded-2xl rounded-tl-none border border-border/50 bg-foreground/5 px-5 py-4">
+            <p className="mb-1 font-mono text-xs uppercase tracking-wider text-foreground/40">
+              RJDP
+            </p>
+            <p className="font-serif text-lg italic text-foreground/80">
+              Let&apos;s build something cool together ↓
+            </p>
+          </div>
         </div>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Name and Email - Two Column */}
+          <div className="grid gap-4 sm:grid-cols-2">
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              placeholder="Name"
+              className="w-full rounded-xl border border-border/50 bg-card/60 px-4 py-3 text-sm text-foreground transition-all placeholder:text-foreground/30 focus:border-foreground/20 focus:outline-none"
+            />
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              placeholder="Email"
+              className="w-full rounded-xl border border-border/50 bg-card/60 px-4 py-3 text-sm text-foreground transition-all placeholder:text-foreground/30 focus:border-foreground/20 focus:outline-none"
+            />
+          </div>
+
+          {/* Message Field - Shorter */}
+          <textarea
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            required
+            placeholder="Your message..."
+            rows={4}
+            className="w-full resize-none rounded-xl border border-border/50 bg-card/60 px-4 py-3 text-sm text-foreground transition-all placeholder:text-foreground/30 focus:border-foreground/20 focus:outline-none"
+          />
+
+          {/* Status Messages */}
+          {status === "success" && (
+            <div className="flex items-center gap-2 rounded-xl bg-emerald-500/10 px-4 py-3 text-sm text-emerald-500">
+              <CheckCircle2 className="h-4 w-4" />
+              <span>Sent! I&apos;ll get back to you soon.</span>
+            </div>
+          )}
+
+          {status === "error" && (
+            <div className="flex items-center gap-2 rounded-xl bg-red-500/10 px-4 py-3 text-sm text-red-500">
+              <XCircle className="h-4 w-4" />
+              <span>{errorMessage || "Failed to send. Please try again."}</span>
+            </div>
+          )}
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            disabled={status === "loading"}
+            className="flex w-full items-center justify-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-all hover:bg-foreground/90 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {status === "loading" ? (
+              <>
+                <Loader2 className="h-4 w-4 animate-spin" />
+                Sending...
+              </>
+            ) : (
+              <>
+                <Send className="h-4 w-4" />
+                Send Message
+              </>
+            )}
+          </button>
+        </form>
       </PanelContent>
     </Panel>
   );
 }
+
+

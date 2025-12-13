@@ -28,12 +28,11 @@ export function Chatbot() {
   }, [messages]);
 
   useEffect(() => {
-    // Welcome message when first opened
     if (isOpen && messages.length === 0) {
       setMessages([
         {
           id: "1",
-          text: "Hey there! I'm RJDP's Assistant. Curious about Rajdeep's skills or projects? Ask me anything!",
+          text: "Hello! I'm here to help you learn more about Rajdeep's work. Ask me anything about his projects or skills.",
           sender: "bot",
           timestamp: new Date(),
         },
@@ -81,7 +80,7 @@ export function Chatbot() {
     } catch {
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: "Oops! I'm having trouble connecting right now. Please try again in a moment, or feel free to reach out to Rajdeep directly via the contact form!",
+        text: "Unable to connect right now. Please try again or use the contact form.",
         sender: "bot",
         timestamp: new Date(),
       };
@@ -103,7 +102,7 @@ export function Chatbot() {
       {/* Floating Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed right-6 bottom-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition-all hover:scale-110 hover:shadow-xl"
+        className="fixed right-6 bottom-6 z-50 flex h-14 w-14 items-center justify-center rounded-full border border-border/50 bg-card/80 text-foreground shadow-lg transition-all hover:scale-110 hover:bg-card"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         aria-label="Toggle chatbot"
@@ -141,57 +140,52 @@ export function Chatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed right-6 bottom-24 z-50 flex h-[500px] w-[380px] flex-col overflow-hidden rounded-lg border border-edge bg-card shadow-2xl"
+            className="fixed right-6 bottom-24 z-50 flex h-[500px] w-[380px] flex-col overflow-hidden rounded-2xl border border-border/50 bg-card/95 shadow-2xl backdrop-blur-xl"
           >
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-edge bg-card/95 p-4 backdrop-blur-sm">
-              <div className="flex items-center gap-3">
-                <div className="relative">
-                  <div className="h-10 w-10 overflow-hidden rounded-full bg-muted">
-                    <Image
-                      src="https://github.com/RajdeepKushwaha5.png"
-                      alt="Rajdeep"
-                      width={40}
-                      height={40}
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                  <div className="absolute right-0 bottom-0 h-3 w-3 rounded-full border-2 border-card bg-green-500" />
+            <div className="flex items-center gap-3 border-b border-border/50 p-4">
+              <div className="relative shrink-0 grayscale dark:grayscale-0">
+                <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-teal-500 via-blue-500 to-purple-500 opacity-75 blur-md" />
+                <div className="relative h-12 w-12 overflow-hidden rounded-full border-2 border-background ring-2 ring-white/10">
+                  <img
+                    src="/final_about.png"
+                    alt="Rajdeep's Assistant"
+                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-110"
+                  />
                 </div>
-                <div>
-                  <h3 className="font-semibold text-foreground">
-                    RJDP&apos;s Assistant
-                  </h3>
-                  <p className="text-xs text-muted-foreground">
-                    AI-Powered Helper
-                  </p>
-                </div>
+                <div className="absolute right-0 bottom-0 z-10 h-3 w-3 rounded-full border-2 border-card bg-emerald-500" />
+              </div>
+              <div>
+                <h3 className="font-serif text-lg font-medium italic text-foreground/90">
+                  RJDP&apos;s Assistant
+                </h3>
+                <p className="font-mono text-xs text-foreground/40">
+                  AI-Powered Helper
+                </p>
               </div>
             </div>
 
             {/* Messages */}
-            <div className="flex-1 space-y-4 overflow-y-auto p-4">
+            <div className="flex-1 space-y-3 overflow-y-auto p-4">
               {messages.map((message) => (
                 <div
                   key={message.id}
                   className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}
                 >
                   <div
-                    className={`max-w-[80%] rounded-lg px-4 py-2 ${
-                      message.sender === "user"
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-muted text-foreground"
-                    }`}
+                    className={`max-w-[80%] rounded-2xl px-4 py-3 ${message.sender === "user"
+                      ? "bg-foreground text-background"
+                      : "border border-border/50 bg-card/80 text-foreground/80"
+                      }`}
                   >
-                    <p className="text-sm whitespace-pre-wrap">
+                    <p className="text-sm leading-relaxed whitespace-pre-wrap">
                       {message.text}
                     </p>
                     <p
-                      className={`mt-1 text-xs ${
-                        message.sender === "user"
-                          ? "text-primary-foreground/70"
-                          : "text-muted-foreground"
-                      }`}
+                      className={`mt-2 font-mono text-[10px] ${message.sender === "user"
+                        ? "text-background/50"
+                        : "text-foreground/30"
+                        }`}
                     >
                       {message.timestamp.toLocaleTimeString([], {
                         hour: "2-digit",
@@ -203,8 +197,8 @@ export function Chatbot() {
               ))}
               {isLoading && (
                 <div className="flex justify-start">
-                  <div className="max-w-[80%] rounded-lg bg-muted px-4 py-2">
-                    <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
+                  <div className="max-w-[80%] rounded-2xl border border-border/50 bg-card/80 px-4 py-3">
+                    <Loader2 className="h-5 w-5 animate-spin text-foreground/40" />
                   </div>
                 </div>
               )}
@@ -212,8 +206,8 @@ export function Chatbot() {
             </div>
 
             {/* Input */}
-            <div className="border-t border-edge bg-card/95 p-4 backdrop-blur-sm">
-              <div className="flex gap-2">
+            <div className="border-t border-border/50 p-4">
+              <div className="flex gap-3">
                 <input
                   type="text"
                   value={inputValue}
@@ -222,15 +216,15 @@ export function Chatbot() {
                   placeholder="Ask me anything..."
                   disabled={isLoading}
                   aria-label="Chat message"
-                  className="flex-1 rounded-lg border border-edge bg-background px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                  className="flex-1 rounded-full border border-border/50 bg-card/80 px-4 py-2.5 text-sm text-foreground placeholder:text-foreground/30 focus:border-foreground/20 focus:ring-0 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                 />
                 <button
                   onClick={handleSend}
                   disabled={!inputValue.trim() || isLoading}
-                  className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground transition-all hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-foreground text-background transition-all hover:bg-foreground/90 disabled:cursor-not-allowed disabled:opacity-50"
                   aria-label="Send message"
                 >
-                  <Send className="h-5 w-5" />
+                  <Send className="h-4 w-4" />
                 </button>
               </div>
             </div>
@@ -240,3 +234,4 @@ export function Chatbot() {
     </>
   );
 }
+

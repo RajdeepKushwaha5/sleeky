@@ -370,10 +370,10 @@ function CommandMenuFooter() {
     <>
       <div className="flex h-10" />
 
-      <div className="absolute inset-x-0 bottom-0 flex h-10 items-center justify-between gap-2 border-t bg-zinc-100/30 px-4 text-xs font-medium dark:bg-zinc-800/30">
-        <RJDPMark className="size-6 text-muted-foreground" aria-hidden />
+      <div className="absolute inset-x-0 bottom-0 flex h-10 items-center justify-between gap-2 border-t border-border/50 bg-card/80 px-4 text-xs font-medium backdrop-blur-sm">
+        <RJDPMark className="size-6 text-foreground/40" aria-hidden />
 
-        <div className="flex shrink-0 items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2 text-foreground/60">
           <span>{ENTER_ACTION_LABELS[selectedCommandKind]}</span>
           <CommandMenuKbd>
             <CornerDownLeftIcon />
@@ -382,7 +382,7 @@ function CommandMenuFooter() {
             orientation="vertical"
             className="data-[orientation=vertical]:h-4"
           />
-          <span className="text-muted-foreground">Exit</span>
+          <span className="text-foreground/40">Exit</span>
           <CommandMenuKbd>Esc</CommandMenuKbd>
         </div>
       </div>
@@ -394,7 +394,7 @@ function CommandMenuKbd({ className, ...props }: React.ComponentProps<"kbd">) {
   return (
     <kbd
       className={cn(
-        "pointer-events-none flex h-5 min-w-6 items-center justify-center gap-1 rounded-sm bg-black/5 px-1 font-sans text-[13px] font-normal text-muted-foreground shadow-[inset_0_-1px_2px] shadow-black/10 select-none dark:bg-white/10 dark:shadow-white/10 dark:text-shadow-xs [&_svg:not([class*='size-'])]:size-3",
+        "pointer-events-none flex h-5 min-w-6 items-center justify-center gap-1 rounded-full border border-border/30 bg-card/80 px-1.5 font-sans text-[12px] font-normal text-foreground/60 select-none [&_svg:not([class*='size-'])]:size-3",
         className
       )}
       {...props}

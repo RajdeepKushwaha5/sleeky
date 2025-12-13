@@ -1,64 +1,20 @@
 "use client";
 
-import { useMotionValueEvent, useScroll } from "motion/react";
+import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 import { RJDPMark } from "./rjdp-mark";
 
-const calcDistance = (el: HTMLElement) => {
-  const rect = el.getBoundingClientRect();
-  const scrollTop = document.documentElement.scrollTop;
-  const headerHeight = 56;
-  return scrollTop + rect.top + rect.height - headerHeight;
-};
 
-function RJDPMarkMotion() {
-  const { scrollY } = useScroll();
-  const [visible, setVisible] = useState(false);
-  const distanceRef = useRef(160);
-
-  useMotionValueEvent(scrollY, "change", (latestValue) => {
-    setVisible(latestValue >= distanceRef.current);
-  });
-
-  useEffect(() => {
-    const coverMark = document.getElementById("js-cover-mark");
-    if (!coverMark) return;
-
-    distanceRef.current = calcDistance(coverMark);
-
-    const resizeObserver = new ResizeObserver(() => {
-      distanceRef.current = calcDistance(coverMark);
-    });
-    resizeObserver.observe(coverMark);
-
-    return () => {
-      resizeObserver.disconnect();
-    };
-  }, []);
-
+export function SiteHeaderMark() {
   return (
-    <div className="relative flex items-center h-full">
-      {/* Full name - visible when NOT scrolled */}
-      <span
-        data-visible={!visible}
-        className="absolute font-semibold text-lg tracking-tight translate-y-2 opacity-0 transition-[opacity,translate] duration-300 data-[visible=true]:translate-y-0 data-[visible=true]:opacity-100 whitespace-nowrap"
-      >
-        Rajdeep S.
+    <div className="flex items-center gap-2">
+      <span className="text-xl font-bold tracking-tighter text-foreground font-space-grotesk">
+        RJDP
       </span>
-
-      {/* RJDP logo - visible when scrolled */}
-      <RJDPMark
-        data-visible={visible}
-        className="translate-y-2 opacity-0 transition-[opacity,translate] duration-300 data-[visible=true]:translate-y-0 data-[visible=true]:opacity-100"
-      />
     </div>
   );
 }
 
-export function SiteHeaderMark() {
-  const pathname = usePathname();
-  const isHome = ["/", "/index"].includes(pathname);
-  return isHome ? <RJDPMarkMotion /> : <RJDPMark />;
-}
+

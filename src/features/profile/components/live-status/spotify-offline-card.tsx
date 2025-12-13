@@ -12,7 +12,7 @@ interface SpotifyOfflineCardProps {
 
 export function SpotifyOfflineCard({ lastPlayed }: SpotifyOfflineCardProps) {
   return (
-    <div className="relative overflow-hidden rounded-lg border border-edge bg-card/50 transition-all">
+    <div className="relative overflow-hidden rounded-lg border border-border/50 bg-card/80 transition-all">
       <div className="flex gap-3 p-3">
         {/* Album Art */}
         <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md ring-1 ring-edge">

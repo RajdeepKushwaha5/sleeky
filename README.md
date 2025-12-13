@@ -46,6 +46,7 @@
 | 📊  | **Coding Stats**   | WakaTime integration for coding metrics                   |
 | 📝  | **MDX Blog**       | Write posts with Markdown + React components              |
 | 📱  | **Responsive**     | Optimized for mobile, tablet, and desktop                 |
+| ⌨️  | **Keyboard Nav**   | Navigate sections with `J` (next) and `K` (prev) keys     |
 | 🔍  | **SEO Ready**      | Meta tags, structured data, sitemap & more                |
 
 ---
@@ -84,7 +85,7 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Open **[http://localhost:1408](http://localhost:1408)** in your browser.
+Open **[http://localhost:1729](http://localhost:1729)** in your browser.
 
 ---
 
@@ -95,7 +96,7 @@ Open **[http://localhost:1408](http://localhost:1408)** in your browser.
 APP_URL=https://rajdeep-singh.vercel.app
 
 # AI Chatbot (Required for assistant)
-GOOGLE_GENERATIVE_AI_API_KEY=your_gemini_api_key
+GEMINI_API_KEY=your_gemini_api_key
 
 # Notifications (Optional)
 TELEGRAM_BOT_TOKEN=your_bot_token

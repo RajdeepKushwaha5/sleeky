@@ -45,7 +45,7 @@ export function BookCall() {
 
           {/* CTA Button */}
           <div className="flex justify-center">
-            <Button asChild size="lg" className="group">
+            <Button asChild size="lg" className="group border border-border/50 bg-card/80 text-foreground/80 hover:bg-foreground/10 hover:text-foreground" variant="ghost">
               <a
                 href={`https://cal.com/${CAL_USERNAME}`}
                 target="_blank"
@@ -80,14 +80,14 @@ function FeatureCard({
   return (
     <div
       className={cn(
-        "rounded-lg border border-edge bg-card p-4 text-center transition-colors",
-        "hover:bg-accent"
+        "rounded-2xl border border-border/50 bg-card/80 p-4 text-center transition-colors",
+        "hover:bg-foreground/5"
       )}
     >
-      <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-muted">
-        <Icon className="h-5 w-5 text-muted-foreground" />
+      <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full border border-border/30 bg-background">
+        <Icon className="h-5 w-5 text-foreground/60" />
       </div>
-      <h4 className="font-medium">{title}</h4>
+      <h4 className="font-medium text-foreground/90">{title}</h4>
       <p className="text-xs text-muted-foreground">{description}</p>
     </div>
   );

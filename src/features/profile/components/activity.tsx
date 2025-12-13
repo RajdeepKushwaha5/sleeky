@@ -186,47 +186,35 @@ const PostCard: React.FC<{ post: SocialPost }> = ({ post }) => {
       rel="noopener noreferrer"
       variants={cardVariants}
       whileHover={{ y: -2 }}
-      className="group block rounded-lg border border-border bg-card p-4 transition-all duration-300 hover:border-accent/50 hover:shadow-sm"
+      className="group block rounded-2xl border border-border/50 bg-card/80 p-6 transition-all duration-300 hover:bg-card"
     >
-      {/* Author section */}
-      <div className="mb-3 flex items-start gap-3">
-        <Image
-          src={post.author.avatar}
-          alt={post.author.name}
-          width={40}
-          height={40}
-          className="h-10 w-10 rounded-full border border-border"
-        />
-        <div className="min-w-0 flex-1">
-          <div className="flex items-center gap-2">
-            <span className="truncate text-sm font-medium text-foreground">
-              {post.author.name}
-            </span>
-            <PlatformIcon className="h-4 w-4 flex-shrink-0 text-muted-foreground" />
-          </div>
-          <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            <span>{post.author.username}</span>
-            <span>•</span>
-            <span>
-              {new Date(post.date).toLocaleDateString("en-US", {
-                month: "short",
-                day: "numeric",
-                year: "numeric",
-              })}
-            </span>
-          </div>
-        </div>
-      </div>
-
       {/* Content */}
-      <p className="mb-3 line-clamp-4 text-sm leading-relaxed text-foreground">
+      <p className="mb-6 line-clamp-4 text-sm leading-relaxed text-foreground/80">
         {post.content}
       </p>
 
-      {/* Platform indicator */}
-      <div className="flex items-center justify-between text-xs text-muted-foreground">
-        <span className="capitalize">{post.author.platform}</span>
-        <span>View post →</span>
+      {/* Author section */}
+      <div className="flex items-center gap-3">
+        <Image
+          src={post.author.avatar}
+          alt={post.author.name}
+          width={48}
+          height={48}
+          className="h-12 w-12 rounded-xl"
+        />
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center gap-2 font-mono text-sm text-foreground/60">
+            <span className="truncate">{post.author.name}</span>
+            <PlatformIcon className="h-3 w-3 flex-shrink-0" />
+          </div>
+          <div className="font-mono text-xs text-foreground/40">
+            {new Date(post.date).toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+            })}
+          </div>
+        </div>
       </div>
     </motion.a>
   );
@@ -308,7 +296,7 @@ export const Activity: React.FC = () => {
               href="https://x.com/rajdeeptwts"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md bg-secondary px-4 py-2 text-sm text-secondary-foreground transition-colors duration-200 hover:bg-secondary/80"
+              className="inline-flex items-center gap-2 rounded-full border border-border/50 bg-card/80 px-4 py-2 text-sm text-foreground/80 transition-all duration-200 hover:bg-foreground/10 hover:text-foreground"
             >
               <XLogo className="h-4 w-4" />
               Follow on X
@@ -317,7 +305,7 @@ export const Activity: React.FC = () => {
               href="https://www.linkedin.com/in/rajdeepsingh5"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md bg-secondary px-4 py-2 text-sm text-secondary-foreground transition-colors duration-200 hover:bg-secondary/80"
+              className="inline-flex items-center gap-2 rounded-full border border-border/50 bg-card/80 px-4 py-2 text-sm text-foreground/80 transition-all duration-200 hover:bg-foreground/10 hover:text-foreground"
             >
               <Linkedin className="h-4 w-4" />
               Connect on LinkedIn

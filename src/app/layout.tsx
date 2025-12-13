@@ -7,7 +7,7 @@ import type { Person, WebSite, WithContext } from "schema-dts";
 import { Providers } from "@/components/providers";
 import { META_THEME_COLORS, SITE_INFO } from "@/config/site";
 import { USER } from "@/features/profile/data/user";
-import { fontMono, fontSans } from "@/lib/fonts";
+import { fontMono, fontSans, fontSerif, fontSpaceGrotesk } from "@/lib/fonts";
 
 function getWebSiteJsonLd(): WithContext<WebSite> {
   return {
@@ -159,7 +159,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fontSans.variable} ${fontMono.variable}`}
+      className={`${fontSans.variable} ${fontSerif.variable} ${fontMono.variable} ${fontSpaceGrotesk.variable}`}
       suppressHydrationWarning
     >
       <head>

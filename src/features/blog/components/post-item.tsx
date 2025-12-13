@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { Clock, MoveUpRight, PinIcon } from "lucide-react";
+import { Clock } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -25,18 +25,12 @@ export function PostItem({
       href={`/blog/${post.slug}`}
       prefetch={true}
       className={cn(
-        "group/post flex flex-col gap-2",
-        compact
-          ? "overflow-hidden rounded-lg border border-edge/50 bg-card/30 p-3 transition-colors hover:bg-card/60"
-          : [
-              "p-3 sm:p-2",
-              "max-sm:screen-line-before max-sm:screen-line-after",
-              "sm:nth-[2n+1]:screen-line-before sm:nth-[2n+1]:screen-line-after",
-            ]
+        "group/post flex flex-col gap-3 rounded-2xl border border-border/50 bg-card/80 p-4 transition-all duration-300 hover:bg-card",
+        compact && "p-3"
       )}
     >
       {post.metadata.image && (
-        <div className="relative overflow-hidden rounded-xl transition-shadow duration-300 select-none group-hover/post:shadow-lg">
+        <div className="relative overflow-hidden rounded-xl transition-all duration-300 select-none">
           <div className="[&_img]:aspect-1200/630 [&_img]:rounded-xl">
             <Image
               src={post.metadata.image}
@@ -50,46 +44,27 @@ export function PostItem({
             />
           </div>
 
-          <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-black/10 ring-inset dark:ring-white/10" />
-
-          {/* Hover overlay with read button */}
-          <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover/post:opacity-100">
-            <div className="flex h-16 w-16 scale-75 transform items-center justify-center rounded-full bg-white shadow-xl transition-transform duration-300 group-hover/post:scale-100">
-              <MoveUpRight className="h-8 w-8 text-black" />
-            </div>
-          </div>
-
-          {/* {post.metadata.new && (
-            <span className="absolute top-1.5 right-1.5 rounded-md bg-info px-1.5 font-mono text-sm font-medium text-white text-shadow-xs">
-              New
-            </span>
-          )} */}
-
-          {post.metadata.pinned && (
-            <span className="absolute top-1.5 right-1.5 z-10 flex size-6 items-center justify-center rounded-md bg-info">
-              <PinIcon className="size-4 rotate-45 text-white" />
-            </span>
-          )}
+          <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-black/5 ring-inset dark:ring-white/5" />
         </div>
       )}
 
-      <div className={cn("flex flex-col gap-1", !compact && "p-2")}>
+      <div className={cn("flex flex-col gap-2", !compact && "px-1")}>
         <h3
           className={cn(
-            "font-medium text-balance underline-offset-4 group-hover/post:underline",
+            "font-serif font-medium italic text-foreground/90 transition-colors group-hover/post:text-foreground",
             compact ? "text-base leading-snug" : "text-lg leading-snug"
           )}
         >
           {post.metadata.title}
           {post.metadata.new && (
-            <span className="ml-2 inline-block size-2 -translate-y-px rounded-full bg-info" />
+            <span className="ml-2 inline-block size-2 -translate-y-px rounded-full bg-emerald-500" />
           )}
         </h3>
 
         <dl
           className={cn(
-            "flex items-center gap-2 text-muted-foreground",
-            compact ? "text-xs" : "flex-nowrap gap-3 text-sm"
+            "flex items-center gap-3 font-mono text-foreground/40",
+            compact ? "text-xs" : "text-xs"
           )}
         >
           <div className="whitespace-nowrap">
@@ -100,7 +75,7 @@ export function PostItem({
               </time>
             </dd>
           </div>
-          <span className="text-muted-foreground/50">•</span>
+          <span className="text-foreground/20">•</span>
           <div className="flex items-center gap-1 whitespace-nowrap">
             <Clock className="size-3" aria-hidden="true" />
             <dt className="sr-only">Reading time</dt>
@@ -111,3 +86,4 @@ export function PostItem({
     </Link>
   );
 }
+
