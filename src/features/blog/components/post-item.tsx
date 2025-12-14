@@ -40,7 +40,7 @@ export function PostItem({
               quality={100}
               priority={shouldPreloadImage}
               unoptimized
-              className="grayscale transition-all duration-500 group-hover/post:scale-105 group-hover/post:grayscale-0"
+              className="grayscale transition-all duration-500 group-hover/post:scale-105 group-hover/post:grayscale-0 dark:grayscale-0"
             />
           </div>
 
@@ -51,7 +51,7 @@ export function PostItem({
       <div className={cn("flex flex-col gap-2", !compact && "px-1")}>
         <h3
           className={cn(
-            "font-serif font-medium italic text-foreground/90 transition-colors group-hover/post:text-foreground",
+            "font-serif font-medium text-foreground/90 italic transition-colors group-hover/post:text-foreground",
             compact ? "text-base leading-snug" : "text-lg leading-snug"
           )}
         >
@@ -86,4 +86,3 @@ export function PostItem({
     </Link>
   );
 }
-

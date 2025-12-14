@@ -40,7 +40,7 @@ export function ProjectCard({
               src={project.logo}
               alt={project.title}
               fill
-              className="object-cover grayscale transition-all duration-500 group-hover/project:scale-105 group-hover/project:grayscale-0"
+              className="object-cover grayscale transition-all duration-500 group-hover/project:scale-105 group-hover/project:grayscale-0 dark:grayscale-0"
               priority={shouldPreloadImage}
               unoptimized
             />
