@@ -27,14 +27,17 @@ export function Nav({
           // Home is only active on exact match
           active = activeId === "/" || activeId === "/index";
         } else if (href.startsWith("/#")) {
-          // Hash links are active on home page
-          active = activeId === "/" || activeId === "/index";
+          // Hash links are never marked as active - they're scroll-to-section links
+          active = false;
         } else {
           // For regular routes, check if current path starts with href
           // This handles /projects and /projects/[slug] matching /projects nav item
           const startsWithSlash = activeId?.startsWith(href + "/") ?? false;
           const startsWithHref = activeId?.startsWith(href) ?? false;
-          active = activeId === href || startsWithSlash || (startsWithHref && href !== "/" && !href.startsWith("/#"));
+          active =
+            activeId === href ||
+            startsWithSlash ||
+            (startsWithHref && href !== "/" && !href.startsWith("/#"));
         }
 
         return (
@@ -57,12 +60,10 @@ export function NavItem({
   external?: boolean;
 }) {
   const baseClasses = cn(
-    "relative rounded-lg px-3 py-1.5 text-xs font-mono font-medium uppercase tracking-widest",
+    "relative rounded-lg px-3 py-1.5 font-mono text-xs font-medium tracking-widest uppercase",
     "transition-all duration-300 ease-out",
     "hover:bg-foreground/10 hover:text-foreground",
-    active
-      ? "bg-foreground/10 text-foreground"
-      : "text-foreground/50"
+    active ? "bg-foreground/10 text-foreground" : "text-foreground/50"
   );
 
   if (external) {
@@ -80,7 +81,13 @@ export function NavItem({
   }
 
   return (
-    <Link className={cn(baseClasses, "group relative flex items-center justify-center")} {...props}>
+    <Link
+      className={cn(
+        baseClasses,
+        "group relative flex items-center justify-center"
+      )}
+      {...props}
+    >
       <span className="relative z-10">{children}</span>
       {/* Active layout indicator */}
       {active && (
@@ -94,4 +101,3 @@ export function NavItem({
     </Link>
   );
 }
-
