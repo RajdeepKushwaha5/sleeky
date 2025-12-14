@@ -13,7 +13,7 @@ export function TestimonialsMarquee() {
   return (
     <Panel
       id="testimonials"
-      className="before:z-11 after:z-10 [&_.rfm-initial-child-container]:items-stretch! [&_.rfm-marquee]:items-stretch!"
+      className="bg-zinc-50 before:z-11 after:z-10 dark:bg-card [&_.rfm-initial-child-container]:items-stretch! [&_.rfm-marquee]:items-stretch!"
     >
       <h2 className="sr-only">Testimonials</h2>
 
@@ -27,7 +27,7 @@ export function TestimonialsMarquee() {
           ).map((item) => (
             <MarqueeItem
               key={item.handle}
-              className="mx-2 h-full w-sm rounded-2xl border border-border/50 bg-card/80"
+              className="group/testimonial mx-2 h-full w-sm rounded-2xl border border-zinc-200 bg-zinc-100/80 grayscale transition-all duration-500 hover:grayscale-0 dark:border-border/50 dark:bg-card/80 dark:grayscale-0"
             >
               <TestimonialItem {...item} />
             </MarqueeItem>
@@ -47,7 +47,7 @@ export function TestimonialsMarquee() {
           ).map((item) => (
             <MarqueeItem
               key={item.handle}
-              className="mx-2 h-full w-sm rounded-2xl border border-border/50 bg-card/80"
+              className="group/testimonial mx-2 h-full w-sm rounded-2xl border border-zinc-200 bg-zinc-100/80 grayscale transition-all duration-500 hover:grayscale-0 dark:border-border/50 dark:bg-card/80 dark:grayscale-0"
             >
               <TestimonialItem {...item} />
             </MarqueeItem>

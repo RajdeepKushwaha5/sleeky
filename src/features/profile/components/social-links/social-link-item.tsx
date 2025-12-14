@@ -8,7 +8,7 @@ export function SocialLinkItem({ icon, title, description, href }: SocialLink) {
   return (
     <a
       className={cn(
-        "group/link flex cursor-pointer items-center gap-4 rounded-2xl border border-border/50 bg-card/80 p-4 pr-2 transition-colors select-none hover:bg-card",
+        "group/link flex cursor-pointer items-center gap-4 rounded-2xl border border-zinc-200 bg-zinc-100/80 p-4 pr-2 grayscale transition-all duration-500 select-none hover:bg-zinc-50 hover:grayscale-0 dark:border-border/50 dark:bg-card/80 dark:grayscale-0 dark:hover:bg-card"
       )}
       href={href}
       target="_blank"

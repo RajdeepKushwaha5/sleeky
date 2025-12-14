@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import { Chatbot } from "@/components/chatbot";
 import { GradientMesh } from "@/components/gradient-mesh";
 import { KeyboardNavigation } from "@/components/keyboard-navigation";
+import { KeyboardShortcutHint } from "@/components/keyboard-shortcut-hint";
 import { NoiseOverlay } from "@/components/noise-overlay";
 import { SideRuler } from "@/components/side-ruler";
 import { SiteFooter } from "@/components/site-footer";
@@ -39,6 +40,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       <ScrollTop />
       <Chatbot />
       <KeyboardNavigation />
+      <KeyboardShortcutHint />
     </>
   );
 }

@@ -6,7 +6,7 @@ import { CertificationItem } from "./certification-item";
 
 export function Certifications() {
   return (
-    <Panel id="certs">
+    <Panel id="certs" className="bg-zinc-50 dark:bg-card">
       <PanelHeader>
         <PanelTitle>
           Certifications

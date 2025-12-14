@@ -44,7 +44,7 @@ export function SpotifyCard({ spotify, status }: SpotifyCardProps) {
   const progressWidth = Math.min(progress, 100);
 
   return (
-    <div className="group relative overflow-hidden rounded-lg border border-border/50 bg-card/80 transition-all hover:border-accent/50 hover:shadow-md">
+    <div className="group relative overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100/80 grayscale transition-all duration-500 hover:border-accent/50 hover:shadow-md hover:grayscale-0 dark:border-border/50 dark:bg-card/80 dark:grayscale-0">
       <div className="flex gap-3 p-3">
         {/* Album Art */}
         <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md ring-1 ring-edge">
@@ -62,24 +62,26 @@ export function SpotifyCard({ spotify, status }: SpotifyCardProps) {
           <div className="flex items-center gap-2">
             {/* Online status indicator */}
             <span
-              className={`h-2 w-2 rounded-full ${status === "online"
+              className={`h-2 w-2 rounded-full ${
+                status === "online"
                   ? "bg-green-500"
                   : status === "idle"
                     ? "bg-yellow-500"
                     : status === "dnd"
                       ? "bg-red-500"
                       : "bg-gray-500"
-                }`}
+              }`}
             />
             <span
-              className={`text-xs font-medium ${status === "online"
+              className={`text-xs font-medium ${
+                status === "online"
                   ? "text-green-600 dark:text-green-500"
                   : status === "idle"
                     ? "text-yellow-600 dark:text-yellow-500"
                     : status === "dnd"
                       ? "text-red-600 dark:text-red-500"
                       : "text-gray-600 dark:text-gray-500"
-                }`}
+              }`}
             >
               {status === "online"
                 ? "Online"

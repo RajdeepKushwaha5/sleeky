@@ -19,12 +19,13 @@ export function OfflineCard({
   const isSpotify = icon === "spotify";
 
   return (
-    <div className="relative overflow-hidden rounded-lg border border-border/50 bg-card/80 transition-all">
+    <div className="relative overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100/80 grayscale transition-all duration-500 hover:grayscale-0 dark:border-border/50 dark:bg-card/80 dark:grayscale-0">
       <div className="flex gap-3 p-3">
         {/* Icon */}
         <div
-          className={`flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-md ${isSpotify ? "bg-[#1DB954]/10" : "bg-[#007ACC]/10"
-            }`}
+          className={`flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-md ${
+            isSpotify ? "bg-[#1DB954]/10" : "bg-[#007ACC]/10"
+          }`}
         >
           {isSpotify ? (
             <SpotifyLogo

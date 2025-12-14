@@ -3,6 +3,8 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useCallback, useEffect, useState } from "react";
 
+import { useSound } from "@/hooks/use-sound";
+
 const SECTION_IDS = [
   "overview",
   "live",
@@ -23,6 +25,7 @@ const SECTION_IDS = [
 export function KeyboardNavigation() {
   const [showHint, setShowHint] = useState(false);
   const [lastAction, setLastAction] = useState<string | null>(null);
+  const playClick = useSound("/audio/ui-sounds/click.wav");
 
   const getCurrentSectionIndex = useCallback(() => {
     const scrollY = window.scrollY + window.innerHeight / 3;
@@ -60,6 +63,7 @@ export function KeyboardNavigation() {
           e.preventDefault();
           const nextIndex = getCurrentSectionIndex() + 1;
           if (nextIndex < SECTION_IDS.length) {
+            playClick();
             scrollToSection(nextIndex);
             setLastAction("↓ Next Section");
             setShowHint(true);
@@ -70,6 +74,7 @@ export function KeyboardNavigation() {
           e.preventDefault();
           const prevIndex = getCurrentSectionIndex() - 1;
           if (prevIndex >= 0) {
+            playClick();
             scrollToSection(prevIndex);
             setLastAction("↑ Previous Section");
             setShowHint(true);
@@ -78,6 +83,7 @@ export function KeyboardNavigation() {
           break;
         case "g":
           e.preventDefault();
+          playClick();
           window.scrollTo({ top: 0, behavior: "smooth" });
           setLastAction("↑ Top");
           setShowHint(true);
@@ -85,6 +91,7 @@ export function KeyboardNavigation() {
           break;
         case "?":
           e.preventDefault();
+          playClick();
           setShowHint((prev) => !prev);
           setLastAction("Keyboard Shortcuts");
           break;
@@ -93,7 +100,7 @@ export function KeyboardNavigation() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [getCurrentSectionIndex, scrollToSection]);
+  }, [getCurrentSectionIndex, scrollToSection, playClick]);
 
   return (
     <AnimatePresence>

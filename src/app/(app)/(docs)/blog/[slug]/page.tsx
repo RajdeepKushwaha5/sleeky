@@ -194,7 +194,7 @@ export default async function Page({
             {post.metadata.category === "medium" ? (
               // For Medium posts, render HTML content directly
               <div
-                className="prose max-w-none prose-neutral dark:prose-invert"
+                className="prose max-w-none font-mono text-foreground prose-zinc dark:prose-invert prose-headings:font-sans prose-headings:font-semibold prose-a:text-foreground prose-a:underline prose-a:underline-offset-4 prose-code:rounded-md prose-code:border prose-code:bg-muted/50 prose-code:px-[0.3rem] prose-code:py-[0.2rem] prose-code:text-sm prose-hr:border-edge"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
             ) : (
