@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
+import { TechIcon } from "@/components/tech-icons";
 import {
   Dialog,
   DialogContent,
@@ -70,18 +71,22 @@ export function ProjectCard({
           </p>
         )}
 
-        {/* Tech Stack */}
-        <div className="flex flex-wrap gap-1.5 pt-1">
+        {/* Tech Stack with Icons */}
+        <div className="flex flex-wrap items-center gap-2 pt-1">
           {project.skills.slice(0, 4).map((tech) => (
-            <span
+            <div
               key={tech}
-              className="rounded-full bg-foreground/5 px-2.5 py-1 text-[10px] font-medium text-foreground/50"
+              className="group/tech flex items-center gap-1.5 rounded-full border border-dashed border-primary/40 bg-gradient-to-r from-background to-muted/50 px-2.5 py-1 shadow-md shadow-primary/10"
+              title={tech}
             >
-              {tech}
-            </span>
+              <TechIcon name={tech} className="size-4 transition-transform duration-300 group-hover/tech:scale-110" />
+              <span className="text-[10px] font-medium text-foreground/70 transition-colors group-hover/tech:text-foreground">
+                {tech}
+              </span>
+            </div>
           ))}
           {project.skills.length > 4 && (
-            <span className="inline-flex items-center rounded-full bg-foreground/5 px-2.5 py-1 text-[10px] text-foreground/40">
+            <span className="inline-flex items-center rounded-full border border-border/20 bg-muted/30 px-2.5 py-1 text-[10px] font-medium text-foreground/50">
               +{project.skills.length - 4}
             </span>
           )}

@@ -3,8 +3,6 @@
 import { ArrowRightIcon } from "lucide-react";
 import { motion } from "motion/react";
 
-import { TiltCard } from "@/components/tilt-card";
-
 import { PROJECTS } from "../../data/projects";
 import { Panel, PanelHeader, PanelTitle } from "../panel";
 import { ProjectCard } from "./project-card";
@@ -36,9 +34,7 @@ export function Projects() {
               ease: [0.25, 0.46, 0.45, 0.94],
             }}
           >
-            <TiltCard>
-              <ProjectCard project={project} shouldPreloadImage={index <= 2} />
-            </TiltCard>
+            <ProjectCard project={project} shouldPreloadImage={index <= 2} />
           </motion.div>
         ))}
       </div>

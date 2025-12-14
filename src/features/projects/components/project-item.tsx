@@ -113,17 +113,17 @@ export function ProjectItem({
           {project.skills.slice(0, 5).map((tech) => (
             <div
               key={tech}
-              className="flex items-center gap-1.5 rounded-full bg-foreground/5 px-2 py-1 transition-colors hover:bg-foreground/10"
+              className="group/tech flex items-center gap-1.5 rounded-full border border-dashed border-primary/40 bg-gradient-to-r from-background to-muted/50 px-2.5 py-1 shadow-md shadow-primary/10"
               title={tech}
             >
-              <TechIcon name={tech} className="size-3.5" />
-              <span className="text-[10px] font-medium text-foreground/60">
+              <TechIcon name={tech} className="size-4 transition-transform duration-300 group-hover/tech:scale-110" />
+              <span className="text-[10px] font-medium text-foreground/70 transition-colors group-hover/tech:text-foreground">
                 {tech}
               </span>
             </div>
           ))}
           {project.skills.length > 5 && (
-            <span className="inline-flex items-center rounded-full bg-foreground/5 px-2 py-1 text-[10px] text-foreground/40">
+            <span className="inline-flex items-center rounded-full border border-border/20 bg-muted/30 px-2.5 py-1 text-[10px] font-medium text-foreground/50">
               +{project.skills.length - 5}
             </span>
           )}
