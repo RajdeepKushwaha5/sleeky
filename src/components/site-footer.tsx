@@ -7,6 +7,8 @@ export function SiteFooter() {
   const currentYear = new Date().getFullYear();
   const [emailTooltip, setEmailTooltip] = useState("Click to copy email");
   const [phoneTooltip, setPhoneTooltip] = useState("Click to copy phone");
+  const [emailCopied, setEmailCopied] = useState(false);
+  const [phoneCopied, setPhoneCopied] = useState(false);
 
   // Fallback copy function for mobile devices
   const fallbackCopyText = (text: string): boolean => {
@@ -52,13 +54,21 @@ export function SiteFooter() {
   const copyEmail = async () => {
     const success = await copyToClipboard("rajdeepsingh10789@gmail.com");
     setEmailTooltip(success ? "Copied!" : "Failed to copy");
-    setTimeout(() => setEmailTooltip("Click to copy email"), 2000);
+    setEmailCopied(success);
+    setTimeout(() => {
+      setEmailTooltip("Click to copy email");
+      setEmailCopied(false);
+    }, 2000);
   };
 
   const copyPhone = async () => {
     const success = await copyToClipboard("+91 7073526113");
     setPhoneTooltip(success ? "Copied!" : "Failed to copy");
-    setTimeout(() => setPhoneTooltip("Click to copy phone"), 2000);
+    setPhoneCopied(success);
+    setTimeout(() => {
+      setPhoneTooltip("Click to copy phone");
+      setPhoneCopied(false);
+    }, 2000);
   };
 
   return (
@@ -81,10 +91,30 @@ export function SiteFooter() {
             {/* Gmail - Copy functionality */}
             <button
               onClick={copyEmail}
-              className="group relative flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/60 transition-all hover:bg-foreground/10 active:scale-95 active:bg-foreground/20"
+              className={`group relative flex h-10 w-10 items-center justify-center rounded-full border transition-all active:scale-95 ${
+                emailCopied
+                  ? "border-green-500 bg-green-500/20"
+                  : "border-border bg-card/60 hover:bg-foreground/10 active:bg-foreground/20"
+              }`}
               title={emailTooltip}
             >
-              <Mail className="h-4 w-4 text-foreground/60 group-hover:text-foreground" />
+              {emailCopied ? (
+                <svg
+                  className="h-4 w-4 text-green-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+              ) : (
+                <Mail className="h-4 w-4 text-foreground/60 group-hover:text-foreground" />
+              )}
               <span className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 rounded-lg bg-foreground px-3 py-1.5 text-xs whitespace-nowrap text-background opacity-0 transition-opacity group-hover:opacity-100">
                 {emailTooltip}
               </span>
@@ -93,10 +123,30 @@ export function SiteFooter() {
             {/* Phone - Copy functionality */}
             <button
               onClick={copyPhone}
-              className="group relative flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/60 transition-all hover:bg-foreground/10 active:scale-95 active:bg-foreground/20"
+              className={`group relative flex h-10 w-10 items-center justify-center rounded-full border transition-all active:scale-95 ${
+                phoneCopied
+                  ? "border-green-500 bg-green-500/20"
+                  : "border-border bg-card/60 hover:bg-foreground/10 active:bg-foreground/20"
+              }`}
               title={phoneTooltip}
             >
-              <Phone className="h-4 w-4 text-foreground/60 group-hover:text-foreground" />
+              {phoneCopied ? (
+                <svg
+                  className="h-4 w-4 text-green-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+              ) : (
+                <Phone className="h-4 w-4 text-foreground/60 group-hover:text-foreground" />
+              )}
               <span className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 rounded-lg bg-foreground px-3 py-1.5 text-xs whitespace-nowrap text-background opacity-0 transition-opacity group-hover:opacity-100">
                 {phoneTooltip}
               </span>

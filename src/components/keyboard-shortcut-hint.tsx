@@ -6,43 +6,25 @@ import { useCallback, useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
 
-// Check if dismissed from sessionStorage (runs only on client)
-function getInitialDismissedState(): boolean {
-  if (typeof window === "undefined") return false;
-  return sessionStorage.getItem("keyboard-hint-dismissed") === "true";
-}
-
 /**
  * A subtle keyboard shortcut hint that appears in the corner
  * to remind power users that shortcuts are available.
+ * Shows for 5 seconds on every page load.
  */
 export function KeyboardShortcutHint() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [showFullHelp, setShowFullHelp] = useState(false);
-  const [hasBeenDismissed, setHasBeenDismissed] = useState(
-    getInitialDismissedState
-  );
 
-  // Show hint after a delay if user hasn't dismissed before
+  // Auto-hide after 5 seconds
   useEffect(() => {
-    if (hasBeenDismissed) return;
-
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 5000); // Show after 5 seconds
-
-    // Auto-hide after 15 seconds if not interacted with
     const hideTimer = setTimeout(() => {
       setIsVisible(false);
-      setHasBeenDismissed(true);
-      sessionStorage.setItem("keyboard-hint-dismissed", "true");
-    }, 15000);
+    }, 5000);
 
     return () => {
-      clearTimeout(timer);
       clearTimeout(hideTimer);
     };
-  }, [hasBeenDismissed]);
+  }, []);
 
   const handleClick = useCallback(() => {
     setShowFullHelp((prev) => !prev);
@@ -50,16 +32,10 @@ export function KeyboardShortcutHint() {
 
   const handleDismiss = useCallback(() => {
     setIsVisible(false);
-    setHasBeenDismissed(true);
-    sessionStorage.setItem("keyboard-hint-dismissed", "true");
   }, []);
 
   // Don't render on mobile
   if (typeof window !== "undefined" && window.innerWidth < 768) {
-    return null;
-  }
-
-  if (hasBeenDismissed && !showFullHelp) {
     return null;
   }
 
@@ -84,12 +60,20 @@ export function KeyboardShortcutHint() {
           >
             <KeyboardIcon className="size-3.5" />
             <span>Press ? for shortcuts</span>
-            <button
+            <span
+              role="button"
+              tabIndex={0}
               onClick={(e) => {
                 e.stopPropagation();
                 handleDismiss();
               }}
-              className="ml-1 rounded-full p-0.5 hover:bg-foreground/10"
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.stopPropagation();
+                  handleDismiss();
+                }
+              }}
+              className="ml-1 cursor-pointer rounded-full p-0.5 hover:bg-foreground/10"
               aria-label="Dismiss"
             >
               <svg
@@ -105,7 +89,7 @@ export function KeyboardShortcutHint() {
                   d="M6 18L18 6M6 6l12 12"
                 />
               </svg>
-            </button>
+            </span>
           </motion.button>
 
           <AnimatePresence>
