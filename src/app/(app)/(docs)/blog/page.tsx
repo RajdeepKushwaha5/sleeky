@@ -13,12 +13,16 @@ export default function Page() {
 
   return (
     <>
-      <div className="screen-line-after px-4">
-        <h1 className="text-3xl font-semibold">Blog</h1>
-      </div>
-
-      <div className="screen-line-after p-4">
-        <p className="font-mono text-sm text-balance text-muted-foreground">
+      {/* Header */}
+      <div className="mb-8 space-y-4 px-4 pt-4">
+        <div className="inline-flex items-center gap-2 rounded-full border border-border/50 bg-card/50 px-3 py-1 text-xs font-medium text-foreground/60">
+          <span className="size-1.5 animate-pulse rounded-full bg-green-500" />
+          Articles
+        </div>
+        <h1 className="font-serif text-4xl font-semibold tracking-tight md:text-5xl">
+          Blog
+        </h1>
+        <p className="max-w-2xl font-mono text-sm text-muted-foreground">
           {metadata.description}
         </p>
       </div>

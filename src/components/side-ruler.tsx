@@ -30,6 +30,7 @@ const SECTION_IDS = [
 
 // Route-based section mapping for non-home pages
 const ROUTE_SECTIONS: Record<string, string> = {
+  "/projects": "Projects",
   "/blog": "Blog",
   "/components": "Components",
 };

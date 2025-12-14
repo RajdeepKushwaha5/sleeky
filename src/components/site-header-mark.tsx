@@ -1,20 +1,18 @@
 "use client";
 
-import { motion, useMotionValueEvent, useScroll } from "motion/react";
-import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
-
-import { RJDPMark } from "./rjdp-mark";
-
+import Link from "next/link";
 
 export function SiteHeaderMark() {
   return (
-    <div className="flex items-center gap-2">
-      <span className="text-xl font-bold tracking-tighter text-foreground font-space-grotesk">
+    <Link
+      href="/"
+      className="group flex items-center gap-2"
+      aria-label="Home"
+    >
+      <span className="text-lg font-bold tracking-tighter text-foreground font-space-grotesk transition-all duration-300 group-hover:text-foreground/70 group-hover:tracking-tight">
         RJDP
       </span>
-    </div>
+    </Link>
   );
 }
-
 

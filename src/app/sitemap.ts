@@ -3,6 +3,8 @@ import type { MetadataRoute } from "next";
 
 import { SITE_INFO } from "@/config/site";
 import { getAllPosts, getPostsByCategory } from "@/features/blog/data/posts";
+import { PROJECTS } from "@/features/profile/data/projects";
+import { getCaseStudy } from "@/features/projects/data/case-studies";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts().map((post) => ({
@@ -19,6 +21,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
+  // Projects with case studies
+  const projectCaseStudies = PROJECTS.filter((p) => getCaseStudy(p.id)).map(
+    (project) => ({
+      url: `${SITE_INFO.url}/projects/${project.id}`,
+      lastModified: dayjs().toISOString(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })
+  );
+
   const routes: MetadataRoute.Sitemap = [
     {
       url: SITE_INFO.url,
@@ -33,6 +45,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${SITE_INFO.url}/projects`,
+      lastModified: dayjs().toISOString(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
       url: `${SITE_INFO.url}/components`,
       lastModified: dayjs().toISOString(),
       changeFrequency: "monthly",
@@ -40,5 +58,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  return [...routes, ...posts, ...components];
+  return [...routes, ...posts, ...components, ...projectCaseStudies];
 }
+

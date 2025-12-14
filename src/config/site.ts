@@ -50,7 +50,7 @@ export const META_THEME_COLORS = {
 export const MAIN_NAV: NavItem[] = [
   {
     title: "Projects",
-    href: "/#projects",
+    href: "/projects",
   },
   {
     title: "Blogs",

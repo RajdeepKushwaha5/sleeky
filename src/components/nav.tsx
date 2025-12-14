@@ -20,11 +20,22 @@ export function Nav({
       className={cn("flex items-center gap-2", className)}
     >
       {items.map(({ title, href, external }) => {
-        const active =
-          activeId === href ||
-          (href === "/"
-            ? ["/", "/index"].includes(activeId || "")
-            : activeId?.startsWith(href));
+        // Determine if this nav item is active
+        let active = false;
+
+        if (href === "/") {
+          // Home is only active on exact match
+          active = activeId === "/" || activeId === "/index";
+        } else if (href.startsWith("/#")) {
+          // Hash links are active on home page
+          active = activeId === "/" || activeId === "/index";
+        } else {
+          // For regular routes, check if current path starts with href
+          // This handles /projects and /projects/[slug] matching /projects nav item
+          const startsWithSlash = activeId?.startsWith(href + "/") ?? false;
+          const startsWithHref = activeId?.startsWith(href) ?? false;
+          active = activeId === href || startsWithSlash || (startsWithHref && href !== "/" && !href.startsWith("/#"));
+        }
 
         return (
           <NavItem key={href} href={href} active={active} external={external}>
@@ -46,12 +57,12 @@ export function NavItem({
   external?: boolean;
 }) {
   const baseClasses = cn(
-    "relative rounded-full px-4 py-2 text-sm font-medium",
+    "relative rounded-lg px-3 py-1.5 text-xs font-mono font-medium uppercase tracking-widest",
     "transition-all duration-300 ease-out",
     "hover:bg-foreground/10 hover:text-foreground",
     active
       ? "bg-foreground/10 text-foreground"
-      : "text-foreground/60"
+      : "text-foreground/50"
   );
 
   if (external) {

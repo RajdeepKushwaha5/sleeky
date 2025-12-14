@@ -1,3 +1,5 @@
+import type { CaseStudy } from "@/features/projects/types/case-study";
+
 export type Project = {
   /** Stable unique identifier (used as list key/anchor). */
   id: string;
@@ -24,4 +26,8 @@ export type Project = {
   logo?: string;
   /** Whether the project card is expanded by default in the UI. */
   isExpanded?: boolean;
+  /** Detailed case study for featured projects */
+  caseStudy?: CaseStudy;
+  /** Short tagline for the project */
+  tagline?: string;
 };

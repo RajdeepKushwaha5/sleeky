@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-import { TechIcon } from "@/components/tech-icons";
 import {
   Dialog,
   DialogContent,
@@ -15,6 +14,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import type { Project } from "@/features/profile/types/projects";
+import { hasCaseStudy } from "@/features/projects/data/case-studies";
 import { cn } from "@/lib/utils";
 
 export function ProjectCard({
@@ -27,82 +27,56 @@ export function ProjectCard({
   return (
     <div
       className={cn(
-        "group/project relative flex flex-col overflow-hidden rounded-2xl border border-border/50 bg-card/80",
+        "group/project flex h-full flex-col overflow-hidden rounded-2xl border border-border/50 bg-card/80",
         "transition-all duration-300",
-        "hover:bg-card"
+        "hover:border-border hover:bg-card hover:shadow-lg"
       )}
     >
       {/* Image Section */}
-      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-t-2xl">
+      <div className="relative aspect-[16/10] w-full overflow-hidden">
         {project.logo ? (
-          <>
-            <Image
-              src={project.logo}
-              alt={project.title}
-              fill
-              className="object-cover grayscale transition-all duration-500 group-hover/project:scale-105 group-hover/project:grayscale-0 dark:grayscale-0"
-              priority={shouldPreloadImage}
-              unoptimized
-            />
-          </>
+          <Image
+            src={project.logo}
+            alt={project.title}
+            fill
+            className="object-cover grayscale transition-all duration-500 group-hover/project:scale-105 group-hover/project:grayscale-0 dark:grayscale-0"
+            priority={shouldPreloadImage}
+            unoptimized
+          />
         ) : (
-          <div className="flex h-full w-full items-center justify-center bg-muted/30">
+          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-muted/50 to-muted/20">
             <span className="font-serif text-6xl font-medium text-foreground/10 italic select-none">
               {project.title.charAt(0)}
             </span>
           </div>
         )}
-
-        {/* Hover Actions Overlay */}
-        <div className="absolute inset-0 flex items-center justify-center gap-3 bg-black/50 opacity-0 backdrop-blur-sm transition-all duration-300 group-hover/project:opacity-100">
-          {project.githubUrl && (
-            <Link
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex size-12 items-center justify-center rounded-full bg-white/90 text-black transition-all duration-300 hover:scale-110"
-              aria-label="View Source"
-            >
-              <Github className="size-5" />
-            </Link>
-          )}
-          <Link
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex size-12 items-center justify-center rounded-full bg-black/90 text-white transition-all duration-300 hover:scale-110"
-            aria-label="Visit Project"
-          >
-            <ExternalLink className="size-5" />
-          </Link>
-        </div>
       </div>
 
       {/* Content Section */}
-      <div className="flex flex-1 flex-col gap-4 p-5">
-        <div className="space-y-2">
-          <Link
-            href={project.link}
-            target="_blank"
-            className="group/title block"
-          >
-            <h3 className="font-serif text-lg font-medium text-foreground/90 italic transition-colors group-hover/title:text-foreground">
-              {project.title}
-            </h3>
-          </Link>
+      <div className="flex flex-1 flex-col gap-3 p-5">
+        <div className="space-y-1.5">
+          <h3 className="font-serif text-lg font-medium text-foreground/90 italic transition-colors group-hover/project:text-foreground">
+            {project.title}
+          </h3>
           <p className="font-mono text-xs text-foreground/40">
-            {project.period.start} → {project.period.end || "Present"}
+            {project.period.start}
           </p>
         </div>
 
+        {/* Description */}
+        {project.description && (
+          <p className="line-clamp-2 text-sm text-foreground/60">
+            {project.description.split("\n")[0]}
+          </p>
+        )}
+
         {/* Tech Stack */}
-        <div className="flex flex-wrap gap-1.5">
+        <div className="flex flex-wrap gap-1.5 pt-1">
           {project.skills.slice(0, 4).map((tech) => (
             <span
               key={tech}
-              className="inline-flex items-center gap-1 rounded-full bg-foreground/5 px-2.5 py-1 text-[10px] font-medium text-foreground/50"
+              className="rounded-full bg-foreground/5 px-2.5 py-1 text-[10px] font-medium text-foreground/50"
             >
-              <TechIcon name={tech} className="size-2.5" />
               {tech}
             </span>
           ))}
@@ -115,78 +89,88 @@ export function ProjectCard({
 
         {/* View Details Footer */}
         <div className="mt-auto pt-2">
-          <Dialog>
-            <DialogTrigger asChild>
-              <button className="group/btn flex w-full items-center justify-between text-xs font-medium text-foreground/40 transition-colors hover:text-foreground/70">
-                <span>View Details</span>
-                <MoveRight className="size-3 transition-transform duration-300 group-hover/btn:translate-x-1" />
-              </button>
-            </DialogTrigger>
-            <DialogContent className="max-h-[85vh] w-[calc(100vw-2rem)] max-w-2xl overflow-y-auto rounded-2xl p-4 sm:p-6">
-              <DialogHeader>
-                <div className="mb-2 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-3">
-                  {project.logo && (
-                    <div className="relative size-12 shrink-0 overflow-hidden rounded-xl">
-                      <Image
-                        src={project.logo}
-                        alt={project.title}
-                        fill
-                        className="object-cover"
-                      />
+          {hasCaseStudy(project.id) ? (
+            <Link
+              href={`/projects/${project.id}`}
+              className="group/btn flex w-full items-center justify-between text-xs font-medium text-foreground/40 transition-colors hover:text-foreground/70"
+            >
+              <span>View Case Study</span>
+              <MoveRight className="size-3 transition-transform duration-300 group-hover/btn:translate-x-1" />
+            </Link>
+          ) : (
+            <Dialog>
+              <DialogTrigger asChild>
+                <button className="group/btn flex w-full items-center justify-between text-xs font-medium text-foreground/40 transition-colors hover:text-foreground/70">
+                  <span>View Details</span>
+                  <MoveRight className="size-3 transition-transform duration-300 group-hover/btn:translate-x-1" />
+                </button>
+              </DialogTrigger>
+              <DialogContent className="max-h-[85vh] w-[calc(100vw-2rem)] max-w-2xl overflow-y-auto rounded-2xl p-4 sm:p-6">
+                <DialogHeader>
+                  <div className="mb-2 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-3">
+                    {project.logo && (
+                      <div className="relative size-12 shrink-0 overflow-hidden rounded-xl">
+                        <Image
+                          src={project.logo}
+                          alt={project.title}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    )}
+                    <div className="text-left">
+                      <DialogTitle className="font-serif text-xl leading-tight font-medium italic">
+                        {project.title}
+                      </DialogTitle>
+                      <DialogDescription className="mt-1 font-mono text-xs">
+                        {project.period.start} - {project.period.end || "Present"}
+                      </DialogDescription>
                     </div>
-                  )}
-                  <div className="text-left">
-                    <DialogTitle className="font-serif text-xl leading-tight font-medium italic">
-                      {project.title}
-                    </DialogTitle>
-                    <DialogDescription className="mt-1 font-mono text-xs">
-                      {project.period.start} - {project.period.end || "Present"}
-                    </DialogDescription>
+                  </div>
+                </DialogHeader>
+
+                <div className="space-y-4">
+                  <div className="flex flex-wrap gap-2">
+                    {project.skills.map((tech) => (
+                      <span
+                        key={tech}
+                        className="rounded-full bg-foreground/5 px-3 py-1 text-xs font-medium text-foreground/60"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="prose prose-sm max-w-none dark:prose-invert">
+                    <p className="text-sm leading-relaxed whitespace-pre-line text-foreground/70">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap gap-3 pt-2">
+                    {project.githubUrl && (
+                      <Link
+                        href={project.githubUrl}
+                        target="_blank"
+                        className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-border/50 bg-card/60 px-4 py-2 text-sm font-medium transition-colors hover:bg-accent sm:flex-none"
+                      >
+                        <Github className="size-4" />
+                        View Source
+                      </Link>
+                    )}
+                    <Link
+                      href={project.link}
+                      target="_blank"
+                      className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-colors hover:bg-foreground/90 sm:flex-none"
+                    >
+                      <ExternalLink className="size-4" />
+                      Visit Live
+                    </Link>
                   </div>
                 </div>
-              </DialogHeader>
-
-              <div className="space-y-4">
-                <div className="flex flex-wrap gap-2">
-                  {project.skills.map((tech) => (
-                    <span
-                      key={tech}
-                      className="rounded-full bg-foreground/5 px-3 py-1 text-xs font-medium text-foreground/60"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="prose prose-sm max-w-none dark:prose-invert">
-                  <p className="text-sm leading-relaxed whitespace-pre-line text-foreground/70">
-                    {project.description}
-                  </p>
-                </div>
-
-                <div className="flex flex-wrap gap-3 pt-2">
-                  {project.githubUrl && (
-                    <Link
-                      href={project.githubUrl}
-                      target="_blank"
-                      className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-border/50 bg-card/60 px-4 py-2 text-sm font-medium transition-colors hover:bg-accent sm:flex-none"
-                    >
-                      <Github className="size-4" />
-                      View Source
-                    </Link>
-                  )}
-                  <Link
-                    href={project.link}
-                    target="_blank"
-                    className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-colors hover:bg-foreground/90 sm:flex-none"
-                  >
-                    <ExternalLink className="size-4" />
-                    Visit Live
-                  </Link>
-                </div>
-              </div>
-            </DialogContent>
-          </Dialog>
+              </DialogContent>
+            </Dialog>
+          )}
         </div>
       </div>
     </div>
