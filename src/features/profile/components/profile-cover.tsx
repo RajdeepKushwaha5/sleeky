@@ -10,9 +10,10 @@ export function ProfileCover() {
     <BrandContextMenu>
       <div
         className={cn(
-          "relative aspect-2/1 overflow-hidden rounded-3xl select-none sm:aspect-3/1",
-          "flex flex-col items-center justify-center gap-2",
-          "my-4 mx-2"
+          "relative aspect-[2.2/1] overflow-hidden rounded-[1.75rem] select-none sm:aspect-[2.8/1]",
+          "flex flex-col items-center justify-center gap-3",
+          "mx-2 my-5",
+          "ring-1 ring-black/[0.04] dark:ring-white/[0.06]"
         )}
       >
         {/* Animated GIF Background - Light mode with warm tint */}
@@ -23,10 +24,9 @@ export function ProfileCover() {
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
-            filter: "grayscale(100%)",
+            filter: "grayscale(100%) contrast(1.1)",
           }}
         />
-        {/* Warm orange overlay removed for grayscale theme */}
 
         {/* Animated GIF Background - Dark mode */}
         <div
@@ -39,23 +39,46 @@ export function ProfileCover() {
           }}
         />
 
-        {/* Subtle overlay for better text contrast */}
-        <div className="absolute inset-0 z-[1] bg-black/20 dark:bg-black/40" />
+        {/* Cinematic gradient overlay */}
+        <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black/50 via-black/20 to-black/10 dark:from-black/60 dark:via-black/30 dark:to-black/15" />
+
+        {/* Subtle vignette effect */}
+        <div
+          className="absolute inset-0 z-[1]"
+          style={{ boxShadow: "inset 0 0 120px rgba(0,0,0,0.15)" }}
+        />
 
         {/* Quote Subtitle - Per aspera ad astra */}
         <motion.p
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="relative z-10 font-serif text-lg tracking-wide text-white italic sm:text-xl md:text-2xl"
+          transition={{
+            duration: 1,
+            delay: 0.3,
+            ease: [0.25, 0.46, 0.45, 0.94],
+          }}
+          className="relative z-10 font-serif text-lg tracking-[0.04em] text-white/95 italic sm:text-xl md:text-2xl"
           style={{
-            textShadow: "0 2px 10px rgba(0,0,0,0.5)",
+            textShadow: "0 2px 20px rgba(0,0,0,0.4)",
           }}
         >
           Per aspera ad astra
+        </motion.p>
+
+        {/* Subtle subtitle */}
+        <motion.p
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 0.6, y: 0 }}
+          transition={{
+            duration: 1,
+            delay: 0.6,
+            ease: [0.25, 0.46, 0.45, 0.94],
+          }}
+          className="relative z-10 font-sans text-[11px] font-light tracking-[0.2em] text-white/50 uppercase sm:text-xs"
+        >
+          Through hardships to the stars
         </motion.p>
       </div>
     </BrandContextMenu>
   );
 }
-

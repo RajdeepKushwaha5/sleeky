@@ -54,7 +54,7 @@ export function NoiseOverlay() {
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none fixed inset-0 z-[9999] opacity-[0.035] mix-blend-overlay dark:opacity-[0.04]"
+      className="pointer-events-none fixed inset-0 z-[9999] opacity-[0.025] mix-blend-overlay dark:opacity-[0.03]"
       aria-hidden="true"
     />
   );

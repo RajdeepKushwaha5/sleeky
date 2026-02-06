@@ -35,7 +35,7 @@ export default function Page() {
       <div className="mx-auto md:max-w-3xl">
         <ProfileCover />
         <ProfileHeader />
-        <Separator />
+        <Separator className="h-2" />
 
         <FadeIn>
           <Overview />
@@ -132,5 +132,5 @@ function getPageJsonLd(): WithContext<PageSchema> {
 }
 
 function Separator({ className }: { className?: string }) {
-  return <div className={cn("h-4 w-full", className)} />;
+  return <div className={cn("h-3 w-full", className)} />;
 }

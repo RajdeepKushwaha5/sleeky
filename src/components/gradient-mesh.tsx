@@ -41,15 +41,15 @@ export function GradientMesh() {
 
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-      {/* Base gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-muted/20" />
+      {/* Base gradient - more refined */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-muted/10" />
 
-      {/* Animated blobs with mouse reactivity */}
+      {/* Animated blobs with mouse reactivity - more subtle */}
       <motion.div
-        className="absolute -top-1/4 -left-1/4 h-[60%] w-[60%] rounded-full opacity-30 blur-3xl dark:opacity-20"
+        className="absolute -top-1/4 -left-1/4 h-[60%] w-[60%] rounded-full opacity-20 blur-[100px] dark:opacity-12"
         style={{
           background:
-            "radial-gradient(circle, rgba(161,161,170,0.4) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(161,161,170,0.3) 0%, transparent 70%)",
           x: blob1X,
           y: blob1Y,
         }}
@@ -64,10 +64,10 @@ export function GradientMesh() {
       />
 
       <motion.div
-        className="absolute top-1/4 -right-1/4 h-[50%] w-[50%] rounded-full opacity-25 blur-3xl dark:opacity-15"
+        className="absolute top-1/4 -right-1/4 h-[50%] w-[50%] rounded-full opacity-15 blur-[100px] dark:opacity-10"
         style={{
           background:
-            "radial-gradient(circle, rgba(113,113,122,0.3) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(113,113,122,0.25) 0%, transparent 70%)",
           x: blob2X,
           y: blob2Y,
         }}
@@ -82,10 +82,10 @@ export function GradientMesh() {
       />
 
       <motion.div
-        className="absolute -bottom-1/4 left-1/3 h-[45%] w-[45%] rounded-full opacity-20 blur-3xl dark:opacity-10"
+        className="absolute -bottom-1/4 left-1/3 h-[45%] w-[45%] rounded-full opacity-12 blur-[100px] dark:opacity-8"
         style={{
           background:
-            "radial-gradient(circle, rgba(82,82,91,0.3) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(82,82,91,0.25) 0%, transparent 70%)",
           x: blob3X,
           y: blob3Y,
         }}
@@ -100,10 +100,10 @@ export function GradientMesh() {
       />
 
       <motion.div
-        className="absolute right-1/4 bottom-1/3 h-[35%] w-[35%] rounded-full opacity-15 blur-3xl dark:opacity-10"
+        className="absolute right-1/4 bottom-1/3 h-[35%] w-[35%] rounded-full opacity-10 blur-[100px] dark:opacity-6"
         style={{
           background:
-            "radial-gradient(circle, rgba(39,39,42,0.2) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(39,39,42,0.15) 0%, transparent 70%)",
           x: blob4X,
           y: blob4Y,
         }}

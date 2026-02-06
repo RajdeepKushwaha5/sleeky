@@ -21,7 +21,7 @@ const SECTIONS = [
   "social",
   "certs",
   "live",
-  "contact"
+  "contact",
 ];
 
 interface SiteHeaderClientProps {
@@ -85,29 +85,29 @@ export function SiteHeaderClient({
   return (
     <>
       {/* Desktop Vertical Pill - Left Centered */}
-      <header
-        className="fixed left-4 top-1/2 z-50 hidden -translate-y-1/2 flex-col gap-4 font-space-grotesk sm:flex"
-      >
+      <header className="font-space-grotesk fixed top-1/2 left-4 z-50 hidden -translate-y-1/2 flex-col gap-4 sm:flex">
         <div
           className={cn(
-            "flex flex-col items-center justify-between gap-4 overflow-hidden py-5 px-2.5",
-            "rounded-2xl border border-border/40 bg-background/90 backdrop-blur-xl",
-            "shadow-xl shadow-black/5 dark:shadow-black/30",
-            "transition-all duration-500",
-            // Subtle glow effect
-            "before:absolute before:inset-0 before:-z-10 before:rounded-2xl before:bg-gradient-to-b before:from-foreground/[0.02] before:to-transparent"
+            "flex flex-col items-center justify-between gap-4 overflow-hidden px-2.5 py-5",
+            "rounded-2xl border border-border/30 bg-background/80 backdrop-blur-2xl backdrop-saturate-150",
+            "shadow-2xl shadow-black/[0.03] dark:shadow-black/40",
+            "transition-all duration-700 ease-out",
+            // Refined inner glow
+            "before:absolute before:inset-0 before:-z-10 before:rounded-2xl before:bg-gradient-to-b before:from-foreground/[0.015] before:to-transparent",
+            // Subtle ring for depth
+            "ring-1 ring-white/50 dark:ring-white/[0.04]"
           )}
         >
           {/* Logo */}
           <div
-            className="relative z-10 shrink-0 rotate-180 transform whitespace-nowrap text-base font-bold tracking-tight"
-            style={{ writingMode: 'vertical-rl' }}
+            className="relative z-10 shrink-0 rotate-180 transform text-base font-bold tracking-tight whitespace-nowrap"
+            style={{ writingMode: "vertical-rl" }}
           >
             {logo}
           </div>
 
           {/* Separator */}
-          <div className="h-px w-6 bg-border/40" />
+          <div className="h-px w-5 bg-gradient-to-r from-transparent via-border/60 to-transparent" />
 
           {/* Navigation */}
           <div className="relative z-10 flex shrink-0 flex-col items-center gap-3">
@@ -115,7 +115,7 @@ export function SiteHeaderClient({
           </div>
 
           {/* Separator */}
-          <div className="h-px w-6 bg-border/40" />
+          <div className="h-px w-5 bg-gradient-to-r from-transparent via-border/60 to-transparent" />
 
           {/* Actions */}
           <div className="relative z-10 flex shrink-0 flex-col items-center gap-2">
@@ -123,11 +123,11 @@ export function SiteHeaderClient({
           </div>
 
           {/* Separator */}
-          <div className="h-px w-6 bg-border/40" />
+          <div className="h-px w-5 bg-gradient-to-r from-transparent via-border/60 to-transparent" />
 
           {/* Section Coordinates */}
           <div className="relative z-10 flex flex-col items-center gap-0.5">
-            <span className="font-mono text-[8px] uppercase tracking-widest text-foreground/30">
+            <span className="font-mono text-[8px] tracking-widest text-foreground/30 uppercase">
               SEC
             </span>
             <span className="font-mono text-xs font-medium text-foreground/60">
@@ -140,14 +140,15 @@ export function SiteHeaderClient({
       {/* Mobile Top Bar */}
       <header
         data-scrolled={scrolled}
-        className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 font-space-grotesk sm:hidden"
+        className="font-space-grotesk fixed top-4 right-0 left-0 z-50 flex justify-center px-4 sm:hidden"
       >
         <div
           className={cn(
             "relative flex h-14 items-center justify-between gap-4 overflow-hidden px-5",
-            "rounded-2xl border border-border/40 bg-background/90 backdrop-blur-xl",
-            "shadow-lg shadow-black/5 dark:shadow-black/20",
-            "transition-all duration-500 whitespace-nowrap w-full max-w-sm"
+            "rounded-2xl border border-border/30 bg-background/80 backdrop-blur-2xl backdrop-saturate-150",
+            "shadow-xl shadow-black/[0.03] dark:shadow-black/30",
+            "ring-1 ring-white/50 dark:ring-white/[0.04]",
+            "w-full max-w-sm whitespace-nowrap transition-all duration-700 ease-out"
           )}
         >
           <div className="relative z-10 shrink-0">{logo}</div>

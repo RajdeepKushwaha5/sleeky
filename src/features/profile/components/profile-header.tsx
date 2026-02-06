@@ -12,14 +12,17 @@ import { VerifiedIcon } from "./verified-icon";
 
 export function ProfileHeader() {
   return (
-    <div className="relative mx-2 my-4 flex flex-col items-center overflow-hidden rounded-2xl bg-card/60 p-6 text-center sm:flex-row sm:text-left">
+    <div className="relative mx-2 my-5 flex flex-col items-center overflow-hidden rounded-[1.75rem] border border-border/30 bg-card/50 p-8 text-center backdrop-blur-sm sm:flex-row sm:text-left dark:bg-card/40">
+      {/* Subtle gradient decoration */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-foreground/[0.01] via-transparent to-foreground/[0.02]" />
+
       {/* Avatar */}
-      <div className="relative shrink-0 pb-4 sm:pr-6 sm:pb-0">
+      <div className="relative shrink-0 pb-5 sm:pr-8 sm:pb-0">
         <HoverCard openDelay={100} closeDelay={100}>
           <HoverCardTrigger asChild>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              className="size-28 cursor-pointer rounded-full bg-zinc-800 ring-2 ring-border ring-offset-4 ring-offset-background grayscale transition-transform duration-200 select-none hover:scale-105 sm:size-36 dark:bg-zinc-900 dark:grayscale-0"
+              className="size-28 cursor-pointer rounded-full bg-zinc-800 ring-[3px] ring-border/60 ring-offset-[5px] ring-offset-background grayscale transition-all duration-500 select-none hover:scale-[1.03] hover:grayscale-[50%] sm:size-36 dark:bg-zinc-900 dark:grayscale-0 dark:hover:grayscale-0"
               alt={`${USER.displayName}'s avatar`}
               src={USER.avatar}
               fetchPriority="high"
@@ -34,20 +37,20 @@ export function ProfileHeader() {
       {/* Info */}
       <div className="relative flex flex-1 flex-col items-center justify-center sm:items-start">
         {/* Specialty */}
-        <div className="mb-2 text-sm whitespace-nowrap text-muted-foreground">
-          Web Dev • AI • dApps & Blockchain
+        <div className="mb-3 inline-flex items-center rounded-full border border-border/40 bg-muted/50 px-3 py-1 text-[11px] font-medium tracking-[0.08em] text-muted-foreground uppercase">
+          Web Dev &bull; AI &bull; dApps &amp; Blockchain
         </div>
 
         {/* Name */}
-        <h1 className="mb-3 flex flex-wrap items-center justify-center gap-2 font-serif text-3xl font-medium text-foreground/90 italic sm:justify-start sm:text-4xl">
+        <h1 className="mb-3 flex flex-wrap items-center justify-center gap-2.5 font-serif text-[2rem] leading-tight font-semibold text-foreground/95 italic sm:justify-start sm:text-[2.5rem]">
           {USER.displayName}
           <SimpleTooltip content="Verified">
-            <VerifiedIcon className="size-[0.5em] translate-y-px text-info select-none" />
+            <VerifiedIcon className="size-[0.45em] translate-y-px text-info select-none" />
           </SimpleTooltip>
         </h1>
 
         {/* Flip sentences */}
-        <div className="text-muted-foreground">
+        <div className="font-light text-muted-foreground/80">
           <FlipSentences sentences={USER.flipSentences} />
         </div>
       </div>

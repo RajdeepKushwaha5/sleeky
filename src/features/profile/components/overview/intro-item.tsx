@@ -29,12 +29,12 @@ export function IntroItem({
   };
 
   return (
-    <div className="flex items-center gap-4 font-mono text-sm">
+    <div className="flex items-center gap-4 font-mono text-[13px]">
       <div
-        className="flex size-6 shrink-0 items-center justify-center rounded-full border border-border/30 bg-card/80"
+        className="flex size-7 shrink-0 items-center justify-center rounded-full border border-border/25 bg-muted/40"
         aria-hidden
       >
-        <Icon className="pointer-events-none size-3.5 text-foreground/60" />
+        <Icon className="pointer-events-none size-3.5 text-foreground/50" />
       </div>
 
       <p className="text-balance">

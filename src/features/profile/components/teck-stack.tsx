@@ -15,12 +15,13 @@ export function TeckStack() {
 
       <PanelContent
         className={cn(
-          "[--pattern-foreground:var(--color-zinc-950)]/5 dark:[--pattern-foreground:var(--color-white)]/5",
-          "bg-[radial-gradient(var(--pattern-foreground)_1px,transparent_0)] bg-size-[10px_10px] bg-center",
-          "bg-zinc-950/0.75 dark:bg-white/0.75"
+          "[--pattern-foreground:var(--color-zinc-950)]/3 dark:[--pattern-foreground:var(--color-white)]/3",
+          "bg-[radial-gradient(var(--pattern-foreground)_0.5px,transparent_0)] bg-size-[12px_12px] bg-center",
+          "bg-zinc-950/0.5 dark:bg-white/0.5",
+          "rounded-2xl p-1"
         )}
       >
-        <ul className="flex flex-wrap gap-4 select-none">
+        <ul className="flex flex-wrap gap-5 select-none">
           {TECH_STACK.map((tech) => {
             return (
               <li key={tech.key} className="flex">
@@ -30,9 +31,9 @@ export function TeckStack() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={tech.title}
-                    className="block transition-opacity hover:opacity-70"
+                    className="block transition-all duration-300 hover:scale-110 hover:opacity-70"
                   >
-                    <span className="block text-zinc-900 dark:text-zinc-100 [&>img]:w-8 [&>img]:h-8">
+                    <span className="block text-zinc-900 dark:text-zinc-100 [&>img]:h-8 [&>img]:w-8">
                       {tech.theme ? (
                         <>
                           <img

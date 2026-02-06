@@ -31,7 +31,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       <SiteHeader />
       <main
         id="main-content"
-        className="max-w-screen overflow-x-hidden px-2 pt-20"
+        className="max-w-screen overflow-x-hidden px-2 pt-24 pb-4"
       >
         {children}
       </main>

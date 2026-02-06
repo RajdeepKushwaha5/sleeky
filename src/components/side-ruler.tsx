@@ -64,16 +64,16 @@ function NavigationDots({ activeSection }: { activeSection: string }) {
             {/* Dot - elegant minimal style */}
             <div
               className={cn(
-                "rounded-full transition-all duration-300",
+                "rounded-full transition-all duration-500 ease-out",
                 isActive
-                  ? "h-2.5 w-2.5 bg-foreground/80"
-                  : "h-1.5 w-1.5 bg-foreground/20 group-hover:bg-foreground/40"
+                  ? "h-2.5 w-2.5 bg-foreground/70 shadow-sm shadow-foreground/10"
+                  : "h-1.5 w-1.5 bg-foreground/15 group-hover:scale-125 group-hover:bg-foreground/35"
               )}
             />
 
             {/* Tooltip - clean pill style */}
-            <div className="pointer-events-none absolute right-6 z-50 opacity-0 transition-all duration-200 group-hover:-translate-x-1 group-hover:opacity-100">
-              <div className="rounded-full bg-foreground px-3 py-1 text-xs font-medium whitespace-nowrap text-background shadow-lg">
+            <div className="pointer-events-none absolute right-6 z-50 opacity-0 transition-all duration-300 ease-out group-hover:-translate-x-1 group-hover:opacity-100">
+              <div className="rounded-full bg-foreground px-3.5 py-1 text-[11px] font-medium tracking-wide whitespace-nowrap text-background shadow-xl">
                 {section.label}
               </div>
             </div>
@@ -92,7 +92,7 @@ function LeftSectionIndicator({ activeSection }: { activeSection: string }) {
 // RIGHT side - Navigation dots and Section name
 function RightSideRuler({ activeSection }: { activeSection: string }) {
   return (
-    <div className="pointer-events-none fixed top-0 right-0 bottom-0 z-[100] hidden xl:flex items-center justify-center">
+    <div className="pointer-events-none fixed top-0 right-0 bottom-0 z-[100] hidden items-center justify-center xl:flex">
       <div className="relative flex h-full w-20 flex-col items-center justify-center">
         {/* Navigation dots */}
         <div className="pointer-events-auto absolute top-1/2 left-2 z-[200] -translate-y-1/2">
@@ -115,7 +115,7 @@ function RightSideRuler({ activeSection }: { activeSection: string }) {
                 transform: "rotate(180deg)",
               }}
             >
-              <span className="font-serif text-2xl font-medium italic text-foreground/15 tracking-widest uppercase">
+              <span className="font-serif text-2xl font-medium tracking-widest text-foreground/15 uppercase italic">
                 {activeSection}
               </span>
             </motion.div>
@@ -202,4 +202,3 @@ export function SideRuler({ side }: SideRulerProps) {
 
   return <RightSideRuler activeSection={activeSection} />;
 }
-

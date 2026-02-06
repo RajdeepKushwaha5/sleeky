@@ -72,29 +72,29 @@ export function SiteFooter() {
   };
 
   return (
-    <footer className="max-w-screen overflow-x-hidden px-4 py-8">
+    <footer className="max-w-screen overflow-x-hidden px-4 py-10">
       <div className="mx-auto max-w-4xl">
         {/* Main Footer Card */}
-        <div className="flex flex-col gap-4 rounded-2xl border border-border bg-card/80 p-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-6 rounded-[1.75rem] border border-border/30 bg-card/50 p-7 ring-1 ring-white/40 backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between dark:ring-white/[0.03]">
           {/* Left Side - Copyright and Tagline */}
-          <div className="space-y-1">
-            <p className="font-mono text-sm text-foreground/70">
-              © {currentYear} Rajdeep Singh. All rights reserved.
+          <div className="space-y-2">
+            <p className="font-space-grotesk text-sm font-medium tracking-tight text-foreground/80">
+              © {currentYear} Rajdeep Singh
             </p>
-            <p className="text-sm text-foreground/40">
+            <p className="text-[13px] leading-relaxed text-foreground/35">
               Made with focus, endless iterations, and lots of coke.
             </p>
           </div>
 
           {/* Right Side - Social Buttons */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2.5">
             {/* Gmail - Copy functionality */}
             <button
               onClick={copyEmail}
-              className={`group relative flex h-10 w-10 items-center justify-center rounded-full border transition-all active:scale-95 ${
+              className={`group relative flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-300 active:scale-95 ${
                 emailCopied
-                  ? "border-green-500 bg-green-500/20"
-                  : "border-border bg-card/60 hover:bg-foreground/10 active:bg-foreground/20"
+                  ? "border-green-500/50 bg-green-500/15"
+                  : "border-border/40 bg-card/40 hover:border-border/60 hover:bg-foreground/[0.06] active:bg-foreground/10"
               }`}
               title={emailTooltip}
             >
@@ -123,10 +123,10 @@ export function SiteFooter() {
             {/* Phone - Copy functionality */}
             <button
               onClick={copyPhone}
-              className={`group relative flex h-10 w-10 items-center justify-center rounded-full border transition-all active:scale-95 ${
+              className={`group relative flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-300 active:scale-95 ${
                 phoneCopied
-                  ? "border-green-500 bg-green-500/20"
-                  : "border-border bg-card/60 hover:bg-foreground/10 active:bg-foreground/20"
+                  ? "border-green-500/50 bg-green-500/15"
+                  : "border-border/40 bg-card/40 hover:border-border/60 hover:bg-foreground/[0.06] active:bg-foreground/10"
               }`}
               title={phoneTooltip}
             >
@@ -157,25 +157,25 @@ export function SiteFooter() {
               href="https://drive.google.com/file/d/1dWRhT2GSx4StZk2kqGU2UpJLNZCVnuoA/view"
               target="_blank"
               rel="noopener"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/60 transition-all hover:bg-foreground/10"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-card/40 transition-all duration-300 hover:border-border/60 hover:bg-foreground/[0.06]"
               title="Resume"
             >
-              <FileText className="h-4 w-4 text-foreground/60" />
+              <FileText className="h-4 w-4 text-foreground/50" />
             </a>
 
             {/* Divider */}
-            <div className="mx-1 h-6 w-px bg-border" />
+            <div className="mx-1.5 h-5 w-px bg-gradient-to-b from-transparent via-border/50 to-transparent" />
 
             {/* LinkedIn */}
             <a
               href="https://www.linkedin.com/in/rajdeepsingh5"
               target="_blank"
               rel="noopener"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/60 transition-all hover:bg-foreground/10"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-card/40 transition-all duration-300 hover:border-border/60 hover:bg-foreground/[0.06]"
               title="LinkedIn"
             >
               <svg
-                className="h-4 w-4 text-foreground/60"
+                className="h-4 w-4 text-foreground/50"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -188,11 +188,11 @@ export function SiteFooter() {
               href="https://x.com/rajdeeptwts"
               target="_blank"
               rel="noopener"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/60 transition-all hover:bg-foreground/10"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-card/40 transition-all duration-300 hover:border-border/60 hover:bg-foreground/[0.06]"
               title="X"
             >
               <svg
-                className="h-4 w-4 text-foreground/60"
+                className="h-4 w-4 text-foreground/50"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -205,11 +205,11 @@ export function SiteFooter() {
               href="https://github.com/RajdeepKushwaha5"
               target="_blank"
               rel="noopener"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/60 transition-all hover:bg-foreground/10"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-card/40 transition-all duration-300 hover:border-border/60 hover:bg-foreground/[0.06]"
               title="GitHub"
             >
               <svg
-                className="h-4 w-4 text-foreground/60"
+                className="h-4 w-4 text-foreground/50"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -222,11 +222,11 @@ export function SiteFooter() {
               href="https://rajdeep01.medium.com/"
               target="_blank"
               rel="noopener"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/60 transition-all hover:bg-foreground/10"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-card/40 transition-all duration-300 hover:border-border/60 hover:bg-foreground/[0.06]"
               title="Medium"
             >
               <svg
-                className="h-4 w-4 text-foreground/60"
+                className="h-4 w-4 text-foreground/50"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >

@@ -60,10 +60,10 @@ export function NavItem({
   external?: boolean;
 }) {
   const baseClasses = cn(
-    "relative rounded-lg px-3 py-1.5 font-mono text-xs font-medium tracking-widest uppercase",
-    "transition-all duration-300 ease-out",
-    "hover:bg-foreground/10 hover:text-foreground",
-    active ? "bg-foreground/10 text-foreground" : "text-foreground/50"
+    "relative rounded-xl px-3 py-1.5 font-mono text-[10px] font-medium tracking-[0.15em] uppercase",
+    "transition-all duration-500 ease-out",
+    "hover:bg-foreground/[0.06] hover:text-foreground",
+    active ? "bg-foreground/[0.08] text-foreground" : "text-foreground/40"
   );
 
   if (external) {
@@ -93,8 +93,8 @@ export function NavItem({
       {active && (
         <span
           className={cn(
-            "absolute inset-0 rounded-full bg-foreground/5 dark:bg-foreground/10",
-            "transition-all duration-300"
+            "absolute inset-0 rounded-xl bg-foreground/[0.04] dark:bg-foreground/[0.07]",
+            "transition-all duration-500"
           )}
         />
       )}
