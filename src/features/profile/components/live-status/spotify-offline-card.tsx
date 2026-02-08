@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "motion/react";
 import Image from "next/image";
 
 import type { LanyardData } from "@/hooks/use-lanyard";
@@ -12,7 +13,12 @@ interface SpotifyOfflineCardProps {
 
 export function SpotifyOfflineCard({ lastPlayed }: SpotifyOfflineCardProps) {
   return (
-    <div className="relative overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100/80 grayscale transition-all duration-500 hover:grayscale-0 dark:border-border/50 dark:bg-card/80 dark:grayscale-0">
+    <motion.div
+      whileHover={{ y: -4, scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ type: "spring", stiffness: 400, damping: 20 }}
+      className="relative overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100/80 grayscale transition-all duration-500 hover:grayscale-0 dark:border-border/50 dark:bg-card/80 dark:grayscale-0"
+    >
       <div className="flex gap-3 p-3">
         {/* Album Art */}
         <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md ring-1 ring-edge">
@@ -47,6 +53,6 @@ export function SpotifyOfflineCard({ lastPlayed }: SpotifyOfflineCardProps) {
           </p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

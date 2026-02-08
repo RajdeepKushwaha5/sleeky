@@ -1,6 +1,7 @@
 "use client";
 
 import { FileCode } from "lucide-react";
+import { motion } from "motion/react";
 
 import type { LanyardData } from "@/hooks/use-lanyard";
 
@@ -74,7 +75,27 @@ export function VsCodeCard({ activity, status, wakaStats }: VsCodeCardProps) {
   const icon = getLanguageIcon(activity.details);
 
   return (
-    <div className="group relative overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100/80 grayscale transition-all duration-500 hover:border-accent/50 hover:shadow-md hover:grayscale-0 dark:border-border/50 dark:bg-card/80 dark:grayscale-0">
+    <motion.div
+      whileHover={{ y: -4, scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ type: "spring", stiffness: 400, damping: 20 }}
+      className="group relative overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100/80 grayscale transition-all duration-500 hover:border-accent/50 hover:shadow-md hover:grayscale-0 dark:border-border/50 dark:bg-card/80 dark:grayscale-0"
+    >
+      {/* VS Code blue animated shimmer */}
+      <motion.div
+        className="pointer-events-none absolute inset-0 -translate-x-full"
+        animate={{ translateX: ["-100%", "200%"] }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          repeatDelay: 5,
+          ease: "easeInOut",
+        }}
+        style={{
+          background:
+            "linear-gradient(90deg, transparent 0%, rgba(0,122,204,0.08) 50%, transparent 100%)",
+        }}
+      />
       <div className="flex gap-3 p-3">
         {/* VS Code Logo */}
         <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-md bg-[#007ACC]/10 ring-1 ring-edge">
@@ -149,7 +170,7 @@ export function VsCodeCard({ activity, status, wakaStats }: VsCodeCardProps) {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

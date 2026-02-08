@@ -278,7 +278,9 @@ export const PROJECTS: Project[] = [
     period: {
       start: "2025-07-15",
     },
-    link: "https://github.com/RajdeepKushwaha5/AlgoRude",
+    link: "https://coruscating-baklava-240419.netlify.app/",
+    githubUrl:
+      "https://github.com/RajdeepKushwaha5/AlgoRude---The-Snarky-DSA-Tutor",
     skills: [
       "Python",
       "AI/ML",

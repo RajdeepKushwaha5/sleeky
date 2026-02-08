@@ -1,5 +1,7 @@
 "use client";
 
+import { motion } from "motion/react";
+
 import { SpotifyLogo } from "./spotify-logo";
 import { VSCodeLogo } from "./vscode-logo";
 
@@ -19,7 +21,20 @@ export function OfflineCard({
   const isSpotify = icon === "spotify";
 
   return (
-    <div className="relative overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100/80 grayscale transition-all duration-500 hover:grayscale-0 dark:border-border/50 dark:bg-card/80 dark:grayscale-0">
+    <motion.div
+      whileHover={{ y: -4, scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ type: "spring", stiffness: 400, damping: 20 }}
+      className="relative overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100/80 grayscale transition-all duration-500 hover:grayscale-0 dark:border-border/50 dark:bg-card/80 dark:grayscale-0"
+    >
+      {/* Animated gradient border glow on hover */}
+      <div
+        className="pointer-events-none absolute inset-0 rounded-lg opacity-0 transition-opacity duration-500 hover:opacity-100"
+        style={{
+          background:
+            "linear-gradient(135deg, transparent 40%, rgba(29,185,84,0.05) 50%, transparent 60%)",
+        }}
+      />
       <div className="flex gap-3 p-3">
         {/* Icon */}
         <div
@@ -60,6 +75,6 @@ export function OfflineCard({
           </p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
