@@ -12,7 +12,7 @@ import { VerifiedIcon } from "./verified-icon";
 
 export function ProfileHeader() {
   return (
-    <div className="relative mx-2 my-5 flex flex-col items-center overflow-hidden rounded-[1.75rem] border border-border/30 bg-card/50 p-8 text-center backdrop-blur-sm sm:flex-row sm:text-left dark:bg-card/40">
+    <div className="relative mx-2 my-5 flex flex-col items-center overflow-hidden rounded-[1.75rem] border border-border/30 bg-card/50 p-5 text-center backdrop-blur-sm sm:flex-row sm:p-8 sm:text-left dark:bg-card/40">
       {/* Subtle gradient decoration */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-foreground/[0.01] via-transparent to-foreground/[0.02]" />
 
@@ -42,7 +42,7 @@ export function ProfileHeader() {
         </div>
 
         {/* Name */}
-        <h1 className="mb-3 flex flex-wrap items-center justify-center gap-2.5 font-serif text-[2rem] leading-tight font-semibold text-foreground/95 italic sm:justify-start sm:text-[2.5rem]">
+        <h1 className="mb-3 flex flex-wrap items-center justify-center gap-2.5 font-serif text-2xl leading-tight font-semibold text-foreground/95 italic sm:justify-start sm:text-[2.5rem]">
           {USER.displayName}
           <SimpleTooltip content="Verified">
             <VerifiedIcon className="size-[0.45em] translate-y-px text-info select-none" />

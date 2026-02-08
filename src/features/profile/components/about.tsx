@@ -40,7 +40,7 @@ export function About() {
               <span className="font-medium text-foreground/75">Web3</span>.
             </p>
 
-            <div className="flex items-center gap-4 pt-1">
+            <div className="flex flex-wrap items-center gap-2 pt-1 sm:gap-4">
               <span className="inline-flex items-center rounded-full border border-border/40 bg-muted/40 px-3 py-1 text-[11px] font-medium tracking-wide text-muted-foreground">
                 1+ year exp
               </span>

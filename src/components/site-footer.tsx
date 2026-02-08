@@ -87,7 +87,7 @@ export function SiteFooter() {
           </div>
 
           {/* Right Side - Social Buttons */}
-          <div className="flex items-center gap-2.5">
+          <div className="flex flex-wrap items-center justify-center gap-2.5 sm:justify-end">
             {/* Gmail - Copy functionality */}
             <button
               onClick={copyEmail}

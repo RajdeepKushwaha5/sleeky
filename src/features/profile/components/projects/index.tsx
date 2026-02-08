@@ -2,6 +2,7 @@
 
 import { ArrowRightIcon } from "lucide-react";
 import { motion } from "motion/react";
+import Link from "next/link";
 
 import { PROJECTS } from "../../data/projects";
 import { Panel, PanelHeader, PanelTitle } from "../panel";
@@ -21,7 +22,7 @@ export function Projects() {
         </PanelTitle>
       </PanelHeader>
 
-      <div className="mx-auto mt-8 grid max-w-5xl grid-cols-1 gap-8 px-4 sm:mt-12 sm:grid-cols-2">
+      <div className="mx-auto mt-8 grid max-w-5xl grid-cols-1 gap-6 sm:mt-12 sm:grid-cols-2 sm:gap-8 sm:px-4">
         {visibleProjects.map((project, index) => (
           <motion.div
             key={project.id}
@@ -41,13 +42,13 @@ export function Projects() {
 
       {PROJECTS.length > 4 && (
         <div className="mt-8 flex justify-center">
-          <a
+          <Link
             href="/projects"
             className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground transition-all hover:bg-primary/90"
           >
             View All Projects
             <ArrowRightIcon className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
-          </a>
+          </Link>
         </div>
       )}
     </Panel>

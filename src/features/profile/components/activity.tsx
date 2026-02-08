@@ -290,7 +290,7 @@ export const Activity: React.FC = () => {
           {/* View more links */}
           <motion.div
             variants={cardVariants}
-            className="flex justify-center gap-4 pt-4"
+            className="flex flex-wrap justify-center gap-3 pt-4 sm:gap-4"
           >
             <a
               href="https://x.com/rajdeeptwts"

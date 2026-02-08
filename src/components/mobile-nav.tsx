@@ -35,7 +35,7 @@ export function MobileNav({
       </DropdownMenuTrigger>
 
       <DropdownMenuContent
-        className="relative w-80 overflow-hidden border-none bg-popover/95 p-6 backdrop-blur-md"
+        className="relative w-[min(20rem,calc(100vw-2rem))] overflow-hidden border-none bg-popover/95 p-6 backdrop-blur-md"
         align="end"
         sideOffset={12}
       >

@@ -16,7 +16,7 @@ const containerVariants = {
       delayChildren: 0.15,
     },
   },
-};
+} as const;
 
 const itemVariants = {
   hidden: { opacity: 0, y: 24, scale: 0.92 },
@@ -30,7 +30,7 @@ const itemVariants = {
       damping: 20,
     },
   },
-};
+} as const;
 
 export function SocialLinks() {
   return (
