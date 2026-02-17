@@ -120,7 +120,7 @@ export function LiveStatus() {
                   // Not currently coding but has today's data: Show today's stats
                   <OfflineCard
                     icon="vscode"
-                    title={isDiscordOnline ? "Online" : "Away"}
+                    title="VS Code"
                     subtitle={`Coded ${wakaStats.todayFormatted} today`}
                     isOnline={isDiscordOnline}
                     subtitleClassName="font-mono tracking-wider"

@@ -36,10 +36,9 @@ export function AudioPlayer() {
     });
 
     audio.addEventListener("error", () => {
-      const mediaError = audio.error;
-      if (mediaError) {
-        console.error("Audio error:", mediaError.code, mediaError.message);
-      }
+      // Suppress audio errors - format issues are non-critical
+      // Background music is optional enhancement
+      setIsLoaded(false);
     });
 
     audio.addEventListener("ended", () => {
@@ -88,8 +87,8 @@ export function AudioPlayer() {
         // Attempt to play - this must happen within the user gesture
         await audio.play();
         setIsPlaying(true);
-      } catch (error) {
-        console.error("Audio playback failed:", error);
+      } catch {
+        // Audio playback failed - likely user hasn't interacted yet or format issue
 
         // Fallback: try muted start, then unmute
         try {
@@ -97,8 +96,8 @@ export function AudioPlayer() {
           await audio.play();
           audio.muted = false;
           setIsPlaying(true);
-        } catch (fallbackError) {
-          console.error("Fallback playback also failed:", fallbackError);
+        } catch {
+          // Fallback also failed - audio is non-critical
           setIsPlaying(false);
         }
       }
