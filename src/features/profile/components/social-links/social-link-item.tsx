@@ -40,7 +40,7 @@ export function SocialLinkItem({ icon, title, description, href }: SocialLink) {
     <motion.a
       ref={ref}
       className={cn(
-        "group/link flex cursor-pointer items-center gap-4 rounded-2xl border border-zinc-200 bg-zinc-100/80 p-4 pr-2 grayscale transition-colors duration-500 select-none hover:bg-zinc-50 hover:grayscale-0 dark:border-border/25 dark:bg-card/40 dark:grayscale-0 dark:hover:bg-card"
+        "group/link flex cursor-pointer items-center gap-4 rounded-2xl border border-zinc-200/50 bg-zinc-100/80 p-4 pr-2 grayscale transition-colors duration-500 select-none hover:bg-zinc-50 hover:grayscale-0 dark:border-transparent dark:bg-card/40 dark:grayscale-0 dark:hover:bg-card"
       )}
       href={href}
       target="_blank"

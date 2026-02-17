@@ -29,7 +29,7 @@ export function OfflineCard({
       whileHover={{ y: -4, scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       transition={{ type: "spring", stiffness: 400, damping: 20 }}
-      className="relative overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100/80 grayscale transition-all duration-500 hover:grayscale-0 dark:border-border/25 dark:bg-card/40 dark:grayscale-0"
+      className="relative overflow-hidden rounded-lg border border-zinc-200/50 bg-zinc-100/80 grayscale transition-all duration-500 hover:grayscale-0 dark:border-transparent dark:bg-card/40 dark:grayscale-0"
     >
       {/* Animated gradient border glow on hover */}
       <div

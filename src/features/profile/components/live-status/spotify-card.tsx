@@ -49,7 +49,7 @@ export function SpotifyCard({ spotify, status }: SpotifyCardProps) {
       whileHover={{ y: -4, scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       transition={{ type: "spring", stiffness: 400, damping: 20 }}
-      className="group relative overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100/80 grayscale transition-all duration-500 hover:border-accent/50 hover:shadow-md hover:grayscale-0 dark:border-border/25 dark:bg-card/40 dark:grayscale-0"
+      className="group relative overflow-hidden rounded-lg border border-zinc-200/50 bg-zinc-100/80 transition-all duration-500 hover:border-accent/50 hover:shadow-md dark:border-transparent dark:bg-card/40"
     >
       {/* Spotify-green animated shimmer */}
       <motion.div
@@ -68,7 +68,7 @@ export function SpotifyCard({ spotify, status }: SpotifyCardProps) {
       />
       <div className="flex gap-3 p-3">
         {/* Album Art */}
-        <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md ring-1 ring-edge">
+        <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md ring-1 ring-zinc-200/50 dark:ring-transparent">
           <Image
             src={spotify.album_art_url || "/placeholder-album.png"}
             alt={spotify.album}

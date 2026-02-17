@@ -5,11 +5,7 @@ import Link from "next/link";
 
 export function SiteHeaderMark() {
   return (
-    <Link
-      href="/#overview"
-      className="group flex items-center gap-2"
-      aria-label="Home"
-    >
+    <Link href="/" className="group flex items-center gap-2" aria-label="Home">
       <motion.span
         className="relative font-syne text-xl font-extrabold tracking-[-0.03em]"
         initial={{ opacity: 0, y: -10 }}

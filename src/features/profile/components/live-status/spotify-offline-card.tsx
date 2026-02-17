@@ -17,11 +17,11 @@ export function SpotifyOfflineCard({ lastPlayed }: SpotifyOfflineCardProps) {
       whileHover={{ y: -4, scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       transition={{ type: "spring", stiffness: 400, damping: 20 }}
-      className="relative overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100/80 grayscale transition-all duration-500 hover:grayscale-0 dark:border-border/25 dark:bg-card/40 dark:grayscale-0"
+      className="relative overflow-hidden rounded-lg border border-zinc-200/50 bg-zinc-100/80 grayscale transition-all duration-500 hover:grayscale-0 dark:border-transparent dark:bg-card/40 dark:grayscale-0"
     >
       <div className="flex gap-3 p-3">
         {/* Album Art */}
-        <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md ring-1 ring-edge">
+        <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md ring-1 ring-zinc-200/50 dark:ring-transparent">
           <Image
             src={lastPlayed.album_art_url}
             alt={lastPlayed.album}
