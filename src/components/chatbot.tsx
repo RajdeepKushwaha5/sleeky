@@ -2,10 +2,7 @@
 
 import { Loader2, MessageCircle, Send, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-
-import Magnetic from "@/components/ui/magnetic";
 
 interface Message {
   id: string;
@@ -104,7 +101,7 @@ export function Chatbot() {
       {/* Floating Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed right-4 bottom-4 z-50 flex h-14 w-14 items-center justify-center rounded-full border border-border/50 bg-card/80 text-foreground shadow-lg transition-all hover:scale-110 hover:bg-card md:right-6 md:bottom-6"
+        className="fixed right-4 bottom-4 z-50 flex h-14 w-14 items-center justify-center rounded-full border border-border/25 bg-card/40 text-foreground shadow-lg transition-all hover:scale-110 hover:bg-card md:right-6 md:bottom-6"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         aria-label="Toggle chatbot"
@@ -142,10 +139,10 @@ export function Chatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed right-4 bottom-20 z-50 flex h-[500px] w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-2xl border border-border/50 bg-card/95 shadow-2xl backdrop-blur-xl md:right-6 md:bottom-24 md:w-[380px]"
+            className="fixed right-4 bottom-20 z-50 flex h-[500px] w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-2xl border border-border/25 bg-card/95 shadow-2xl backdrop-blur-xl md:right-6 md:bottom-24 md:w-[380px]"
           >
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-border/50 p-4">
+            <div className="flex items-center justify-between border-b border-border/20 p-4">
               <div className="flex items-center gap-3">
                 <div className="relative shrink-0 grayscale dark:grayscale-0">
                   <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-[#2c4036] via-[#415d4e] to-[#2c4036] opacity-100 blur-md" />
@@ -187,7 +184,7 @@ export function Chatbot() {
                     className={`max-w-[80%] rounded-2xl px-4 py-3 ${
                       message.sender === "user"
                         ? "bg-foreground text-background"
-                        : "border border-border/50 bg-card/80 text-foreground/80"
+                        : "border border-border/25 bg-card/40 text-foreground/80"
                     }`}
                   >
                     <p className="text-sm leading-relaxed whitespace-pre-wrap">
@@ -210,7 +207,7 @@ export function Chatbot() {
               ))}
               {isLoading && (
                 <div className="flex justify-start">
-                  <div className="max-w-[80%] rounded-2xl border border-border/50 bg-card/80 px-4 py-3">
+                  <div className="max-w-[80%] rounded-2xl border border-border/25 bg-card/40 px-4 py-3">
                     <Loader2 className="h-5 w-5 animate-spin text-foreground/40" />
                   </div>
                 </div>
@@ -219,7 +216,7 @@ export function Chatbot() {
             </div>
 
             {/* Input */}
-            <div className="border-t border-border/50 p-4">
+            <div className="border-t border-border/20 p-4">
               <div className="flex gap-3">
                 <input
                   type="text"
@@ -229,7 +226,7 @@ export function Chatbot() {
                   placeholder="Ask me anything..."
                   disabled={isLoading}
                   aria-label="Chat message"
-                  className="flex-1 rounded-full border border-border/50 bg-card/80 px-4 py-2.5 text-sm text-foreground placeholder:text-foreground/30 focus:border-foreground/20 focus:ring-0 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                  className="flex-1 rounded-full border border-border/25 bg-card/40 px-4 py-2.5 text-sm text-foreground placeholder:text-foreground/30 focus:border-foreground/20 focus:ring-0 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                 />
                 <button
                   onClick={handleSend}

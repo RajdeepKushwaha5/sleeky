@@ -186,7 +186,7 @@ const PostCard: React.FC<{ post: SocialPost }> = ({ post }) => {
       rel="noopener noreferrer"
       variants={cardVariants}
       whileHover={{ y: -2 }}
-      className="group block rounded-2xl border border-zinc-200 bg-zinc-100/80 p-6 grayscale transition-all duration-500 hover:bg-zinc-50 hover:grayscale-0 dark:border-border/50 dark:bg-card/80 dark:grayscale-0 dark:hover:bg-card"
+      className="group block rounded-2xl border border-zinc-200 bg-zinc-100/80 p-6 grayscale transition-all duration-500 hover:bg-zinc-50 hover:grayscale-0 dark:border-border/25 dark:bg-card/40 dark:grayscale-0 dark:hover:bg-card"
     >
       {/* Content */}
       <p className="mb-6 line-clamp-4 text-sm leading-relaxed text-foreground/80">
@@ -296,7 +296,7 @@ export const Activity: React.FC = () => {
               href="https://x.com/rajdeeptwts"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-zinc-100/80 px-4 py-2 text-sm text-foreground/80 transition-all duration-200 hover:bg-zinc-200 hover:text-foreground dark:border-border/50 dark:bg-card/80 dark:hover:bg-foreground/10"
+              className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-zinc-100/80 px-4 py-2 text-sm text-foreground/80 transition-all duration-200 hover:bg-zinc-200 hover:text-foreground dark:border-border/25 dark:bg-card/40 dark:hover:bg-foreground/10"
             >
               <XLogo className="h-4 w-4" />
               Follow on X
@@ -305,7 +305,7 @@ export const Activity: React.FC = () => {
               href="https://www.linkedin.com/in/rajdeepsingh5"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-zinc-100/80 px-4 py-2 text-sm text-foreground/80 transition-all duration-200 hover:bg-zinc-200 hover:text-foreground dark:border-border/50 dark:bg-card/80 dark:hover:bg-foreground/10"
+              className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-zinc-100/80 px-4 py-2 text-sm text-foreground/80 transition-all duration-200 hover:bg-zinc-200 hover:text-foreground dark:border-border/25 dark:bg-card/40 dark:hover:bg-foreground/10"
             >
               <Linkedin className="h-4 w-4" />
               Connect on LinkedIn

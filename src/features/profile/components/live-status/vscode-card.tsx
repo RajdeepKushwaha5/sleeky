@@ -79,7 +79,7 @@ export function VsCodeCard({ activity, status, wakaStats }: VsCodeCardProps) {
       whileHover={{ y: -4, scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       transition={{ type: "spring", stiffness: 400, damping: 20 }}
-      className="group relative overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100/80 grayscale transition-all duration-500 hover:border-accent/50 hover:shadow-md hover:grayscale-0 dark:border-border/50 dark:bg-card/80 dark:grayscale-0"
+      className="group relative overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100/80 grayscale transition-all duration-500 hover:border-accent/50 hover:shadow-md hover:grayscale-0 dark:border-border/25 dark:bg-card/40 dark:grayscale-0"
     >
       {/* VS Code blue animated shimmer */}
       <motion.div

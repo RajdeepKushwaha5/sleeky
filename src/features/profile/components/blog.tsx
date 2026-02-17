@@ -28,7 +28,7 @@ export function Blog() {
       <div className="flex justify-center pt-2 pb-1">
         <Button
           variant="outline"
-          className="rounded-full border-border/40 px-6 text-[13px] font-medium tracking-wide transition-all duration-300 hover:border-border/60 hover:bg-foreground/[0.04]"
+          className="rounded-full border-border/25 px-6 text-[13px] font-medium tracking-wide transition-all duration-300 hover:border-border/40 hover:bg-foreground/[0.04]"
           asChild
         >
           <Link href="/blog">

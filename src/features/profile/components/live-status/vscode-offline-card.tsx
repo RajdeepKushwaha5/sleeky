@@ -14,7 +14,7 @@ export function VsCodeOfflineCard({ yesterdayTime }: VsCodeOfflineCardProps) {
       whileHover={{ y: -4, scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       transition={{ type: "spring", stiffness: 400, damping: 20 }}
-      className="relative overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100/80 grayscale transition-all duration-500 hover:grayscale-0 dark:border-border/50 dark:bg-card/80 dark:grayscale-0"
+      className="relative overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100/80 grayscale transition-all duration-500 hover:grayscale-0 dark:border-border/25 dark:bg-card/40 dark:grayscale-0"
     >
       <div className="flex gap-3 p-3">
         {/* VS Code Logo */}
@@ -31,11 +31,11 @@ export function VsCodeOfflineCard({ yesterdayTime }: VsCodeOfflineCardProps) {
             </span>
           </div>
 
-          <h3 className="mt-1 font-semibold text-foreground/80">
+          <h3 className="mt-1 font-[family-name:var(--font-syne)] font-semibold tracking-tight text-foreground/80">
             Not currently coding
           </h3>
 
-          <p className="text-sm text-muted-foreground/60">
+          <p className="font-[family-name:var(--font-outfit)] text-sm tracking-wide text-muted-foreground/60">
             Yesterday: {yesterdayTime}
           </p>
         </div>

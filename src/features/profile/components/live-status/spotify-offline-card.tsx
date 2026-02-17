@@ -17,7 +17,7 @@ export function SpotifyOfflineCard({ lastPlayed }: SpotifyOfflineCardProps) {
       whileHover={{ y: -4, scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       transition={{ type: "spring", stiffness: 400, damping: 20 }}
-      className="relative overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100/80 grayscale transition-all duration-500 hover:grayscale-0 dark:border-border/50 dark:bg-card/80 dark:grayscale-0"
+      className="relative overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100/80 grayscale transition-all duration-500 hover:grayscale-0 dark:border-border/25 dark:bg-card/40 dark:grayscale-0"
     >
       <div className="flex gap-3 p-3">
         {/* Album Art */}
@@ -44,11 +44,11 @@ export function SpotifyOfflineCard({ lastPlayed }: SpotifyOfflineCardProps) {
             </span>
           </div>
 
-          <h3 className="mt-1 truncate font-medium text-foreground/80">
+          <h3 className="mt-1 truncate font-[family-name:var(--font-syne)] font-medium tracking-tight text-foreground/80">
             {lastPlayed.song}
           </h3>
 
-          <p className="truncate text-sm text-muted-foreground/60">
+          <p className="truncate font-[family-name:var(--font-outfit)] text-sm tracking-wide text-muted-foreground/60">
             {lastPlayed.artist}
           </p>
         </div>

@@ -38,7 +38,7 @@ export function SiteHeaderClient({
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
   const [currentSection, setCurrentSection] = useState(1);
-  const [totalSections, setTotalSections] = useState(SECTIONS.length);
+  const [totalSections, setTotalSections] = useState(14);
 
   useMotionValueEvent(scrollY, "change", (latestValue) => {
     setScrolled(latestValue >= 20);
@@ -46,37 +46,50 @@ export function SiteHeaderClient({
 
   // Track current section based on scroll position
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + window.innerHeight / 3;
+    let scrollHandler: (() => void) | null = null;
 
-      // Find all sections that exist on the page
-      const existingSections: { id: string; top: number }[] = [];
+    // Delay to ensure DOM is fully rendered
+    const initTimer = setTimeout(() => {
+      scrollHandler = () => {
+        const scrollPosition = window.scrollY + window.innerHeight / 3;
 
-      SECTIONS.forEach((sectionId) => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          existingSections.push({ id: sectionId, top: element.offsetTop });
+        // Find all sections that exist on the page
+        const existingSections: { id: string; top: number }[] = [];
+
+        SECTIONS.forEach((sectionId) => {
+          const element = document.getElementById(sectionId);
+          if (element) {
+            existingSections.push({ id: sectionId, top: element.offsetTop });
+          }
+        });
+
+        if (existingSections.length === 0) return;
+
+        // Sort by position
+        existingSections.sort((a, b) => a.top - b.top);
+
+        // Find current section - default to first
+        let currentIndex = 0;
+        for (let i = 0; i < existingSections.length; i++) {
+          if (scrollPosition >= existingSections[i].top) {
+            currentIndex = i;
+          }
         }
-      });
 
-      // Sort by position (should already be in order, but just in case)
-      existingSections.sort((a, b) => a.top - b.top);
+        setTotalSections(existingSections.length);
+        setCurrentSection(currentIndex + 1);
+      };
 
-      // Find current section
-      let currentIndex = 0;
-      existingSections.forEach((section, index) => {
-        if (scrollPosition >= section.top) {
-          currentIndex = index;
-        }
-      });
+      scrollHandler();
+      window.addEventListener("scroll", scrollHandler, { passive: true });
+    }, 150);
 
-      setTotalSections(existingSections.length);
-      setCurrentSection(Math.min(currentIndex + 1, existingSections.length));
+    return () => {
+      clearTimeout(initTimer);
+      if (scrollHandler) {
+        window.removeEventListener("scroll", scrollHandler);
+      }
     };
-
-    handleScroll(); // Initial check
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Format section number with leading zero
@@ -144,15 +157,15 @@ export function SiteHeaderClient({
       >
         <div
           className={cn(
-            "relative flex h-14 items-center justify-between gap-4 overflow-hidden px-5",
+            "relative flex h-14 items-center justify-between gap-3 px-4",
             "rounded-2xl border border-border/30 bg-background/80 backdrop-blur-2xl backdrop-saturate-150",
             "shadow-xl shadow-black/[0.03] dark:shadow-black/30",
             "ring-1 ring-white/50 dark:ring-white/[0.04]",
-            "w-full max-w-sm whitespace-nowrap transition-all duration-700 ease-out"
+            "w-full max-w-[calc(100vw-2rem)] whitespace-nowrap transition-all duration-700 ease-out"
           )}
         >
           <div className="relative z-10 shrink-0">{logo}</div>
-          <div className="relative z-10 flex items-center gap-2">
+          <div className="relative z-10 flex items-center gap-1.5">
             {/* Mobile Section Indicator */}
             <span className="font-mono text-[10px] text-foreground/40">
               {formatNumber(currentSection)}/{formatNumber(totalSections)}

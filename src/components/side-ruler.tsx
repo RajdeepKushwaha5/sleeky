@@ -35,95 +35,68 @@ const ROUTE_SECTIONS: Record<string, string> = {
   "/components": "Components",
 };
 
-// Navigation dots component - minimal elegant design
-function NavigationDots({ activeSection }: { activeSection: string }) {
-  const handleNavigate = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      window.history.pushState(null, "", `#${sectionId}`);
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
-
-  return (
-    <div className="flex flex-col items-center gap-1">
-      {SECTION_IDS.map((section, index) => {
-        const isActive = activeSection === section.label;
-        return (
-          <motion.button
-            key={section.id}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3, delay: index * 0.02 }}
-            onClick={() => handleNavigate(section.id)}
-            className="group relative flex cursor-pointer items-center justify-center p-1.5"
-            title={section.label}
-            aria-label={`Navigate to ${section.label}`}
-            type="button"
-          >
-            {/* Dot - elegant minimal style */}
-            <div
-              className={cn(
-                "rounded-full transition-all duration-500 ease-out",
-                isActive
-                  ? "h-2.5 w-2.5 bg-foreground/70 shadow-sm shadow-foreground/10"
-                  : "h-1.5 w-1.5 bg-foreground/15 group-hover:scale-125 group-hover:bg-foreground/35"
-              )}
-            />
-
-            {/* Tooltip - clean pill style */}
-            <div className="pointer-events-none absolute right-6 z-50 opacity-0 transition-all duration-300 ease-out group-hover:-translate-x-1 group-hover:opacity-100">
-              <div className="rounded-full bg-foreground px-3.5 py-1 text-[11px] font-medium tracking-wide whitespace-nowrap text-background shadow-xl">
-                {section.label}
-              </div>
-            </div>
-          </motion.button>
-        );
-      })}
-    </div>
-  );
-}
-
-// LEFT side - Empty now as everything moved to right
+// LEFT side - Section indicator with dots and active label
 function LeftSectionIndicator({ activeSection }: { activeSection: string }) {
-  return null;
-}
-
-// RIGHT side - Navigation dots and Section name
-function RightSideRuler({ activeSection }: { activeSection: string }) {
   return (
-    <div className="pointer-events-none fixed top-0 right-0 bottom-0 z-[100] hidden items-center justify-center xl:flex">
-      <div className="relative flex h-full w-20 flex-col items-center justify-center">
-        {/* Navigation dots */}
-        <div className="pointer-events-auto absolute top-1/2 left-2 z-[200] -translate-y-1/2">
-          <NavigationDots activeSection={activeSection} />
-        </div>
-
-        {/* Minimal section name - serif italic */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeSection}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
-              transition={{ duration: 0.2 }}
-              className="relative"
-              style={{
-                writingMode: "vertical-lr",
-                textOrientation: "mixed",
-                transform: "rotate(180deg)",
+    <div className="fixed top-1/2 left-6 z-30 hidden -translate-y-1/2 flex-col items-center gap-3 lg:flex">
+      {/* Vertical dots */}
+      <div className="flex flex-col gap-1.5">
+        {SECTION_IDS.map((section, index) => {
+          const isActive = activeSection === section.label;
+          return (
+            <motion.button
+              key={section.id}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3, delay: index * 0.02 }}
+              onClick={() => {
+                const element = document.getElementById(section.id);
+                if (element) {
+                  window.history.pushState(null, "", `#${section.id}`);
+                  element.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+                }
               }}
+              className="group relative flex cursor-pointer items-center justify-center p-1"
+              title={section.label}
+              aria-label={`Navigate to ${section.label}`}
+              type="button"
             >
-              <span className="font-serif text-2xl font-medium tracking-widest text-foreground/15 uppercase italic">
-                {activeSection}
-              </span>
-            </motion.div>
-          </AnimatePresence>
-        </div>
+              <div
+                className={cn(
+                  "rounded-full transition-all duration-500 ease-out",
+                  isActive
+                    ? "h-2.5 w-2.5 bg-foreground/70"
+                    : "h-1.5 w-1.5 bg-foreground/15 group-hover:scale-125 group-hover:bg-foreground/35"
+                )}
+              />
+            </motion.button>
+          );
+        })}
       </div>
+
+      {/* Section label - rotated vertically */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeSection}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.3 }}
+          className="mt-3 origin-center rotate-[-90deg] text-[10px] font-semibold tracking-[0.3em] whitespace-nowrap text-foreground/40 uppercase"
+        >
+          {activeSection}
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
+}
+
+// RIGHT side - disabled (replaced by right sidebar nav)
+function RightSideRuler() {
+  return null;
 }
 
 // Get section label from route
@@ -200,5 +173,5 @@ export function SideRuler({ side }: SideRulerProps) {
     return <LeftSectionIndicator activeSection={activeSection} />;
   }
 
-  return <RightSideRuler activeSection={activeSection} />;
+  return <RightSideRuler />;
 }

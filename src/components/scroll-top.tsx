@@ -1,16 +1,17 @@
 "use client";
 
 import { ArrowUpIcon } from "lucide-react";
-import { useMotionValueEvent, useScroll } from "motion/react";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useScroll,
+} from "motion/react";
 import { useState } from "react";
 
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-export function ScrollTop({
-  className,
-  ...props
-}: React.ComponentProps<"button">) {
+export function ScrollTop({ className }: { className?: string }) {
   const { scrollY } = useScroll();
 
   const [visible, setVisible] = useState(false);
@@ -20,23 +21,29 @@ export function ScrollTop({
   });
 
   return (
-    <Button
-      data-visible={visible}
-      className={cn(
-        "[--bottom:1rem] lg:[--bottom:2rem]",
-        "fixed left-4 bottom-[calc(var(--bottom,1rem)+env(safe-area-inset-bottom,0px))] z-50 lg:left-8",
-        "rounded-full border border-border/50 bg-background/80 backdrop-blur-xl shadow-lg hover:bg-accent",
-        "transition-all duration-300 data-[visible=false]:pointer-events-none data-[visible=false]:opacity-0",
-        className
+    <AnimatePresence>
+      {visible && (
+        <motion.button
+          initial={{ opacity: 0, scale: 0.8, y: 10 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.8, y: 10 }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          transition={{ type: "spring", stiffness: 400, damping: 25 }}
+          className={cn(
+            "[--bottom:1rem] lg:[--bottom:2rem]",
+            "fixed bottom-[calc(var(--bottom,1rem)+env(safe-area-inset-bottom,0px))] left-4 z-50 lg:left-8",
+            "flex h-10 w-10 items-center justify-center",
+            "rounded-full border border-border/50 bg-background/80 shadow-lg backdrop-blur-xl hover:bg-accent",
+            "cursor-pointer transition-colors duration-300",
+            className
+          )}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        >
+          <ArrowUpIcon className="size-5" />
+          <span className="sr-only">Scroll to top</span>
+        </motion.button>
       )}
-      variant="outline"
-      size="icon-lg"
-      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      {...props}
-    >
-      <ArrowUpIcon className="size-5" />
-      <span className="sr-only">Scroll to top</span>
-    </Button>
+    </AnimatePresence>
   );
 }
-

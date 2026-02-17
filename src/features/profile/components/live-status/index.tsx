@@ -93,8 +93,9 @@ export function LiveStatus() {
                   <OfflineCard
                     icon="spotify"
                     title="Offline"
-                    subtitle="Not listening to Spotify"
+                    subtitle="Not currently listening"
                     isOnline={false}
+                    subtitleClassName="font-[family-name:var(--font-outfit)] tracking-wide"
                   />
                 )}
               </motion.div>
@@ -119,9 +120,10 @@ export function LiveStatus() {
                   // Not currently coding but has today's data: Show today's stats
                   <OfflineCard
                     icon="vscode"
-                    title={isDiscordOnline ? "Online" : "Offline"}
-                    subtitle={`VS Code • Today: ${wakaStats.todayFormatted}`}
+                    title={isDiscordOnline ? "Online" : "Away"}
+                    subtitle={`Coded ${wakaStats.todayFormatted} today`}
                     isOnline={isDiscordOnline}
+                    subtitleClassName="font-mono tracking-wider"
                   />
                 ) : wakaStats.yesterdaySeconds > 0 ? (
                   // No today data: Show yesterday's stats
@@ -133,8 +135,9 @@ export function LiveStatus() {
                   <OfflineCard
                     icon="vscode"
                     title="Offline"
-                    subtitle="No coding activity"
+                    subtitle="Not currently coding"
                     isOnline={false}
+                    subtitleClassName="font-[family-name:var(--font-outfit)] tracking-wide"
                   />
                 )}
               </motion.div>

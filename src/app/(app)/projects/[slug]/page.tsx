@@ -16,8 +16,8 @@ import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { PROJECTS } from "@/features/profile/data/projects";
-import type { CaseStudySection } from "@/features/projects/types/case-study";
 import { getCaseStudy } from "@/features/projects/data/case-studies";
+import type { CaseStudySection } from "@/features/projects/types/case-study";
 import { cn } from "@/lib/utils";
 
 export async function generateStaticParams() {
@@ -46,7 +46,11 @@ export async function generateMetadata({
   };
 }
 
-function SectionIcon({ type }: { type: "problem" | "process" | "solution" | "results" }) {
+function SectionIcon({
+  type,
+}: {
+  type: "problem" | "process" | "solution" | "results";
+}) {
   const iconClass = "size-5";
   switch (type) {
     case "problem":
@@ -107,7 +111,7 @@ function CaseStudySectionComponent({
         </div>
 
         {/* Content */}
-        <p className="text-foreground/70 leading-relaxed">{section.content}</p>
+        <p className="leading-relaxed text-foreground/70">{section.content}</p>
 
         {/* Highlights */}
         {section.highlights && section.highlights.length > 0 && (
@@ -172,7 +176,7 @@ export default async function CaseStudyPage({
         <header className="mb-12 space-y-6">
           {/* Project Logo */}
           {project.logo && (
-            <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-border/50">
+            <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-border/25">
               <Image
                 src={project.logo}
                 alt={project.title}
@@ -203,12 +207,14 @@ export default async function CaseStudyPage({
                 {caseStudy.metrics.map((metric, i) => (
                   <div
                     key={i}
-                    className="rounded-xl border border-border/50 bg-card/50 px-4 py-3 text-center"
+                    className="rounded-xl border border-border/25 bg-card/30 px-4 py-3 text-center"
                   >
                     <div className="font-mono text-2xl font-bold text-foreground">
                       {metric.value}
                     </div>
-                    <div className="text-xs text-foreground/50">{metric.label}</div>
+                    <div className="text-xs text-foreground/50">
+                      {metric.label}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -229,7 +235,11 @@ export default async function CaseStudyPage({
             {/* Action Buttons */}
             <div className="flex flex-wrap gap-3 pt-4">
               <Button asChild className="gap-2">
-                <Link href={project.link} target="_blank" rel="noopener noreferrer">
+                <Link
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <ExternalLink className="size-4" />
                   View Live Demo
                 </Link>
@@ -263,7 +273,7 @@ export default async function CaseStudyPage({
         </div>
 
         {/* Footer CTA */}
-        <footer className="mt-12 rounded-2xl border border-border/50 bg-card/50 p-8 text-center">
+        <footer className="mt-12 rounded-2xl border border-border/25 bg-card/30 p-8 text-center">
           <h3 className="font-serif text-xl font-semibold">
             Interested in working together?
           </h3>

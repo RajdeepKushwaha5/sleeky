@@ -1,7 +1,6 @@
 "use client";
 
 import { CheckCircle2, Loader2, Send, XCircle } from "lucide-react";
-import Image from "next/image";
 import { useState } from "react";
 
 import { Panel, PanelContent, PanelHeader, PanelTitle } from "../panel";
@@ -77,11 +76,11 @@ export function Contact() {
               />
             </div>
           </div>
-          <div className="flex-1 rounded-2xl rounded-tl-none border border-border/50 bg-foreground/5 px-5 py-4">
-            <p className="mb-1 font-mono text-xs tracking-wider text-foreground/40 uppercase">
+          <div className="flex-1 rounded-2xl rounded-tl-none border border-border/25 bg-foreground/[0.03] px-5 py-4">
+            <p className="mb-1 font-syne text-xs font-bold tracking-wider text-foreground/50 uppercase">
               RJDP
             </p>
-            <p className="font-serif text-lg text-foreground/80 italic">
+            <p className="font-outfit text-lg text-foreground/80">
               Let&apos;s build something cool together ↓
             </p>
           </div>
@@ -97,7 +96,7 @@ export function Contact() {
               onChange={handleChange}
               required
               placeholder="Name"
-              className="w-full rounded-xl border border-border/50 bg-card/60 px-4 py-3 text-sm text-foreground transition-all placeholder:text-foreground/30 focus:border-foreground/20 focus:outline-none"
+              className="w-full rounded-xl border border-border/25 bg-card/40 px-4 py-3 text-sm text-foreground transition-all placeholder:text-foreground/30 focus:border-foreground/20 focus:outline-none"
             />
             <input
               type="email"
@@ -106,7 +105,7 @@ export function Contact() {
               onChange={handleChange}
               required
               placeholder="Email"
-              className="w-full rounded-xl border border-border/50 bg-card/60 px-4 py-3 text-sm text-foreground transition-all placeholder:text-foreground/30 focus:border-foreground/20 focus:outline-none"
+              className="w-full rounded-xl border border-border/25 bg-card/40 px-4 py-3 text-sm text-foreground transition-all placeholder:text-foreground/30 focus:border-foreground/20 focus:outline-none"
             />
           </div>
 
@@ -118,7 +117,7 @@ export function Contact() {
             required
             placeholder="Your message..."
             rows={4}
-            className="w-full resize-none rounded-xl border border-border/50 bg-card/60 px-4 py-3 text-sm text-foreground transition-all placeholder:text-foreground/30 focus:border-foreground/20 focus:outline-none"
+            className="w-full resize-none rounded-xl border border-border/25 bg-card/40 px-4 py-3 text-sm text-foreground transition-all placeholder:text-foreground/30 focus:border-foreground/20 focus:outline-none"
           />
 
           {/* Status Messages */}

@@ -10,10 +10,10 @@ export function ProfileCover() {
     <BrandContextMenu>
       <div
         className={cn(
-          "relative aspect-[2.2/1] overflow-hidden rounded-[1.75rem] select-none sm:aspect-[2.8/1]",
+          "relative aspect-[2.2/1] overflow-hidden rounded-2xl select-none sm:aspect-[2.8/1]",
           "flex flex-col items-center justify-center gap-3",
-          "mx-2 my-5",
-          "ring-1 ring-black/[0.04] dark:ring-white/[0.06]"
+          "mx-2 my-6",
+          "ring-1 ring-black/[0.03] dark:ring-white/[0.04]"
         )}
       >
         {/* Animated GIF Background - Light mode with warm tint */}

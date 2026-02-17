@@ -42,72 +42,72 @@ export default function Page() {
         </FadeIn>
         <Separator />
 
-        <FadeIn delay={0.1}>
+        <FadeIn>
           <LiveStatus />
         </FadeIn>
         <Separator />
 
-        <FadeIn delay={0.1}>
+        <FadeIn>
           <SocialLinks />
         </FadeIn>
         <Separator />
 
-        <FadeIn delay={0.1}>
+        <FadeIn>
           <About />
         </FadeIn>
         <Separator />
 
-        <FadeIn delay={0.1}>
+        <FadeIn>
           <Projects />
         </FadeIn>
         <Separator />
 
-        <FadeIn delay={0.1}>
+        <FadeIn>
           <Experiences />
         </FadeIn>
         <Separator />
 
-        <FadeIn delay={0.1}>
+        <FadeIn>
           <TeckStack />
         </FadeIn>
         <Separator />
 
-        <FadeIn delay={0.1}>
+        <FadeIn>
           <Testimonials />
         </FadeIn>
         <Separator />
 
-        <FadeIn delay={0.1}>
+        <FadeIn>
           <Blog />
         </FadeIn>
         <Separator />
 
-        <FadeIn delay={0.1}>
+        <FadeIn>
           <GitHubContributions />
         </FadeIn>
         <Separator />
 
-        <FadeIn delay={0.1}>
+        <FadeIn>
           <Activity />
         </FadeIn>
         <Separator />
 
-        <FadeIn delay={0.1}>
+        <FadeIn>
           <Awards />
         </FadeIn>
         <Separator />
 
-        <FadeIn delay={0.1}>
+        <FadeIn>
           <Certifications />
         </FadeIn>
         <Separator />
 
-        <FadeIn delay={0.1}>
+        <FadeIn>
           <BookCall />
         </FadeIn>
         <Separator />
 
-        <FadeIn delay={0.1}>
+        <FadeIn>
           <Contact />
         </FadeIn>
         <Separator />

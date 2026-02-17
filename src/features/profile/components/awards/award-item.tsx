@@ -29,13 +29,13 @@ export function AwardItem({
       <div className={className}>
         <div className="flex items-center hover:bg-accent2">
           <div
-            className="mx-4 flex size-6 shrink-0 items-center justify-center rounded-full border border-border/50 bg-card/80"
+            className="mx-4 flex size-6 shrink-0 items-center justify-center rounded-full border border-border/25 bg-card/40"
             aria-hidden
           >
             <Icons.award className="pointer-events-none size-4 text-foreground/60" />
           </div>
 
-          <div className="flex-1 border-l border-dashed border-border/50">
+          <div className="flex-1 border-l border-dashed border-border/25">
             <CollapsibleTrigger className="flex w-full items-center gap-4 p-4 pr-2 text-left select-none">
               <div className="flex-1">
                 <h3 className="mb-1 leading-snug font-medium text-balance">
@@ -105,7 +105,7 @@ export function AwardItem({
 
         {canExpand && (
           <CollapsibleContent className="group overflow-hidden duration-300 data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
-            <div className="border-t border-border/50 shadow-inner">
+            <div className="border-t border-border/25 shadow-inner">
               <Prose className="p-4 duration-300 group-data-[state=closed]:animate-fade-out group-data-[state=open]:animate-fade-in">
                 <Markdown>{award.description}</Markdown>
               </Prose>

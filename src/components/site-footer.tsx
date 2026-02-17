@@ -1,6 +1,7 @@
 "use client";
 
 import { FileText, Mail, Phone } from "lucide-react";
+import { motion } from "motion/react";
 import { useState } from "react";
 
 export function SiteFooter() {
@@ -73,21 +74,42 @@ export function SiteFooter() {
 
   return (
     <footer className="max-w-screen overflow-x-hidden px-4 py-10">
-      <div className="mx-auto max-w-4xl">
+      <motion.div
+        className="mx-auto max-w-4xl"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+      >
         {/* Main Footer Card */}
         <div className="flex flex-col gap-6 rounded-[1.75rem] border border-border/30 bg-card/50 p-7 ring-1 ring-white/40 backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between dark:ring-white/[0.03]">
           {/* Left Side - Copyright and Tagline */}
-          <div className="space-y-2">
-            <p className="font-space-grotesk text-sm font-medium tracking-tight text-foreground/80">
-              © {currentYear} Rajdeep Singh
+          <motion.div
+            className="space-y-2"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <p className="font-syne text-base font-bold tracking-tight text-foreground/90">
+              © {currentYear}{" "}
+              <span className="animate-gradient-x bg-gradient-to-r from-foreground via-primary/80 to-foreground bg-[length:200%_100%] bg-clip-text text-transparent">
+                Rajdeep Singh
+              </span>
             </p>
-            <p className="text-[13px] leading-relaxed text-foreground/35">
+            <p className="font-outfit text-[13px] leading-relaxed text-foreground/40">
               Made with focus, endless iterations, and lots of coke.
             </p>
-          </div>
+          </motion.div>
 
           {/* Right Side - Social Buttons */}
-          <div className="flex flex-wrap items-center justify-center gap-2.5 sm:justify-end">
+          <motion.div
+            className="flex flex-wrap items-center justify-center gap-2.5 sm:justify-end"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             {/* Gmail - Copy functionality */}
             <button
               onClick={copyEmail}
@@ -157,7 +179,7 @@ export function SiteFooter() {
               href="https://drive.google.com/file/d/1dWRhT2GSx4StZk2kqGU2UpJLNZCVnuoA/view"
               target="_blank"
               rel="noopener"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-card/40 transition-all duration-300 hover:border-border/60 hover:bg-foreground/[0.06]"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-card/40 transition-all duration-300 hover:scale-110 hover:border-border/60 hover:bg-foreground/[0.06]"
               title="Resume"
             >
               <FileText className="h-4 w-4 text-foreground/50" />
@@ -171,7 +193,7 @@ export function SiteFooter() {
               href="https://www.linkedin.com/in/rajdeepsingh5"
               target="_blank"
               rel="noopener"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-card/40 transition-all duration-300 hover:border-border/60 hover:bg-foreground/[0.06]"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-card/40 transition-all duration-300 hover:scale-110 hover:border-border/60 hover:bg-foreground/[0.06]"
               title="LinkedIn"
             >
               <svg
@@ -188,7 +210,7 @@ export function SiteFooter() {
               href="https://x.com/rajdeeptwts"
               target="_blank"
               rel="noopener"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-card/40 transition-all duration-300 hover:border-border/60 hover:bg-foreground/[0.06]"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-card/40 transition-all duration-300 hover:scale-110 hover:border-border/60 hover:bg-foreground/[0.06]"
               title="X"
             >
               <svg
@@ -205,7 +227,7 @@ export function SiteFooter() {
               href="https://github.com/RajdeepKushwaha5"
               target="_blank"
               rel="noopener"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-card/40 transition-all duration-300 hover:border-border/60 hover:bg-foreground/[0.06]"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-card/40 transition-all duration-300 hover:scale-110 hover:border-border/60 hover:bg-foreground/[0.06]"
               title="GitHub"
             >
               <svg
@@ -222,7 +244,7 @@ export function SiteFooter() {
               href="https://rajdeep01.medium.com/"
               target="_blank"
               rel="noopener"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-card/40 transition-all duration-300 hover:border-border/60 hover:bg-foreground/[0.06]"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-card/40 transition-all duration-300 hover:scale-110 hover:border-border/60 hover:bg-foreground/[0.06]"
               title="Medium"
             >
               <svg
@@ -233,9 +255,9 @@ export function SiteFooter() {
                 <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z" />
               </svg>
             </a>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
       <div className="pb-[env(safe-area-inset-bottom,0px)]">
         <div className="flex h-2" />
       </div>

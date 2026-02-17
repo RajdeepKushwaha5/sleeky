@@ -29,8 +29,9 @@ export function ProjectCard({
     <div
       className={cn(
         "group/project flex h-full flex-col overflow-hidden rounded-2xl border border-border/50 bg-card/80",
-        "transition-all duration-300",
-        "hover:border-border hover:bg-card hover:shadow-lg"
+        "transition-all duration-500 ease-out",
+        "hover:border-border hover:bg-card hover:shadow-xl hover:shadow-black/[0.04] dark:hover:shadow-black/30",
+        "hover:-translate-y-1"
       )}
     >
       {/* Image Section */}
@@ -79,7 +80,10 @@ export function ProjectCard({
               className="group/tech flex items-center gap-1.5 rounded-full border border-dashed border-primary/40 bg-gradient-to-r from-background to-muted/50 px-2.5 py-1 shadow-md shadow-primary/10"
               title={tech}
             >
-              <TechIcon name={tech} className="size-4 transition-transform duration-300 group-hover/tech:scale-110" />
+              <TechIcon
+                name={tech}
+                className="size-4 transition-transform duration-300 group-hover/tech:scale-110"
+              />
               <span className="text-[10px] font-medium text-foreground/70 transition-colors group-hover/tech:text-foreground">
                 {tech}
               </span>
@@ -128,7 +132,8 @@ export function ProjectCard({
                         {project.title}
                       </DialogTitle>
                       <DialogDescription className="mt-1 font-mono text-xs">
-                        {project.period.start} - {project.period.end || "Present"}
+                        {project.period.start} -{" "}
+                        {project.period.end || "Present"}
                       </DialogDescription>
                     </div>
                   </div>

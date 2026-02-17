@@ -17,6 +17,7 @@ export function useMediaQuery(query: string) {
       { signal }
     );
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- initial value sync
     setValue(result.matches);
 
     return () => {

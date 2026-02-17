@@ -49,7 +49,7 @@ function CommandDialog({
       </DialogHeader>
 
       <DialogContent
-        className="overflow-hidden rounded-2xl border border-border/50 bg-card/95 p-0 backdrop-blur-md max-sm:top-16 max-sm:translate-y-0"
+        className="overflow-hidden rounded-2xl border border-border/25 bg-card/95 p-0 backdrop-blur-md max-sm:top-16 max-sm:translate-y-0"
         data-slot="command-dialog-content"
         overlay={false}
       >
@@ -75,7 +75,7 @@ function CommandInput({
   return (
     <div
       data-slot="command-input-wrapper"
-      className="flex h-12 items-center gap-2 border-b border-border/50 px-4"
+      className="flex h-12 items-center gap-2 border-b border-border/20 px-4"
     >
       <svg
         className="size-4 shrink-0 opacity-50"
@@ -170,7 +170,7 @@ function CommandItem({
     <CommandPrimitive.Item
       data-slot="command-item"
       className={cn(
-        "relative flex cursor-default items-center gap-2 rounded-full px-3 py-2 text-sm outline-hidden select-none transition-colors data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-[selected=true]:bg-foreground/10 data-[selected=true]:text-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-foreground/60",
+        "relative flex cursor-default items-center gap-2 rounded-full px-3 py-2 text-sm outline-hidden transition-colors select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-[selected=true]:bg-foreground/10 data-[selected=true]:text-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-foreground/60",
         className
       )}
       {...props}

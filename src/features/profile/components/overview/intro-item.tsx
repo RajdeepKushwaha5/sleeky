@@ -55,7 +55,7 @@ export function IntroItem({
       {copyValue && (
         <button
           onClick={handleCopy}
-          className="ml-auto flex size-6 shrink-0 items-center justify-center rounded-full border border-border/30 bg-card/80 text-foreground/50 transition-colors hover:bg-foreground/10 hover:text-foreground"
+          className="ml-auto flex size-6 shrink-0 items-center justify-center rounded-full border border-border/20 bg-card/40 text-foreground/50 transition-colors hover:bg-foreground/10 hover:text-foreground"
           title={copied ? "Copied!" : "Copy to clipboard"}
           aria-label={copied ? "Copied!" : "Copy to clipboard"}
         >

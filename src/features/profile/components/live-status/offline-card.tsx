@@ -2,6 +2,8 @@
 
 import { motion } from "motion/react";
 
+import { cn } from "@/lib/utils";
+
 import { SpotifyLogo } from "./spotify-logo";
 import { VSCodeLogo } from "./vscode-logo";
 
@@ -10,6 +12,7 @@ interface OfflineCardProps {
   title: string;
   subtitle: string;
   isOnline?: boolean;
+  subtitleClassName?: string;
 }
 
 export function OfflineCard({
@@ -17,6 +20,7 @@ export function OfflineCard({
   title,
   subtitle,
   isOnline = false,
+  subtitleClassName,
 }: OfflineCardProps) {
   const isSpotify = icon === "spotify";
 
@@ -25,7 +29,7 @@ export function OfflineCard({
       whileHover={{ y: -4, scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       transition={{ type: "spring", stiffness: 400, damping: 20 }}
-      className="relative overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100/80 grayscale transition-all duration-500 hover:grayscale-0 dark:border-border/50 dark:bg-card/80 dark:grayscale-0"
+      className="relative overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100/80 grayscale transition-all duration-500 hover:grayscale-0 dark:border-border/25 dark:bg-card/40 dark:grayscale-0"
     >
       {/* Animated gradient border glow on hover */}
       <div
@@ -66,11 +70,16 @@ export function OfflineCard({
             </span>
           </div>
 
-          <h3 className="mt-1 truncate font-medium text-foreground/80">
+          <h3 className="mt-1 truncate font-[family-name:var(--font-syne)] font-medium tracking-tight text-foreground/80">
             {title}
           </h3>
 
-          <p className="truncate text-sm text-muted-foreground/60">
+          <p
+            className={cn(
+              "truncate text-sm text-muted-foreground/60",
+              subtitleClassName
+            )}
+          >
             {subtitle}
           </p>
         </div>

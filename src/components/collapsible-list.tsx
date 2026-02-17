@@ -29,7 +29,7 @@ export function CollapsibleList<T>({
       {items.slice(0, max).map((award, index) => (
         <Slot
           key={typeof keyExtractor === "function" ? keyExtractor(award) : index}
-          className="border-b border-border/50"
+          className="border-b border-border/25"
         >
           {renderItem(award)}
         </Slot>
@@ -43,7 +43,7 @@ export function CollapsibleList<T>({
                 ? keyExtractor(award)
                 : max + index
             }
-            className="border-b border-border/50"
+            className="border-b border-border/25"
           >
             {renderItem(award)}
           </Slot>
@@ -54,7 +54,7 @@ export function CollapsibleList<T>({
         <div className="flex h-12 items-center justify-center pb-px">
           <CollapsibleTrigger asChild>
             <Button
-              className="group/collapsible-trigger flex border border-border/50 bg-card/80 text-foreground/80 hover:bg-foreground/10 hover:text-foreground"
+              className="group/collapsible-trigger flex border border-border/25 bg-card/40 text-foreground/80 hover:bg-foreground/10 hover:text-foreground"
               variant="ghost"
             >
               <span className="hidden group-data-[state=closed]/collapsible-trigger:block">

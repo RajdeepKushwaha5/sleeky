@@ -1,8 +1,10 @@
 import {
   IBM_Plex_Mono as FontMono,
   Inter as FontSans,
+  Outfit as FontOutfit,
   Playfair_Display as FontSerif,
   Space_Grotesk as FontSpaceGrotesk,
+  Syne as FontSyne,
 } from "next/font/google";
 
 export const fontSans = FontSans({
@@ -10,6 +12,22 @@ export const fontSans = FontSans({
   display: "swap",
   subsets: ["latin"],
   variable: "--font-sans",
+  preload: true,
+});
+
+export const fontSyne = FontSyne({
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+  subsets: ["latin"],
+  variable: "--font-syne",
+  preload: true,
+});
+
+export const fontOutfit = FontOutfit({
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+  subsets: ["latin"],
+  variable: "--font-outfit",
   preload: true,
 });
 

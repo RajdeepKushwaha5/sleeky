@@ -44,10 +44,10 @@ export function SidebarTOC({ items }: { items: TOCItemType[] }) {
   return (
     <nav className="hidden w-56 shrink-0 xl:block">
       <div className="sticky top-24">
-        <p className="mb-4 font-mono text-xs uppercase tracking-wider text-foreground/40">
+        <p className="mb-4 font-mono text-xs tracking-wider text-foreground/40 uppercase">
           On this page
         </p>
-        <ul className="space-y-2 border-l border-border/30">
+        <ul className="space-y-2 border-l border-border/20">
           {items.map((item) => {
             const id = item.url.replace("#", "");
             const isActive = activeId === id;
@@ -71,7 +71,7 @@ export function SidebarTOC({ items }: { items: TOCItemType[] }) {
                   className={cn(
                     "block py-1 text-sm transition-colors duration-200",
                     isActive
-                      ? "text-foreground border-l-2 border-foreground -ml-px pl-3"
+                      ? "-ml-px border-l-2 border-foreground pl-3 text-foreground"
                       : "text-foreground/50 hover:text-foreground/80"
                   )}
                 >

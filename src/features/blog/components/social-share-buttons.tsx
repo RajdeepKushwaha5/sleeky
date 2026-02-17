@@ -1,7 +1,7 @@
 "use client";
 
 import { LinkIcon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 import { toast } from "sonner";
 
 import { Icons } from "@/components/icons";
@@ -13,12 +13,11 @@ interface SocialShareButtonsProps {
 }
 
 export function SocialShareButtons({ url, title }: SocialShareButtonsProps) {
-  const [absoluteUrl, setAbsoluteUrl] = useState(url);
-
-  useEffect(() => {
-    if (!url.startsWith("http")) {
-      setAbsoluteUrl(new URL(url, window.location.origin).toString());
-    }
+  const absoluteUrl = useMemo(() => {
+    if (typeof window === "undefined") return url;
+    return url.startsWith("http")
+      ? url
+      : new URL(url, window.location.origin).toString();
   }, [url]);
 
   const urlEncoded = encodeURIComponent(absoluteUrl);
@@ -51,7 +50,7 @@ export function SocialShareButtons({ url, title }: SocialShareButtonsProps) {
   ];
 
   return (
-    <div className="mt-12 border-t border-border/50 pt-8">
+    <div className="mt-12 border-t border-border/25 pt-8">
       <h3 className="mb-4 text-lg font-medium">Share this article</h3>
       <div className="flex flex-wrap gap-3">
         {shareLinks.map((link) => {
@@ -62,7 +61,7 @@ export function SocialShareButtons({ url, title }: SocialShareButtonsProps) {
               <button
                 key={link.name}
                 onClick={link.onClick}
-                className="inline-flex items-center gap-2 rounded-full border border-border/50 bg-card/80 px-4 py-2 text-foreground/80 transition-colors hover:bg-foreground/10 hover:text-foreground"
+                className="inline-flex items-center gap-2 rounded-full border border-border/25 bg-card/40 px-4 py-2 text-foreground/80 transition-colors hover:bg-foreground/10 hover:text-foreground"
                 aria-label={link.name}
               >
                 <Icon className="size-4" />
@@ -77,7 +76,7 @@ export function SocialShareButtons({ url, title }: SocialShareButtonsProps) {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-border/50 bg-card/80 px-4 py-2 text-foreground/80 transition-colors hover:bg-foreground/10 hover:text-foreground"
+              className="inline-flex items-center gap-2 rounded-full border border-border/25 bg-card/40 px-4 py-2 text-foreground/80 transition-colors hover:bg-foreground/10 hover:text-foreground"
               aria-label={link.name}
             >
               <Icon className="size-4" />
@@ -89,4 +88,3 @@ export function SocialShareButtons({ url, title }: SocialShareButtonsProps) {
     </div>
   );
 }
-

@@ -35,15 +35,15 @@ export function MobileNav({
       </DropdownMenuTrigger>
 
       <DropdownMenuContent
-        className="relative w-[min(20rem,calc(100vw-2rem))] overflow-hidden border-none bg-popover/95 p-6 backdrop-blur-md"
+        className="relative w-[min(20rem,calc(100vw-2rem))] overflow-hidden border border-border/20 bg-popover/95 p-6 backdrop-blur-md"
         align="end"
         sideOffset={12}
       >
-        {/* Blueprint-style decorative corner brackets */}
-        <div className="absolute top-2 left-2 h-4 w-4 border-t-2 border-l-2 border-foreground/20" />
-        <div className="absolute top-2 right-2 h-4 w-4 border-t-2 border-r-2 border-foreground/20" />
-        <div className="absolute bottom-2 left-2 h-4 w-4 border-b-2 border-l-2 border-foreground/20" />
-        <div className="absolute right-2 bottom-2 h-4 w-4 border-r-2 border-b-2 border-foreground/20" />
+        {/* Decorative corner brackets */}
+        <div className="absolute top-2 left-2 h-4 w-4 border-t border-l border-foreground/10" />
+        <div className="absolute top-2 right-2 h-4 w-4 border-t border-r border-foreground/10" />
+        <div className="absolute bottom-2 left-2 h-4 w-4 border-b border-l border-foreground/10" />
+        <div className="absolute right-2 bottom-2 h-4 w-4 border-r border-b border-foreground/10" />
 
         {/* Header section with title */}
         <div className="mb-6 flex items-center gap-2 px-2">
