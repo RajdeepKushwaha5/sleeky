@@ -82,20 +82,6 @@ export function ProfileCover() {
         >
           Per aspera ad astra
         </motion.p>
-
-        {/* Subtle subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 0.5, y: 0 }}
-          transition={{
-            duration: 1,
-            delay: 0.6,
-            ease: [0.25, 0.46, 0.45, 0.94],
-          }}
-          className="relative z-10 font-sans text-[11px] font-light tracking-[0.2em] text-white/50 uppercase sm:text-xs"
-        >
-          Through hardships to the stars
-        </motion.p>
       </div>
     </BrandContextMenu>
   );

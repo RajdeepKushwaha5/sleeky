@@ -404,6 +404,11 @@
       radial-gradient(ellipse 60% 50% at 0% 100%, rgba(20, 184, 166, 0.04) 0%, transparent 70%);
   }
 
+  /* Aura toggle — hide glow when user turns it off */
+  .no-aura body::before {
+    opacity: 0;
+  }
+
   /* Custom scrollbar styling. Thanks @shadcn-ui */
   ::-webkit-scrollbar {
     width: 5px;

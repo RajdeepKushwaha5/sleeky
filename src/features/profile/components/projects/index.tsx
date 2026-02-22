@@ -14,12 +14,7 @@ export function Projects() {
   return (
     <Panel id="projects">
       <PanelHeader>
-        <PanelTitle>
-          Projects
-          <sup className="ml-1 font-mono text-sm text-muted-foreground select-none">
-            ({PROJECTS.length})
-          </sup>
-        </PanelTitle>
+        <PanelTitle>Projects</PanelTitle>
       </PanelHeader>
 
       <div className="mx-auto mt-8 grid max-w-5xl grid-cols-1 gap-6 sm:mt-12 sm:grid-cols-2 sm:gap-8 sm:px-4">

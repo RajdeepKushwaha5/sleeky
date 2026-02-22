@@ -134,19 +134,6 @@ export function SiteHeaderClient({
           <div className="relative z-10 flex shrink-0 flex-col items-center gap-2">
             {actions}
           </div>
-
-          {/* Separator */}
-          <div className="h-px w-5 bg-gradient-to-r from-transparent via-border/60 to-transparent" />
-
-          {/* Section Coordinates */}
-          <div className="relative z-10 flex flex-col items-center gap-0.5">
-            <span className="font-mono text-[8px] tracking-widest text-foreground/30 uppercase">
-              SEC
-            </span>
-            <span className="font-mono text-xs font-medium text-foreground/60">
-              {formatNumber(currentSection)}/{formatNumber(totalSections)}
-            </span>
-          </div>
         </div>
       </header>
 
@@ -166,10 +153,6 @@ export function SiteHeaderClient({
         >
           <div className="relative z-10 shrink-0">{logo}</div>
           <div className="relative z-10 flex items-center gap-1.5">
-            {/* Mobile Section Indicator */}
-            <span className="font-mono text-[10px] text-foreground/40">
-              {formatNumber(currentSection)}/{formatNumber(totalSections)}
-            </span>
             {actions}
           </div>
         </div>

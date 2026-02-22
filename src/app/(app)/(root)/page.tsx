@@ -11,8 +11,10 @@ import { Certifications } from "@/features/profile/components/certifications";
 import { Contact } from "@/features/profile/components/contact";
 import { Experiences } from "@/features/profile/components/experiences";
 import { GitHubContributions } from "@/features/profile/components/github-contributions";
+import { Library } from "@/features/profile/components/library";
 import { LiveStatus } from "@/features/profile/components/live-status";
 import { Overview } from "@/features/profile/components/overview";
+import { PomodoroTimer } from "@/features/profile/components/pomodoro-timer";
 import { ProfileCover } from "@/features/profile/components/profile-cover";
 import { ProfileHeader } from "@/features/profile/components/profile-header";
 import { Projects } from "@/features/profile/components/projects";
@@ -103,7 +105,17 @@ export default function Page() {
         <Separator />
 
         <FadeIn>
+          <Library />
+        </FadeIn>
+        <Separator />
+
+        <FadeIn>
           <BookCall />
+        </FadeIn>
+        <Separator />
+
+        <FadeIn>
+          <PomodoroTimer />
         </FadeIn>
         <Separator />
 

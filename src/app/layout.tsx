@@ -84,7 +84,7 @@ const darkModeScript = String.raw`
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_INFO.url),
   alternates: {
-    canonical: "/",
+    canonical: SITE_INFO.url,
   },
   title: {
     template: `%s – ${SITE_INFO.name}`,
@@ -108,11 +108,11 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: `${SITE_INFO.url}${SITE_INFO.ogImage}`,
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
         alt: `${USER.displayName} – ${USER.jobTitle}`,
-        type: "image/jpeg",
+        type: "image/png",
       },
     ],
   },
@@ -124,7 +124,7 @@ export const metadata: Metadata = {
     description: SITE_INFO.description,
     images: [
       {
-        url: `${SITE_INFO.url}${SITE_INFO.ogImage}`,
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
         alt: `${USER.displayName} – ${USER.jobTitle}`,

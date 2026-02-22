@@ -34,24 +34,56 @@ export function About() {
           <div className="flex-1 space-y-3">
             <p className="font-serif text-lg leading-[1.65] text-foreground/90 sm:text-xl">
               Full-stack developer and{" "}
-              <span className="underline decoration-foreground/30 underline-offset-3">
+              <a
+                href="https://en.wikipedia.org/wiki/Competitive_programming"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline decoration-foreground/30 underline-offset-3 transition-colors hover:decoration-foreground/60"
+              >
                 competitive programmer
-              </span>{" "}
+              </a>{" "}
               building clean, reliable web products — from idea to production.
             </p>
 
             <p className="text-sm leading-relaxed text-foreground/55">
               Currently deep into{" "}
-              <span className="font-medium text-foreground/80 underline decoration-foreground/20 underline-offset-3">
+              <a
+                href="https://en.wikipedia.org/wiki/Large_language_model"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-foreground/80 underline decoration-foreground/20 underline-offset-3 transition-colors hover:decoration-foreground/50"
+              >
                 LLMs &amp; Generative AI
-              </span>
+              </a>
               , crafting smart integrations that actually work. Equally
               comfortable in the{" "}
-              <span className="font-medium text-foreground/80 underline decoration-foreground/20 underline-offset-3">
+              <a
+                href="https://en.wikipedia.org/wiki/Blockchain"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-foreground/80 underline decoration-foreground/20 underline-offset-3 transition-colors hover:decoration-foreground/50"
+              >
                 Blockchain &amp; Web3
-              </span>{" "}
-              space — writing Solidity contracts, building on Ethereum &amp;
-              Solana, and shipping dApps with real users.
+              </a>{" "}
+              space — writing{" "}
+              <a
+                href="https://en.wikipedia.org/wiki/Solidity"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-foreground/80 underline decoration-foreground/20 underline-offset-3 transition-colors hover:decoration-foreground/50"
+              >
+                Solidity
+              </a>{" "}
+              contracts, building on{" "}
+              <a
+                href="https://en.wikipedia.org/wiki/Ethereum"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-foreground/80 underline decoration-foreground/20 underline-offset-3 transition-colors hover:decoration-foreground/50"
+              >
+                Ethereum
+              </a>{" "}
+              &amp; Solana, and shipping dApps with real users.
             </p>
 
             <p className="text-[12px] leading-relaxed text-muted-foreground/45 italic">
