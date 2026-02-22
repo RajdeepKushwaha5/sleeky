@@ -186,60 +186,50 @@ export async function POST(request: NextRequest) {
     }
 
     const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+    const modelsToTry = [
+      "gemini-2.0-flash",
+      "gemini-1.5-flash",
+      "gemini-1.5-flash-8b",
+      "gemini-1.5-pro",
+    ];
 
-    // First, check if the question is related to Rajdeep Singh
-    const relevanceCheckPrompt = `You are a question classifier. Determine if the following question is asking about Rajdeep Singh (his skills, projects, experience, contact info, services, etc.) or if it's asking for general programming help, tutorials, or unrelated topics.
+    let lastError = null;
+    let text = "";
 
-Question: "${message}"
+    for (const modelName of modelsToTry) {
+      try {
+        const model = genAI.getGenerativeModel({ model: modelName });
 
-Respond with ONLY one word:
-- "VALID" if the question is about Rajdeep Singh specifically (including his RESUME, CV, SOCIAL LINKS, projects, skills, etc.)
-- "INVALID" if it's asking for general programming help, tutorials, explanations of concepts, debugging help, or anything not specifically about Rajdeep Singh
+        const prompt = `
+${PORTFOLIO_CONTEXT}
 
-Your response (one word only):`;
+Current User Message: "${message}"
 
-    const relevanceResult = await model.generateContent(relevanceCheckPrompt);
-    const relevanceResponse = await relevanceResult.response;
-    const relevanceText = relevanceResponse.text();
+INSTRUCTIONS:
+1. Determine if this message is a VALID question about Rajdeep Singh.
+2. If VALID, provide a short (2-3 sentences), friendly, and enthusiastic response.
+3. If INVALID (general programming, unrelated topics, etc.), generate a savage, witty, and funny ROAST (1-2 sentences) with emojis.
+4. Output ONLY the response text. Do not include any meta-commentary or prefix.
+`;
 
-    const isValid = (relevanceText || "")
-      .trim()
-      .toUpperCase()
-      .includes("VALID");
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        text = response.text().trim();
 
-    let prompt: string;
-
-    if (!isValid) {
-      // Generate a roast for unrelated questions
-      prompt = `${PORTFOLIO_CONTEXT}
-
-The user asked: "${message}"
-
-This question is NOT about Rajdeep Singh. Generate a hilarious, savage, and witty roast response that:
-1. Mocks them for asking a random question to a portfolio bot
-2. Is strictly a "roast" - make fun of their question
-3. Is funny and sarcastic (use internet slang/gen-z humor if appropriate)
-4. Keeps it SHORT (max 2 sentences)
-5. USES EMOJIS (💀, 😭, 😂, etc.)
-
-Generate the roast response:`;
-    } else {
-      // Generate a helpful response for valid questions
-      prompt = `${PORTFOLIO_CONTEXT}
-
-User question: ${message}
-
-Provide a helpful, friendly response representing Rajdeep Singh.
-CRITICAL INSTRUCTION: Keep the answer VERY SHORT and TO THE POINT.
-- Maximum 2-3 sentences.
-- No long paragraphs.
-- Be concise but enthusiastic.`;
+        if (text) {
+          console.log(`Successfully generated response using ${modelName}`);
+          break;
+        }
+      } catch (error) {
+        console.error(`Failed to generate response with ${modelName}:`, error);
+        lastError = error;
+        continue; // Try the next model
+      }
     }
 
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const text = response.text();
+    if (!text) {
+      throw lastError || new Error("All models failed to generate a response");
+    }
 
     return NextResponse.json({ response: text });
   } catch (error) {

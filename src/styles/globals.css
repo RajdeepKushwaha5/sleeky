@@ -663,3 +663,11 @@
 .animate-subtle-bounce {
   animation: subtle-bounce 2s ease-in-out infinite;
 }
+@keyframes aura-breath {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+}
+
+.animate-aura-breath {
+  animation: aura-breath 4s ease-in-out infinite;
+}

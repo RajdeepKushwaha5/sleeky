@@ -14,12 +14,7 @@ export function Awards() {
   return (
     <Panel id="awards">
       <PanelHeader>
-        <PanelTitle>
-          Honors & Awards
-          <sup className="ml-1 font-mono text-sm font-medium text-muted-foreground select-none">
-            ({AWARDS.length})
-          </sup>
-        </PanelTitle>
+        <PanelTitle>Honors & Awards</PanelTitle>
       </PanelHeader>
 
       <CollapsibleList

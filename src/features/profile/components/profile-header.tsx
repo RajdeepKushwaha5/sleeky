@@ -41,21 +41,25 @@ function useISTClock() {
 }
 
 function useAura() {
-  const [auraOn, setAuraOn] = useState(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem(AURA_KEY) !== "off";
-    }
-    return true;
-  });
+  const [auraOn, setAuraOn] = useState(true);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem(AURA_KEY);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setAuraOn(saved !== "off");
+    setMounted(true);
+  }, []);
 
   // Sync DOM class on mount or change
   useEffect(() => {
+    if (!mounted) return;
     if (auraOn) {
       document.documentElement.classList.remove("no-aura");
     } else {
       document.documentElement.classList.add("no-aura");
     }
-  }, [auraOn]);
+  }, [auraOn, mounted]);
 
   const toggle = () => {
     setAuraOn((prev) => {
@@ -69,13 +73,15 @@ function useAura() {
     });
   };
 
-  return { auraOn, toggle };
+  return { auraOn, toggle, mounted };
 }
 
 export function ProfileHeader() {
   const istTime = useISTClock();
-  const { auraOn, toggle } = useAura();
+  const { auraOn, toggle, mounted } = useAura();
   const [clicked, setClicked] = useState(false);
+
+  const effectiveAura = !mounted || auraOn;
 
   const handleAvatarClick = () => {
     toggle();
@@ -94,34 +100,26 @@ export function ProfileHeader() {
         {/* Outer glow layers — only visible when aura is ON */}
         <button
           onClick={handleAvatarClick}
-          aria-label={auraOn ? "Disable aura" : "Enable aura"}
-          aria-pressed={auraOn}
+          aria-label={effectiveAura ? "Disable aura" : "Enable aura"}
+          aria-pressed={effectiveAura}
           className="group relative flex items-center justify-center rounded-full focus:outline-none"
         >
-          {/* Ring 3 — outermost faint pulse */}
+          {/* Layer 2 — Rotating Orbit (Sharp) */}
           <span
             className={cn(
-              "pointer-events-none absolute rounded-full transition-all duration-700",
-              auraOn
-                ? "inset-[-14px] scale-100 animate-[aura-pulse_3s_ease-in-out_infinite] bg-indigo-400/[0.07] opacity-100 dark:bg-emerald-400/[0.07]"
-                : "inset-0 scale-90 opacity-0"
+              "pointer-events-none absolute inset-[-3px] rounded-full transition-all duration-1000",
+              "bg-[conic-gradient(from_0deg,transparent_0%,#818cf8_25%,#34d399_50%,#818cf8_75%,transparent_100%)]",
+              "animate-[spin_3s_linear_infinite] blur-[1px]",
+              effectiveAura ? "scale-100 opacity-40" : "scale-90 opacity-0"
             )}
           />
-          {/* Ring 2 — medium glow */}
-          <span
-            className={cn(
-              "pointer-events-none absolute rounded-full blur-md transition-all duration-500",
-              auraOn
-                ? "inset-[-8px] scale-100 bg-indigo-400/20 opacity-100 dark:bg-emerald-400/20"
-                : "inset-0 scale-90 opacity-0"
-            )}
-          />
-          {/* Ring 1 — tight glowing border */}
+
+          {/* Layer 1 — Tight glowing border (Pulse) */}
           <span
             className={cn(
               "pointer-events-none absolute inset-0 rounded-full transition-all duration-400",
-              auraOn
-                ? "ring-2 ring-indigo-400/50 ring-offset-2 ring-offset-background dark:ring-emerald-400/50"
+              effectiveAura
+                ? "animate-pulse ring-2 ring-indigo-400/50 ring-offset-2 ring-offset-background dark:ring-emerald-400/50"
                 : "ring-0"
             )}
           />
@@ -134,7 +132,7 @@ export function ProfileHeader() {
                   "size-28 cursor-pointer rounded-full bg-zinc-800 ring-offset-background grayscale transition-all duration-300 select-none sm:size-36 dark:bg-zinc-900 dark:grayscale-0 dark:hover:grayscale-0",
                   "hover:grayscale-[50%]",
                   clicked ? "scale-95" : "scale-100",
-                  auraOn && "hover:scale-[1.03]"
+                  effectiveAura && "animate-aura-breath hover:scale-[1.03]"
                 )}
                 alt={`${USER.displayName}'s avatar`}
                 src={USER.avatar}
@@ -151,7 +149,7 @@ export function ProfileHeader() {
         <p
           className={cn(
             "absolute -bottom-1 left-1/2 -translate-x-1/2 font-mono text-[9px] tracking-widest whitespace-nowrap uppercase transition-all duration-500",
-            auraOn
+            effectiveAura
               ? "translate-y-0 text-indigo-500 opacity-60 dark:text-emerald-400"
               : "pointer-events-none translate-y-1 opacity-0"
           )}
