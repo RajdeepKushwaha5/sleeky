@@ -41,7 +41,9 @@ function PanelTitle({
     <Comp
       data-slot="panel-title"
       className={cn(
-        "font-syne text-[1.75rem] font-bold tracking-[-0.02em] text-foreground/90 sm:text-3xl",
+        "inline-flex flex-col gap-2 font-syne text-[1.75rem] font-bold tracking-[-0.02em] text-foreground/90 sm:text-3xl",
+        "[&::after]:block [&::after]:h-[2px] [&::after]:w-8 [&::after]:rounded-full",
+        "[&::after]:bg-gradient-to-r [&::after]:from-foreground/40 [&::after]:via-foreground/20 [&::after]:to-transparent",
         className
       )}
       {...props}

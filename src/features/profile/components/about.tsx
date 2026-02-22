@@ -31,21 +31,37 @@ export function About() {
             </div>
           </motion.div>
 
-          <div className="flex-1 space-y-4">
-            <p className="font-serif text-lg leading-[1.6] text-foreground/90 sm:text-xl">
-              Full-stack developer and competitive programmer building clean,
-              reliable web products.
+          <div className="flex-1 space-y-3">
+            <p className="font-serif text-lg leading-[1.65] text-foreground/90 sm:text-xl">
+              Full-stack developer and{" "}
+              <span className="underline decoration-foreground/30 underline-offset-3">
+                competitive programmer
+              </span>{" "}
+              building clean, reliable web products — from idea to production.
             </p>
 
             <p className="text-sm leading-relaxed text-foreground/55">
-              Building with{" "}
-              <span className="font-medium text-foreground/75">
-                LLMs & Generative AI
+              Currently deep into{" "}
+              <span className="font-medium text-foreground/80 underline decoration-foreground/20 underline-offset-3">
+                LLMs &amp; Generative AI
               </span>
-              ,{" "}
-              <span className="font-medium text-foreground/75">Blockchain</span>{" "}
-              (Ethereum, Solana), and{" "}
-              <span className="font-medium text-foreground/75">Web3</span>.
+              , crafting smart integrations that actually work. Equally
+              comfortable in the{" "}
+              <span className="font-medium text-foreground/80 underline decoration-foreground/20 underline-offset-3">
+                Blockchain &amp; Web3
+              </span>{" "}
+              space — writing Solidity contracts, building on Ethereum &amp;
+              Solana, and shipping dApps with real users.
+            </p>
+
+            <p className="text-[12px] leading-relaxed text-muted-foreground/45 italic">
+              ↳ always building something new —{" "}
+              <a
+                href="#projects"
+                className="underline underline-offset-3 transition-colors hover:text-muted-foreground/70"
+              >
+                see projects
+              </a>
             </p>
           </div>
         </div>

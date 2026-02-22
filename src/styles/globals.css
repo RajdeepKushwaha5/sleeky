@@ -378,6 +378,32 @@
     line-height: 1.7;
   }
 
+  /* ── Ambient Aura Glow (justaditya-inspired) ────────────────── */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    /* Light mode: soft indigo corners */
+    background:
+      radial-gradient(ellipse 60% 40% at 0% 0%, rgba(99, 102, 241, 0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 100% 0%, rgba(139, 92, 246, 0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 50% at 100% 100%, rgba(99, 102, 241, 0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 50% at 0% 100%, rgba(139, 92, 246, 0.05) 0%, transparent 70%);
+    transition: opacity 0.6s ease;
+    opacity: 1;
+  }
+
+  .dark body::before {
+    /* Dark mode: soft emerald/teal glow */
+    background:
+      radial-gradient(ellipse 60% 40% at 0% 0%, rgba(52, 211, 153, 0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 100% 0%, rgba(20, 184, 166, 0.05) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 50% at 100% 100%, rgba(52, 211, 153, 0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 50% at 0% 100%, rgba(20, 184, 166, 0.04) 0%, transparent 70%);
+  }
+
   /* Custom scrollbar styling. Thanks @shadcn-ui */
   ::-webkit-scrollbar {
     width: 5px;
@@ -501,6 +527,11 @@
 }
 
 /* Custom Animation Keyframes */
+@keyframes aura-pulse {
+  0%, 100% { opacity: 0.6; transform: translateX(-50%) scaleX(1); }
+  50% { opacity: 1; transform: translateX(-50%) scaleX(1.08); }
+}
+
 @keyframes gradient-x {
   0%,
   100% {

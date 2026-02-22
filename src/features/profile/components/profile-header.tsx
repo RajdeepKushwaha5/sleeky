@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 import {
   HoverCard,
   HoverCardContent,
@@ -10,7 +14,32 @@ import { FlipSentences } from "@/registry/flip-sentences";
 import { ProfileStatusTooltip } from "./profile-status-tooltip";
 import { VerifiedIcon } from "./verified-icon";
 
+function useISTClock() {
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    const update = () => {
+      const now = new Date();
+      const ist = new Intl.DateTimeFormat("en-IN", {
+        timeZone: "Asia/Kolkata",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+      }).format(now);
+      setTime(ist);
+    };
+    update();
+    const id = setInterval(update, 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  return time;
+}
+
 export function ProfileHeader() {
+  const istTime = useISTClock();
+
   return (
     <div className="relative mx-2 my-6 flex flex-col items-center overflow-hidden rounded-2xl border border-border/20 bg-card/40 p-6 text-center backdrop-blur-sm sm:flex-row sm:p-8 sm:text-left">
       {/* Subtle gradient decoration */}
@@ -42,12 +71,27 @@ export function ProfileHeader() {
         </div>
 
         {/* Name */}
-        <h1 className="mb-3 flex flex-wrap items-center justify-center gap-2.5 font-serif text-2xl leading-tight text-foreground/95 italic sm:justify-start sm:text-[2.5rem]">
+        <h1 className="mb-2 flex flex-wrap items-center justify-center gap-2.5 font-serif text-2xl leading-tight text-foreground/95 italic sm:justify-start sm:text-[2.5rem]">
           {USER.displayName}
           <SimpleTooltip content="Verified">
             <VerifiedIcon className="size-[0.45em] translate-y-px text-info select-none" />
           </SimpleTooltip>
         </h1>
+
+        {/* Dictionary metadata row — justaditya-inspired */}
+        <div className="mb-3 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 font-mono text-[11px] text-muted-foreground/50 sm:justify-start">
+          <span className="italic">/rɑːdʒdiːp sɪŋ/</span>
+          <span className="text-muted-foreground/30">•</span>
+          <span>noun</span>
+          <span className="text-muted-foreground/30">•</span>
+          {istTime && (
+            <>
+              <span className="tabular-nums">{istTime} IST</span>
+              <span className="text-muted-foreground/30">•</span>
+            </>
+          )}
+          <span>Jaipur, India</span>
+        </div>
 
         {/* Flip sentences */}
         <div className="font-light text-muted-foreground/80">
