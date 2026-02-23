@@ -222,96 +222,53 @@
   /* Selection text */
   --selection-foreground: oklch(0.99 0 0);
 
+  /* Aura colors */
+  --aura-color-1: #1e40af; /* Blue 800 - Deeper for contrast */
+  --aura-color-2: #3b82f6; /* Blue 500 */
+  --aura-ring: rgba(30, 64, 175, 0.6);
+  --aura-opacity: 0.9;
+
   --shadow-popover:
     0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .dark {
-  /* Deep ink black with warm undertone */
+  /* ... existing dark variables ... */
   --background: #0a0a0a;
-
-  /* Refined off-white with warm luminosity */
   --foreground: oklch(0.92 0.008 80);
-
-  /* Sophisticated dark primary */
   --primary: oklch(0.88 0.01 80);
-
-  /* Deep primary foreground */
   --primary-foreground: oklch(0.1 0.005 285);
-
-  /* Subtle secondary surface */
   --secondary: oklch(0.13 0.004 285);
-
-  /* Warm white secondary fg */
   --secondary-foreground: oklch(0.94 0.008 80);
-
-  /* Deep muted */
   --muted: oklch(0.13 0.004 285);
-
-  /* Refined muted foreground */
   --muted-foreground: oklch(0.52 0.012 80);
-
-  /* Premium dark card surface */
   --card: #121212;
-
-  /* Warm white card text */
   --card-foreground: oklch(0.92 0.008 80);
-
-  /* Rich popover surface */
   --popover: #141414;
-
-  /* Warm white popover text */
   --popover-foreground: oklch(0.92 0.008 80);
-
-  /* Subtle border for popover */
   --popover-border: #1e1e1e;
-
-  /* Accent hover surface */
   --accent: #1a1a1a;
-
   --accent2: color-mix(in oklab, var(--accent) 25%, transparent);
-
-  /* Warm white accent fg */
   --accent-foreground: oklch(0.92 0.008 80);
-
-  /* Refined subtle border */
   --border: #1e1e1e;
-
-  /* Deep edge */
   --edge: oklch(0.13 0.003 285);
-
-  /* Rich input surface */
   --input: oklch(0.14 0.004 285);
-
-  /* Warm amber ring */
   --ring: oklch(0.52 0.03 80);
-
-  /* Vibrant success */
   --success: oklch(0.68 0.22 150);
-
-  /* Warm destructive */
   --destructive: oklch(0.52 0.22 28);
-
-  /* Warm amber link */
   --link: oklch(0.72 0.14 80);
-
-  /* Deep code bg */
   --code: oklch(0.09 0.003 285);
-
-  /* Warm code text */
   --code-foreground: oklch(0.92 0.008 80);
-
-  /* Warm code line numbers */
   --code-number: oklch(0.45 0.04 80);
-
-  /* Subtle code highlight */
   --code-highlight: oklch(0.15 0.004 285);
-
-  /* Warm amber selection */
   --selection: oklch(0.68 0.12 80);
-
-  /* Dark selection text */
   --selection-foreground: oklch(0.09 0.005 285);
+
+  /* Aura colors - Keep emerald/indigo mix for dark mode */
+  --aura-color-1: #818cf8; /* Indigo 400 */
+  --aura-color-2: #34d399; /* Emerald 400 */
+  --aura-ring: rgba(52, 211, 153, 0.5);
+  --aura-opacity: 0.4;
 
   --shadow-popover:
     0 8px 32px rgba(0, 0, 0, 0.5), 0 0 1px rgba(255, 255, 255, 0.05);
@@ -385,12 +342,12 @@
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    /* Light mode: soft indigo corners */
+    /* Light mode: soft blue corners - increased intensity */
     background:
-      radial-gradient(ellipse 60% 40% at 0% 0%, rgba(99, 102, 241, 0.08) 0%, transparent 70%),
-      radial-gradient(ellipse 60% 40% at 100% 0%, rgba(139, 92, 246, 0.06) 0%, transparent 70%),
-      radial-gradient(ellipse 60% 50% at 100% 100%, rgba(99, 102, 241, 0.07) 0%, transparent 70%),
-      radial-gradient(ellipse 60% 50% at 0% 100%, rgba(139, 92, 246, 0.05) 0%, transparent 70%);
+      radial-gradient(ellipse 60% 40% at 0% 0%, color-mix(in srgb, var(--aura-color-1) 15%, transparent) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 100% 0%, color-mix(in srgb, var(--aura-color-2) 12%, transparent) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 50% at 100% 100%, color-mix(in srgb, var(--aura-color-1) 14%, transparent) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 50% at 0% 100%, color-mix(in srgb, var(--aura-color-2) 10%, transparent) 0%, transparent 70%);
     transition: opacity 0.6s ease;
     opacity: 1;
   }
@@ -398,10 +355,10 @@
   .dark body::before {
     /* Dark mode: soft emerald/teal glow */
     background:
-      radial-gradient(ellipse 60% 40% at 0% 0%, rgba(52, 211, 153, 0.07) 0%, transparent 70%),
-      radial-gradient(ellipse 60% 40% at 100% 0%, rgba(20, 184, 166, 0.05) 0%, transparent 70%),
-      radial-gradient(ellipse 60% 50% at 100% 100%, rgba(52, 211, 153, 0.06) 0%, transparent 70%),
-      radial-gradient(ellipse 60% 50% at 0% 100%, rgba(20, 184, 166, 0.04) 0%, transparent 70%);
+      radial-gradient(ellipse 60% 40% at 0% 0%, color-mix(in srgb, var(--aura-color-2) 7%, transparent) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 100% 0%, color-mix(in srgb, var(--aura-color-1) 5%, transparent) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 50% at 100% 100%, color-mix(in srgb, var(--aura-color-2) 6%, transparent) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 50% at 0% 100%, color-mix(in srgb, var(--aura-color-1) 4%, transparent) 0%, transparent 70%);
   }
 
   /* Aura toggle — hide glow when user turns it off */

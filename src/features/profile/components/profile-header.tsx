@@ -107,11 +107,12 @@ export function ProfileHeader() {
           {/* Layer 2 — Rotating Orbit (Sharp) */}
           <span
             className={cn(
-              "pointer-events-none absolute inset-[-3px] rounded-full transition-all duration-1000",
-              "bg-[conic-gradient(from_0deg,transparent_0%,#818cf8_25%,#34d399_50%,#818cf8_75%,transparent_100%)]",
-              "animate-[spin_3s_linear_infinite] blur-[1px]",
-              effectiveAura ? "scale-100 opacity-40" : "scale-90 opacity-0"
+              "pointer-events-none absolute inset-[-4px] rounded-full transition-all duration-1000",
+              "bg-[conic-gradient(from_0deg,transparent_0%,var(--aura-color-1)_25%,var(--aura-color-2)_50%,var(--aura-color-1)_75%,transparent_100%)]",
+              "animate-[spin_3s_linear_infinite] blur-[2px]",
+              effectiveAura ? "scale-100" : "scale-90 opacity-0"
             )}
+            style={{ opacity: effectiveAura ? "var(--aura-opacity)" : 0 }}
           />
 
           {/* Layer 1 — Tight glowing border (Pulse) */}
@@ -119,7 +120,7 @@ export function ProfileHeader() {
             className={cn(
               "pointer-events-none absolute inset-0 rounded-full transition-all duration-400",
               effectiveAura
-                ? "animate-pulse ring-2 ring-indigo-400/50 ring-offset-2 ring-offset-background dark:ring-emerald-400/50"
+                ? "animate-pulse ring-4 ring-blue-600/60 ring-offset-2 ring-offset-background dark:ring-emerald-400/50"
                 : "ring-0"
             )}
           />
@@ -150,7 +151,7 @@ export function ProfileHeader() {
           className={cn(
             "absolute -bottom-1 left-1/2 -translate-x-1/2 font-mono text-[9px] tracking-widest whitespace-nowrap uppercase transition-all duration-500",
             effectiveAura
-              ? "translate-y-0 text-indigo-500 opacity-60 dark:text-emerald-400"
+              ? "translate-y-0 text-blue-600 opacity-60 dark:text-emerald-400"
               : "pointer-events-none translate-y-1 opacity-0"
           )}
         >

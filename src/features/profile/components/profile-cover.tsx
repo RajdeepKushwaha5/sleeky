@@ -50,7 +50,7 @@ export function ProfileCover() {
           className="absolute bottom-0 left-1/2 z-[1] h-32 w-3/4 -translate-x-1/2 blur-2xl"
           style={{
             background:
-              "radial-gradient(ellipse at center bottom, rgba(99,102,241,0.25) 0%, transparent 70%)",
+              "radial-gradient(ellipse at center bottom, var(--aura-ring) 0%, transparent 70%)",
             animation: "aura-pulse 4s ease-in-out infinite",
           }}
         />
