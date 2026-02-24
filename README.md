@@ -13,7 +13,7 @@
 
 <p align="center">
   <a href="https://rajdeep-singh.vercel.app">
-    <img src="https://img.shields.io/badge/🚀_Live_Demo-Visit_Site-0070f3?style=for-the-badge" alt="Live Demo" />
+    <img src="https://img.shields.io/badge/Live_Demo-Visit_Site-0070f3?style=for-the-badge" alt="Live Demo" />
   </a>
   <a href="https://github.com/RajdeepKushwaha5/sleeky/stargazers">
     <img src="https://img.shields.io/github/stars/RajdeepKushwaha5/sleeky?style=for-the-badge&color=yellow" alt="Stars" />
@@ -34,40 +34,40 @@
 
 ---
 
-## ✨ Features
+## Features
 
-|     | Feature            | Description                                               |
-| :-: | ------------------ | --------------------------------------------------------- |
-| ⚡  | **Lightning Fast** | Next.js 16 with Turbopack for blazing performance         |
-| 🎨  | **Sleek Design**   | Glassmorphism navbar, smooth animations, dark/light modes |
-| 🤖  | **AI Assistant**   | Chat with RJDP's Assistant powered by Google Gemini       |
-| 🎵  | **Live Status**    | Real-time Discord, Spotify & VS Code activity             |
-| 📊  | **Coding Stats**   | WakaTime integration for coding metrics                   |
-| 📝  | **MDX Blog**       | Write posts with Markdown + React components              |
-| 📱  | **Responsive**     | Optimized for mobile, tablet, and desktop                 |
-| ⌨️  | **Keyboard Nav**   | Navigate sections with `J` (next) and `K` (prev) keys     |
-| 🔍  | **SEO Ready**      | Meta tags, structured data, sitemap & more                |
+| Status | Feature | Description |
+| :--- | :--- | :--- |
+| ![Performance](https://img.shields.io/badge/Performance-High-blue) | **Lightning Fast** | Next.js 16 with Turbopack for blazing performance |
+| ![Design](https://img.shields.io/badge/Design-Premium-vibrantgreen) | **Sleek UI** | Glassmorphism, smooth animations, and dark/light modes |
+| ![Intelligence](https://img.shields.io/badge/AI-Gemini_2.5-brightgreen) | **AI Assistant** | Integrated chatbot powered by Google Gemini 2.5 Flash |
+| ![Real-time](https://img.shields.io/badge/Real--time-Active-success) | **Live Status** | Real-time Discord, Spotify, and VS Code activity |
+| ![Analytics](https://img.shields.io/badge/Stats-WakaTime-informational) | **Coding Metrics** | Automated coding activity tracking via WakaTime |
+| ![Content](https://img.shields.io/badge/Content-MDX_Blog-blueviolet) | **MDX Blog** | Feature-rich blog powered by MDX and React components |
+| ![Adaptive](https://img.shields.io/badge/Responsive-Full-orange) | **Device Ready** | Optimized for seamless mobile, tablet, and desktop views |
+| ![Navigation](https://img.shields.io/badge/Nav-Keyboard-yellowgreen) | **Quick Nav** | Navigate sections with keyboard shortcuts (J/K) |
+| ![Optimization](https://img.shields.io/badge/SEO-Optimized-red) | **SEO Ready** | Structured data, meta tags, and high-performance sitemaps |
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 <p align="center">
   <img src="https://skillicons.dev/icons?i=nextjs,react,typescript,tailwind,vercel" alt="Tech Stack" />
 </p>
 
-| Category       | Technologies                         |
-| -------------- | ------------------------------------ |
-| **Framework**  | Next.js 16, React 19, TypeScript     |
-| **Styling**    | Tailwind CSS v4, shadcn/ui, Radix UI |
-| **Animation**  | Framer Motion                        |
-| **AI**         | Google Generative AI (Gemini)        |
-| **Real-time**  | Lanyard API, WakaTime API            |
-| **Deployment** | Vercel                               |
+| Category | Technologies |
+| :--- | :--- |
+| **Framework** | Next.js 16, React 19, TypeScript |
+| **Styling** | Tailwind CSS v4, shadcn/ui, Radix UI |
+| **Animation** | Framer Motion |
+| **AI Engine** | Google Generative AI (Gemini 2.5 Flash) |
+| **Integrations** | Lanyard API, WakaTime API |
+| **Infrastructure** | Vercel |
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 # Clone the repository
@@ -88,7 +88,7 @@ Open **[http://localhost:1729](http://localhost:1729)** in your browser.
 
 ---
 
-## ⚙️ Environment Variables
+## Environment Variables
 
 ```env
 # App URL
@@ -107,9 +107,9 @@ WAKATIME_API_KEY=your_wakatime_key
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
-```
+```text
 sleeky/
 ├── src/
 │   ├── app/            # Next.js App Router pages
@@ -124,36 +124,36 @@ sleeky/
 
 ---
 
-## 📜 Scripts
+## Available Scripts
 
-| Command         | Description                  |
-| --------------- | ---------------------------- |
-| `npm run dev`   | Start dev server (port 1408) |
-| `npm run build` | Production build             |
-| `npm run start` | Start production server      |
-| `npm run lint`  | Run ESLint                   |
-
----
-
-## 🎨 Customization
-
-| File                                       | Purpose                    |
-| ------------------------------------------ | -------------------------- |
-| `src/features/profile/data/user.ts`        | Personal info              |
-| `src/config/site.ts`                       | Site metadata & navigation |
-| `src/features/profile/data/projects.ts`    | Project showcase           |
-| `src/features/profile/data/experiences.ts` | Work experience            |
+| Command | Description |
+| :--- | :--- |
+| `npm run dev` | Start development server on port 1408 |
+| `npm run build` | Build the application for production |
+| `npm run start` | Start the production server |
+| `npm run lint` | Run ESLint to check code quality |
 
 ---
 
-## 📄 License
+## Customization
 
-MIT License — feel free to use this for your own portfolio!
+| Configuration File | Data Description |
+| :--- | :--- |
+| `src/features/profile/data/user.ts` | Personal identity and bio |
+| `src/config/site.ts` | Site metadata and menu links |
+| `src/features/profile/data/projects.ts` | Portfolio project showcase |
+| `src/features/profile/data/experiences.ts` | Professional work history |
+
+---
+
+## License
+
+This project is licensed under the MIT License. Feel free to use it for your personal portfolio.
 
 ---
 
 <p align="center">
-  Made by <a href="https://rajdeep-singh.vercel.app">Rajdeep Singh</a>
+  Developed by <a href="https://rajdeep-singh.vercel.app">Rajdeep Singh</a>
 </p>
 
 <p align="center">
@@ -169,5 +169,5 @@ MIT License — feel free to use this for your own portfolio!
 </p>
 
 <p align="center">
-  ⭐ Star this repo if you found it helpful!
+  Star this repository if you found it useful.
 </p>
