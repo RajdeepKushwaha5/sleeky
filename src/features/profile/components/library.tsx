@@ -29,12 +29,12 @@ const LIBRARY: BookCategory[] = [
         author: "Thomas H. Cormen et al.",
       },
       {
-        title: "Cracking the Coding Interview",
-        author: "Gayle Laakmann McDowell",
-      },
-      {
         title: "Build a Large Language Model from Scratch",
         author: "Sebastian Raschka",
+      },
+      {
+        title: "Cracking the Coding Interview",
+        author: "Gayle Laakmann McDowell",
       },
       { title: "Effective C++", author: "Scott Meyers" },
     ],
