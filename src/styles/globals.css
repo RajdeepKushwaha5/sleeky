@@ -222,11 +222,12 @@
   /* Selection text */
   --selection-foreground: oklch(0.99 0 0);
 
-  /* Aura colors */
-  --aura-color-1: #1e40af; /* Blue 800 - Deeper for contrast */
-  --aura-color-2: #3b82f6; /* Blue 500 */
-  --aura-ring: rgba(30, 64, 175, 0.6);
-  --aura-opacity: 0.9;
+  /* Aura colors - High Energy Anime Style */
+  --aura-color-1: #3b82f6; /* Bright Blue */
+  --aura-color-2: #8b5cf6; /* Vibrant Violet */
+  --aura-color-3: #ffffff; /* Lightning White */
+  --aura-ring: rgba(59, 130, 246, 0.7);
+  --aura-opacity: 1;
 
   --shadow-popover:
     0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
@@ -264,11 +265,12 @@
   --selection: oklch(0.68 0.12 80);
   --selection-foreground: oklch(0.09 0.005 285);
 
-  /* Aura colors - Keep emerald/indigo mix for dark mode */
-  --aura-color-1: #818cf8; /* Indigo 400 */
-  --aura-color-2: #34d399; /* Emerald 400 */
-  --aura-ring: rgba(52, 211, 153, 0.5);
-  --aura-opacity: 0.4;
+  /* Aura colors - Cyberpunk/Anime Dark Mode */
+  --aura-color-1: #00f2ff; /* Neon Cyan */
+  --aura-color-2: #7000ff; /* Neon Purple */
+  --aura-color-3: #ffffff;
+  --aura-ring: rgba(0, 242, 255, 0.6);
+  --aura-opacity: 0.8;
 
   --shadow-popover:
     0 8px 32px rgba(0, 0, 0, 0.5), 0 0 1px rgba(255, 255, 255, 0.05);
@@ -335,21 +337,26 @@
     line-height: 1.7;
   }
 
-  /* ── Ambient Aura Glow (justaditya-inspired) ────────────────── */
+  /* ── Ambient Aura Glow (Anime Storm Inspired) ────────────────── */
   body::before {
     content: "";
     position: fixed;
-    inset: 0;
+    inset: -20%;
     z-index: 0;
     pointer-events: none;
-    /* Light mode: soft blue corners - increased intensity */
     background:
-      radial-gradient(ellipse 60% 40% at 0% 0%, color-mix(in srgb, var(--aura-color-1) 15%, transparent) 0%, transparent 70%),
-      radial-gradient(ellipse 60% 40% at 100% 0%, color-mix(in srgb, var(--aura-color-2) 12%, transparent) 0%, transparent 70%),
-      radial-gradient(ellipse 60% 50% at 100% 100%, color-mix(in srgb, var(--aura-color-1) 14%, transparent) 0%, transparent 70%),
-      radial-gradient(ellipse 60% 50% at 0% 100%, color-mix(in srgb, var(--aura-color-2) 10%, transparent) 0%, transparent 70%);
+      radial-gradient(ellipse 60% 40% at 0% 0%, color-mix(in srgb, var(--aura-color-1) 18%, transparent) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 100% 0%, color-mix(in srgb, var(--aura-color-2) 15%, transparent) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 50% at 100% 100%, color-mix(in srgb, var(--aura-color-1) 16%, transparent) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 50% at 0% 100%, color-mix(in srgb, var(--aura-color-2) 12%, transparent) 0%, transparent 70%);
     transition: opacity 0.6s ease;
     opacity: 1;
+    animation: aura-drift 20s linear infinite;
+  }
+
+  @keyframes aura-drift {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
   }
 
   .dark body::before {
@@ -620,11 +627,39 @@
 .animate-subtle-bounce {
   animation: subtle-bounce 2s ease-in-out infinite;
 }
-@keyframes aura-breath {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.05); opacity: 0.8; }
-}
-
 .animate-aura-breath {
   animation: aura-breath 4s ease-in-out infinite;
+}
+
+@keyframes thunder-flash {
+  0%, 100% { opacity: 0; transform: scale(1); filter: brightness(1); }
+  5%, 15% { opacity: 0.8; transform: scale(1.05); filter: brightness(2); }
+  10% { opacity: 0.2; transform: scale(1.02); filter: brightness(1.5); }
+  20% { opacity: 0; transform: scale(1); filter: brightness(1); }
+}
+
+@keyframes lightning-bolt-anim {
+  0%, 100% { opacity: 0; clip-path: polygon(40% 0%, 60% 0%, 60% 100%, 40% 100%); }
+  5%, 15% { opacity: 1; clip-path: polygon(20% 0%, 50% 20%, 30% 50%, 80% 80%, 50% 100%, 10% 80%, 40% 50%, 10% 20%); }
+  10%, 20% { opacity: 0; clip-path: polygon(40% 0%, 60% 0%, 60% 100%, 40% 100%); }
+}
+
+.animate-energy-bolt {
+  animation: lightning-bolt-anim 4s infinite;
+}
+
+@keyframes aura-jitter {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-2px, 1px); }
+  20% { transform: translate(2px, -1px); }
+  30% { transform: translate(-1px, 2px); }
+  40% { transform: translate(1px, -2px); }
+}
+
+.animate-thunder-flash {
+  animation: thunder-flash 5s infinite;
+}
+
+.animate-aura-jitter {
+  animation: aura-jitter 0.2s infinite;
 }

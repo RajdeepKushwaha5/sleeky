@@ -45,6 +45,10 @@ export function ProfileCover() {
         {/* Cinematic gradient overlay */}
         <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black/60 via-black/25 to-black/5 dark:from-black/70 dark:via-black/30 dark:to-black/10" />
 
+        {/* Anime Lightning Flash Effect */}
+        <div className="animate-thunder-flash pointer-events-none absolute inset-0 z-[2] bg-white opacity-0" />
+        <div className="animate-thunder-flash pointer-events-none absolute inset-0 z-[2] bg-[var(--aura-color-1)] opacity-0 delay-700" />
+
         {/* Aura pulse glow — bottom edge */}
         <div
           className="absolute bottom-0 left-1/2 z-[1] h-32 w-3/4 -translate-x-1/2 blur-2xl"
@@ -55,10 +59,13 @@ export function ProfileCover() {
           }}
         />
 
-        {/* Subtle vignette effect */}
+        {/* Cinematic scanlines overlay */}
+        <div className="pointer-events-none absolute inset-0 z-[3] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%),linear-gradient(90deg,rgba(255,0,0,0.03),rgba(0,255,0,0.01),rgba(0,0,255,0.03))] bg-[length:100%_4px,3px_100%]" />
+
+        {/* Deep cinematic vignette */}
         <div
-          className="absolute inset-0 z-[1]"
-          style={{ boxShadow: "inset 0 0 120px rgba(0,0,0,0.2)" }}
+          className="absolute inset-0 z-[4]"
+          style={{ boxShadow: "inset 0 0 150px rgba(0,0,0,0.4)" }}
         />
 
         {/* Quote Subtitle - Per aspera ad astra */}

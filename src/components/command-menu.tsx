@@ -3,15 +3,25 @@
 import { useCommandState } from "cmdk";
 import type { LucideProps } from "lucide-react";
 import {
+  ActivityIcon,
+  BookIcon,
   BriefcaseBusinessIcon,
+  CalendarCheckIcon,
   CornerDownLeftIcon,
   DownloadIcon,
+  HeartIcon,
   LetterTextIcon,
+  LibraryIcon,
   MailIcon,
+  MessageSquareQuoteIcon,
   MoonStarIcon,
   RssIcon,
+  Share2Icon,
   SunIcon,
   TextIcon,
+  TimerIcon,
+  UserIcon,
+  ZapIcon,
 } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -76,7 +86,22 @@ const MENU_LINKS: CommandLinkItem[] = [
   },
 ];
 
-const DAIFOLIO_LINKS: CommandLinkItem[] = [
+const RJDP_LINKS: CommandLinkItem[] = [
+  {
+    title: "Overview",
+    href: "/#overview",
+    icon: UserIcon,
+  },
+  {
+    title: "Live Status",
+    href: "/#live",
+    icon: ActivityIcon,
+  },
+  {
+    title: "Social Links",
+    href: "/#social",
+    icon: Share2Icon,
+  },
   {
     title: "About",
     href: "/#about",
@@ -98,6 +123,26 @@ const DAIFOLIO_LINKS: CommandLinkItem[] = [
     icon: Icons.project,
   },
   {
+    title: "Testimonials",
+    href: "/#testimonials",
+    icon: MessageSquareQuoteIcon,
+  },
+  {
+    title: "Blog",
+    href: "/#blog",
+    icon: RssIcon,
+  },
+  {
+    title: "GitHub Contributions",
+    href: "/#github",
+    icon: Icons.github,
+  },
+  {
+    title: "Activity",
+    href: "/#activity",
+    icon: ZapIcon,
+  },
+  {
     title: "Honors & Awards",
     href: "/#awards",
     icon: Icons.award,
@@ -106,6 +151,26 @@ const DAIFOLIO_LINKS: CommandLinkItem[] = [
     title: "Certifications",
     href: "/#certs",
     icon: Icons.certificate,
+  },
+  {
+    title: "Library",
+    href: "/#library",
+    icon: LibraryIcon,
+  },
+  {
+    title: "Book a Call",
+    href: "/#book-call",
+    icon: CalendarCheckIcon,
+  },
+  {
+    title: "Pomodoro Timer",
+    href: "/#pomodoro",
+    icon: TimerIcon,
+  },
+  {
+    title: "Contact Me",
+    href: "/#contact",
+    icon: MailIcon,
   },
 ];
 
@@ -232,7 +297,7 @@ export function CommandMenu({ posts }: { posts: Post[] }) {
 
           <CommandLinkGroup
             heading="RJDP's Portfolio"
-            links={DAIFOLIO_LINKS}
+            links={RJDP_LINKS}
             onLinkSelect={handleOpenLink}
           />
 

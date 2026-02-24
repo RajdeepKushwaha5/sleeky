@@ -104,23 +104,40 @@ export function ProfileHeader() {
           aria-pressed={effectiveAura}
           className="group relative flex items-center justify-center rounded-full focus:outline-none"
         >
-          {/* Layer 2 — Rotating Orbit (Sharp) */}
+          {/* Layer 3 — Thundering Flash (Anime Style) */}
           <span
             className={cn(
-              "pointer-events-none absolute inset-[-4px] rounded-full transition-all duration-1000",
-              "bg-[conic-gradient(from_0deg,transparent_0%,var(--aura-color-1)_25%,var(--aura-color-2)_50%,var(--aura-color-1)_75%,transparent_100%)]",
-              "animate-[spin_3s_linear_infinite] blur-[2px]",
+              "pointer-events-none absolute inset-[-12px] rounded-full transition-all duration-700",
+              "bg-white opacity-0 blur-xl",
+              effectiveAura && "animate-thunder-flash"
+            )}
+          />
+
+          {/* Energy Bolts */}
+          {effectiveAura && (
+            <>
+              <span className="animate-energy-bolt absolute inset-[-20px] z-[-1] bg-[var(--aura-color-1)] blur-[2px]" />
+              <span className="animate-energy-bolt absolute inset-[-20px] z-[-1] rotate-45 bg-[var(--aura-color-2)] blur-[2px] delay-1000" />
+            </>
+          )}
+
+          {/* Layer 2 — Rotating Orbit (Sharp & Fast) */}
+          <span
+            className={cn(
+              "pointer-events-none absolute inset-[-6px] rounded-full transition-all duration-1000",
+              "bg-[conic-gradient(from_0deg,transparent_0%,var(--aura-color-1)_20%,var(--aura-color-3)_25%,var(--aura-color-2)_50%,var(--aura-color-3)_75%,var(--aura-color-1)_80%,transparent_100%)]",
+              "animate-[spin_1.5s_linear_infinite] blur-[3px]",
               effectiveAura ? "scale-100" : "scale-90 opacity-0"
             )}
             style={{ opacity: effectiveAura ? "var(--aura-opacity)" : 0 }}
           />
 
-          {/* Layer 1 — Tight glowing border (Pulse) */}
+          {/* Layer 1 — Tight glowing border (Pulse & Jitter) */}
           <span
             className={cn(
               "pointer-events-none absolute inset-0 rounded-full transition-all duration-400",
               effectiveAura
-                ? "animate-pulse ring-4 ring-blue-600/60 ring-offset-2 ring-offset-background dark:ring-emerald-400/50"
+                ? "animate-aura-jitter ring-4 ring-blue-500/80 ring-offset-2 ring-offset-background dark:ring-cyan-500/70"
                 : "ring-0"
             )}
           />
@@ -133,7 +150,7 @@ export function ProfileHeader() {
                   "size-28 cursor-pointer rounded-full bg-zinc-800 ring-offset-background grayscale transition-all duration-300 select-none sm:size-36 dark:bg-zinc-900 dark:grayscale-0 dark:hover:grayscale-0",
                   "hover:grayscale-[50%]",
                   clicked ? "scale-95" : "scale-100",
-                  effectiveAura && "animate-aura-breath hover:scale-[1.03]"
+                  effectiveAura && "animate-aura-breath hover:scale-[1.05]"
                 )}
                 alt={`${USER.displayName}'s avatar`}
                 src={USER.avatar}

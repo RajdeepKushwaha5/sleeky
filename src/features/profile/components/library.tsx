@@ -32,6 +32,10 @@ const LIBRARY: BookCategory[] = [
         title: "Cracking the Coding Interview",
         author: "Gayle Laakmann McDowell",
       },
+      {
+        title: "Build a Large Language Model from Scratch",
+        author: "Sebastian Raschka",
+      },
       { title: "Effective C++", author: "Scott Meyers" },
     ],
   },
