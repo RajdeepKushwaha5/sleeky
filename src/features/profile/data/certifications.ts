@@ -2,6 +2,22 @@ import type { Certification } from "../types/certifications";
 
 export const CERTIFICATIONS: Certification[] = [
   {
+    title: "Model Context Protocol: Advanced Topics",
+    issuer: "Anthropic Education",
+    issuerLogoURL: "/images/certificates/anthropic.png",
+    issueDate: "2026-03-11",
+    credentialID: "",
+    credentialURL: "http://verify.skilljar.com/c/inhwdyi77rky",
+  },
+  {
+    title: "Introduction to Model Context Protocol",
+    issuer: "Anthropic Education",
+    issuerLogoURL: "/images/certificates/anthropic.png",
+    issueDate: "2026-03-03",
+    credentialID: "",
+    credentialURL: "http://verify.skilljar.com/c/6vptu525xmkj",
+  },
+  {
     title: "Software Engineer",
     issuer: "HackerRank",
     issuerLogoURL: "/images/certificates/hackerrank.png",
