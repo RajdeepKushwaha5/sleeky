@@ -1,9 +1,6 @@
 import dynamic from "next/dynamic";
 
-const Chatbot = dynamic(
-  () => import("@/components/chatbot").then((mod) => mod.Chatbot),
-  { ssr: false }
-);
+import { ChatbotLazy } from "@/components/chatbot-lazy";
 import { GradientMesh } from "@/components/gradient-mesh";
 import { KeyboardNavigation } from "@/components/keyboard-navigation";
 import { KeyboardShortcutHint } from "@/components/keyboard-shortcut-hint";
@@ -41,7 +38,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       <SiteFooter />
 
       <ScrollTop />
-      <Chatbot />
+      <ChatbotLazy />
       <KeyboardNavigation />
       <KeyboardShortcutHint />
     </>
