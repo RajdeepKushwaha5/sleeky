@@ -29,7 +29,7 @@ export function AudioPlayer() {
     audio.src = AUDIO_SRC;
     audio.loop = true;
     audio.volume = 0.3;
-    audio.preload = "auto"; // Use 'auto' for better iOS compatibility
+    audio.preload = "none";
 
     audio.addEventListener("canplaythrough", () => {
       setIsLoaded(true);

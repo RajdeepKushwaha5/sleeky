@@ -19,27 +19,27 @@ export function ProfileCover() {
           "before:ring-2 before:ring-white/10 before:ring-inset dark:before:ring-white/5"
         )}
       >
-        {/* Animated GIF Background - Light mode with warm tint */}
-        <div
-          className="absolute inset-0 z-0 dark:hidden"
-          style={{
-            backgroundImage: "url('/assets/giphy.gif')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            filter: "grayscale(100%) contrast(1.1)",
-          }}
+        {/* Animated Background - Light mode with warm tint */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          className="absolute inset-0 z-0 h-full w-full object-cover dark:hidden"
+          style={{ filter: "grayscale(100%) contrast(1.1)" }}
+          src="/assets/giphy.gif"
+          alt=""
+          loading="eager"
+          fetchPriority="low"
+          decoding="async"
         />
 
-        {/* Animated GIF Background - Dark mode */}
-        <div
-          className="absolute inset-0 z-0 hidden dark:block"
-          style={{
-            backgroundImage: "url('/assets/kiminonawa-sky.gif')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
+        {/* Animated Background - Dark mode */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          className="absolute inset-0 z-0 hidden h-full w-full object-cover dark:block"
+          src="/assets/kiminonawa-sky.gif"
+          alt=""
+          loading="eager"
+          fetchPriority="low"
+          decoding="async"
         />
 
         {/* Cinematic gradient overlay */}

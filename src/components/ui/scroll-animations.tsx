@@ -15,14 +15,14 @@ interface FadeInProps {
   once?: boolean;
 }
 
-// SLEEKY: All animations now load instantly on mount for a quick, snappy feel
+// SLEEKY: Animate sections as they scroll into view for better perf & UX
 export function FadeIn({
   children,
   className,
   delay = 0,
-  duration = 0.3, // Faster duration for sleeky effect
+  duration = 0.3,
   direction = "up",
-  distance = 20, // Reduced distance for quicker animations
+  distance = 20,
 }: FadeInProps) {
   const getInitialPosition = () => {
     switch (direction) {
@@ -44,7 +44,8 @@ export function FadeIn({
   return (
     <motion.div
       initial={{ opacity: 0, ...initial }}
-      animate={{ opacity: 1, x: 0, y: 0 }}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
       transition={{ duration, delay, ease: "easeOut" }}
       className={className}
     >

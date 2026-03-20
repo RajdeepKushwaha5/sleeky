@@ -89,35 +89,47 @@ export function Contact() {
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Name and Email - Two Column */}
           <div className="grid gap-4 sm:grid-cols-2">
+            <label className="sr-only" htmlFor="contact-name">
+              Name
+            </label>
             <input
+              id="contact-name"
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
               required
               placeholder="Name"
-              className="w-full rounded-xl border border-border/25 bg-card/40 px-4 py-3 text-sm text-foreground transition-all placeholder:text-foreground/30 focus:border-foreground/20 focus:outline-none"
+              className="w-full rounded-xl border border-border/25 bg-card/40 px-4 py-3 text-sm text-foreground transition-all placeholder:text-foreground/30 focus:border-foreground/20 focus:ring-1 focus:ring-ring/50 focus:outline-none"
             />
+            <label className="sr-only" htmlFor="contact-email">
+              Email
+            </label>
             <input
+              id="contact-email"
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
               required
               placeholder="Email"
-              className="w-full rounded-xl border border-border/25 bg-card/40 px-4 py-3 text-sm text-foreground transition-all placeholder:text-foreground/30 focus:border-foreground/20 focus:outline-none"
+              className="w-full rounded-xl border border-border/25 bg-card/40 px-4 py-3 text-sm text-foreground transition-all placeholder:text-foreground/30 focus:border-foreground/20 focus:ring-1 focus:ring-ring/50 focus:outline-none"
             />
           </div>
 
           {/* Message Field - Shorter */}
+          <label className="sr-only" htmlFor="contact-message">
+            Message
+          </label>
           <textarea
+            id="contact-message"
             name="message"
             value={formData.message}
             onChange={handleChange}
             required
             placeholder="Your message..."
             rows={4}
-            className="w-full resize-none rounded-xl border border-border/25 bg-card/40 px-4 py-3 text-sm text-foreground transition-all placeholder:text-foreground/30 focus:border-foreground/20 focus:outline-none"
+            className="w-full resize-none rounded-xl border border-border/25 bg-card/40 px-4 py-3 text-sm text-foreground transition-all placeholder:text-foreground/30 focus:border-foreground/20 focus:ring-1 focus:ring-ring/50 focus:outline-none"
           />
 
           {/* Status Messages */}

@@ -80,13 +80,14 @@ export function ProfileHeader() {
   const istTime = useISTClock();
   const { auraOn, toggle, mounted } = useAura();
   const [clicked, setClicked] = useState(false);
+  const [burstKey, setBurstKey] = useState(0);
 
   const effectiveAura = !mounted || auraOn;
 
   const handleAvatarClick = () => {
     toggle();
-    // Brief scale-down click feedback
     setClicked(true);
+    setBurstKey((k) => k + 1);
     setTimeout(() => setClicked(false), 300);
   };
 
@@ -97,63 +98,168 @@ export function ProfileHeader() {
 
       {/* Avatar with Aura Toggle */}
       <div className="relative shrink-0 pb-5 sm:pr-8 sm:pb-0">
-        {/* Outer glow layers — only visible when aura is ON */}
         <button
           onClick={handleAvatarClick}
           aria-label={effectiveAura ? "Disable aura" : "Enable aura"}
           aria-pressed={effectiveAura}
-          className="group relative flex items-center justify-center rounded-full focus:outline-none"
+          className="group relative flex aspect-square items-center justify-center rounded-full outline-none focus:outline-none focus-visible:outline-none"
         >
-          {/* Layer 3 — Thundering Flash (Anime Style) */}
+          {/* Layer 4 — Outer bloom (soft diffuse glow) */}
           <span
             className={cn(
-              "pointer-events-none absolute inset-[-12px] rounded-full transition-all duration-700",
-              "bg-white opacity-0 blur-xl",
-              effectiveAura && "animate-thunder-flash"
-            )}
-          />
-
-          {/* Energy Bolts */}
-          {effectiveAura && (
-            <>
-              <span className="animate-energy-bolt absolute inset-[-20px] z-[-1] bg-[var(--aura-color-1)] blur-[2px]" />
-              <span className="animate-energy-bolt absolute inset-[-20px] z-[-1] rotate-45 bg-[var(--aura-color-2)] blur-[2px] delay-1000" />
-            </>
-          )}
-
-          {/* Layer 2 — Rotating Orbit (Sharp & Fast) */}
-          <span
-            className={cn(
-              "pointer-events-none absolute inset-[-6px] rounded-full transition-all duration-1000",
-              "bg-[conic-gradient(from_0deg,transparent_0%,var(--aura-color-1)_20%,var(--aura-color-3)_25%,var(--aura-color-2)_50%,var(--aura-color-3)_75%,var(--aura-color-1)_80%,transparent_100%)]",
-              "animate-[spin_1.5s_linear_infinite] blur-[3px]",
-              effectiveAura ? "scale-100" : "scale-90 opacity-0"
+              "pointer-events-none absolute inset-[-24px] aspect-square rounded-full transition-all duration-700",
+              "bg-[radial-gradient(circle,var(--aura-color-1)_0%,var(--aura-color-2)_40%,transparent_70%)]",
+              "blur-2xl",
+              effectiveAura ? "animate-aura-bloom" : "scale-90 opacity-0"
             )}
             style={{ opacity: effectiveAura ? "var(--aura-opacity)" : 0 }}
           />
 
-          {/* Layer 1 — Tight glowing border (Pulse & Jitter) */}
+          {/* Layer 3 — Rotating ring (SVG for guaranteed circle) */}
+          {effectiveAura && (
+            <svg
+              className={cn(
+                "pointer-events-none absolute inset-[-10px] z-[1] animate-[spin_8s_linear_infinite] transition-all duration-1000",
+                effectiveAura ? "scale-100" : "scale-90 opacity-0"
+              )}
+              viewBox="0 0 100 100"
+              fill="none"
+              style={{ opacity: "var(--aura-opacity)" }}
+            >
+              <defs>
+                <linearGradient
+                  id="aura-ring-grad"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
+                  <stop
+                    offset="0%"
+                    stopColor="var(--aura-color-1)"
+                    stopOpacity="0.8"
+                  />
+                  <stop
+                    offset="40%"
+                    stopColor="var(--aura-color-2)"
+                    stopOpacity="0.5"
+                  />
+                  <stop
+                    offset="70%"
+                    stopColor="var(--aura-color-3)"
+                    stopOpacity="0.3"
+                  />
+                  <stop
+                    offset="100%"
+                    stopColor="var(--aura-color-1)"
+                    stopOpacity="0"
+                  />
+                </linearGradient>
+              </defs>
+              <circle
+                cx="50"
+                cy="50"
+                r="46"
+                stroke="url(#aura-ring-grad)"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeDasharray="120 170"
+                filter="blur(2px)"
+              />
+            </svg>
+          )}
+
+          {/* Layer 2 — Inner ring pulse */}
           <span
             className={cn(
-              "pointer-events-none absolute inset-0 rounded-full transition-all duration-400",
+              "pointer-events-none absolute inset-[-1px] aspect-square rounded-full transition-all duration-500",
               effectiveAura
-                ? "animate-aura-jitter ring-4 ring-blue-500/80 ring-offset-2 ring-offset-background dark:ring-cyan-500/70"
-                : "ring-0"
+                ? "animate-aura-ring-pulse ring-2 ring-[var(--aura-color-1)]/60 ring-offset-1 ring-offset-background"
+                : "opacity-0 ring-0"
             )}
           />
+
+          {/* Orbiting particles */}
+          {effectiveAura && (
+            <>
+              <span
+                className="animate-aura-orbit pointer-events-none absolute inset-0 z-[1]"
+                style={{ top: "50%", left: "50%", width: 0, height: 0 }}
+              >
+                <span
+                  className="absolute size-2 rounded-full blur-[2px]"
+                  style={{
+                    background: "var(--aura-particle)",
+                    boxShadow: "0 0 6px 2px var(--aura-particle)",
+                    top: "-3px",
+                    left: "-3px",
+                  }}
+                />
+              </span>
+              <span
+                className="animate-aura-orbit-reverse pointer-events-none absolute inset-0 z-[1]"
+                style={{ top: "50%", left: "50%", width: 0, height: 0 }}
+              >
+                <span
+                  className="absolute size-1.5 rounded-full blur-[1px]"
+                  style={{
+                    background: "var(--aura-color-2)",
+                    boxShadow: "0 0 4px 1px var(--aura-color-2)",
+                    top: "-2px",
+                    left: "-2px",
+                  }}
+                />
+              </span>
+            </>
+          )}
+
+          {/* Click burst ring */}
+          <span
+            key={burstKey}
+            className={cn(
+              "pointer-events-none absolute inset-0 z-[3] aspect-square rounded-full",
+              "ring-2 ring-[var(--aura-color-1)]/70",
+              burstKey > 0 ? "animate-aura-click-burst" : "opacity-0"
+            )}
+          />
+
+          {/* Wisps — faint tendrils drifting upward */}
+          {effectiveAura && (
+            <>
+              <span
+                className="animate-aura-wisp pointer-events-none absolute top-0 left-1/3 z-[1] h-8 w-[2px] rounded-full opacity-0"
+                style={{
+                  background:
+                    "linear-gradient(to top, var(--aura-color-1), transparent)",
+                }}
+              />
+              <span
+                className="animate-aura-wisp-delayed pointer-events-none absolute top-0 right-1/3 z-[1] h-6 w-[2px] rounded-full opacity-0"
+                style={{
+                  background:
+                    "linear-gradient(to top, var(--aura-color-2), transparent)",
+                }}
+              />
+            </>
+          )}
 
           <HoverCard openDelay={100} closeDelay={100}>
             <HoverCardTrigger asChild>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 className={cn(
-                  "size-28 cursor-pointer rounded-full bg-zinc-800 ring-offset-background grayscale transition-all duration-300 select-none sm:size-36 dark:bg-zinc-900 dark:grayscale-0 dark:hover:grayscale-0",
+                  "relative z-[2] size-28 cursor-pointer rounded-full bg-zinc-800 ring-offset-background grayscale transition-all duration-300 select-none sm:size-36 dark:bg-zinc-900 dark:grayscale-0 dark:hover:grayscale-0",
                   "hover:grayscale-[50%]",
                   clicked ? "scale-95" : "scale-100",
                   effectiveAura && "animate-aura-breath hover:scale-[1.05]"
                 )}
                 alt={`${USER.displayName}'s avatar`}
                 src={USER.avatar}
+                style={
+                  effectiveAura
+                    ? { boxShadow: "0 0 20px 4px var(--aura-ring)" }
+                    : undefined
+                }
                 fetchPriority="high"
               />
             </HoverCardTrigger>
@@ -163,12 +269,12 @@ export function ProfileHeader() {
           </HoverCard>
         </button>
 
-        {/* Tiny aura status label */}
+        {/* Aura status label */}
         <p
           className={cn(
             "absolute -bottom-1 left-1/2 -translate-x-1/2 font-mono text-[9px] tracking-widest whitespace-nowrap uppercase transition-all duration-500",
             effectiveAura
-              ? "translate-y-0 text-blue-600 opacity-60 dark:text-emerald-400"
+              ? "translate-y-0 text-[var(--aura-color-1)] opacity-60"
               : "pointer-events-none translate-y-1 opacity-0"
           )}
         >

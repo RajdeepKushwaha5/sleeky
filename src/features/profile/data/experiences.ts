@@ -31,6 +31,26 @@ export const EXPERIENCES: Experience[] = [
     ],
   },
   {
+    id: "accomplish-ai",
+    companyName: "Accomplish",
+    companyLogo: "/company/accomplish.png",
+    positions: [
+      {
+        id: "accomplish-oss-contributor",
+        title: "Open Source Contributor",
+        employmentPeriod: {
+          start: "02.2026",
+          end: "03.2026",
+        },
+        employmentType: "Part-time",
+        icon: "code",
+        description: `Contributed features and fixes to Accomplish, an open-source AI desktop agent (9.8k+ stars). Built native desktop automation via MCP tool integration. Added "Escape to stop" for interrupting running tasks, enhanced code blocks with syntax highlighting and copy support, and improved error handling with actionable messages on task failure. [PR #691](https://github.com/accomplish-ai/accomplish/pull/691) · [PR #633](https://github.com/accomplish-ai/accomplish/pull/633) · [PR #708](https://github.com/accomplish-ai/accomplish/pull/708)`,
+        skills: ["TypeScript", "React", "Electron", "Node.js", "Testing"],
+        isExpanded: false,
+      },
+    ],
+  },
+  {
     id: "oumi-ai",
     companyName: "Oumi",
     companyLogo: "/company/oumi.png",

@@ -282,7 +282,10 @@ export function CommandMenu({ posts }: { posts: Post[] }) {
       </Button>
 
       <CommandDialog open={open} onOpenChange={setOpen}>
-        <CommandInput placeholder="Type a command or search..." />
+        <CommandInput
+          placeholder="Type a command or search..."
+          aria-label="Search commands and navigation"
+        />
 
         <CommandList className="min-h-80">
           <CommandEmpty>No results found.</CommandEmpty>

@@ -20,7 +20,7 @@ export const fontSyne = FontSyne({
   display: "swap",
   subsets: ["latin"],
   variable: "--font-syne",
-  preload: true,
+  preload: false,
 });
 
 export const fontOutfit = FontOutfit({
@@ -28,7 +28,7 @@ export const fontOutfit = FontOutfit({
   display: "swap",
   subsets: ["latin"],
   variable: "--font-outfit",
-  preload: true,
+  preload: false,
 });
 
 export const fontSerif = FontSerif({
@@ -37,7 +37,7 @@ export const fontSerif = FontSerif({
   display: "swap",
   subsets: ["latin"],
   variable: "--font-serif",
-  preload: true,
+  preload: false,
 });
 
 export const fontMono = FontMono({
@@ -45,7 +45,7 @@ export const fontMono = FontMono({
   display: "swap",
   subsets: ["latin"],
   variable: "--font-mono",
-  preload: true,
+  preload: false,
 });
 
 export const fontSpaceGrotesk = FontSpaceGrotesk({
@@ -53,5 +53,5 @@ export const fontSpaceGrotesk = FontSpaceGrotesk({
   display: "swap",
   subsets: ["latin"],
   variable: "--font-space-grotesk",
-  preload: true,
+  preload: false,
 });
