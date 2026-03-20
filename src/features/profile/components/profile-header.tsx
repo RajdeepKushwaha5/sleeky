@@ -116,59 +116,26 @@ export function ProfileHeader() {
             style={{ opacity: effectiveAura ? "var(--aura-opacity)" : 0 }}
           />
 
-          {/* Layer 3 — Rotating ring (SVG for guaranteed circle) */}
-          {effectiveAura && (
-            <svg
-              className={cn(
-                "pointer-events-none absolute inset-[-10px] z-[1] animate-[spin_8s_linear_infinite] transition-all duration-1000",
-                effectiveAura ? "scale-100" : "scale-90 opacity-0"
-              )}
-              viewBox="0 0 100 100"
-              fill="none"
-              style={{ opacity: "var(--aura-opacity)" }}
-            >
-              <defs>
-                <linearGradient
-                  id="aura-ring-grad"
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="100%"
-                >
-                  <stop
-                    offset="0%"
-                    stopColor="var(--aura-color-1)"
-                    stopOpacity="0.8"
-                  />
-                  <stop
-                    offset="40%"
-                    stopColor="var(--aura-color-2)"
-                    stopOpacity="0.5"
-                  />
-                  <stop
-                    offset="70%"
-                    stopColor="var(--aura-color-3)"
-                    stopOpacity="0.3"
-                  />
-                  <stop
-                    offset="100%"
-                    stopColor="var(--aura-color-1)"
-                    stopOpacity="0"
-                  />
-                </linearGradient>
-              </defs>
-              <circle
-                cx="50"
-                cy="50"
-                r="46"
-                stroke="url(#aura-ring-grad)"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeDasharray="120 170"
-                filter="blur(2px)"
-              />
-            </svg>
-          )}
+          {/* Layer 3 — Pulsing halo ring */}
+          <span
+            className={cn(
+              "pointer-events-none absolute inset-[-8px] z-[1] aspect-square rounded-full transition-all duration-1000",
+              effectiveAura ? "scale-100 opacity-100" : "scale-90 opacity-0"
+            )}
+            style={
+              effectiveAura
+                ? {
+                    boxShadow: [
+                      "0 0 12px 2px var(--aura-color-1)",
+                      "0 0 24px 4px var(--aura-color-2)",
+                      "inset 0 0 12px 2px var(--aura-color-3)",
+                    ].join(", "),
+                    animation: "aura-ring-pulse 3s ease-in-out infinite",
+                    opacity: "var(--aura-opacity)",
+                  }
+                : undefined
+            }
+          />
 
           {/* Layer 2 — Inner ring pulse */}
           <span
