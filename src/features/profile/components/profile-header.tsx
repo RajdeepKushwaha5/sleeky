@@ -42,13 +42,13 @@ function useISTClock() {
 }
 
 function useAura() {
-  const [auraOn, setAuraOn] = useState(true);
+  const [auraOn, setAuraOn] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem(AURA_KEY);
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setAuraOn(saved !== "off");
+    setAuraOn(saved === "on");
     setMounted(true);
   }, []);
 
@@ -83,7 +83,7 @@ export function ProfileHeader() {
   const [clicked, setClicked] = useState(false);
   const [burstKey, setBurstKey] = useState(0);
 
-  const effectiveAura = !mounted || auraOn;
+  const effectiveAura = mounted && auraOn;
 
   const handleAvatarClick = () => {
     toggle();
