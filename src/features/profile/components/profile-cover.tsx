@@ -1,9 +1,63 @@
 "use client";
 
 import { motion } from "motion/react";
+import { useEffect, useState } from "react";
 
 import { BrandContextMenu } from "@/components/brand-context-menu";
 import { cn } from "@/lib/utils";
+
+function ThemedCoverGif() {
+  const [isDark, setIsDark] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    const root = document.documentElement;
+
+    const resolve = () => {
+      const cls = root.classList;
+      if (cls.contains("dark")) return setIsDark(true);
+      if (cls.contains("light")) return setIsDark(false);
+      setIsDark(mq.matches);
+    };
+
+    resolve();
+
+    // Watch for class changes (next-themes toggles .dark/.light)
+    const observer = new MutationObserver(resolve);
+    observer.observe(root, { attributes: true, attributeFilter: ["class"] });
+    mq.addEventListener("change", resolve);
+
+    return () => {
+      observer.disconnect();
+      mq.removeEventListener("change", resolve);
+    };
+  }, []);
+
+  if (isDark === null) return null; // SSR / first paint — show nothing briefly
+
+  return isDark ? (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      className="absolute inset-0 z-0 h-full w-full object-cover"
+      src="/assets/kiminonawa-sky.gif"
+      alt=""
+      loading="eager"
+      fetchPriority="low"
+      decoding="async"
+    />
+  ) : (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      className="absolute inset-0 z-0 h-full w-full object-cover"
+      style={{ filter: "grayscale(100%) contrast(1.1)" }}
+      src="/assets/giphy.gif"
+      alt=""
+      loading="eager"
+      fetchPriority="low"
+      decoding="async"
+    />
+  );
+}
 
 export function ProfileCover() {
   return (
@@ -19,28 +73,8 @@ export function ProfileCover() {
           "before:ring-2 before:ring-white/10 before:ring-inset dark:before:ring-white/5"
         )}
       >
-        {/* Animated Background - Light mode with warm tint */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          className="absolute inset-0 z-0 h-full w-full object-cover dark:hidden"
-          style={{ filter: "grayscale(100%) contrast(1.1)" }}
-          src="/assets/giphy.gif"
-          alt=""
-          loading="eager"
-          fetchPriority="low"
-          decoding="async"
-        />
-
-        {/* Animated Background - Dark mode */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          className="absolute inset-0 z-0 hidden h-full w-full object-cover dark:block"
-          src="/assets/kiminonawa-sky.gif"
-          alt=""
-          loading="eager"
-          fetchPriority="low"
-          decoding="async"
-        />
+        {/* Animated Background — only loads the GIF matching the active theme */}
+        <ThemedCoverGif />
 
         {/* Cinematic gradient overlay */}
         <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black/60 via-black/25 to-black/5 dark:from-black/70 dark:via-black/30 dark:to-black/10" />

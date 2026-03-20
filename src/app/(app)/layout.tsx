@@ -1,6 +1,9 @@
 import dynamic from "next/dynamic";
 
-import { Chatbot } from "@/components/chatbot";
+const Chatbot = dynamic(
+  () => import("@/components/chatbot").then((mod) => mod.Chatbot),
+  { ssr: false }
+);
 import { GradientMesh } from "@/components/gradient-mesh";
 import { KeyboardNavigation } from "@/components/keyboard-navigation";
 import { KeyboardShortcutHint } from "@/components/keyboard-shortcut-hint";

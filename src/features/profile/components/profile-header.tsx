@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 import {
@@ -245,8 +246,7 @@ export function ProfileHeader() {
 
           <HoverCard openDelay={100} closeDelay={100}>
             <HoverCardTrigger asChild>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 className={cn(
                   "relative z-[2] size-28 cursor-pointer rounded-full bg-zinc-800 ring-offset-background grayscale transition-all duration-300 select-none sm:size-36 dark:bg-zinc-900 dark:grayscale-0 dark:hover:grayscale-0",
                   "hover:grayscale-[50%]",
@@ -255,12 +255,14 @@ export function ProfileHeader() {
                 )}
                 alt={`${USER.displayName}'s avatar`}
                 src={USER.avatar}
+                width={144}
+                height={144}
+                priority
                 style={
                   effectiveAura
                     ? { boxShadow: "0 0 20px 4px var(--aura-ring)" }
                     : undefined
                 }
-                fetchPriority="high"
               />
             </HoverCardTrigger>
             <HoverCardContent side="right" align="start" className="w-auto p-0">
