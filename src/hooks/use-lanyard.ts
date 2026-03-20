@@ -61,6 +61,8 @@ export function useLanyard(userId: string) {
     let ws: WebSocket | null = null;
     const heartbeatIntervals: NodeJS.Timeout[] = [];
     let reconnectTimeout: NodeJS.Timeout | null = null;
+    let reconnectAttempts = 0;
+    const MAX_RECONNECT_DELAY = 60000; // 1 minute max
 
     const connect = () => {
       try {
@@ -68,6 +70,7 @@ export function useLanyard(userId: string) {
 
         ws.onopen = () => {
           setError(null);
+          reconnectAttempts = 0; // Reset on successful connection
         };
 
         ws.onmessage = (event) => {
@@ -132,10 +135,15 @@ export function useLanyard(userId: string) {
         ws.onclose = () => {
           heartbeatIntervals.forEach(clearInterval);
 
-          // Reconnect after 5 seconds
+          // Reconnect with exponential backoff (5s, 10s, 20s, ... up to 60s)
+          const delay = Math.min(
+            5000 * Math.pow(2, reconnectAttempts),
+            MAX_RECONNECT_DELAY
+          );
+          reconnectAttempts++;
           reconnectTimeout = setTimeout(() => {
             connect();
-          }, 5000);
+          }, delay);
         };
       } catch (err) {
         setError(err instanceof Error ? err : new Error("Unknown error"));

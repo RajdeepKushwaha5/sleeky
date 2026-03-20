@@ -6,12 +6,25 @@ type GitHubContributionsResponse = {
 };
 
 export async function getGitHubContributions() {
-  const res = await fetch(
-    `https://github-contributions-api.jogruber.de/v4/${GITHUB_USERNAME}?y=last`,
-    {
-      next: { revalidate: 86400 }, // Cache for 1 day (86400 seconds)
-    }
-  );
-  const data = (await res.json()) as GitHubContributionsResponse;
-  return data.contributions;
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10000);
+
+    const res = await fetch(
+      `https://github-contributions-api.jogruber.de/v4/${GITHUB_USERNAME}?y=last`,
+      {
+        next: { revalidate: 86400 }, // Cache for 1 day (86400 seconds)
+        signal: controller.signal,
+      }
+    );
+
+    clearTimeout(timeout);
+
+    if (!res.ok) return [];
+
+    const data = (await res.json()) as GitHubContributionsResponse;
+    return data.contributions;
+  } catch {
+    return [];
+  }
 }

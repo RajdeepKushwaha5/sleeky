@@ -1,10 +1,8 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
-const TELEGRAM_BOT_TOKEN =
-  process.env.TELEGRAM_BOT_TOKEN ||
-  "8263388828:AAH8Kh8XpUneYuFP4b2hu7SY5sT-MYGC_EA";
-const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID || "5792669341";
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
 interface ContactFormData {
   name: string;
@@ -14,6 +12,13 @@ interface ContactFormData {
 
 export async function POST(request: NextRequest) {
   try {
+    if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
+      return NextResponse.json(
+        { error: "Contact form is not configured" },
+        { status: 503 }
+      );
+    }
+
     const body: ContactFormData = await request.json();
 
     // Validate required fields

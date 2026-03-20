@@ -11,6 +11,9 @@ export async function GET() {
       );
     }
 
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10000);
+
     const response = await fetch(
       "https://wakatime.com/api/v1/users/current/summaries?range=last_7_days",
       {
@@ -18,8 +21,11 @@ export async function GET() {
           Authorization: `Basic ${Buffer.from(apiKey).toString("base64")}`,
         },
         next: { revalidate: 300 }, // Cache for 5 minutes
+        signal: controller.signal,
       }
     );
+
+    clearTimeout(timeout);
 
     if (!response.ok) {
       throw new Error(`WakaTime API error: ${response.status}`);
