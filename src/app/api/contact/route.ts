@@ -1,6 +1,8 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
+import { rateLimit } from "@/lib/rate-limit";
+
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
@@ -16,6 +18,24 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { error: "Contact form is not configured" },
         { status: 503 }
+      );
+    }
+
+    // Rate limit: 5 submissions per 15 minutes per IP
+    const ip =
+      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+      "anonymous";
+    const { allowed, resetInSeconds } = await rateLimit(
+      `ratelimit:contact:${ip}`,
+      5,
+      900
+    );
+    if (!allowed) {
+      return NextResponse.json(
+        {
+          error: `Too many requests. Please try again in ${Math.ceil(resetInSeconds / 60)} minutes.`,
+        },
+        { status: 429 }
       );
     }
 

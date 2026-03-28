@@ -2,6 +2,8 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
+import { rateLimit } from "@/lib/rate-limit";
+
 const PORTFOLIO_CONTEXT = `
 You are an AI assistant EXCLUSIVELY for Rajdeep Singh's portfolio website. Your ONLY purpose is to answer questions about Rajdeep Singh - his skills, projects, experience, contact information, and career.
 
@@ -167,6 +169,24 @@ INVALID (Roast them):
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate limit: 20 messages per 10 minutes per IP
+    const ip =
+      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+      "anonymous";
+    const { allowed, resetInSeconds } = await rateLimit(
+      `ratelimit:chatbot:${ip}`,
+      20,
+      600
+    );
+    if (!allowed) {
+      return NextResponse.json(
+        {
+          error: `Slow down! Too many messages. Try again in ${Math.ceil(resetInSeconds / 60)} minutes.`,
+        },
+        { status: 429 }
+      );
+    }
+
     const { message } = await request.json();
 
     if (!message) {

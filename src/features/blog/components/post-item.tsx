@@ -8,6 +8,7 @@ import type { Post } from "@/features/blog/types/post";
 import { cn } from "@/lib/utils";
 
 import { calculateReadingTime, formatReadingTime } from "../lib/reading-time";
+import { PostViewCountReadOnly } from "./post-view-count";
 
 export function PostItem({
   post,
@@ -82,6 +83,10 @@ export function PostItem({
             <dd>{formatReadingTime(readingTime)}</dd>
           </div>
         </dl>
+
+        <div className="flex items-center gap-3 font-mono text-xs text-foreground/40">
+          <PostViewCountReadOnly slug={post.slug} />
+        </div>
       </div>
     </Link>
   );

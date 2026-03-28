@@ -16,6 +16,7 @@ import { SITE_INFO } from "@/config/site";
 import { PostKeyboardShortcuts } from "@/features/blog/components/post-keyboard-shortcuts";
 import { LLMCopyButtonWithViewOptions } from "@/features/blog/components/post-page-actions";
 import { PostShareMenu } from "@/features/blog/components/post-share-menu";
+import { PostViewCount } from "@/features/blog/components/post-view-count";
 import { RelatedPosts } from "@/features/blog/components/related-posts";
 import { SocialShareButtons } from "@/features/blog/components/social-share-buttons";
 import {
@@ -185,6 +186,14 @@ export default async function Page({
           <h1 className="screen-line-after mb-6 font-semibold">
             {post.metadata.title}
           </h1>
+
+          <div className="not-prose mb-6 flex items-center gap-3 font-mono text-xs text-foreground/40">
+            <time dateTime={dayjs(post.metadata.createdAt).toISOString()}>
+              {dayjs(post.metadata.createdAt).format("DD.MM.YYYY")}
+            </time>
+            <span className="text-foreground/20">•</span>
+            <PostViewCount slug={slug} />
+          </div>
 
           <p className="lead mt-6 mb-6">{post.metadata.description}</p>
 
