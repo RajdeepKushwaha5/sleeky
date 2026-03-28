@@ -231,14 +231,6 @@ button,
   /* Selection text */
   --selection-foreground: oklch(0.99 0 0);
 
-  /* Aura colors — Ethereal Energy Field */
-  --aura-color-1: #6366f1; /* Indigo */
-  --aura-color-2: #a78bfa; /* Soft Violet */
-  --aura-color-3: #818cf8; /* Periwinkle */
-  --aura-ring: rgba(99, 102, 241, 0.5);
-  --aura-particle: #6366f1;
-  --aura-opacity: 0.85;
-
   --shadow-popover:
     0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
 }
@@ -274,14 +266,6 @@ button,
   --code-highlight: oklch(0.15 0.004 285);
   --selection: oklch(0.68 0.12 80);
   --selection-foreground: oklch(0.09 0.005 285);
-
-  /* Aura colors — Ethereal Dark Mode */
-  --aura-color-1: #818cf8; /* Soft Indigo */
-  --aura-color-2: #c084fc; /* Light Purple */
-  --aura-color-3: #67e8f9; /* Cyan accent */
-  --aura-ring: rgba(129, 140, 248, 0.45);
-  --aura-particle: #67e8f9;
-  --aura-opacity: 0.7;
 
   --shadow-popover:
     0 8px 32px rgba(0, 0, 0, 0.5), 0 0 1px rgba(255, 255, 255, 0.05);
@@ -346,78 +330,6 @@ button,
     /* Responsive font scaling */
     font-size: clamp(0.875rem, 0.84rem + 0.25vw, 1rem);
     line-height: 1.7;
-  }
-
-  /* ── Ambient Aura Glow (Anime Storm Inspired) ────────────────── */
-  body::before {
-    content: "";
-    position: fixed;
-    inset: -20%;
-    z-index: 0;
-    pointer-events: none;
-    background:
-      radial-gradient(
-        ellipse 60% 40% at 0% 0%,
-        color-mix(in srgb, var(--aura-color-1) 18%, transparent) 0%,
-        transparent 70%
-      ),
-      radial-gradient(
-        ellipse 60% 40% at 100% 0%,
-        color-mix(in srgb, var(--aura-color-2) 15%, transparent) 0%,
-        transparent 70%
-      ),
-      radial-gradient(
-        ellipse 60% 50% at 100% 100%,
-        color-mix(in srgb, var(--aura-color-1) 16%, transparent) 0%,
-        transparent 70%
-      ),
-      radial-gradient(
-        ellipse 60% 50% at 0% 100%,
-        color-mix(in srgb, var(--aura-color-2) 12%, transparent) 0%,
-        transparent 70%
-      );
-    transition: opacity 0.6s ease;
-    opacity: 1;
-    animation: aura-drift 20s linear infinite;
-  }
-
-  @keyframes aura-drift {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
-  .dark body::before {
-    /* Dark mode: soft emerald/teal glow */
-    background:
-      radial-gradient(
-        ellipse 60% 40% at 0% 0%,
-        color-mix(in srgb, var(--aura-color-2) 7%, transparent) 0%,
-        transparent 70%
-      ),
-      radial-gradient(
-        ellipse 60% 40% at 100% 0%,
-        color-mix(in srgb, var(--aura-color-1) 5%, transparent) 0%,
-        transparent 70%
-      ),
-      radial-gradient(
-        ellipse 60% 50% at 100% 100%,
-        color-mix(in srgb, var(--aura-color-2) 6%, transparent) 0%,
-        transparent 70%
-      ),
-      radial-gradient(
-        ellipse 60% 50% at 0% 100%,
-        color-mix(in srgb, var(--aura-color-1) 4%, transparent) 0%,
-        transparent 70%
-      );
-  }
-
-  /* Aura toggle — hide glow when user turns it off */
-  .no-aura body::before {
-    opacity: 0;
   }
 
   /* Custom scrollbar styling. Thanks @shadcn-ui */
@@ -680,108 +592,6 @@ button,
 
 .animate-subtle-bounce {
   animation: subtle-bounce 2s ease-in-out infinite;
-}
-/* ── Aura Effect — Ethereal Energy Field ────────────────────── */
-
-/* Avatar gentle breathing scale */
-@keyframes aura-breath {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.03);
-  }
-}
-.animate-aura-breath {
-  animation: aura-breath 4s ease-in-out infinite;
-}
-
-/* Outer bloom — soft glow that breathes */
-@keyframes aura-bloom {
-  0%,
-  100% {
-    opacity: 0.4;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.08);
-  }
-}
-.animate-aura-bloom {
-  animation: aura-bloom 4s ease-in-out infinite;
-}
-
-/* Inner ring — gentle pulse */
-@keyframes aura-ring-pulse {
-  0%,
-  100% {
-    opacity: 0.5;
-    box-shadow: 0 0 8px 2px var(--aura-ring);
-  }
-  50% {
-    opacity: 1;
-    box-shadow: 0 0 16px 4px var(--aura-ring);
-  }
-}
-.animate-aura-ring-pulse {
-  animation: aura-ring-pulse 3s ease-in-out infinite;
-}
-
-/* Orbiting particle — small dot circling the avatar */
-@keyframes aura-orbit {
-  from {
-    transform: rotate(0deg) translateX(72px) rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg) translateX(72px) rotate(-360deg);
-  }
-}
-.animate-aura-orbit {
-  animation: aura-orbit 6s linear infinite;
-}
-.animate-aura-orbit-reverse {
-  animation: aura-orbit 8s linear infinite reverse;
-}
-
-/* Wisp — faint tendril that drifts upward */
-@keyframes aura-wisp {
-  0% {
-    opacity: 0;
-    transform: translateY(0) scaleY(1);
-  }
-  30% {
-    opacity: 0.6;
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-40px) scaleY(1.5);
-  }
-}
-.animate-aura-wisp {
-  animation: aura-wisp 3s ease-out infinite;
-}
-.animate-aura-wisp-delayed {
-  animation: aura-wisp 3.5s ease-out 1.2s infinite;
-}
-
-/* Click burst — expanding ring that fades out */
-@keyframes aura-click-burst {
-  0% {
-    transform: scale(0.8);
-    opacity: 0.9;
-  }
-  60% {
-    opacity: 0.4;
-  }
-  100% {
-    transform: scale(2.2);
-    opacity: 0;
-  }
-}
-.animate-aura-click-burst {
-  animation: aura-click-burst 0.6s ease-out forwards;
 }
 
 /* ── Respect reduced motion preference ────────────────── */

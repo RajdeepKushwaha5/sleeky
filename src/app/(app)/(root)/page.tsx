@@ -60,12 +60,12 @@ export default function Page() {
         <Separator />
 
         <FadeIn>
-          <Projects />
+          <Experiences />
         </FadeIn>
         <Separator />
 
         <FadeIn>
-          <Experiences />
+          <Projects />
         </FadeIn>
         <Separator />
 
@@ -85,12 +85,12 @@ export default function Page() {
         <Separator />
 
         <FadeIn>
-          <GitHubContributions />
+          <Activity />
         </FadeIn>
         <Separator />
 
         <FadeIn>
-          <Activity />
+          <GitHubContributions />
         </FadeIn>
         <Separator />
 

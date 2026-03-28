@@ -9,7 +9,7 @@ import { Panel, PanelHeader, PanelTitle } from "../panel";
 import { ProjectCard } from "./project-card";
 
 export function Projects() {
-  const visibleProjects = PROJECTS.slice(0, 4);
+  const visibleProjects = PROJECTS.slice(0, 2);
 
   return (
     <Panel id="projects">
@@ -30,12 +30,12 @@ export function Projects() {
               ease: [0.25, 0.46, 0.45, 0.94],
             }}
           >
-            <ProjectCard project={project} shouldPreloadImage={index <= 2} />
+            <ProjectCard project={project} shouldPreloadImage={index <= 1} />
           </motion.div>
         ))}
       </div>
 
-      {PROJECTS.length > 4 && (
+      {PROJECTS.length > 2 && (
         <div className="mt-8 flex justify-center">
           <Link
             href="/projects"

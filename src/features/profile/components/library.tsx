@@ -1,3 +1,11 @@
+"use client";
+
+import { ArrowRightIcon } from "lucide-react";
+import { useState } from "react";
+
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
 import { Panel, PanelContent, PanelHeader, PanelTitle } from "./panel";
 
 type Book = {
@@ -53,7 +61,11 @@ const LIBRARY: BookCategory[] = [
   },
 ];
 
+const INITIAL_VISIBLE = 3;
+
 export function Library() {
+  const [expanded, setExpanded] = useState(false);
+
   return (
     <Panel id="library">
       <PanelHeader>
@@ -62,32 +74,65 @@ export function Library() {
 
       <PanelContent>
         <div className="flex flex-col gap-8">
-          {LIBRARY.map((cat) => (
-            <div key={cat.label}>
-              {/* Category label */}
-              <p className="mb-4 font-mono text-[10px] font-semibold tracking-[0.14em] text-muted-foreground/50 uppercase">
-                {cat.label}
-              </p>
+          {LIBRARY.map((cat) => {
+            const visible = expanded
+              ? cat.books
+              : cat.books.slice(0, INITIAL_VISIBLE);
+            const hiddenCount = cat.books.length - INITIAL_VISIBLE;
 
-              {/* Books grid */}
-              <div className="grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
-                {cat.books.map((book) => (
-                  <div key={book.title} className="flex flex-col gap-0.5">
-                    <p className="text-sm leading-snug font-medium text-foreground/85">
-                      {book.title}
-                    </p>
-                    <p className="text-xs text-muted-foreground/50">
-                      {book.author}
-                    </p>
-                  </div>
-                ))}
+            return (
+              <div key={cat.label}>
+                {/* Category label */}
+                <p className="mb-4 font-mono text-[10px] font-semibold tracking-[0.14em] text-muted-foreground/50 uppercase">
+                  {cat.label}
+                </p>
+
+                {/* Books grid */}
+                <div className="grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
+                  {visible.map((book) => (
+                    <div key={book.title} className="flex flex-col gap-0.5">
+                      <p className="text-sm leading-snug font-medium text-foreground/85">
+                        {book.title}
+                      </p>
+                      <p className="text-xs text-muted-foreground/50">
+                        {book.author}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Hidden count hint */}
+                {!expanded && hiddenCount > 0 && (
+                  <p className="mt-2 text-xs text-muted-foreground/30">
+                    +{hiddenCount} more
+                  </p>
+                )}
               </div>
-            </div>
-          ))}
+            );
+          })}
 
-          <p className="font-serif text-xs text-muted-foreground/35 italic">
-            *and many more — these are just some of my best reads
-          </p>
+          {expanded && (
+            <p className="font-serif text-xs text-muted-foreground/35 italic">
+              *and many more — these are just some of my best reads
+            </p>
+          )}
+
+          {/* Toggle button */}
+          <div className="flex justify-center pt-2">
+            <Button
+              variant="outline"
+              className="rounded-full border-border/25 px-6 text-[13px] font-medium tracking-wide transition-all duration-300 hover:border-border/40 hover:bg-foreground/[0.04]"
+              onClick={() => setExpanded((prev) => !prev)}
+            >
+              {expanded ? "View Less" : "View More"}
+              <ArrowRightIcon
+                className={cn(
+                  "ml-1 size-4 transition-transform duration-200",
+                  expanded && "rotate-90"
+                )}
+              />
+            </Button>
+          </div>
         </div>
       </PanelContent>
     </Panel>
