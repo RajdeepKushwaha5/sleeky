@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import type { LanyardData } from "@/hooks/use-lanyard";
 import { getLastPlayedSpotify, useLanyard } from "@/hooks/use-lanyard";
@@ -23,6 +23,28 @@ export function LiveStatus() {
   const [lastPlayedSpotify] = useState<LanyardData["spotify"] | null>(() =>
     getLastPlayedSpotify()
   );
+  const [apiLastPlayed, setApiLastPlayed] = useState<
+    LanyardData["spotify"] | null
+  >(null);
+
+  // Fetch last played from Spotify API as a universal fallback
+  useEffect(() => {
+    fetch("/api/spotify/recently-played")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data && !data.error) {
+          setApiLastPlayed({
+            song: data.song,
+            artist: data.artist,
+            album: data.album,
+            album_art_url: data.album_art_url,
+            track_id: data.track_id,
+            timestamps: { start: 0, end: 0 },
+          });
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   // Check status
   const hasSpotify = data?.listening_to_spotify && data.spotify;
@@ -89,6 +111,8 @@ export function LiveStatus() {
                   />
                 ) : lastPlayedSpotify ? (
                   <SpotifyOfflineCard lastPlayed={lastPlayedSpotify} />
+                ) : apiLastPlayed ? (
+                  <SpotifyOfflineCard lastPlayed={apiLastPlayed} />
                 ) : (
                   <OfflineCard
                     icon="spotify"
