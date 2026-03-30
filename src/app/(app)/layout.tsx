@@ -4,7 +4,6 @@ import { ChatbotLazy } from "@/components/chatbot-lazy";
 import { KeyboardNavigation } from "@/components/keyboard-navigation";
 import { KeyboardShortcutHint } from "@/components/keyboard-shortcut-hint";
 import { NoiseOverlay } from "@/components/noise-overlay";
-import { SideRuler } from "@/components/side-ruler";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 
@@ -17,12 +16,6 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     <>
       {/* Noise/grain overlay for premium feel */}
       <NoiseOverlay />
-
-      {/* Left side ruler - Auto-detects current section */}
-      <SideRuler side="left" />
-
-      {/* Right side ruler - Auto-detects current section */}
-      <SideRuler side="right" />
 
       <SiteHeader />
       <main

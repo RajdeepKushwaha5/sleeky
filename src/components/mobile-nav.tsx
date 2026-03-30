@@ -15,9 +15,11 @@ import type { NavItem } from "@/types/nav";
 
 export function MobileNav({
   items,
+  extras,
   className,
 }: {
   items: NavItem[];
+  extras?: React.ReactNode;
   className?: string;
 }) {
   return (
@@ -25,11 +27,15 @@ export function MobileNav({
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
-          className={cn("group/toggle flex flex-col gap-1", className)}
+          className={cn(
+            "group/toggle flex h-9 w-9 flex-col items-center justify-center gap-[5px] rounded-lg transition-colors hover:bg-foreground/5",
+            className
+          )}
           size="icon"
         >
-          <span className="flex h-0.5 w-4 transform rounded-[1px] bg-foreground transition-transform group-data-[state=open]/toggle:translate-y-[3px] group-data-[state=open]/toggle:rotate-45" />
-          <span className="flex h-0.5 w-4 transform rounded-[1px] bg-foreground transition-transform group-data-[state=open]/toggle:translate-y-[-3px] group-data-[state=open]/toggle:-rotate-45" />
+          <span className="flex h-[2px] w-5 origin-center rounded-full bg-foreground transition-all duration-300 group-data-[state=open]/toggle:translate-y-[7px] group-data-[state=open]/toggle:rotate-45" />
+          <span className="flex h-[2px] w-3.5 self-end rounded-full bg-foreground transition-all duration-300 group-data-[state=open]/toggle:scale-0 group-data-[state=open]/toggle:opacity-0" />
+          <span className="flex h-[2px] w-4 rounded-full bg-foreground transition-all duration-300 group-data-[state=open]/toggle:-translate-y-[7px] group-data-[state=open]/toggle:-rotate-45" />
           <span className="sr-only">Toggle Menu</span>
         </Button>
       </DropdownMenuTrigger>
@@ -45,13 +51,8 @@ export function MobileNav({
         <div className="absolute bottom-2 left-2 h-4 w-4 border-b border-l border-foreground/10" />
         <div className="absolute right-2 bottom-2 h-4 w-4 border-r border-b border-foreground/10" />
 
-        {/* Header section with title */}
-        <div className="mb-6 flex items-center gap-2 px-2">
-          <div className="h-1.5 w-1.5 rounded-full bg-foreground/40" />
-          <span className="text-xs font-semibold tracking-widest text-muted-foreground uppercase">
-            Navigation
-          </span>
-        </div>
+        {/* Search extras */}
+        {extras && <div className="mb-4">{extras}</div>}
 
         {/* Menu items */}
         <div className="space-y-1">

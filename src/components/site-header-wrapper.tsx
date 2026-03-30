@@ -1,162 +1,20 @@
 "use client";
 
-import { useMotionValueEvent, useScroll } from "motion/react";
-import { useEffect, useState } from "react";
-
-import { cn } from "@/lib/utils";
-
-// Define section IDs for tracking (ordered as they appear on page)
-const SECTIONS = [
-  "hero",
-  "overview",
-  "about",
-  "experience",
-  "projects",
-  "blog",
-  "github",
-  "activity",
-  "stack",
-  "testimonials",
-  "awards",
-  "social",
-  "certs",
-  "live",
-  "contact",
-];
+import { HistoryNav } from "./history-nav";
 
 interface SiteHeaderClientProps {
-  logo: React.ReactNode;
-  nav: React.ReactNode;
   actions: React.ReactNode;
 }
 
-export function SiteHeaderClient({
-  logo,
-  nav,
-  actions,
-}: SiteHeaderClientProps) {
-  const { scrollY } = useScroll();
-  const [scrolled, setScrolled] = useState(false);
-  const [currentSection, setCurrentSection] = useState(1);
-  const [totalSections, setTotalSections] = useState(14);
-
-  useMotionValueEvent(scrollY, "change", (latestValue) => {
-    setScrolled(latestValue >= 20);
-  });
-
-  // Track current section based on scroll position
-  useEffect(() => {
-    let scrollHandler: (() => void) | null = null;
-
-    // Delay to ensure DOM is fully rendered
-    const initTimer = setTimeout(() => {
-      scrollHandler = () => {
-        const scrollPosition = window.scrollY + window.innerHeight / 3;
-
-        // Find all sections that exist on the page
-        const existingSections: { id: string; top: number }[] = [];
-
-        SECTIONS.forEach((sectionId) => {
-          const element = document.getElementById(sectionId);
-          if (element) {
-            existingSections.push({ id: sectionId, top: element.offsetTop });
-          }
-        });
-
-        if (existingSections.length === 0) return;
-
-        // Sort by position
-        existingSections.sort((a, b) => a.top - b.top);
-
-        // Find current section - default to first
-        let currentIndex = 0;
-        for (let i = 0; i < existingSections.length; i++) {
-          if (scrollPosition >= existingSections[i].top) {
-            currentIndex = i;
-          }
-        }
-
-        setTotalSections(existingSections.length);
-        setCurrentSection(currentIndex + 1);
-      };
-
-      scrollHandler();
-      window.addEventListener("scroll", scrollHandler, { passive: true });
-    }, 150);
-
-    return () => {
-      clearTimeout(initTimer);
-      if (scrollHandler) {
-        window.removeEventListener("scroll", scrollHandler);
-      }
-    };
-  }, []);
-
-  // Format section number with leading zero
-  const formatNumber = (num: number) => num.toString().padStart(2, "0");
-
+export function SiteHeaderClient({ actions }: SiteHeaderClientProps) {
   return (
-    <>
-      {/* Desktop Vertical Pill - Left Centered */}
-      <header className="font-space-grotesk fixed top-1/2 left-4 z-50 hidden -translate-y-1/2 flex-col gap-4 sm:flex">
-        <div
-          className={cn(
-            "flex flex-col items-center justify-between gap-4 overflow-hidden px-2.5 py-5",
-            "rounded-2xl border border-border/30 bg-background/80 backdrop-blur-2xl backdrop-saturate-150",
-            "shadow-2xl shadow-black/[0.03] dark:shadow-black/40",
-            "transition-all duration-700 ease-out",
-            // Refined inner glow
-            "before:absolute before:inset-0 before:-z-10 before:rounded-2xl before:bg-gradient-to-b before:from-foreground/[0.015] before:to-transparent",
-            // Subtle ring for depth
-            "ring-1 ring-white/50 dark:ring-white/[0.04]"
-          )}
-        >
-          {/* Logo */}
-          <div
-            className="relative z-10 shrink-0 rotate-180 transform text-base font-bold tracking-tight whitespace-nowrap"
-            style={{ writingMode: "vertical-rl" }}
-          >
-            {logo}
-          </div>
-
-          {/* Separator */}
-          <div className="h-px w-5 bg-gradient-to-r from-transparent via-border/60 to-transparent" />
-
-          {/* Navigation */}
-          <div className="relative z-10 flex shrink-0 flex-col items-center gap-3">
-            {nav}
-          </div>
-
-          {/* Separator */}
-          <div className="h-px w-5 bg-gradient-to-r from-transparent via-border/60 to-transparent" />
-
-          {/* Actions */}
-          <div className="relative z-10 flex shrink-0 flex-col items-center gap-2">
-            {actions}
-          </div>
-        </div>
-      </header>
-
-      {/* Mobile Top Bar */}
-      <header
-        data-scrolled={scrolled}
-        className="font-space-grotesk fixed top-4 right-0 left-0 z-50 flex justify-center px-4 sm:hidden"
-      >
-        <div
-          className={cn(
-            "relative flex h-14 items-center justify-between gap-3 px-4",
-            "rounded-2xl border border-border/30 bg-background/80 backdrop-blur-2xl backdrop-saturate-150",
-            "shadow-xl shadow-black/[0.03] dark:shadow-black/30",
-            "ring-1 ring-white/50 dark:ring-white/[0.04]",
-            "w-full max-w-[calc(100vw-2rem)] whitespace-nowrap transition-all duration-700 ease-out"
-          )}
-        >
-          <div className="relative z-10 shrink-0">{logo}</div>
-          <div className="relative z-10 flex items-center gap-1.5">
-            {actions}
-          </div>
-        </div>
-      </header>
-    </>
+    <header className="pointer-events-none fixed top-5 right-5 left-5 z-50 flex items-center justify-between">
+      <div className="pointer-events-auto">
+        <HistoryNav />
+      </div>
+      <div className="pointer-events-auto flex items-center gap-1.5">
+        {actions}
+      </div>
+    </header>
   );
 }

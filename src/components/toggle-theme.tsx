@@ -8,8 +8,6 @@ import { META_THEME_COLORS } from "@/config/site";
 import { useMetaColor } from "@/hooks/use-meta-color";
 import { useSound } from "@/hooks/use-sound";
 
-import { Button } from "./ui/button";
-
 export function ToggleTheme() {
   const { resolvedTheme, setTheme } = useTheme();
   const { setMetaColor } = useMetaColor();
@@ -74,11 +72,23 @@ export function ToggleTheme() {
     [playClick, switchTheme]
   );
 
+  const isDark = resolvedTheme === "dark";
+
   return (
-    <Button ref={buttonRef} variant="outline" size="icon" onClick={handleClick}>
-      <MoonStarIcon className="hidden [html.dark_&]:block" />
-      <SunIcon className="hidden [html.light_&]:block" />
-      <span className="sr-only">Toggle Theme</span>
-    </Button>
+    <button
+      ref={buttonRef}
+      onClick={handleClick}
+      aria-label="Toggle Theme"
+      className="relative flex h-8 w-16 cursor-pointer items-center rounded-full border border-foreground/20 bg-foreground/10 p-1 transition-colors duration-300"
+    >
+      {/* Sliding knob */}
+      <span
+        className="absolute top-1 flex h-6 w-6 items-center justify-center rounded-full bg-foreground shadow-md transition-all duration-300 ease-in-out"
+        style={{ left: isDark ? "calc(100% - 1.75rem)" : "0.25rem" }}
+      >
+        <SunIcon className="h-3.5 w-3.5 text-background transition-opacity duration-300 [html.dark_&]:opacity-0 [html.light_&]:opacity-100" />
+        <MoonStarIcon className="absolute h-3.5 w-3.5 text-background transition-opacity duration-300 [html.dark_&]:opacity-100 [html.light_&]:opacity-0" />
+      </span>
+    </button>
   );
 }
