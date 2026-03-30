@@ -2,6 +2,7 @@
 
 import { Loader2, MessageCircle, Send, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 interface Message {
@@ -147,9 +148,11 @@ export function Chatbot() {
                 <div className="relative shrink-0 grayscale dark:grayscale-0">
                   <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-[#2c4036] via-[#415d4e] to-[#2c4036] opacity-100 blur-md" />
                   <div className="relative h-12 w-12 overflow-hidden rounded-full border-2 border-background ring-2 ring-white/10">
-                    <img
+                    <Image
                       src="/final_about.png"
                       alt="Rajdeep's Assistant"
+                      width={48}
+                      height={48}
                       className="h-full w-full object-cover transition-transform duration-500 hover:scale-110"
                     />
                   </div>

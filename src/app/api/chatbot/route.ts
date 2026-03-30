@@ -189,9 +189,16 @@ export async function POST(request: NextRequest) {
 
     const { message } = await request.json();
 
-    if (!message) {
+    if (!message || typeof message !== "string") {
       return NextResponse.json(
         { error: "Message is required" },
+        { status: 400 }
+      );
+    }
+
+    if (message.length > 500) {
+      return NextResponse.json(
+        { error: "Message is too long (max 500 characters)" },
         { status: 400 }
       );
     }

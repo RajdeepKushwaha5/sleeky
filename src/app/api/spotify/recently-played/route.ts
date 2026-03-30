@@ -1,8 +1,18 @@
+import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
+import { rateLimit } from "@/lib/rate-limit";
 import { getRecentlyPlayed } from "@/lib/spotify";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  // Rate limit: 30 requests per 5 minutes per IP
+  const ip =
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+    "anonymous";
+  const { allowed } = await rateLimit(`ratelimit:spotify:${ip}`, 30, 300);
+  if (!allowed) {
+    return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+  }
   if (!process.env.SPOTIFY_REFRESH_TOKEN) {
     return NextResponse.json(
       { error: "Spotify not configured" },

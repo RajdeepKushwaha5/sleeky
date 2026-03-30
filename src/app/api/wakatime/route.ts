@@ -1,6 +1,17 @@
+import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
-export async function GET() {
+import { rateLimit } from "@/lib/rate-limit";
+
+export async function GET(request: NextRequest) {
+  // Rate limit: 30 requests per 5 minutes per IP
+  const ip =
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+    "anonymous";
+  const { allowed } = await rateLimit(`ratelimit:wakatime:${ip}`, 30, 300);
+  if (!allowed) {
+    return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+  }
   try {
     const apiKey = process.env.WAKATIME_API_KEY;
 

@@ -49,6 +49,23 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Validate field lengths
+    if (body.name.length > 100) {
+      return NextResponse.json(
+        { error: "Name is too long (max 100 characters)" },
+        { status: 400 }
+      );
+    }
+    if (body.email.length > 254) {
+      return NextResponse.json({ error: "Email is too long" }, { status: 400 });
+    }
+    if (body.message.length > 5000) {
+      return NextResponse.json(
+        { error: "Message is too long (max 5000 characters)" },
+        { status: 400 }
+      );
+    }
+
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(body.email)) {
