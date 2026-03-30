@@ -83,6 +83,7 @@ export function ToggleTheme() {
     >
       {/* Sliding knob */}
       <span
+        suppressHydrationWarning
         className="absolute top-1 flex h-6 w-6 items-center justify-center rounded-full bg-foreground shadow-md transition-all duration-300 ease-in-out"
         style={{ left: isDark ? "calc(100% - 1.75rem)" : "0.25rem" }}
       >
