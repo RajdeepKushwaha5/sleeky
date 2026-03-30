@@ -43,12 +43,15 @@
 | ![Performance](https://img.shields.io/badge/Performance-High-blue) | **Lightning Fast** | Next.js 16 with Turbopack for blazing performance |
 | ![Design](https://img.shields.io/badge/Design-Premium-vibrantgreen) | **Sleek UI** | Glassmorphism, smooth animations, and dark/light modes |
 | ![Intelligence](https://img.shields.io/badge/AI-Gemini_2.5-brightgreen) | **AI Assistant** | Integrated chatbot powered by Google Gemini 2.5 Flash |
-| ![Real-time](https://img.shields.io/badge/Real--time-Active-success) | **Live Status** | Real-time Discord, Spotify, and VS Code activity |
+| ![Real-time](https://img.shields.io/badge/Real--time-Active-success) | **Live Status** | Real-time Discord, Spotify, and VS Code activity via Lanyard |
+| ![Music](https://img.shields.io/badge/Spotify-Last_Played-1DB954) | **Spotify API** | Shows last played track for all visitors via Spotify Web API |
 | ![Analytics](https://img.shields.io/badge/Stats-WakaTime-informational) | **Coding Metrics** | Automated coding activity tracking via WakaTime |
 | ![Content](https://img.shields.io/badge/Content-MDX_Blog-blueviolet) | **MDX Blog** | Feature-rich blog powered by MDX and React components |
 | ![Adaptive](https://img.shields.io/badge/Responsive-Full-orange) | **Device Ready** | Optimized for seamless mobile, tablet, and desktop views |
 | ![Navigation](https://img.shields.io/badge/Nav-Keyboard-yellowgreen) | **Quick Nav** | Navigate sections with keyboard shortcuts (J/K) |
 | ![Optimization](https://img.shields.io/badge/SEO-Optimized-red) | **SEO Ready** | Structured data, meta tags, and high-performance sitemaps |
+| ![Security](https://img.shields.io/badge/Security-Hardened-critical) | **Secure** | Security headers, rate-limited APIs, input validation |
+| ![Contact](https://img.shields.io/badge/Contact-Telegram-26A5E4) | **Contact Form** | Messages sent directly to Telegram with rate limiting |
 
 ---
 
@@ -64,7 +67,8 @@
 | **Styling** | Tailwind CSS v4, shadcn/ui, Radix UI |
 | **Animation** | Framer Motion |
 | **AI Engine** | Google Generative AI (Gemini 2.5 Flash) |
-| **Integrations** | Lanyard API, WakaTime API |
+| **Integrations** | Lanyard API, WakaTime API, Spotify Web API |
+| **Database** | Upstash Redis (rate limiting, visitor counter) |
 | **Infrastructure** | Vercel |
 
 ---
@@ -79,14 +83,14 @@ cd sleeky
 # Install dependencies
 npm install
 
-# Set up environment variables
-cp .env.example .env.local
-
-# Start development server
+# Create your environment variables (see Environment Variables section)
+# Then start development server
 npm run dev
 ```
 
 Open **[http://localhost:1729](http://localhost:1729)** in your browser.
+
+> **Note:** No `.env.example` is provided. Create `.env.local` manually using the variables listed below.
 
 ---
 
@@ -94,17 +98,26 @@ Open **[http://localhost:1729](http://localhost:1729)** in your browser.
 
 ```env
 # App URL
-APP_URL=https://rajdeep-singh.vercel.app
+APP_URL=https://your-domain.vercel.app
 
 # AI Chatbot (Required for assistant)
 GEMINI_API_KEY=your_gemini_api_key
 
-# Notifications (Optional)
+# Notifications — Contact Form (Optional)
 TELEGRAM_BOT_TOKEN=your_bot_token
 TELEGRAM_CHAT_ID=your_chat_id
 
 # Coding Stats (Optional)
 WAKATIME_API_KEY=your_wakatime_key
+
+# Upstash Redis — Visitor Counter & Rate Limiting (Required)
+UPSTASH_REDIS_REST_URL=your_upstash_redis_url
+UPSTASH_REDIS_REST_TOKEN=your_upstash_redis_token
+
+# Spotify API — Last Played Track (Optional)
+SPOTIFY_CLIENT_ID=your_spotify_client_id
+SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
+SPOTIFY_REFRESH_TOKEN=your_spotify_refresh_token
 ```
 
 ---
@@ -130,7 +143,7 @@ sleeky/
 
 | Command | Description |
 | :--- | :--- |
-| `npm run dev` | Start development server on port 1408 |
+| `npm run dev` | Start development server on port 1729 |
 | `npm run build` | Build the application for production |
 | `npm run start` | Start the production server |
 | `npm run lint` | Run ESLint to check code quality |
