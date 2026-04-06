@@ -28,9 +28,9 @@ export function ProjectCard({
   return (
     <div
       className={cn(
-        "group/project flex h-full flex-col overflow-hidden rounded-2xl border border-border/50 bg-card/80",
+        "group/project flex h-full flex-col overflow-hidden rounded-2xl border border-border/15 bg-foreground/[0.02]",
         "transition-all duration-500 ease-out",
-        "hover:border-border hover:bg-card hover:shadow-xl hover:shadow-black/[0.04] dark:hover:shadow-black/30",
+        "hover:border-border/25 hover:bg-foreground/[0.04] hover:shadow-xl hover:shadow-black/[0.04] dark:hover:shadow-black/30",
         "hover:-translate-y-1"
       )}
     >
@@ -77,7 +77,7 @@ export function ProjectCard({
           {project.skills.slice(0, 4).map((tech) => (
             <div
               key={tech}
-              className="group/tech flex items-center gap-1.5 rounded-full border border-dashed border-primary/40 bg-gradient-to-r from-background to-muted/50 px-2.5 py-1 shadow-md shadow-primary/10"
+              className="group/tech flex items-center gap-1.5 rounded-full border border-dashed border-border/25 bg-foreground/[0.02] px-2.5 py-1"
               title={tech}
             >
               <TechIcon
@@ -90,7 +90,7 @@ export function ProjectCard({
             </div>
           ))}
           {project.skills.length > 4 && (
-            <span className="inline-flex items-center rounded-full border border-border/20 bg-muted/30 px-2.5 py-1 text-[10px] font-medium text-foreground/50">
+            <span className="inline-flex items-center rounded-full border border-border/15 bg-foreground/[0.03] px-2.5 py-1 text-[10px] font-medium text-foreground/50">
               +{project.skills.length - 4}
             </span>
           )}

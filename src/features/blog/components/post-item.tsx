@@ -26,7 +26,7 @@ export function PostItem({
       href={`/blog/${post.slug}`}
       prefetch={true}
       className={cn(
-        "group/post flex flex-col gap-3 rounded-2xl border border-border/25 bg-card/40 p-4 transition-all duration-300 hover:bg-card",
+        "group/post flex flex-col gap-3 rounded-2xl border border-border/15 bg-foreground/[0.02] p-4 transition-all duration-300 hover:border-border/25 hover:bg-foreground/[0.04]",
         compact && "p-3"
       )}
     >

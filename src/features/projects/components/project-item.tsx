@@ -21,9 +21,9 @@ export function ProjectItem({
   return (
     <div
       className={cn(
-        "group/project relative flex flex-col overflow-hidden rounded-2xl border border-border/25 bg-card/40",
+        "group/project relative flex flex-col overflow-hidden rounded-2xl border border-border/15 bg-foreground/[0.02]",
         "transition-all duration-300",
-        "hover:border-border/45 hover:bg-card hover:shadow-lg"
+        "hover:border-border/25 hover:bg-foreground/[0.04] hover:shadow-lg"
       )}
     >
       {/* Image Section */}
@@ -113,7 +113,7 @@ export function ProjectItem({
           {project.skills.slice(0, 5).map((tech) => (
             <div
               key={tech}
-              className="group/tech flex items-center gap-1.5 rounded-full border border-dashed border-primary/40 bg-gradient-to-r from-background to-muted/50 px-2.5 py-1 shadow-md shadow-primary/10"
+              className="group/tech flex items-center gap-1.5 rounded-full border border-dashed border-border/25 bg-foreground/[0.02] px-2.5 py-1"
               title={tech}
             >
               <TechIcon
@@ -126,7 +126,7 @@ export function ProjectItem({
             </div>
           ))}
           {project.skills.length > 5 && (
-            <span className="inline-flex items-center rounded-full border border-border/20 bg-muted/30 px-2.5 py-1 text-[10px] font-medium text-foreground/50">
+            <span className="inline-flex items-center rounded-full border border-border/15 bg-foreground/[0.03] px-2.5 py-1 text-[10px] font-medium text-foreground/50">
               +{project.skills.length - 5}
             </span>
           )}

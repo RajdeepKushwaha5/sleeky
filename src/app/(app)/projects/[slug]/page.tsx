@@ -176,7 +176,7 @@ export default async function CaseStudyPage({
         <header className="mb-12 space-y-6">
           {/* Project Logo */}
           {project.logo && (
-            <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-border/25">
+            <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-border/15">
               <Image
                 src={project.logo}
                 alt={project.title}
@@ -207,7 +207,7 @@ export default async function CaseStudyPage({
                 {caseStudy.metrics.map((metric, i) => (
                   <div
                     key={i}
-                    className="rounded-xl border border-border/25 bg-card/30 px-4 py-3 text-center"
+                    className="rounded-xl border border-border/15 bg-foreground/[0.02] px-4 py-3 text-center"
                   >
                     <div className="font-mono text-2xl font-bold text-foreground">
                       {metric.value}
@@ -273,7 +273,7 @@ export default async function CaseStudyPage({
         </div>
 
         {/* Footer CTA */}
-        <footer className="mt-12 rounded-2xl border border-border/25 bg-card/30 p-8 text-center">
+        <footer className="mt-12 rounded-2xl border border-border/15 bg-foreground/[0.02] p-8 text-center">
           <h3 className="font-serif text-xl font-semibold">
             Interested in working together?
           </h3>
