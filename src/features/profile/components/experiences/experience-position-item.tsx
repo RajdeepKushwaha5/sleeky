@@ -25,15 +25,15 @@ export function ExperiencePositionItem({
 
   return (
     <CollapsibleWithContext defaultOpen={position.isExpanded}>
-      <div className="group/exp rounded-xl border border-border/30 bg-card/30 p-4 transition-all duration-300 hover:border-border/60 hover:bg-card/50">
+      <div className="group/exp rounded-xl border border-border/15 bg-foreground/[0.02] p-4 transition-all duration-300 hover:border-border/30 hover:bg-foreground/[0.04]">
         <CollapsibleTrigger className="block w-full text-left select-none">
           <div className="flex items-start gap-4">
             {/* Icon */}
             <div
               className={cn(
                 "flex size-10 shrink-0 items-center justify-center rounded-xl",
-                "bg-muted/80 text-muted-foreground",
-                "border border-border/40 transition-all duration-300 group-hover/exp:border-border/60 group-hover/exp:bg-muted"
+                "bg-foreground/[0.04] text-muted-foreground",
+                "border border-border/15 transition-all duration-300 group-hover/exp:border-border/25 group-hover/exp:bg-foreground/[0.06]"
               )}
               aria-hidden
             >

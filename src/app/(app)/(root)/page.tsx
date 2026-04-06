@@ -3,7 +3,6 @@ import type { ProfilePage as PageSchema, WithContext } from "schema-dts";
 
 import { FadeIn } from "@/components/ui/scroll-animations";
 import { About } from "@/features/profile/components/about";
-import { Activity } from "@/features/profile/components/activity";
 import { Awards } from "@/features/profile/components/awards";
 import { Blog } from "@/features/profile/components/blog";
 import { BookCall } from "@/features/profile/components/book-call";
@@ -12,8 +11,8 @@ import { Contact } from "@/features/profile/components/contact";
 import { Experiences } from "@/features/profile/components/experiences";
 import { GitHubContributions } from "@/features/profile/components/github-contributions";
 import { Library } from "@/features/profile/components/library";
-import { OSSContributions } from "@/features/profile/components/oss-contributions";
 import { LiveStatus } from "@/features/profile/components/live-status";
+import { OSSContributions } from "@/features/profile/components/oss-contributions";
 import { Overview } from "@/features/profile/components/overview";
 import { PomodoroTimer } from "@/features/profile/components/pomodoro-timer";
 import { ProfileCover } from "@/features/profile/components/profile-cover";
@@ -82,11 +81,6 @@ export default function Page() {
 
         <FadeIn>
           <Blog />
-        </FadeIn>
-        <Separator />
-
-        <FadeIn>
-          <Activity />
         </FadeIn>
         <Separator />
 

@@ -3,9 +3,20 @@
 import { motion, type Variants } from "motion/react";
 import React from "react";
 
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
 import { EXPERIENCES } from "../../data/experiences";
 import { Panel, PanelHeader, PanelTitle } from "../panel";
 import { ExperienceItem } from "./experience-item";
+
+const WORK_EXPERIENCES = EXPERIENCES.filter(
+  (e) =>
+    !e.positions.some((p) => p.title === "Open Source Contributor")
+);
+
+const OSS_EXPERIENCES = EXPERIENCES.filter((e) =>
+  e.positions.some((p) => p.title === "Open Source Contributor")
+);
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -29,6 +40,27 @@ const itemVariants: Variants = {
   },
 };
 
+function ExperienceList({
+  experiences,
+}: {
+  experiences: typeof EXPERIENCES;
+}) {
+  return (
+    <motion.div
+      className="space-y-3"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      {experiences.map((experience) => (
+        <motion.div key={experience.id} variants={itemVariants}>
+          <ExperienceItem experience={experience} />
+        </motion.div>
+      ))}
+    </motion.div>
+  );
+}
+
 export function Experiences() {
   return (
     <Panel id="experience">
@@ -36,19 +68,40 @@ export function Experiences() {
         <PanelTitle>Experience</PanelTitle>
       </PanelHeader>
 
-      <motion.div
-        className="space-y-3 pr-2 pl-4"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-50px" }}
-      >
-        {EXPERIENCES.map((experience) => (
-          <motion.div key={experience.id} variants={itemVariants}>
-            <ExperienceItem experience={experience} />
-          </motion.div>
-        ))}
-      </motion.div>
+      <Tabs defaultValue="work">
+        <TabsList className="mb-4 h-auto gap-2 rounded-full border border-border/25 bg-transparent p-1">
+          <TabsTrigger
+            value="work"
+            className="rounded-full px-4 py-1.5 text-[13px] tracking-wide data-[state=active]:bg-foreground/[0.06] data-[state=active]:shadow-none dark:data-[state=active]:bg-white/[0.06]"
+          >
+            Work
+          </TabsTrigger>
+          <TabsTrigger
+            value="open-source"
+            className="rounded-full px-4 py-1.5 text-[13px] tracking-wide data-[state=active]:bg-foreground/[0.06] data-[state=active]:shadow-none dark:data-[state=active]:bg-white/[0.06]"
+          >
+            Open Source
+          </TabsTrigger>
+          <TabsTrigger
+            value="all"
+            className="rounded-full px-4 py-1.5 text-[13px] tracking-wide data-[state=active]:bg-foreground/[0.06] data-[state=active]:shadow-none dark:data-[state=active]:bg-white/[0.06]"
+          >
+            All
+          </TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="work">
+          <ExperienceList experiences={WORK_EXPERIENCES} />
+        </TabsContent>
+
+        <TabsContent value="open-source">
+          <ExperienceList experiences={OSS_EXPERIENCES} />
+        </TabsContent>
+
+        <TabsContent value="all">
+          <ExperienceList experiences={EXPERIENCES} />
+        </TabsContent>
+      </Tabs>
     </Panel>
   );
 }

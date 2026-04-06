@@ -1,29 +1,24 @@
-import dayjs from "dayjs";
+import { Suspense } from "react";
 
-import { CollapsibleList } from "@/components/collapsible-list";
-
-import { OSS_CONTRIBUTIONS } from "../../data/oss-contributions";
+import { getLatestMergedPRs } from "../../data/oss-contributions";
 import { Panel, PanelHeader, PanelTitle } from "../panel";
-import { OSSContributionItem } from "./oss-contribution-item";
+import {
+  OSSContributionsFallback,
+  OSSContributionsList,
+} from "./oss-contributions-list";
 
 export function OSSContributions() {
+  const contributions = getLatestMergedPRs();
+
   return (
     <Panel id="oss-contributions">
       <PanelHeader>
-        <div className="flex items-baseline gap-3">
-          <PanelTitle>Open Source Contributions</PanelTitle>
-          <span className="font-mono text-sm text-muted-foreground">
-            {dayjs().format("MMMM D, YYYY")}
-          </span>
-        </div>
+        <PanelTitle>Open Source Contributions</PanelTitle>
       </PanelHeader>
 
-      <CollapsibleList
-        items={OSS_CONTRIBUTIONS}
-        max={5}
-        keyExtractor={(item) => item.id}
-        renderItem={(item) => <OSSContributionItem contribution={item} />}
-      />
+      <Suspense fallback={<OSSContributionsFallback />}>
+        <OSSContributionsList contributions={contributions} />
+      </Suspense>
     </Panel>
   );
 }

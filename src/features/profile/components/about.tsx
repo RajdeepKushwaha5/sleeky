@@ -21,8 +21,8 @@ export function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            <div className="absolute -inset-0.5 rounded-full bg-gradient-to-br from-foreground/[0.06] to-foreground/[0.02] blur-sm" />
-            <div className="relative aspect-square h-24 w-24 overflow-hidden rounded-full ring-[3px] ring-border/40 ring-offset-[4px] ring-offset-background sm:h-28 sm:w-28">
+            <div className="absolute -inset-0.5 rounded-full bg-gradient-to-br from-foreground/[0.04] to-transparent blur-sm" />
+            <div className="relative aspect-square h-24 w-24 overflow-hidden rounded-full ring-[2px] ring-foreground/10 ring-offset-[3px] ring-offset-background sm:h-28 sm:w-28">
               <img
                 src="/final_about.png"
                 alt="About"
@@ -32,26 +32,26 @@ export function About() {
           </motion.div>
 
           <div className="flex-1 space-y-3">
-            <p className="font-serif text-lg leading-[1.65] text-foreground/90 sm:text-xl">
+            <p className="font-serif text-lg leading-[1.65] text-foreground/80 sm:text-xl">
               Full-stack developer and{" "}
               <a
                 href="https://en.wikipedia.org/wiki/Competitive_programming"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline decoration-foreground/30 underline-offset-3 transition-colors hover:decoration-foreground/60"
+                className="underline decoration-foreground/15 underline-offset-3 transition-colors hover:decoration-foreground/40"
               >
                 competitive programmer
               </a>{" "}
               building clean, reliable web products — from idea to production.
             </p>
 
-            <p className="text-sm leading-relaxed text-foreground/55">
+            <p className="text-sm leading-relaxed text-foreground/40">
               Currently deep into{" "}
               <a
                 href="https://en.wikipedia.org/wiki/Large_language_model"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium text-foreground/80 underline decoration-foreground/20 underline-offset-3 transition-colors hover:decoration-foreground/50"
+                className="font-medium text-foreground/60 underline decoration-foreground/10 underline-offset-3 transition-colors hover:text-foreground/80 hover:decoration-foreground/30"
               >
                 LLMs &amp; Generative AI
               </a>
@@ -61,7 +61,7 @@ export function About() {
                 href="https://en.wikipedia.org/wiki/Blockchain"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium text-foreground/80 underline decoration-foreground/20 underline-offset-3 transition-colors hover:decoration-foreground/50"
+                className="font-medium text-foreground/60 underline decoration-foreground/10 underline-offset-3 transition-colors hover:text-foreground/80 hover:decoration-foreground/30"
               >
                 Blockchain &amp; Web3
               </a>{" "}
@@ -70,7 +70,7 @@ export function About() {
                 href="https://en.wikipedia.org/wiki/Solidity"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium text-foreground/80 underline decoration-foreground/20 underline-offset-3 transition-colors hover:decoration-foreground/50"
+                className="font-medium text-foreground/60 underline decoration-foreground/10 underline-offset-3 transition-colors hover:text-foreground/80 hover:decoration-foreground/30"
               >
                 Solidity
               </a>{" "}
@@ -79,18 +79,18 @@ export function About() {
                 href="https://en.wikipedia.org/wiki/Ethereum"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium text-foreground/80 underline decoration-foreground/20 underline-offset-3 transition-colors hover:decoration-foreground/50"
+                className="font-medium text-foreground/60 underline decoration-foreground/10 underline-offset-3 transition-colors hover:text-foreground/80 hover:decoration-foreground/30"
               >
                 Ethereum
               </a>{" "}
               &amp; Solana, and shipping dApps with real users.
             </p>
 
-            <p className="text-[12px] leading-relaxed text-muted-foreground/45 italic">
+            <p className="text-[12px] leading-relaxed text-muted-foreground/30 italic">
               ↳ always building something new —{" "}
               <a
                 href="#projects"
-                className="underline underline-offset-3 transition-colors hover:text-muted-foreground/70"
+                className="underline decoration-muted-foreground/15 underline-offset-3 transition-colors hover:text-muted-foreground/50"
               >
                 see projects
               </a>

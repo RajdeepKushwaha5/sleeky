@@ -245,7 +245,7 @@ button,
   --secondary-foreground: oklch(0.94 0.008 80);
   --muted: oklch(0.13 0.004 285);
   --muted-foreground: oklch(0.52 0.012 80);
-  --card: #121212;
+  --card: #0b0b0b;
   --card-foreground: oklch(0.92 0.008 80);
   --popover: #141414;
   --popover-foreground: oklch(0.92 0.008 80);
@@ -253,7 +253,7 @@ button,
   --accent: #1a1a1a;
   --accent2: color-mix(in oklab, var(--accent) 25%, transparent);
   --accent-foreground: oklch(0.92 0.008 80);
-  --border: #1e1e1e;
+  --border: #131313;
   --edge: oklch(0.13 0.003 285);
   --input: oklch(0.14 0.004 285);
   --ring: oklch(0.52 0.03 80);

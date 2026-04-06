@@ -79,12 +79,12 @@ export function ToggleTheme() {
       ref={buttonRef}
       onClick={handleClick}
       aria-label="Toggle Theme"
-      className="relative flex h-8 w-16 cursor-pointer items-center rounded-full border border-foreground/20 bg-foreground/10 p-1 transition-colors duration-300"
+      className="relative flex h-8 w-16 cursor-pointer items-center rounded-full border border-border/20 bg-foreground/[0.04] p-1 transition-colors duration-300 dark:border-border/15 dark:bg-white/[0.04]"
     >
       {/* Sliding knob */}
       <span
         suppressHydrationWarning
-        className="absolute top-1 flex h-6 w-6 items-center justify-center rounded-full bg-foreground shadow-md transition-all duration-300 ease-in-out"
+        className="absolute top-1 flex h-6 w-6 items-center justify-center rounded-full bg-foreground/80 shadow-md transition-all duration-300 ease-in-out dark:bg-white/20"
         style={{ left: isDark ? "calc(100% - 1.75rem)" : "0.25rem" }}
       >
         <SunIcon className="h-3.5 w-3.5 text-background transition-opacity duration-300 [html.dark_&]:opacity-0 [html.light_&]:opacity-100" />

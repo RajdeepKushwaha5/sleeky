@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronRight, ExternalLink } from "lucide-react";
+import { ChevronRight, ExternalLink, HeartIcon } from "lucide-react";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -8,6 +8,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
@@ -41,7 +42,7 @@ export function MobileNav({
       </DropdownMenuTrigger>
 
       <DropdownMenuContent
-        className="relative w-[min(20rem,calc(100vw-2rem))] overflow-hidden border border-border/20 bg-popover/95 p-6 backdrop-blur-md"
+        className="relative w-[min(20rem,calc(100vw-2rem))] overflow-hidden border border-border/15 bg-background/95 p-6 backdrop-blur-xl dark:bg-[#0b0b0b]/95"
         align="end"
         sideOffset={12}
       >
@@ -69,25 +70,41 @@ export function MobileNav({
                   rel="noopener noreferrer"
                   className="flex items-center justify-between transition-opacity hover:opacity-70"
                 >
-                  <span className="text-xl font-medium tracking-tight text-foreground/80 group-hover:text-foreground">
+                  <span className="font-outfit text-lg font-medium tracking-tight text-foreground/70 group-hover:text-foreground">
                     {link.title}
                   </span>
-                  <ExternalLink className="h-4 w-4 text-muted-foreground transition-transform group-hover:scale-110" />
+                  <ExternalLink className="h-4 w-4 text-muted-foreground/40 transition-transform group-hover:scale-110 group-hover:text-foreground/60" />
                 </a>
               ) : (
                 <Link
                   href={link.href}
                   className="flex items-center justify-between transition-opacity hover:opacity-70"
                 >
-                  <span className="text-xl font-medium tracking-tight text-foreground/80 group-hover:text-foreground">
+                  <span className="font-outfit text-lg font-medium tracking-tight text-foreground/70 group-hover:text-foreground">
                     {link.title}
                   </span>
-                  <ChevronRight className="h-5 w-5 text-muted-foreground/50 transition-transform group-hover:translate-x-1 group-hover:text-foreground" />
+                  <ChevronRight className="h-4 w-4 text-muted-foreground/30 transition-transform group-hover:translate-x-1 group-hover:text-foreground/60" />
                 </Link>
               )}
             </DropdownMenuItem>
           ))}
         </div>
+
+        {/* Sponsor link */}
+        <DropdownMenuSeparator className="my-3 bg-border/15" />
+        <DropdownMenuItem asChild className="group rounded-none border-none px-2 py-2 focus:bg-transparent">
+          <a
+            href="https://github.com/sponsors/RajdeepKushwaha5"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 transition-opacity hover:opacity-70"
+          >
+            <HeartIcon className="h-3.5 w-3.5 text-pink-400/60" strokeWidth={1.5} />
+            <span className="text-sm font-medium text-muted-foreground/50 group-hover:text-foreground/60">
+              Sponsor
+            </span>
+          </a>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

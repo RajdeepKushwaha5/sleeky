@@ -1,102 +1,95 @@
+import { GITHUB_USERNAME } from "@/config/site";
+
 import type { OSSContribution } from "../types/oss-contributions";
 
-export const OSS_CONTRIBUTIONS: OSSContribution[] = [
+type GitHubSearchItem = {
+  id: number;
+  title: string;
+  html_url: string;
+  pull_request?: { merged_at: string | null };
+  repository_url: string;
+  created_at: string;
+};
+
+type GitHubSearchResponse = {
+  items: GitHubSearchItem[];
+};
+
+export async function getLatestMergedPRs(): Promise<OSSContribution[]> {
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10000);
+
+    const query = encodeURIComponent(
+      `is:pr author:${GITHUB_USERNAME} is:merged -user:${GITHUB_USERNAME} sort:updated-desc`
+    );
+
+    const res = await fetch(
+      `https://api.github.com/search/issues?q=${query}&per_page=4`,
+      {
+        next: { revalidate: 86400 },
+        signal: controller.signal,
+        headers: {
+          Accept: "application/vnd.github+json",
+        },
+      }
+    );
+
+    clearTimeout(timeout);
+
+    if (!res.ok) return FALLBACK_CONTRIBUTIONS;
+
+    const data = (await res.json()) as GitHubSearchResponse;
+
+    if (!data.items || data.items.length === 0) return FALLBACK_CONTRIBUTIONS;
+
+    return data.items.map((item) => {
+      const repoFullName = item.repository_url.replace(
+        "https://api.github.com/repos/",
+        ""
+      );
+      const org = repoFullName.split("/")[0];
+
+      return {
+        id: String(item.id),
+        title: item.title,
+        organization: org,
+        url: item.html_url,
+        year: new Date(item.created_at).getFullYear(),
+      };
+    });
+  } catch {
+    return FALLBACK_CONTRIBUTIONS;
+  }
+}
+
+const FALLBACK_CONTRIBUTIONS: OSSContribution[] = [
   {
-    id: "openmetadata-sampler-fix",
-    title: "fix(sampler): Respect randomizedSample flag at 100% percentage sampling",
-    organization: "OpenMetadata",
-    url: "https://github.com/open-metadata/OpenMetadata/pull/26966",
-    year: 2026,
-  },
-  {
-    id: "homebrew-bettershot",
-    title: "Add bettershot v0.2.4 (new cask)",
-    organization: "Homebrew",
-    url: "https://github.com/Homebrew/homebrew-cask/pull/bettershot",
-    year: 2026,
+    id: "calcom-webhook-dialog",
+    title: "feat: add delete confirmation dialog to webhook list items",
+    organization: "calcom",
+    url: "https://github.com/calcom/cal.com",
+    year: 2025,
   },
   {
     id: "accomplish-mcp-tool",
     title: "feat: add native desktop automation via MCP tool integration",
-    organization: "Accomplish",
+    organization: "accomplish-ai",
     url: "https://github.com/accomplish-ai/accomplish/pull/691",
     year: 2026,
   },
   {
-    id: "accomplish-escape-stop",
-    title: 'feat: add "Escape to stop" for interrupting running tasks',
-    organization: "Accomplish",
-    url: "https://github.com/accomplish-ai/accomplish/pull/633",
-    year: 2026,
-  },
-  {
-    id: "accomplish-error-handling",
-    title: "fix: improved error handling with actionable messages on task failure",
-    organization: "Accomplish",
-    url: "https://github.com/accomplish-ai/accomplish/pull/708",
-    year: 2026,
-  },
-  {
-    id: "cgal-pr-1",
-    title: "fix: update documentation and build configuration",
-    organization: "CGAL",
-    url: "https://github.com/CGAL/cgal",
-    year: 2026,
-  },
-  {
-    id: "neural-lam-pr-1",
-    title: "feat: improve model training pipeline",
-    organization: "neural-lam",
-    url: "https://github.com/mllam/neural-lam",
-    year: 2026,
-  },
-  {
-    id: "calcom-webhook-dialog",
-    title: "feat: add delete confirmation dialog to webhook list items",
-    organization: "cal.com",
-    url: "https://github.com/calcom/cal.com",
+    id: "oumi-loading-spinners",
+    title: "feat: add visual loading spinners for inference operations",
+    organization: "oumi-ai",
+    url: "https://github.com/oumi-ai/oumi/pull/2085",
     year: 2025,
   },
   {
     id: "calcom-hover-fix",
     title: "fix(ui): fixing the hover bug in the dropdown component",
-    organization: "cal.com",
+    organization: "calcom",
     url: "https://github.com/calcom/cal.com",
-    year: 2025,
-  },
-  {
-    id: "oumi-loading-spinners",
-    title: "feat: add visual loading spinners for inference operations",
-    organization: "Oumi",
-    url: "https://github.com/oumi-ai/oumi/pull/2085",
-    year: 2025,
-  },
-  {
-    id: "devops-daily-cli-index",
-    title: "feat: build CLI command index generator from eBook markdown",
-    organization: "DevOps Daily",
-    url: "https://github.com/The-DevOps-Daily/devops-daily",
-    year: 2025,
-  },
-  {
-    id: "hacktoberfest-datatalksclub",
-    title: "docs: improve documentation and fix typos",
-    organization: "DataTalksClub",
-    url: "https://github.com/DataTalksClub",
-    year: 2025,
-  },
-  {
-    id: "hacktoberfest-microsoft",
-    title: "fix: resolve issue in documentation samples",
-    organization: "Microsoft",
-    url: "https://github.com/microsoft",
-    year: 2025,
-  },
-  {
-    id: "hacktoberfest-amazon",
-    title: "fix: update configuration and resolve build warnings",
-    organization: "Amazon",
-    url: "https://github.com/amazon",
     year: 2025,
   },
 ];
