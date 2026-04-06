@@ -31,27 +31,26 @@
 
 <img width="1917" height="957" alt="image" src="https://github.com/user-attachments/assets/b344a8fb-4d38-4a43-9620-03924c41d9b2" />
 
-
 </p>
 
 ---
 
 ## Features
 
-| Status | Feature | Description |
-| :--- | :--- | :--- |
-| ![Performance](https://img.shields.io/badge/Performance-High-blue) | **Lightning Fast** | Next.js 16 with Turbopack for blazing performance |
-| ![Design](https://img.shields.io/badge/Design-Premium-vibrantgreen) | **Sleek UI** | Glassmorphism, smooth animations, and dark/light modes |
-| ![Intelligence](https://img.shields.io/badge/AI-Gemini_2.5-brightgreen) | **AI Assistant** | Integrated chatbot powered by Google Gemini 2.5 Flash |
-| ![Real-time](https://img.shields.io/badge/Real--time-Active-success) | **Live Status** | Real-time Discord, Spotify, and VS Code activity via Lanyard |
-| ![Music](https://img.shields.io/badge/Spotify-Last_Played-1DB954) | **Spotify API** | Shows last played track for all visitors via Spotify Web API |
-| ![Analytics](https://img.shields.io/badge/Stats-WakaTime-informational) | **Coding Metrics** | Automated coding activity tracking via WakaTime |
-| ![Content](https://img.shields.io/badge/Content-MDX_Blog-blueviolet) | **MDX Blog** | Feature-rich blog powered by MDX and React components |
-| ![Adaptive](https://img.shields.io/badge/Responsive-Full-orange) | **Device Ready** | Optimized for seamless mobile, tablet, and desktop views |
-| ![Navigation](https://img.shields.io/badge/Nav-Keyboard-yellowgreen) | **Quick Nav** | Navigate sections with keyboard shortcuts (J/K) |
-| ![Optimization](https://img.shields.io/badge/SEO-Optimized-red) | **SEO Ready** | Structured data, meta tags, and high-performance sitemaps |
-| ![Security](https://img.shields.io/badge/Security-Hardened-critical) | **Secure** | Security headers, rate-limited APIs, input validation |
-| ![Contact](https://img.shields.io/badge/Contact-Telegram-26A5E4) | **Contact Form** | Messages sent directly to Telegram with rate limiting |
+| Status                                                                  | Feature            | Description                                                  |
+| :---------------------------------------------------------------------- | :----------------- | :----------------------------------------------------------- |
+| ![Performance](https://img.shields.io/badge/Performance-High-blue)      | **Lightning Fast** | Next.js 16 with Turbopack for blazing performance            |
+| ![Design](https://img.shields.io/badge/Design-Premium-vibrantgreen)     | **Sleek UI**       | Glassmorphism, smooth animations, and dark/light modes       |
+| ![Intelligence](https://img.shields.io/badge/AI-Gemini_2.5-brightgreen) | **AI Assistant**   | Integrated chatbot powered by Google Gemini 2.5 Flash        |
+| ![Real-time](https://img.shields.io/badge/Real--time-Active-success)    | **Live Status**    | Real-time Discord, Spotify, and VS Code activity via Lanyard |
+| ![Music](https://img.shields.io/badge/Spotify-Last_Played-1DB954)       | **Spotify API**    | Shows last played track for all visitors via Spotify Web API |
+| ![Analytics](https://img.shields.io/badge/Stats-WakaTime-informational) | **Coding Metrics** | Automated coding activity tracking via WakaTime              |
+| ![Content](https://img.shields.io/badge/Content-MDX_Blog-blueviolet)    | **MDX Blog**       | Feature-rich blog powered by MDX and React components        |
+| ![Adaptive](https://img.shields.io/badge/Responsive-Full-orange)        | **Device Ready**   | Optimized for seamless mobile, tablet, and desktop views     |
+| ![Navigation](https://img.shields.io/badge/Nav-Keyboard-yellowgreen)    | **Quick Nav**      | Navigate sections with keyboard shortcuts (J/K)              |
+| ![Optimization](https://img.shields.io/badge/SEO-Optimized-red)         | **SEO Ready**      | Structured data, meta tags, and high-performance sitemaps    |
+| ![Security](https://img.shields.io/badge/Security-Hardened-critical)    | **Secure**         | Security headers, rate-limited APIs, input validation        |
+| ![Contact](https://img.shields.io/badge/Contact-Telegram-26A5E4)        | **Contact Form**   | Messages sent directly to Telegram with rate limiting        |
 
 ---
 
@@ -61,15 +60,15 @@
   <img src="https://skillicons.dev/icons?i=nextjs,react,typescript,tailwind,vercel" alt="Tech Stack" />
 </p>
 
-| Category | Technologies |
-| :--- | :--- |
-| **Framework** | Next.js 16, React 19, TypeScript |
-| **Styling** | Tailwind CSS v4, shadcn/ui, Radix UI |
-| **Animation** | Framer Motion |
-| **AI Engine** | Google Generative AI (Gemini 2.5 Flash) |
-| **Integrations** | Lanyard API, WakaTime API, Spotify Web API |
-| **Database** | Upstash Redis (rate limiting, visitor counter) |
-| **Infrastructure** | Vercel |
+| Category           | Technologies                                   |
+| :----------------- | :--------------------------------------------- |
+| **Framework**      | Next.js 16, React 19, TypeScript               |
+| **Styling**        | Tailwind CSS v4, shadcn/ui, Radix UI           |
+| **Animation**      | Framer Motion                                  |
+| **AI Engine**      | Google Generative AI (Gemini 2.5 Flash)        |
+| **Integrations**   | Lanyard API, WakaTime API, Spotify Web API     |
+| **Database**       | Upstash Redis (rate limiting, visitor counter) |
+| **Infrastructure** | Vercel                                         |
 
 ---
 
@@ -141,23 +140,23 @@ sleeky/
 
 ## Available Scripts
 
-| Command | Description |
-| :--- | :--- |
-| `npm run dev` | Start development server on port 1729 |
-| `npm run build` | Build the application for production |
-| `npm run start` | Start the production server |
-| `npm run lint` | Run ESLint to check code quality |
+| Command         | Description                           |
+| :-------------- | :------------------------------------ |
+| `npm run dev`   | Start development server on port 1729 |
+| `npm run build` | Build the application for production  |
+| `npm run start` | Start the production server           |
+| `npm run lint`  | Run ESLint to check code quality      |
 
 ---
 
 ## Customization
 
-| Configuration File | Data Description |
-| :--- | :--- |
-| `src/features/profile/data/user.ts` | Personal identity and bio |
-| `src/config/site.ts` | Site metadata and menu links |
-| `src/features/profile/data/projects.ts` | Portfolio project showcase |
-| `src/features/profile/data/experiences.ts` | Professional work history |
+| Configuration File                         | Data Description             |
+| :----------------------------------------- | :--------------------------- |
+| `src/features/profile/data/user.ts`        | Personal identity and bio    |
+| `src/config/site.ts`                       | Site metadata and menu links |
+| `src/features/profile/data/projects.ts`    | Portfolio project showcase   |
+| `src/features/profile/data/experiences.ts` | Professional work history    |
 
 ---
 

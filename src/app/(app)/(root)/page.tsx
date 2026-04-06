@@ -12,6 +12,7 @@ import { Contact } from "@/features/profile/components/contact";
 import { Experiences } from "@/features/profile/components/experiences";
 import { GitHubContributions } from "@/features/profile/components/github-contributions";
 import { Library } from "@/features/profile/components/library";
+import { OSSContributions } from "@/features/profile/components/oss-contributions";
 import { LiveStatus } from "@/features/profile/components/live-status";
 import { Overview } from "@/features/profile/components/overview";
 import { PomodoroTimer } from "@/features/profile/components/pomodoro-timer";
@@ -91,6 +92,11 @@ export default function Page() {
 
         <FadeIn>
           <GitHubContributions />
+        </FadeIn>
+        <Separator />
+
+        <FadeIn>
+          <OSSContributions />
         </FadeIn>
         <Separator />
 
