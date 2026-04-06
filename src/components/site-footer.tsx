@@ -156,8 +156,11 @@ export function SiteFooter() {
               ) : (
                 <Mail className="h-4 w-4 text-foreground/60 group-hover:text-foreground" />
               )}
-              <span className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 rounded-lg bg-foreground px-3 py-1.5 text-xs whitespace-nowrap text-background opacity-0 transition-opacity group-hover:opacity-100">
+              <span className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 rounded-lg bg-foreground px-3 py-1.5 text-xs whitespace-nowrap text-background opacity-0 transition-opacity group-hover:opacity-100" aria-hidden="true">
                 {emailTooltip}
+              </span>
+              <span className="sr-only" role="status" aria-live="polite">
+                {emailCopied ? "Email copied to clipboard" : ""}
               </span>
             </button>
 
@@ -188,14 +191,16 @@ export function SiteFooter() {
               ) : (
                 <Phone className="h-4 w-4 text-foreground/60 group-hover:text-foreground" />
               )}
-              <span className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 rounded-lg bg-foreground px-3 py-1.5 text-xs whitespace-nowrap text-background opacity-0 transition-opacity group-hover:opacity-100">
+              <span className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 rounded-lg bg-foreground px-3 py-1.5 text-xs whitespace-nowrap text-background opacity-0 transition-opacity group-hover:opacity-100" aria-hidden="true">
                 {phoneTooltip}
+              </span>
+              <span className="sr-only" role="status" aria-live="polite">
+                {phoneCopied ? "Phone number copied to clipboard" : ""}
               </span>
             </button>
 
             {/* CV - Drive Link */}
             <a
-              href="https://drive.google.com/file/d/1dWRhT2GSx4StZk2kqGU2UpJLNZCVnuoA/view"
               target="_blank"
               rel="noopener"
               className="flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-card/40 transition-all duration-300 hover:scale-110 hover:border-border/60 hover:bg-foreground/[0.06]"

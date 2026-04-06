@@ -93,7 +93,7 @@ function TechIcon({
   );
 }
 
-export function TeckStack() {
+export function TechStack() {
   const [view, setView] = useState<"icons" | "category">("icons");
 
   const techMap = new Map(TECH_STACK.map((t) => [t.key, t]));
