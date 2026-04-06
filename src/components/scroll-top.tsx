@@ -8,7 +8,7 @@ import {
   useScroll,
 } from "motion/react";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { startTransition, useEffect, useRef, useState } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -27,13 +27,17 @@ export function ScrollTop({ className }: { className?: string }) {
   const maxIndexRef = useRef(0);
 
   useMotionValueEvent(scrollY, "change", (latestValue) => {
-    setShowScrollTop(latestValue >= 400);
+    startTransition(() => {
+      setShowScrollTop(latestValue >= 400);
+    });
   });
 
   useEffect(() => {
     const updateButtons = () => {
-      setCanGoBack(indexRef.current > 0);
-      setCanGoForward(indexRef.current < maxIndexRef.current);
+      startTransition(() => {
+        setCanGoBack(indexRef.current > 0);
+        setCanGoForward(indexRef.current < maxIndexRef.current);
+      });
     };
 
     // Read or initialize the nav index from history.state
