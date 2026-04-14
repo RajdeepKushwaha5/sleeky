@@ -2,6 +2,17 @@ import type { Award } from "../types/awards";
 
 export const AWARDS: Award[] = [
   {
+    id: "beyond-transformers-hackathon-2026",
+    prize: "Runner Up",
+    title: "Beyond Transformers Hackathon — E-Summit IIT Ropar",
+    date: "2026-04",
+    grade: "Hackathon",
+    description:
+      "Secured **Runner Up** position in the **Beyond Transformers Hackathon** organized as part of E-Summit [IIT Ropar](https://www.iitrpr.ac.in/), sponsored by [Pathway](https://pathway.com/). Built an impactful AI-driven solution to solve real-world problems using artificial intelligence and machine learning.",
+    referenceLink:
+      "https://drive.google.com/file/d/1ywRpO5y7uiH8ixupCfu8KaydYOoqxI1h/view",
+  },
+  {
     id: "wemakedevs-accomplish-hackathon-2026",
     prize: "Winner",
     title: "Automate Me If You Can — WeMakeDevs × Accomplish",

@@ -92,15 +92,21 @@ export function MobileNav({
 
         {/* Sponsor link */}
         <DropdownMenuSeparator className="my-3 bg-border/15" />
-        <DropdownMenuItem asChild className="group rounded-none border-none px-2 py-2 focus:bg-transparent">
+        <DropdownMenuItem
+          asChild
+          className="group/sponsor rounded-none border-none px-2 py-2 focus:bg-transparent"
+        >
           <a
             href="https://github.com/sponsors/RajdeepKushwaha5"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 transition-opacity hover:opacity-70"
+            className="flex items-center gap-2 transition-all duration-300 hover:opacity-90"
           >
-            <HeartIcon className="h-3.5 w-3.5 text-pink-400/60" strokeWidth={1.5} />
-            <span className="text-sm font-medium text-muted-foreground/50 group-hover:text-foreground/60">
+            <HeartIcon
+              className="h-3.5 w-3.5 fill-none text-pink-400/60 transition-all duration-300 group-hover/sponsor:[animation:heartbeat_1.2s_ease-in-out_infinite] group-hover/sponsor:text-pink-400"
+              strokeWidth={1.5}
+            />
+            <span className="text-sm font-medium text-muted-foreground/50 transition-colors duration-300 group-hover/sponsor:text-pink-300/80">
               Sponsor
             </span>
           </a>

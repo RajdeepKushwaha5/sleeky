@@ -100,19 +100,19 @@ export function ProfileHeader() {
         href="https://github.com/sponsors/RajdeepKushwaha5"
         target="_blank"
         rel="noopener noreferrer"
-        className="absolute top-4 right-4 z-10 flex items-center gap-1.5 rounded-lg border border-border/20 bg-transparent px-3 py-1.5 text-xs transition-all duration-200 hover:border-border/40 hover:bg-card/60"
+        className="group absolute top-4 right-4 z-10 flex items-center gap-1.5 rounded-full border border-pink-500/15 bg-pink-500/[0.04] px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-300 hover:border-pink-400/30 hover:bg-pink-500/[0.08] hover:shadow-[0_0_12px_rgba(236,72,153,0.12)]"
       >
         <svg
-          className="size-4 text-pink-400"
-          fill="none"
-          stroke="currentColor"
+          className="size-3.5 fill-none stroke-pink-400/70 transition-all duration-300 group-hover:[animation:heartbeat_1.2s_ease-in-out_infinite] group-hover:stroke-pink-400"
           strokeWidth={1.5}
           viewBox="0 0 16 16"
           aria-hidden
         >
           <path d="M4.25 2.5c-1.336 0-2.75 1.164-2.75 3 0 2.15 1.58 4.144 3.365 5.682A20.57 20.57 0 008 13.393a20.57 20.57 0 003.135-2.211C12.92 9.644 14.5 7.65 14.5 5.5c0-1.836-1.414-3-2.75-3-1.373 0-2.609.986-3.029 2.456a.75.75 0 01-1.442 0C6.859 3.486 5.623 2.5 4.25 2.5z" />
         </svg>
-        <span className="font-medium text-muted-foreground/50">Sponsor</span>
+        <span className="font-medium text-muted-foreground/60 transition-colors duration-300 group-hover:text-pink-300/80">
+          Sponsor
+        </span>
       </a>
     </div>
   );

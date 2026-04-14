@@ -115,13 +115,11 @@ export function SiteFooter() {
               href="https://github.com/sponsors/RajdeepKushwaha5"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-card/40 transition-all duration-300 hover:scale-110 hover:border-border/60 hover:bg-foreground/[0.06]"
+              className="group flex h-10 w-10 items-center justify-center rounded-full border border-pink-500/15 bg-pink-500/[0.04] transition-all duration-300 hover:scale-110 hover:border-pink-400/30 hover:bg-pink-500/[0.08] hover:shadow-[0_0_12px_rgba(236,72,153,0.12)]"
               title="Sponsor"
             >
               <svg
-                className="h-4 w-4 text-pink-400/60"
-                fill="none"
-                stroke="currentColor"
+                className="h-4 w-4 fill-none stroke-pink-400/60 transition-all duration-300 group-hover:[animation:heartbeat_1.2s_ease-in-out_infinite] group-hover:stroke-pink-400"
                 strokeWidth={1.5}
                 viewBox="0 0 16 16"
               >
@@ -156,7 +154,10 @@ export function SiteFooter() {
               ) : (
                 <Mail className="h-4 w-4 text-foreground/60 group-hover:text-foreground" />
               )}
-              <span className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 rounded-lg bg-foreground px-3 py-1.5 text-xs whitespace-nowrap text-background opacity-0 transition-opacity group-hover:opacity-100" aria-hidden="true">
+              <span
+                className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 rounded-lg bg-foreground px-3 py-1.5 text-xs whitespace-nowrap text-background opacity-0 transition-opacity group-hover:opacity-100"
+                aria-hidden="true"
+              >
                 {emailTooltip}
               </span>
               <span className="sr-only" role="status" aria-live="polite">
@@ -191,7 +192,10 @@ export function SiteFooter() {
               ) : (
                 <Phone className="h-4 w-4 text-foreground/60 group-hover:text-foreground" />
               )}
-              <span className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 rounded-lg bg-foreground px-3 py-1.5 text-xs whitespace-nowrap text-background opacity-0 transition-opacity group-hover:opacity-100" aria-hidden="true">
+              <span
+                className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 rounded-lg bg-foreground px-3 py-1.5 text-xs whitespace-nowrap text-background opacity-0 transition-opacity group-hover:opacity-100"
+                aria-hidden="true"
+              >
                 {phoneTooltip}
               </span>
               <span className="sr-only" role="status" aria-live="polite">
