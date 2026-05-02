@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import Image from "next/image";
 
 import { Panel, PanelContent, PanelHeader, PanelTitle } from "./panel";
 
@@ -23,9 +24,11 @@ export function About() {
           >
             <div className="absolute -inset-0.5 rounded-full bg-gradient-to-br from-foreground/[0.04] to-transparent blur-sm" />
             <div className="relative aspect-square h-24 w-24 overflow-hidden rounded-full ring-[2px] ring-foreground/10 ring-offset-[3px] ring-offset-background sm:h-28 sm:w-28">
-              <img
+              <Image
                 src="/final_about.png"
                 alt="About"
+                fill
+                sizes="112px"
                 className="h-full w-full object-cover transition-transform duration-700 ease-out hover:scale-105"
               />
             </div>

@@ -1,15 +1,13 @@
 "use client";
 
-import { FileText, Mail, Phone } from "lucide-react";
+import { FileText, Mail } from "lucide-react";
 import { motion } from "motion/react";
 import { useState } from "react";
 
 export function SiteFooter() {
   const currentYear = new Date().getFullYear();
   const [emailTooltip, setEmailTooltip] = useState("Click to copy email");
-  const [phoneTooltip, setPhoneTooltip] = useState("Click to copy phone");
   const [emailCopied, setEmailCopied] = useState(false);
-  const [phoneCopied, setPhoneCopied] = useState(false);
 
   // Fallback copy function for mobile devices
   const fallbackCopyText = (text: string): boolean => {
@@ -59,16 +57,6 @@ export function SiteFooter() {
     setTimeout(() => {
       setEmailTooltip("Click to copy email");
       setEmailCopied(false);
-    }, 2000);
-  };
-
-  const copyPhone = async () => {
-    const success = await copyToClipboard("+91 7073526113");
-    setPhoneTooltip(success ? "Copied!" : "Failed to copy");
-    setPhoneCopied(success);
-    setTimeout(() => {
-      setPhoneTooltip("Click to copy phone");
-      setPhoneCopied(false);
     }, 2000);
   };
 
@@ -162,44 +150,6 @@ export function SiteFooter() {
               </span>
               <span className="sr-only" role="status" aria-live="polite">
                 {emailCopied ? "Email copied to clipboard" : ""}
-              </span>
-            </button>
-
-            {/* Phone - Copy functionality */}
-            <button
-              onClick={copyPhone}
-              className={`group relative flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-300 active:scale-95 ${
-                phoneCopied
-                  ? "border-green-500/50 bg-green-500/15"
-                  : "border-border/40 bg-card/40 hover:border-border/60 hover:bg-foreground/[0.06] active:bg-foreground/10"
-              }`}
-              title={phoneTooltip}
-            >
-              {phoneCopied ? (
-                <svg
-                  className="h-4 w-4 text-green-500"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-              ) : (
-                <Phone className="h-4 w-4 text-foreground/60 group-hover:text-foreground" />
-              )}
-              <span
-                className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 rounded-lg bg-foreground px-3 py-1.5 text-xs whitespace-nowrap text-background opacity-0 transition-opacity group-hover:opacity-100"
-                aria-hidden="true"
-              >
-                {phoneTooltip}
-              </span>
-              <span className="sr-only" role="status" aria-live="polite">
-                {phoneCopied ? "Phone number copied to clipboard" : ""}
               </span>
             </button>
 

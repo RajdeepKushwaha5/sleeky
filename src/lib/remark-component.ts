@@ -31,7 +31,7 @@ export function remarkComponent() {
           let src: string;
 
           if (srcPath) {
-            src = path.join(process.cwd(), srcPath);
+            src = path.join(/*turbopackIgnore: true*/ process.cwd(), srcPath);
           } else {
             const component = Index[name];
             src = fileName
@@ -48,7 +48,7 @@ export function remarkComponent() {
           }
 
           // Read the source file.
-          const filePath = src;
+          const filePath = resolveSourceFilePath(src);
           let source = fs.readFileSync(filePath, "utf8");
 
           // Replace imports.
@@ -94,7 +94,7 @@ export function remarkComponent() {
           const src = component.files[0]?.path;
 
           // Read the source file.
-          const filePath = src;
+          const filePath = resolveSourceFilePath(src);
           let source = fs.readFileSync(filePath, "utf8");
 
           // Replace imports.
@@ -122,4 +122,9 @@ export function remarkComponent() {
 
 function getNodeAttributeByName(node: UnistNode, name: string) {
   return node.attributes?.find((attribute) => attribute.name === name);
+}
+
+function resolveSourceFilePath(src: string) {
+  const relativeSourcePath = src.replace(/^src[\\/]/, "");
+  return path.join(process.cwd(), "src", relativeSourcePath);
 }

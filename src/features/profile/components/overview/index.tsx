@@ -17,7 +17,6 @@ import { Panel, PanelContent } from "../panel";
 import { EmailItem } from "./email-item";
 import { IntroItem } from "./intro-item";
 import { JobItem } from "./job-item";
-import { PhoneItem } from "./phone-item";
 
 export function Overview() {
   return (
@@ -43,8 +42,6 @@ export function Overview() {
 
         {/* Timezone */}
         <IntroItem icon={ClockIcon} content="IST (GMT+5:30)" />
-
-        <PhoneItem phoneNumber={USER.phoneNumber} />
 
         <EmailItem email={USER.email} />
 

@@ -4,12 +4,10 @@ import { useCommandState } from "cmdk";
 import type { LucideProps } from "lucide-react";
 import {
   ActivityIcon,
-  BookIcon,
   BriefcaseBusinessIcon,
   CalendarCheckIcon,
   CornerDownLeftIcon,
   DownloadIcon,
-  HeartIcon,
   LetterTextIcon,
   LibraryIcon,
   MailIcon,

@@ -1,6 +1,7 @@
 "use client";
 
 import { CheckCircle2, Loader2, Send, XCircle } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
 
 import { Panel, PanelContent, PanelHeader, PanelTitle } from "../panel";
@@ -69,9 +70,11 @@ export function Contact() {
           <div className="relative shrink-0 grayscale dark:grayscale-0">
             <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-[#2c4036] via-[#415d4e] to-[#2c4036] opacity-100 blur-md" />
             <div className="relative h-14 w-14 overflow-hidden rounded-full border-2 border-background ring-2 ring-white/10 sm:h-16 sm:w-16">
-              <img
+              <Image
                 src="/final_about.png"
                 alt="Rajdeep"
+                fill
+                sizes="64px"
                 className="h-full w-full object-cover transition-transform duration-500 hover:scale-110"
               />
             </div>

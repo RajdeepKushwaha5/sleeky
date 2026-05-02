@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 import { SimpleTooltip } from "@/components/ui/tooltip";
@@ -67,25 +68,36 @@ function TechIcon({
   size?: "sm" | "md";
 }) {
   const sizeClass = size === "sm" ? "h-5 w-5" : "h-8 w-8";
+  const imageSize = size === "sm" ? 20 : 32;
+
   return (
     <>
       {hasTheme ? (
         <>
-          <img
+          <Image
             src={`/tech-stack-icons/${techKey}-light.svg`}
             alt={`${title} icon`}
+            width={imageSize}
+            height={imageSize}
+            unoptimized
             className={cn(sizeClass, "hidden [html.light_&]:block")}
           />
-          <img
+          <Image
             src={`/tech-stack-icons/${techKey}-dark.svg`}
             alt={`${title} icon`}
+            width={imageSize}
+            height={imageSize}
+            unoptimized
             className={cn(sizeClass, "hidden [html.dark_&]:block")}
           />
         </>
       ) : (
-        <img
+        <Image
           src={`/tech-stack-icons/${techKey}.svg`}
           alt={`${title} icon`}
+          width={imageSize}
+          height={imageSize}
+          unoptimized
           className={sizeClass}
         />
       )}
