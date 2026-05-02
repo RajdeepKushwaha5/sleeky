@@ -2,31 +2,77 @@ import type { Experience } from "../types/experiences";
 
 export const EXPERIENCES: Experience[] = [
   {
-    id: "independent-freelancer",
-    companyName: "Independent Freelancer",
-    companyLogo: "/company/freelance.svg",
-    isCurrentEmployer: true,
+    id: "cgal-gsoc-2026",
+    companyName: "Google Summer of Code",
+    companyLogo: "/company/gsoc-sun.svg",
     positions: [
       {
-        id: "freelance-fullstack-developer",
-        title: "Full Stack Developer",
+        id: "cgal-gsoc-shaders-basic-viewer",
+        title: "Google Summer of Code 2026",
         employmentPeriod: {
-          start: "08.2025",
+          start: "05.2026",
+          end: "08.2026",
         },
-        employmentType: "Freelance",
+        employmentType: "GSoC Contributor",
+        organization: "CGAL Project",
+        link: {
+          label: "link",
+          href: "https://summerofcode.withgoogle.com/programs/2026/projects/sSDJMWLc",
+        },
         icon: "code",
-        description: `Building custom web applications for global clients using React, Next.js, TypeScript, and blockchain technologies. Delivering end-to-end solutions from design to deployment. **Available for freelance projects and consulting.**`,
+        description: `Selected to develop **Shaders for Basic Viewer**, improving CGAL's one-call visualization layer for drawing CGAL data structures through the draw() API.
+
+Redesigning the edge rendering pipeline to operate in clip/NDC space, fixing zoom-level edge disappearance caused by numerically unstable shader math, and replacing bounding-box-based sizing with viewport-relative pixel metrics.
+
+Improving 2D/3D camera transitions, depth-correct edge rendering, OpenGL compatibility paths, and optional fragment-shader anti-aliasing while keeping the existing draw() API backward-compatible.
+
+Producing regression tests and a comparison report on how MeshLab and ParaView approach wide-line rendering. Expected 175-hour open-source project administered by Google, with development for CGAL Project.`,
         skills: [
-          "Next.js",
-          "React",
-          "TypeScript",
-          "Node.js",
-          "MongoDB",
-          "PostgreSQL",
-          "Solidity",
-          "AWS",
+          "CGAL",
+          "C++",
+          "OpenGL",
+          "GLSL",
+          "Computer Graphics",
+          "Computational Geometry",
+          "Testing",
         ],
         isExpanded: true,
+      },
+    ],
+  },
+  {
+    id: "openmetadata",
+    companyName: "OpenMetadata",
+    companyLogo: "/company/openmetadata.png",
+    positions: [
+      {
+        id: "openmetadata-oss-contributor",
+        title: "Open Source Contributor",
+        employmentPeriod: {
+          start: "04.2026",
+          end: "04.2026",
+        },
+        employmentType: "Part-time",
+        icon: "code",
+        description: `Contributed extensively to OpenMetadata, an open-source metadata management platform, focusing on performance optimization, bug resolution, and UI improvements across 31 pull requests: 12 merged and 19 open. [Pull requests](https://github.com/open-metadata/OpenMetadata/pulls/RajdeepKushwaha5)
+
+**Backend & Performance:** Resolved a severe N+1 query issue by implementing bulk-fetching for Airflow task instances, preventing slow pipeline status yields. Added defensive type handling in the REST client to prevent runtime crashes, and improved cache performance by removing unnecessary JSON serialization/deserialization cycles.
+
+**Data Ingestion & Integrations:** Fixed parsing and extraction bugs across Redshift materialized views, query masking functions, Kafka schema registries, and data sampling logic so randomized sample flags are respected at 100% thresholds.
+
+**Frontend & Localization:** Enhanced i18n support with dedicated translation keys for French rendering and missing bulk-operation menu items. Patched Combobox and Autocomplete UI components to keep typography and styling consistent.`,
+        skills: [
+          "Open Source",
+          "Java",
+          "Python",
+          "TypeScript",
+          "React",
+          "Performance",
+          "Data Ingestion",
+          "i18n",
+          "Front-End Design",
+        ],
+        isExpanded: false,
       },
     ],
   },
@@ -86,32 +132,6 @@ export const EXPERIENCES: Experience[] = [
         icon: "code",
         description: `Built a CLI command index generator that creates commands.json from eBook markdown files. Implemented JSON loading with fallback for show/search commands, covering 101 Linux commands. [Repository](https://github.com/The-DevOps-Daily/devops-daily)`,
         skills: ["Python", "Typer", "JSON", "Markdown", "CLI Development"],
-        isExpanded: false,
-      },
-    ],
-  },
-  {
-    id: "edunet-foundation",
-    companyName: "Edunet Foundation",
-    companyLogo: "/company/edunet.png",
-    positions: [
-      {
-        id: "edunet-intern",
-        title: "Intern",
-        employmentPeriod: {
-          start: "07.2025",
-          end: "08.2025",
-        },
-        employmentType: "Internship",
-        icon: "education",
-        description: `Worked on real-world ML projects in a professional environment. Built impactful solutions using Python and TensorFlow while gaining experience in agile methodologies.`,
-        skills: [
-          "Python",
-          "Machine Learning",
-          "TensorFlow",
-          "Data Analysis",
-          "Pandas",
-        ],
         isExpanded: false,
       },
     ],

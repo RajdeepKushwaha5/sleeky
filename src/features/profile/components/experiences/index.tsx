@@ -1,21 +1,16 @@
 "use client";
 
+import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 import { motion, type Variants } from "motion/react";
 import React from "react";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
 
 import { EXPERIENCES } from "../../data/experiences";
 import { Panel, PanelHeader, PanelTitle } from "../panel";
 import { ExperienceItem } from "./experience-item";
 
-const WORK_EXPERIENCES = EXPERIENCES.filter(
-  (e) => !e.positions.some((p) => p.title === "Open Source Contributor")
-);
-
-const OSS_EXPERIENCES = EXPERIENCES.filter((e) =>
-  e.positions.some((p) => p.title === "Open Source Contributor")
-);
+const DEFAULT_VISIBLE_EXPERIENCES = 3;
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -57,46 +52,42 @@ function ExperienceList({ experiences }: { experiences: typeof EXPERIENCES }) {
 }
 
 export function Experiences() {
+  const [isExpanded, setIsExpanded] = React.useState(false);
+  const hasMoreExperiences = EXPERIENCES.length > DEFAULT_VISIBLE_EXPERIENCES;
+  const visibleExperiences = isExpanded
+    ? EXPERIENCES
+    : EXPERIENCES.slice(0, DEFAULT_VISIBLE_EXPERIENCES);
+
   return (
     <Panel id="experience">
       <PanelHeader>
         <PanelTitle>Experience</PanelTitle>
       </PanelHeader>
 
-      <Tabs defaultValue="work">
-        <TabsList className="mb-4 h-auto gap-2 rounded-full border border-border/25 bg-transparent p-1 dark:border-white/[0.08] dark:bg-white/[0.03]">
-          <TabsTrigger
-            value="work"
-            className="rounded-full px-4 py-1.5 text-[13px] tracking-wide data-[state=active]:bg-foreground/[0.06] data-[state=active]:shadow-none dark:text-muted-foreground/70 dark:data-[state=active]:bg-white/[0.1] dark:data-[state=active]:text-foreground/90"
-          >
-            Work
-          </TabsTrigger>
-          <TabsTrigger
-            value="open-source"
-            className="rounded-full px-4 py-1.5 text-[13px] tracking-wide data-[state=active]:bg-foreground/[0.06] data-[state=active]:shadow-none dark:text-muted-foreground/70 dark:data-[state=active]:bg-white/[0.1] dark:data-[state=active]:text-foreground/90"
-          >
-            Open Source
-          </TabsTrigger>
-          <TabsTrigger
-            value="all"
-            className="rounded-full px-4 py-1.5 text-[13px] tracking-wide data-[state=active]:bg-foreground/[0.06] data-[state=active]:shadow-none dark:text-muted-foreground/70 dark:data-[state=active]:bg-white/[0.1] dark:data-[state=active]:text-foreground/90"
-          >
-            All
-          </TabsTrigger>
-        </TabsList>
+      <ExperienceList
+        key={isExpanded ? "all-experiences" : "preview-experiences"}
+        experiences={visibleExperiences}
+      />
 
-        <TabsContent value="work">
-          <ExperienceList experiences={WORK_EXPERIENCES} />
-        </TabsContent>
-
-        <TabsContent value="open-source">
-          <ExperienceList experiences={OSS_EXPERIENCES} />
-        </TabsContent>
-
-        <TabsContent value="all">
-          <ExperienceList experiences={EXPERIENCES} />
-        </TabsContent>
-      </Tabs>
+      {hasMoreExperiences && (
+        <div className="mt-2 flex justify-center">
+          <Button
+            className="bg-foreground/[0.06] px-4 text-foreground/80 hover:bg-foreground/[0.1] dark:bg-white/[0.08] dark:hover:bg-white/[0.12]"
+            size="sm"
+            type="button"
+            variant="ghost"
+            onClick={() => setIsExpanded((current) => !current)}
+            aria-expanded={isExpanded}
+          >
+            {isExpanded ? "Show Less" : "Show More"}
+            {isExpanded ? (
+              <ChevronUpIcon className="size-4" aria-hidden />
+            ) : (
+              <ChevronDownIcon className="size-4" aria-hidden />
+            )}
+          </Button>
+        </div>
+      )}
     </Panel>
   );
 }

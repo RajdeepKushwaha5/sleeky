@@ -17,6 +17,11 @@ export type ExperiencePosition = {
   };
   /** Full-time | Part-time | Contract | Internship, etc. */
   employmentType?: string;
+  organization?: string;
+  link?: {
+    label: string;
+    href: string;
+  };
   description?: string;
   /** UI icon to represent the role type. */
   icon?: ExperiencePositionIcon;
@@ -30,6 +35,8 @@ export type Experience = {
   companyName: string;
   /** URL to the company logo (absolute URL or path under /public). */
   companyLogo?: string;
+  /** Hide the company header when the position itself is the primary entry. */
+  hideCompanyHeader?: boolean;
   /** Roles held at this company; keep newest first for display. */
   positions: ExperiencePosition[];
   /** Marks the company as the current employer for highlighting. */

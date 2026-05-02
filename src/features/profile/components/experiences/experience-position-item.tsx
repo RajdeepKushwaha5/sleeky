@@ -1,4 +1,5 @@
 import { InfinityIcon } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 
 import { Markdown } from "@/components/markdown";
@@ -42,15 +43,41 @@ export function ExperiencePositionItem({
 
             {/* Content */}
             <div className="min-w-0 flex-1">
-              <div className="flex items-center justify-between gap-2">
-                <h4 className="font-outfit text-base font-semibold text-foreground/90">
-                  {position.title}
-                </h4>
-                <div
-                  className="shrink-0 text-muted-foreground transition-transform duration-200 [&_svg]:size-4"
-                  aria-hidden
-                >
-                  <CollapsibleChevronsIcon />
+              <div className="flex items-start justify-between gap-3">
+                <div className="min-w-0">
+                  <h4 className="font-outfit text-base font-semibold text-foreground/90">
+                    {position.title}
+                    {position.link && (
+                      <Link
+                        className="ml-2 align-baseline text-sm font-normal text-info underline underline-offset-4 transition-colors hover:text-info/80"
+                        href={position.link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {position.link.label}
+                      </Link>
+                    )}
+                  </h4>
+
+                  {position.organization && (
+                    <p className="mt-1 text-sm text-muted-foreground md:hidden">
+                      {position.organization}
+                    </p>
+                  )}
+                </div>
+
+                <div className="flex shrink-0 items-center gap-2">
+                  {position.organization && (
+                    <span className="hidden text-right text-sm text-muted-foreground md:inline">
+                      {position.organization}
+                    </span>
+                  )}
+                  <div
+                    className="text-muted-foreground transition-transform duration-200 [&_svg]:size-4"
+                    aria-hidden
+                  >
+                    <CollapsibleChevronsIcon />
+                  </div>
                 </div>
               </div>
 
