@@ -36,7 +36,7 @@ Producing regression tests and a comparison report on how MeshLab and ParaView a
           "Computational Geometry",
           "Testing",
         ],
-        isExpanded: true,
+        isExpanded: false,
       },
     ],
   },
