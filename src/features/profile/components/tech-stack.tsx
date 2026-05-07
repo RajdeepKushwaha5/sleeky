@@ -116,14 +116,14 @@ export function TechStack() {
         <div className="flex items-center justify-between">
           <PanelTitle>Stack</PanelTitle>
           {/* View toggle */}
-          <div className="flex items-center gap-1 rounded-full border border-border/30 bg-muted/20 p-0.5">
+          <div className="flex items-center gap-0.5 rounded-full border border-border/25 bg-muted/15 p-0.5">
             <button
               onClick={() => setView("icons")}
               className={cn(
-                "rounded-full px-3 py-1 font-mono text-[10px] tracking-[0.1em] uppercase transition-all duration-200",
+                "rounded-full px-3.5 py-1 font-mono text-[10px] tracking-[0.1em] uppercase transition-all duration-300",
                 view === "icons"
-                  ? "bg-foreground text-background shadow-sm"
-                  : "text-muted-foreground/60 hover:text-muted-foreground"
+                  ? "bg-foreground text-background shadow-md"
+                  : "text-muted-foreground/50 hover:bg-foreground/[0.04] hover:text-muted-foreground"
               )}
             >
               Icons
@@ -131,10 +131,10 @@ export function TechStack() {
             <button
               onClick={() => setView("category")}
               className={cn(
-                "rounded-full px-3 py-1 font-mono text-[10px] tracking-[0.1em] uppercase transition-all duration-200",
+                "rounded-full px-3.5 py-1 font-mono text-[10px] tracking-[0.1em] uppercase transition-all duration-300",
                 view === "category"
-                  ? "bg-foreground text-background shadow-sm"
-                  : "text-muted-foreground/60 hover:text-muted-foreground"
+                  ? "bg-foreground text-background shadow-md"
+                  : "text-muted-foreground/50 hover:bg-foreground/[0.04] hover:text-muted-foreground"
               )}
             >
               Category
@@ -162,7 +162,7 @@ export function TechStack() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={tech.title}
-                      className="block transition-all duration-300 hover:scale-110 hover:opacity-70"
+                      className="block transition-all duration-300 hover:scale-115 hover:drop-shadow-[0_0_8px_rgba(0,0,0,0.08)] dark:hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.1)]"
                     >
                       <span className="block text-zinc-900 dark:text-zinc-100">
                         <TechIcon

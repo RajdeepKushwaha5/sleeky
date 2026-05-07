@@ -170,8 +170,9 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <script
-          type="text/javascript"
+        <Script
+          id="dark-mode-script"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{ __html: darkModeScript }}
         />
         {/*
@@ -180,14 +181,18 @@ export default function RootLayout({
          */}
         <Script src={`data:text/javascript;base64,${btoa(darkModeScript)}`} />
         <Script src="/oneko/oneko.js" strategy="afterInteractive" />
-        <script
+        <Script
+          id="website-jsonld"
           type="application/ld+json"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(getWebSiteJsonLd()).replace(/</g, "\\u003c"),
           }}
         />
-        <script
+        <Script
+          id="person-jsonld"
           type="application/ld+json"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(getPersonJsonLd()).replace(/</g, "\\u003c"),
           }}

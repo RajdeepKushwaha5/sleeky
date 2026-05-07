@@ -2,6 +2,28 @@ import type { Award } from "../types/awards";
 
 export const AWARDS: Award[] = [
   {
+    id: "back-to-metadata-hackathon-2026",
+    prize: "Winner",
+    title: "Back to the Metadata Hackathon — WeMakeDevs × OpenMetadata",
+    date: "2026-05",
+    grade: "Hackathon",
+    description:
+      "Won the **Back to the Metadata Hackathon** organized by [WeMakeDevs](https://www.wemakedevs.org/) in collaboration with [OpenMetadata](https://open-metadata.org/). Built an impactful project among submissions spanning MCP servers, AI agents, governance tools, custom connectors, and observability dashboards built on OpenMetadata.\n\n[Winner Announcement](https://www.linkedin.com/posts/wemakedevs_back-to-the-metadata-hackathon-project-activity-7458019060614594560-E6F3)",
+    referenceLink:
+      "https://www.linkedin.com/posts/wemakedevs_back-to-the-metadata-hackathon-project-activity-7458019060614594560-E6F3",
+  },
+  {
+    id: "gitagent-hackathon-2026",
+    prize: "Winner",
+    title: "GitAgent Hackathon 2026 — Lyzr AI × HackCulture",
+    date: "2026-05",
+    grade: "Hackathon",
+    description:
+      "Won the **GitAgent Hackathon 2026** organized by [Lyzr AI](https://www.lyzr.ai/) and [HackCulture](https://hackculture.io/). Competed against **300+ registrations** and **150+ submissions** from talented builders pushing the boundaries of AI agents. Built and shipped ideas using the GitAgent ecosystem — defining agents through structured repositories.\n\n[Winner Announcement](https://www.linkedin.com/posts/rajdeepsingh5_gitagenthackathon-gitagent-ai-ugcPost-7457718352195555328-KGyK)",
+    referenceLink:
+      "https://www.linkedin.com/posts/rajdeepsingh5_gitagenthackathon-gitagent-ai-ugcPost-7457718352195555328-KGyK",
+  },
+  {
     id: "beyond-transformers-hackathon-2026",
     prize: "Runner Up",
     title: "Beyond Transformers Hackathon — E-Summit IIT Ropar",

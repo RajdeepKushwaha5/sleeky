@@ -14,7 +14,7 @@ export function About() {
 
       <PanelContent>
         <div className="flex flex-col items-center gap-6 text-center sm:flex-row sm:items-start sm:gap-7 sm:text-left">
-          {/* Image - Premium Round Style */}
+          {/* Image - Premium Round Style with enhanced glow */}
           <motion.div
             className="relative shrink-0 grayscale transition-all duration-700 hover:grayscale-0 dark:grayscale-0"
             initial={{ opacity: 0, scale: 0.9 }}
@@ -22,8 +22,9 @@ export function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            <div className="absolute -inset-0.5 rounded-full bg-gradient-to-br from-foreground/[0.04] to-transparent blur-sm" />
-            <div className="relative aspect-square h-24 w-24 overflow-hidden rounded-full ring-[2px] ring-foreground/10 ring-offset-[3px] ring-offset-background sm:h-28 sm:w-28">
+            {/* Outer glow ring */}
+            <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-foreground/[0.06] via-transparent to-foreground/[0.04] blur-md" />
+            <div className="relative aspect-square h-24 w-24 overflow-hidden rounded-full ring-[2px] ring-foreground/12 ring-offset-[3px] ring-offset-background transition-all duration-700 hover:ring-foreground/20 sm:h-28 sm:w-28">
               <Image
                 src="/final_about.png"
                 alt="About"
@@ -34,27 +35,27 @@ export function About() {
             </div>
           </motion.div>
 
-          <div className="flex-1 space-y-3">
-            <p className="font-serif text-lg leading-[1.65] text-foreground/80 sm:text-xl">
+          <div className="flex-1 space-y-3.5">
+            <p className="font-serif text-lg leading-[1.7] text-foreground/80 sm:text-xl">
               Full-stack developer and{" "}
               <a
                 href="https://en.wikipedia.org/wiki/Competitive_programming"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline decoration-foreground/15 underline-offset-3 transition-colors hover:decoration-foreground/40"
+                className="underline decoration-foreground/15 underline-offset-3 transition-all duration-300 hover:text-foreground/90 hover:decoration-foreground/40"
               >
                 competitive programmer
               </a>{" "}
               building clean, reliable web products — from idea to production.
             </p>
 
-            <p className="text-sm leading-relaxed text-foreground/40">
+            <p className="text-sm leading-[1.75] text-foreground/45">
               Currently deep into{" "}
               <a
                 href="https://en.wikipedia.org/wiki/Large_language_model"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium text-foreground/60 underline decoration-foreground/10 underline-offset-3 transition-colors hover:text-foreground/80 hover:decoration-foreground/30"
+                className="font-medium text-foreground/60 underline decoration-foreground/10 underline-offset-3 transition-all duration-300 hover:text-foreground/80 hover:decoration-foreground/30"
               >
                 LLMs &amp; Generative AI
               </a>
@@ -64,7 +65,7 @@ export function About() {
                 href="https://en.wikipedia.org/wiki/Blockchain"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium text-foreground/60 underline decoration-foreground/10 underline-offset-3 transition-colors hover:text-foreground/80 hover:decoration-foreground/30"
+                className="font-medium text-foreground/60 underline decoration-foreground/10 underline-offset-3 transition-all duration-300 hover:text-foreground/80 hover:decoration-foreground/30"
               >
                 Blockchain &amp; Web3
               </a>{" "}
@@ -73,7 +74,7 @@ export function About() {
                 href="https://en.wikipedia.org/wiki/Solidity"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium text-foreground/60 underline decoration-foreground/10 underline-offset-3 transition-colors hover:text-foreground/80 hover:decoration-foreground/30"
+                className="font-medium text-foreground/60 underline decoration-foreground/10 underline-offset-3 transition-all duration-300 hover:text-foreground/80 hover:decoration-foreground/30"
               >
                 Solidity
               </a>{" "}
@@ -82,18 +83,18 @@ export function About() {
                 href="https://en.wikipedia.org/wiki/Ethereum"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium text-foreground/60 underline decoration-foreground/10 underline-offset-3 transition-colors hover:text-foreground/80 hover:decoration-foreground/30"
+                className="font-medium text-foreground/60 underline decoration-foreground/10 underline-offset-3 transition-all duration-300 hover:text-foreground/80 hover:decoration-foreground/30"
               >
                 Ethereum
               </a>{" "}
               &amp; Solana, and shipping dApps with real users.
             </p>
 
-            <p className="text-[12px] leading-relaxed text-muted-foreground/30 italic">
+            <p className="text-[12px] leading-relaxed text-muted-foreground/35 italic">
               ↳ always building something new —{" "}
               <a
                 href="#projects"
-                className="underline decoration-muted-foreground/15 underline-offset-3 transition-colors hover:text-muted-foreground/50"
+                className="underline decoration-muted-foreground/15 underline-offset-3 transition-all duration-300 hover:text-muted-foreground/55 hover:decoration-muted-foreground/30"
               >
                 see projects
               </a>

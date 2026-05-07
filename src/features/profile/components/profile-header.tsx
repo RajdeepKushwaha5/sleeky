@@ -43,21 +43,26 @@ export function ProfileHeader() {
 
   return (
     <div className="relative mx-2 my-6 flex flex-col items-center overflow-hidden rounded-2xl border border-border/20 bg-card/40 p-6 text-center backdrop-blur-sm sm:flex-row sm:p-8 sm:text-left">
-      {/* Subtle gradient decoration */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-foreground/[0.008] via-transparent to-foreground/[0.012]" />
+      {/* Subtle gradient decoration — enhanced with dual tone */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-foreground/[0.01] via-transparent to-foreground/[0.015]" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-tl from-primary/[0.008] via-transparent to-transparent" />
 
       {/* Avatar */}
       <div className="relative shrink-0 pb-5 sm:pr-8 sm:pb-0">
         <HoverCard openDelay={100} closeDelay={100}>
           <HoverCardTrigger asChild>
-            <Image
-              className="relative z-[2] size-28 rounded-full bg-zinc-800 ring-offset-background grayscale transition-all duration-300 select-none hover:grayscale-[50%] sm:size-36 dark:bg-zinc-900 dark:grayscale-0 dark:hover:grayscale-0"
-              alt={`${USER.displayName}'s avatar`}
-              src={USER.avatar}
-              width={144}
-              height={144}
-              priority
-            />
+            <div className="relative">
+              {/* Avatar glow ring */}
+              <div className="absolute -inset-1.5 animate-pulse rounded-full bg-gradient-to-br from-foreground/[0.06] via-transparent to-foreground/[0.04] blur-md" />
+              <Image
+                className="relative z-[2] size-28 rounded-full bg-zinc-800 ring-2 ring-foreground/[0.08] ring-offset-[3px] ring-offset-background grayscale transition-all duration-500 select-none hover:ring-foreground/[0.15] hover:grayscale-[30%] sm:size-36 dark:bg-zinc-900 dark:grayscale-0 dark:hover:grayscale-0"
+                alt={`${USER.displayName}'s avatar`}
+                src={USER.avatar}
+                width={144}
+                height={144}
+                priority
+              />
+            </div>
           </HoverCardTrigger>
           <HoverCardContent side="right" align="start" className="w-auto p-0">
             <ProfileStatusTooltip />
@@ -67,40 +72,44 @@ export function ProfileHeader() {
 
       {/* Info */}
       <div className="relative flex flex-1 flex-col items-center justify-center sm:items-start">
-        {/* Specialty */}
-        <div className="mb-3 inline-flex items-center rounded-full border border-border/25 bg-muted/30 px-3 py-1 text-[10px] font-medium tracking-[0.1em] text-muted-foreground uppercase">
-          Web Dev &bull; AI &bull; dApps &amp; Blockchain
+        {/* Specialty — enhanced pill with subtle shimmer */}
+        <div className="mb-3 inline-flex items-center rounded-full border border-border/20 bg-gradient-to-r from-muted/40 via-muted/20 to-muted/40 px-3.5 py-1.5 text-[10px] font-medium tracking-[0.1em] text-muted-foreground/80 uppercase shadow-sm">
+          <span className="relative">
+            Web Dev &bull; AI &bull; dApps &amp; Blockchain
+          </span>
         </div>
 
-        {/* Name */}
-        <h1 className="mb-2 flex flex-wrap items-center justify-center gap-2.5 font-serif text-2xl leading-tight text-foreground/95 italic sm:justify-start sm:text-[2.5rem]">
-          {USER.displayName}
+        {/* Name — enhanced serif with subtle gradient */}
+        <h1 className="mb-2 flex flex-wrap items-center justify-center gap-2.5 font-serif text-2xl leading-tight italic sm:justify-start sm:text-[2.5rem]">
+          <span className="bg-gradient-to-br from-foreground via-foreground/90 to-foreground/75 bg-clip-text text-transparent">
+            {USER.displayName}
+          </span>
           <SimpleTooltip content="Verified">
             <VerifiedIcon className="size-[0.45em] translate-y-px text-info select-none" />
           </SimpleTooltip>
         </h1>
 
-        {/* Dictionary metadata row */}
-        <div className="mb-3 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 font-mono text-[11px] text-muted-foreground/50 sm:justify-start">
+        {/* Dictionary metadata row — slightly brighter */}
+        <div className="mb-3 flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 font-mono text-[11px] text-muted-foreground/55 sm:justify-start">
           <span className="italic">/rɑːdʒdiːp sɪŋ/</span>
-          <span className="text-muted-foreground/30">•</span>
+          <span className="text-muted-foreground/25">•</span>
           <span>noun</span>
-          <span className="text-muted-foreground/30">•</span>
+          <span className="text-muted-foreground/25">•</span>
           {istTime && <span className="tabular-nums">{istTime} IST</span>}
         </div>
 
-        {/* Flip sentences */}
-        <div className="font-light text-muted-foreground/80">
+        {/* Flip sentences — improved contrast */}
+        <div className="text-[15px] font-light text-muted-foreground/70 sm:text-base">
           <FlipSentences sentences={USER.flipSentences} />
         </div>
       </div>
 
-      {/* Sponsor button — top right */}
+      {/* Sponsor button — top right, enhanced hover glow */}
       <a
         href="https://github.com/sponsors/RajdeepKushwaha5"
         target="_blank"
         rel="noopener noreferrer"
-        className="group absolute top-4 right-4 z-10 flex items-center gap-1.5 rounded-full border border-pink-500/15 bg-pink-500/[0.04] px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-300 hover:border-pink-400/30 hover:bg-pink-500/[0.08] hover:shadow-[0_0_12px_rgba(236,72,153,0.12)]"
+        className="group absolute top-4 right-4 z-10 flex items-center gap-1.5 rounded-full border border-pink-500/15 bg-pink-500/[0.04] px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-300 hover:border-pink-400/30 hover:bg-pink-500/[0.08] hover:shadow-[0_0_20px_rgba(236,72,153,0.15)]"
       >
         <svg
           className="size-3.5 fill-none stroke-pink-400/70 transition-all duration-300 group-hover:[animation:heartbeat_1.2s_ease-in-out_infinite] group-hover:stroke-pink-400"

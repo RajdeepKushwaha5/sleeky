@@ -30,21 +30,27 @@ export function ProjectCard({
       className={cn(
         "group/project flex h-full flex-col overflow-hidden rounded-2xl border border-border/15 bg-foreground/[0.02]",
         "transition-all duration-500 ease-out",
-        "hover:border-border/25 hover:bg-foreground/[0.04] hover:shadow-xl hover:shadow-black/[0.04] dark:hover:shadow-black/30",
-        "hover:-translate-y-1"
+        "hover:border-border/30 hover:bg-foreground/[0.04]",
+        "hover:shadow-[0_12px_40px_rgba(0,0,0,0.06),0_4px_12px_rgba(0,0,0,0.03)]",
+        "dark:hover:shadow-[0_12px_40px_rgba(0,0,0,0.35),0_0_1px_rgba(255,255,255,0.04)]",
+        "hover:-translate-y-1.5"
       )}
     >
-      {/* Image Section */}
+      {/* Image Section — enhanced with overlay gradient on hover */}
       <div className="relative aspect-[16/10] w-full overflow-hidden">
         {project.logo ? (
-          <Image
-            src={project.logo}
-            alt={project.title}
-            fill
-            className="object-cover grayscale transition-all duration-500 group-hover/project:scale-105 group-hover/project:grayscale-0 dark:grayscale-0"
-            priority={shouldPreloadImage}
-            unoptimized
-          />
+          <>
+            <Image
+              src={project.logo}
+              alt={project.title}
+              fill
+              className="object-cover grayscale transition-all duration-700 ease-out group-hover/project:scale-[1.06] group-hover/project:grayscale-0 dark:grayscale-0"
+              priority={shouldPreloadImage}
+              unoptimized
+            />
+            {/* Subtle bottom gradient for text readability */}
+            <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-500 group-hover/project:opacity-100" />
+          </>
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-muted/50 to-muted/20">
             <span className="font-serif text-6xl font-medium text-foreground/10 italic select-none">
@@ -57,7 +63,7 @@ export function ProjectCard({
       {/* Content Section */}
       <div className="flex flex-1 flex-col gap-3 p-5">
         <div className="space-y-1.5">
-          <h3 className="font-serif text-lg font-medium text-foreground/90 italic transition-colors group-hover/project:text-foreground">
+          <h3 className="font-serif text-lg font-medium text-foreground/90 italic transition-colors duration-300 group-hover/project:text-foreground">
             {project.title}
           </h3>
           <p className="font-mono text-xs text-foreground/40">
@@ -67,24 +73,24 @@ export function ProjectCard({
 
         {/* Description */}
         {project.description && (
-          <p className="line-clamp-2 text-sm text-foreground/60">
+          <p className="line-clamp-2 text-sm leading-relaxed text-foreground/55">
             {project.description.split("\n")[0]}
           </p>
         )}
 
-        {/* Tech Stack with Icons */}
+        {/* Tech Stack with Icons — enhanced pills */}
         <div className="flex flex-wrap items-center gap-2 pt-1">
           {project.skills.slice(0, 4).map((tech) => (
             <div
               key={tech}
-              className="group/tech flex items-center gap-1.5 rounded-full border border-dashed border-border/25 bg-foreground/[0.02] px-2.5 py-1"
+              className="group/tech flex items-center gap-1.5 rounded-full border border-dashed border-border/20 bg-foreground/[0.02] px-2.5 py-1 transition-all duration-300 hover:border-border/40 hover:bg-foreground/[0.05]"
               title={tech}
             >
               <TechIcon
                 name={tech}
                 className="size-4 transition-transform duration-300 group-hover/tech:scale-110"
               />
-              <span className="text-[10px] font-medium text-foreground/70 transition-colors group-hover/tech:text-foreground">
+              <span className="text-[10px] font-medium text-foreground/65 transition-colors group-hover/tech:text-foreground/90">
                 {tech}
               </span>
             </div>
@@ -96,22 +102,22 @@ export function ProjectCard({
           )}
         </div>
 
-        {/* View Details Footer */}
+        {/* View Details Footer — enhanced arrow animation */}
         <div className="mt-auto pt-2">
           {hasCaseStudy(project.id) ? (
             <Link
               href={`/projects/${project.id}`}
-              className="group/btn flex w-full items-center justify-between text-xs font-medium text-foreground/40 transition-colors hover:text-foreground/70"
+              className="group/btn flex w-full items-center justify-between text-xs font-medium text-foreground/40 transition-colors duration-300 hover:text-foreground/80"
             >
               <span>View Case Study</span>
-              <MoveRight className="size-3 transition-transform duration-300 group-hover/btn:translate-x-1" />
+              <MoveRight className="size-3.5 transition-all duration-300 group-hover/btn:translate-x-1.5 group-hover/btn:text-foreground" />
             </Link>
           ) : (
             <Dialog>
               <DialogTrigger asChild>
-                <button className="group/btn flex w-full items-center justify-between text-xs font-medium text-foreground/40 transition-colors hover:text-foreground/70">
+                <button className="group/btn flex w-full items-center justify-between text-xs font-medium text-foreground/40 transition-colors duration-300 hover:text-foreground/80">
                   <span>View Details</span>
-                  <MoveRight className="size-3 transition-transform duration-300 group-hover/btn:translate-x-1" />
+                  <MoveRight className="size-3.5 transition-all duration-300 group-hover/btn:translate-x-1.5 group-hover/btn:text-foreground" />
                 </button>
               </DialogTrigger>
               <DialogContent className="max-h-[85vh] w-[calc(100vw-2rem)] max-w-2xl overflow-y-auto rounded-2xl p-4 sm:p-6">

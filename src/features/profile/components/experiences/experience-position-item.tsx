@@ -26,15 +26,16 @@ export function ExperiencePositionItem({
 
   return (
     <CollapsibleWithContext defaultOpen={position.isExpanded}>
-      <div className="group/exp rounded-xl border border-border/15 bg-foreground/[0.02] p-4 transition-all duration-300 hover:border-border/30 hover:bg-foreground/[0.04]">
+      <div className="group/exp rounded-xl border border-border/15 bg-foreground/[0.015] p-4 transition-all duration-400 hover:border-border/35 hover:bg-foreground/[0.04] hover:shadow-[0_2px_16px_rgba(0,0,0,0.03)] dark:hover:shadow-[0_2px_16px_rgba(0,0,0,0.15)]">
         <CollapsibleTrigger className="block w-full text-left select-none">
           <div className="flex items-start gap-4">
-            {/* Icon */}
+            {/* Icon — enhanced with gradient background */}
             <div
               className={cn(
                 "flex size-10 shrink-0 items-center justify-center rounded-xl",
-                "bg-foreground/[0.04] text-muted-foreground",
-                "border border-border/15 transition-all duration-300 group-hover/exp:border-border/25 group-hover/exp:bg-foreground/[0.06]"
+                "bg-gradient-to-br from-foreground/[0.05] to-foreground/[0.02] text-muted-foreground",
+                "border border-border/15 transition-all duration-400 group-hover/exp:border-border/30 group-hover/exp:from-foreground/[0.08] group-hover/exp:to-foreground/[0.04]",
+                "group-hover/exp:shadow-sm"
               )}
               aria-hidden
             >
@@ -45,7 +46,7 @@ export function ExperiencePositionItem({
             <div className="min-w-0 flex-1">
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
-                  <h4 className="font-outfit text-base font-semibold text-foreground/90">
+                  <h4 className="font-outfit text-base font-semibold text-foreground/90 transition-colors duration-300 group-hover/exp:text-foreground">
                     {position.title}
                     {position.link && (
                       <Link
@@ -73,7 +74,7 @@ export function ExperiencePositionItem({
                     </span>
                   )}
                   <div
-                    className="text-muted-foreground transition-transform duration-200 [&_svg]:size-4"
+                    className="text-muted-foreground/60 transition-all duration-300 group-hover/exp:text-muted-foreground [&_svg]:size-4"
                     aria-hidden
                   >
                     <CollapsibleChevronsIcon />
@@ -81,16 +82,16 @@ export function ExperiencePositionItem({
                 </div>
               </div>
 
-              {/* Meta info */}
-              <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
+              {/* Meta info — enhanced with subtle accent */}
+              <div className="mt-1.5 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-sm text-muted-foreground">
                 {position.employmentType && (
                   <span className="font-medium text-foreground/60">
                     {position.employmentType}
                   </span>
                 )}
-                <span className="flex items-center gap-1 font-mono text-xs">
+                <span className="flex items-center gap-1.5 font-mono text-xs text-muted-foreground/70">
                   <span>{start}</span>
-                  <span>—</span>
+                  <span className="text-muted-foreground/40">—</span>
                   {isOngoing ? (
                     <InfinityIcon className="size-4 text-info" aria-hidden />
                   ) : (

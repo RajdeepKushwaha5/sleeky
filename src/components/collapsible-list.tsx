@@ -1,3 +1,5 @@
+"use client";
+
 import { ChevronDownIcon } from "lucide-react";
 import { Slot as SlotPrimitive } from "radix-ui";
 import React from "react";

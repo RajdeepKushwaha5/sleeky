@@ -38,7 +38,7 @@ function ThemedCoverGif() {
   return isDark ? (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      className="absolute inset-0 z-0 h-full w-full object-cover"
+      className="absolute inset-0 z-0 h-full w-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-[1.03]"
       src="/assets/kiminonawa-sky.gif"
       alt=""
       loading="eager"
@@ -48,7 +48,7 @@ function ThemedCoverGif() {
   ) : (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      className="absolute inset-0 z-0 h-full w-full object-cover"
+      className="absolute inset-0 z-0 h-full w-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-[1.03]"
       style={{ filter: "grayscale(100%) contrast(1.1)" }}
       src="/assets/giphy.gif"
       alt=""
@@ -64,54 +64,66 @@ export function ProfileCover() {
     <BrandContextMenu>
       <div
         className={cn(
-          "relative aspect-[2.2/1] overflow-hidden rounded-2xl select-none sm:aspect-[2.8/1]",
+          "group relative aspect-[2.2/1] overflow-hidden rounded-2xl select-none sm:aspect-[2.8/1]",
           "flex flex-col items-center justify-center gap-3",
           "mx-2 my-6",
-          // Animated glow border
-          "ring-1 ring-black/[0.03] dark:ring-white/[0.04]",
+          // Enhanced glow border
+          "ring-1 ring-black/[0.04] dark:ring-white/[0.06]",
           "before:pointer-events-none before:absolute before:inset-0 before:z-[2] before:rounded-2xl",
-          "before:ring-2 before:ring-white/10 before:ring-inset dark:before:ring-white/5"
+          "before:ring-2 before:ring-white/15 before:ring-inset dark:before:ring-white/[0.06]",
+          // Hover shadow
+          "transition-shadow duration-700",
+          "hover:shadow-[0_8px_40px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_8px_40px_rgba(0,0,0,0.4)]"
         )}
       >
         {/* Animated Background — only loads the GIF matching the active theme */}
         <ThemedCoverGif />
 
-        {/* Cinematic gradient overlay */}
-        <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black/60 via-black/25 to-black/5 dark:from-black/70 dark:via-black/30 dark:to-black/10" />
+        {/* Cinematic gradient overlay — enhanced depth */}
+        <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black/65 via-black/30 to-black/5 dark:from-black/75 dark:via-black/35 dark:to-black/10" />
 
-        {/* Aura pulse glow — bottom edge */}
+        {/* Secondary side gradient for depth */}
+        <div className="absolute inset-0 z-[1] bg-gradient-to-r from-black/20 via-transparent to-black/20" />
+
+        {/* Aura pulse glow — bottom edge, more vivid */}
         <div
-          className="absolute bottom-0 left-1/2 z-[1] h-32 w-3/4 -translate-x-1/2 blur-2xl"
+          className="absolute bottom-0 left-1/2 z-[1] h-36 w-4/5 -translate-x-1/2 blur-3xl"
           style={{
             background:
-              "radial-gradient(ellipse at center bottom, var(--aura-ring) 0%, transparent 70%)",
+              "radial-gradient(ellipse at center bottom, var(--aura-ring) 0%, transparent 65%)",
             animation: "aura-pulse 4s ease-in-out infinite",
           }}
         />
 
-        {/* Deep cinematic vignette */}
+        {/* Deep cinematic vignette — stronger */}
         <div
           className="absolute inset-0 z-[4]"
-          style={{ boxShadow: "inset 0 0 150px rgba(0,0,0,0.4)" }}
+          style={{ boxShadow: "inset 0 0 180px rgba(0,0,0,0.45)" }}
+        />
+
+        {/* Subtle shimmer overlay */}
+        <div
+          className="pointer-events-none absolute inset-0 z-[3] opacity-[0.04]"
+          style={{
+            background:
+              "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.3) 45%, transparent 50%)",
+            backgroundSize: "200% 100%",
+            animation: "shimmer 4s linear infinite",
+          }}
         />
 
         {/* Quote Subtitle - Per aspera ad astra */}
         <motion.p
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
-            duration: 1,
+            duration: 1.2,
             delay: 0.3,
             ease: [0.25, 0.46, 0.45, 0.94],
           }}
-          className="relative z-10 font-serif text-lg tracking-[0.04em] italic sm:text-xl md:text-2xl"
+          className="hero-text-gradient relative z-10 font-serif text-xl tracking-[0.06em] italic sm:text-2xl md:text-3xl"
           style={{
-            textShadow: "0 2px 20px rgba(0,0,0,0.5)",
-            background:
-              "linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.75) 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
+            textShadow: "0 4px 30px rgba(0,0,0,0.6)",
           }}
         >
           Per aspera ad astra
