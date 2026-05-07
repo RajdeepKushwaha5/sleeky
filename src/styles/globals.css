@@ -581,6 +581,23 @@ button,
   }
 }
 
+/* ── Marquee (iOS-safe pure CSS) ────────────────── */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+    -webkit-transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+  }
+}
+
+.pause {
+  -webkit-animation-play-state: paused !important;
+  animation-play-state: paused !important;
+}
+
 /* ── New animations for redesign ────────────────── */
 @keyframes slide-in-bottom {
   from {

@@ -13,7 +13,7 @@ export function TestimonialsMarquee() {
   return (
     <Panel
       id="testimonials"
-      className="bg-zinc-50 before:z-11 after:z-10 dark:bg-card [&_.rfm-initial-child-container]:items-stretch! [&_.rfm-marquee]:items-stretch!"
+      className="bg-zinc-50 before:z-11 after:z-10 dark:bg-card"
     >
       <h2 className="sr-only">Testimonials</h2>
 

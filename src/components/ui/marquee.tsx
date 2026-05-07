@@ -1,8 +1,7 @@
 "use client";
 
 import type { HTMLAttributes } from "react";
-import type { MarqueeProps as FastMarqueeProps } from "react-fast-marquee";
-import FastMarquee from "react-fast-marquee";
+import React, { useEffect, useRef, useState } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -15,21 +14,78 @@ export const Marquee = ({ className, ...props }: MarqueeProps) => (
   />
 );
 
-export type MarqueeContentProps = FastMarqueeProps;
+export type MarqueeContentProps = HTMLAttributes<HTMLDivElement> & {
+  direction?: "left" | "right";
+  speed?: number;
+  pauseOnHover?: boolean;
+  autoFill?: boolean;
+  loop?: number;
+};
 
 export const MarqueeContent = ({
-  loop = 0,
-  autoFill = true,
+  children,
+  className,
+  direction = "left",
+  speed = 40,
   pauseOnHover = true,
   ...props
-}: MarqueeContentProps) => (
-  <FastMarquee
-    autoFill={autoFill}
-    loop={loop}
-    pauseOnHover={pauseOnHover}
-    {...props}
-  />
-);
+}: MarqueeContentProps) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
+  const [duration, setDuration] = useState(20);
+
+  useEffect(() => {
+    if (innerRef.current) {
+      const contentWidth = innerRef.current.scrollWidth;
+      // Calculate duration based on content width and desired speed (px/s)
+      const calculatedDuration = contentWidth / speed;
+      setDuration(calculatedDuration);
+    }
+  }, [children, speed]);
+
+  return (
+    <div
+      ref={containerRef}
+      className={cn(
+        "flex w-full overflow-hidden",
+        pauseOnHover && "[&:hover_.marquee-track]:pause",
+        className
+      )}
+      {...props}
+    >
+      {/* Track 1 */}
+      <div
+        ref={innerRef}
+        className="marquee-track flex shrink-0 items-stretch"
+        style={{
+          animation: `marquee-scroll ${duration}s linear infinite`,
+          animationDirection: direction === "right" ? "reverse" : "normal",
+          willChange: "transform",
+          WebkitAnimation: `marquee-scroll ${duration}s linear infinite`,
+          WebkitAnimationDirection:
+            direction === "right" ? "reverse" : "normal",
+        }}
+      >
+        {children}
+      </div>
+      {/* Track 2 (duplicate for seamless loop) */}
+      <div
+        className="marquee-track flex shrink-0 items-stretch"
+        aria-hidden="true"
+        style={{
+          animation: `marquee-scroll ${duration}s linear infinite`,
+          animationDirection: direction === "right" ? "reverse" : "normal",
+          willChange: "transform",
+          WebkitAnimation: `marquee-scroll ${duration}s linear infinite`,
+          WebkitAnimationDirection:
+            direction === "right" ? "reverse" : "normal",
+        }}
+      >
+        {children}
+      </div>
+    </div>
+  );
+};
 
 export type MarqueeFadeProps = HTMLAttributes<HTMLDivElement> & {
   side: "left" | "right";
