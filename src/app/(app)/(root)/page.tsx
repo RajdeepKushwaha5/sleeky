@@ -34,7 +34,7 @@ export default function Page() {
         }}
       />
 
-      <div className="mx-auto md:max-w-3xl">
+      <div className="profile-shell mx-auto md:max-w-3xl">
         <ProfileCover />
         <ProfileHeader />
         <Separator className="h-2" />

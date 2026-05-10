@@ -64,23 +64,20 @@ export function ProfileCover() {
     <BrandContextMenu>
       <div
         className={cn(
-          "group relative aspect-[2.2/1] overflow-hidden rounded-2xl select-none sm:aspect-[2.8/1]",
+          "group relative aspect-[2.05/1] overflow-hidden rounded-[1.75rem] select-none sm:aspect-[2.75/1]",
           "flex flex-col items-center justify-center gap-3",
-          "mx-2 my-6",
-          // Enhanced glow border
-          "ring-1 ring-black/[0.04] dark:ring-white/[0.06]",
-          "before:pointer-events-none before:absolute before:inset-0 before:z-[2] before:rounded-2xl",
-          "before:ring-2 before:ring-white/15 before:ring-inset dark:before:ring-white/[0.06]",
-          // Hover shadow
-          "transition-shadow duration-700",
-          "hover:shadow-[0_8px_40px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_8px_40px_rgba(0,0,0,0.4)]"
+          "mx-2 mt-4 mb-5 sm:mt-6",
+          "border border-white/25 bg-card shadow-[0_24px_80px_rgba(0,0,0,0.12)] dark:border-white/[0.08] dark:shadow-[0_24px_90px_rgba(0,0,0,0.55)]",
+          "before:pointer-events-none before:absolute before:inset-0 before:z-[2] before:rounded-[1.75rem]",
+          "before:ring-1 before:ring-white/25 before:ring-inset dark:before:ring-white/[0.08]",
+          "transition-transform duration-700 ease-out hover:-translate-y-0.5"
         )}
       >
         {/* Animated Background — only loads the GIF matching the active theme */}
         <ThemedCoverGif />
 
         {/* Cinematic gradient overlay — enhanced depth */}
-        <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black/65 via-black/30 to-black/5 dark:from-black/75 dark:via-black/35 dark:to-black/10" />
+        <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black/70 via-black/28 to-black/5 dark:from-black/78 dark:via-black/35 dark:to-black/10" />
 
         {/* Secondary side gradient for depth */}
         <div className="absolute inset-0 z-[1] bg-gradient-to-r from-black/20 via-transparent to-black/20" />
@@ -98,7 +95,7 @@ export function ProfileCover() {
         {/* Deep cinematic vignette — stronger */}
         <div
           className="absolute inset-0 z-[4]"
-          style={{ boxShadow: "inset 0 0 180px rgba(0,0,0,0.45)" }}
+          style={{ boxShadow: "inset 0 0 180px rgba(0,0,0,0.5)" }}
         />
 
         {/* Subtle shimmer overlay */}
@@ -121,7 +118,7 @@ export function ProfileCover() {
             delay: 0.3,
             ease: [0.25, 0.46, 0.45, 0.94],
           }}
-          className="hero-text-gradient relative z-10 font-serif text-xl tracking-[0.06em] italic sm:text-2xl md:text-3xl"
+          className="hero-text-gradient relative z-10 px-6 text-center font-serif text-xl italic sm:text-2xl md:text-3xl"
           style={{
             textShadow: "0 4px 30px rgba(0,0,0,0.6)",
           }}

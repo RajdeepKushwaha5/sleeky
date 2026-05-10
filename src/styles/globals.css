@@ -740,6 +740,20 @@ button,
   -webkit-backdrop-filter: blur(16px) saturate(1.8);
 }
 
+/* ── Profile page frame ────────────────── */
+.profile-shell {
+  position: relative;
+}
+
+.profile-shell::before {
+  content: "";
+  position: absolute;
+  inset: -5rem -0.75rem 0;
+  pointer-events: none;
+  border-inline: 1px solid color-mix(in oklab, var(--foreground) 6%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, black 8rem, black 86%, transparent);
+}
+
 /* ── Timeline line ────────────────── */
 .timeline-line {
   position: relative;

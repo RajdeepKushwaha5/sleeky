@@ -42,7 +42,7 @@ export function ProfileHeader() {
   const istTime = useISTClock();
 
   return (
-    <div className="relative mx-2 my-6 flex flex-col items-center overflow-hidden rounded-2xl border border-border/20 bg-card/40 p-6 text-center backdrop-blur-sm sm:flex-row sm:p-8 sm:text-left">
+    <div className="relative mx-2 my-5 flex flex-col items-center overflow-hidden rounded-[1.75rem] border border-border/25 bg-background/72 p-6 text-center shadow-[0_18px_70px_rgba(0,0,0,0.08),0_1px_0_rgba(255,255,255,0.32)_inset] backdrop-blur-xl sm:flex-row sm:p-8 sm:text-left dark:bg-card/62 dark:shadow-[0_18px_80px_rgba(0,0,0,0.42),0_1px_0_rgba(255,255,255,0.06)_inset]">
       {/* Subtle gradient decoration — enhanced with dual tone */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-foreground/[0.01] via-transparent to-foreground/[0.015]" />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-tl from-primary/[0.008] via-transparent to-transparent" />
@@ -73,7 +73,7 @@ export function ProfileHeader() {
       {/* Info */}
       <div className="relative flex flex-1 flex-col items-center justify-center sm:items-start">
         {/* Specialty — enhanced pill with subtle shimmer */}
-        <div className="mb-3 inline-flex items-center rounded-full border border-border/20 bg-gradient-to-r from-muted/40 via-muted/20 to-muted/40 px-3.5 py-1.5 text-[10px] font-medium tracking-[0.1em] text-muted-foreground/80 uppercase shadow-sm">
+        <div className="mb-3 inline-flex items-center rounded-full border border-border/25 bg-muted/35 px-3.5 py-1.5 text-[10px] font-medium text-muted-foreground/80 uppercase shadow-sm backdrop-blur-sm">
           <span className="relative">
             Web Dev &bull; AI &bull; dApps &amp; Blockchain
           </span>
@@ -90,7 +90,7 @@ export function ProfileHeader() {
         </h1>
 
         {/* Dictionary metadata row — slightly brighter */}
-        <div className="mb-3 flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 font-mono text-[11px] text-muted-foreground/55 sm:justify-start">
+        <div className="mb-3 flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 font-mono text-[11px] text-muted-foreground/58 sm:justify-start">
           <span className="italic">/rɑːdʒdiːp sɪŋ/</span>
           <span className="text-muted-foreground/25">•</span>
           <span>noun</span>
@@ -109,7 +109,7 @@ export function ProfileHeader() {
         href="https://github.com/sponsors/RajdeepKushwaha5"
         target="_blank"
         rel="noopener noreferrer"
-        className="group absolute top-4 right-4 z-10 flex items-center gap-1.5 rounded-full border border-pink-500/15 bg-pink-500/[0.04] px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-300 hover:border-pink-400/30 hover:bg-pink-500/[0.08] hover:shadow-[0_0_20px_rgba(236,72,153,0.15)]"
+        className="group absolute top-4 right-4 z-10 flex items-center gap-1.5 rounded-full border border-pink-500/15 bg-pink-500/[0.05] px-3 py-1.5 text-xs shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-pink-400/30 hover:bg-pink-500/[0.1] hover:shadow-[0_0_20px_rgba(236,72,153,0.15)]"
       >
         <svg
           className="size-3.5 fill-none stroke-pink-400/70 transition-all duration-300 group-hover:[animation:heartbeat_1.2s_ease-in-out_infinite] group-hover:stroke-pink-400"
