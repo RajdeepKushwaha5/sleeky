@@ -19,9 +19,10 @@ button,
 [class*="text-"],
 [class*="border-"] {
   transition-property:
-    background-color, border-color, color, fill, stroke, box-shadow;
-  transition-duration: 200ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    background-color, border-color, color, fill, stroke, box-shadow, opacity,
+    transform;
+  transition-duration: 240ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Disable transitions during page load to prevent flash */
@@ -236,39 +237,38 @@ button,
 }
 
 .dark {
-  /* ... existing dark variables ... */
-  --background: #0a0a0a;
-  --foreground: oklch(0.92 0.008 80);
-  --primary: oklch(0.88 0.01 80);
-  --primary-foreground: oklch(0.1 0.005 285);
-  --secondary: oklch(0.13 0.004 285);
-  --secondary-foreground: oklch(0.94 0.008 80);
-  --muted: oklch(0.13 0.004 285);
-  --muted-foreground: oklch(0.52 0.012 80);
-  --card: #0b0b0b;
-  --card-foreground: oklch(0.92 0.008 80);
-  --popover: #141414;
-  --popover-foreground: oklch(0.92 0.008 80);
-  --popover-border: #1e1e1e;
-  --accent: #1a1a1a;
+  --background: #030303;
+  --foreground: oklch(0.965 0.004 285);
+  --primary: #ffffff;
+  --primary-foreground: #000000;
+  --secondary: #101010;
+  --secondary-foreground: oklch(0.955 0.004 285);
+  --muted: #111111;
+  --muted-foreground: oklch(0.68 0.009 285);
+  --card: #080808;
+  --card-foreground: oklch(0.965 0.004 285);
+  --popover: #0a0a0a;
+  --popover-foreground: oklch(0.965 0.004 285);
+  --popover-border: #242424;
+  --accent: #151515;
   --accent2: color-mix(in oklab, var(--accent) 25%, transparent);
-  --accent-foreground: oklch(0.92 0.008 80);
-  --border: #131313;
-  --edge: oklch(0.13 0.003 285);
-  --input: oklch(0.14 0.004 285);
-  --ring: oklch(0.52 0.03 80);
-  --success: oklch(0.68 0.22 150);
-  --destructive: oklch(0.52 0.22 28);
-  --link: oklch(0.72 0.14 80);
-  --code: oklch(0.09 0.003 285);
-  --code-foreground: oklch(0.92 0.008 80);
-  --code-number: oklch(0.45 0.04 80);
-  --code-highlight: oklch(0.15 0.004 285);
-  --selection: oklch(0.68 0.12 80);
-  --selection-foreground: oklch(0.09 0.005 285);
+  --accent-foreground: oklch(0.96 0.004 285);
+  --border: #202020;
+  --edge: #171717;
+  --input: #1b1b1b;
+  --ring: rgba(255, 255, 255, 0.24);
+  --success: oklch(0.73 0.2 150);
+  --destructive: oklch(0.64 0.24 28);
+  --link: oklch(0.78 0.12 250);
+  --code: #101010;
+  --code-foreground: oklch(0.94 0.005 285);
+  --code-number: #707070;
+  --code-highlight: #181818;
+  --selection: rgba(255, 255, 255, 0.14);
+  --selection-foreground: #ffffff;
 
   --shadow-popover:
-    0 8px 32px rgba(0, 0, 0, 0.5), 0 0 1px rgba(255, 255, 255, 0.05);
+    0 24px 70px rgba(0, 0, 0, 0.64), 0 0 1px rgba(255, 255, 255, 0.12);
 }
 
 @layer base {
@@ -298,19 +298,19 @@ button,
 
   /* Global typography refinements */
   h1 {
-    @apply font-semibold tracking-[-0.035em];
-    letter-spacing: -0.035em;
+    @apply font-semibold tracking-normal;
+    letter-spacing: 0;
   }
 
   h2 {
-    @apply font-semibold tracking-[-0.03em];
+    @apply font-semibold tracking-normal;
   }
 
   h3,
   h4,
   h5,
   h6 {
-    @apply font-medium tracking-[-0.02em];
+    @apply font-medium tracking-normal;
   }
 
   p {
@@ -319,6 +319,25 @@ button,
 
   body {
     @apply bg-background font-sans text-foreground antialiased;
+    background:
+      linear-gradient(
+        180deg,
+        color-mix(in oklab, var(--accent) 42%, transparent) 0%,
+        transparent 32rem
+      ),
+      linear-gradient(
+        90deg,
+        color-mix(in oklab, var(--foreground) 3%, transparent) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        180deg,
+        color-mix(in oklab, var(--foreground) 3%, transparent) 1px,
+        transparent 1px
+      ),
+      var(--background);
+    background-attachment: fixed;
+    background-size: auto, 72px 72px, 72px 72px, auto;
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -332,20 +351,24 @@ button,
     line-height: 1.7;
   }
 
-  /* Custom scrollbar styling. Thanks @shadcn-ui */
+  /* Custom minimal scrollbar styling */
   ::-webkit-scrollbar {
-    width: 5px;
+    width: 7px;
+    height: 7px;
   }
   ::-webkit-scrollbar-track {
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: var(--border);
-    border-radius: 5px;
+    background: color-mix(in oklab, var(--foreground) 22%, transparent);
+    border: 2px solid transparent;
+    border-radius: 999px;
+    background-clip: content-box;
   }
   * {
     scrollbar-width: thin;
-    scrollbar-color: var(--border) transparent;
+    scrollbar-color: color-mix(in oklab, var(--foreground) 22%, transparent)
+      transparent;
   }
 
   [id] {

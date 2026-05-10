@@ -71,7 +71,7 @@ export function SiteFooter() {
       >
         {/* Inspiring CTA Section */}
         <motion.div
-          className="mb-6 flex flex-col items-center justify-center rounded-[2rem] border border-border/10 bg-white px-8 py-16 text-center sm:px-10 dark:bg-card/20"
+          className="mb-6 flex flex-col items-center justify-center rounded-[2rem] border border-border/10 bg-white px-8 py-16 text-center sm:px-10 dark:border-white/5 dark:bg-black"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -88,7 +88,7 @@ export function SiteFooter() {
         </motion.div>
 
         {/* Main Footer Card */}
-        <div className="flex flex-col gap-6 rounded-[2rem] border border-border/10 bg-white px-8 py-6 sm:flex-row sm:items-center sm:justify-between dark:bg-card/20">
+        <div className="flex flex-col gap-6 rounded-[2rem] border border-border/10 bg-white px-8 py-6 sm:flex-row sm:items-center sm:justify-between dark:border-white/5 dark:bg-black">
           {/* Left Side - Copyright and Tagline */}
           <motion.div
             className="space-y-1.5"
