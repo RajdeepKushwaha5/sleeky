@@ -7,6 +7,8 @@ import { Provider as JotaiProvider } from "jotai";
 import dynamic from "next/dynamic";
 import { ThemeProvider } from "next-themes";
 
+import { SmoothScroll } from "./smooth-scroll";
+
 const Toaster = dynamic(
   () => import("@/components/ui/sonner").then((mod) => mod.Toaster),
   { ssr: false }
@@ -23,18 +25,20 @@ export function Providers({ children }: { children: React.ReactNode }) {
         defaultTheme="system"
         attribute="class"
       >
-        <AppProgressProvider
-          color="var(--foreground)"
-          height="2px"
-          delay={500}
-          options={{ showSpinner: false }}
-        >
-          {children}
-        </AppProgressProvider>
+        <SmoothScroll>
+          <AppProgressProvider
+            color="var(--foreground)"
+            height="2px"
+            delay={500}
+            options={{ showSpinner: false }}
+          >
+            {children}
+          </AppProgressProvider>
 
-        <Toaster />
-        <Analytics />
-        <SpeedInsights />
+          <Toaster />
+          <Analytics />
+          <SpeedInsights />
+        </SmoothScroll>
       </ThemeProvider>
     </JotaiProvider>
   );

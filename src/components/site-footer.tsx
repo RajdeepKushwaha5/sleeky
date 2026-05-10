@@ -71,16 +71,16 @@ export function SiteFooter() {
       >
         {/* Inspiring CTA Section */}
         <motion.div
-          className="mb-6 rounded-[1.75rem] border border-border/20 bg-gradient-to-br from-card/60 via-card/40 to-card/60 p-8 text-center ring-1 ring-white/30 backdrop-blur-sm sm:p-10 dark:ring-white/[0.03]"
+          className="mb-6 flex flex-col items-center justify-center rounded-[2rem] border border-border/10 bg-white px-8 py-16 text-center sm:px-10 dark:bg-card/20"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          <h2 className="mb-3 font-serif text-2xl font-semibold tracking-[-0.02em] text-foreground/85 italic sm:text-3xl">
+          <h2 className="mb-4 font-serif text-3xl font-bold tracking-tight text-foreground/90 italic sm:text-4xl">
             Let&apos;s build something great.
           </h2>
-          <p className="mx-auto max-w-md text-sm leading-relaxed text-foreground/40">
+          <p className="mx-auto max-w-md text-[15px] leading-relaxed text-foreground/40">
             My inbox is always open. Whether you have a project idea, a
             question, or just want to say hi — reach out and let&apos;s start
             building.
@@ -88,22 +88,19 @@ export function SiteFooter() {
         </motion.div>
 
         {/* Main Footer Card */}
-        <div className="flex flex-col gap-6 rounded-[1.75rem] border border-border/30 bg-card/50 p-7 ring-1 ring-white/40 backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between dark:ring-white/[0.03]">
+        <div className="flex flex-col gap-6 rounded-[2rem] border border-border/10 bg-white px-8 py-6 sm:flex-row sm:items-center sm:justify-between dark:bg-card/20">
           {/* Left Side - Copyright and Tagline */}
           <motion.div
-            className="space-y-2"
+            className="space-y-1.5"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <p className="font-syne text-base font-bold tracking-tight text-foreground/90">
-              © {currentYear}{" "}
-              <span className="animate-gradient-x bg-gradient-to-r from-foreground via-primary/80 to-foreground bg-[length:200%_100%] bg-clip-text text-transparent">
-                Rajdeep Singh
-              </span>
+            <p className="font-outfit text-[15px] font-semibold tracking-tight text-foreground/90">
+              © {currentYear} Rajdeep Singh
             </p>
-            <p className="font-outfit text-[13px] leading-relaxed text-foreground/40">
+            <p className="font-outfit text-[13px] text-foreground/40">
               Made with focus, endless iterations, and lots of coke.
             </p>
           </motion.div>
@@ -121,11 +118,11 @@ export function SiteFooter() {
               href="https://github.com/sponsors/RajdeepKushwaha5"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex h-10 w-10 items-center justify-center rounded-full border border-pink-500/15 bg-pink-500/[0.04] transition-all duration-300 hover:scale-110 hover:border-pink-400/30 hover:bg-pink-500/[0.08] hover:shadow-[0_0_16px_rgba(236,72,153,0.15)]"
+              className="group flex h-10 w-10 items-center justify-center rounded-full border border-pink-500/15 bg-pink-500/[0.04] transition-colors hover:bg-pink-500/[0.08]"
               title="Sponsor"
             >
               <svg
-                className="h-4 w-4 fill-none stroke-pink-400/60 transition-all duration-300 group-hover:[animation:heartbeat_1.2s_ease-in-out_infinite] group-hover:stroke-pink-400"
+                className="h-4 w-4 fill-none stroke-pink-400/60 transition-colors group-hover:stroke-pink-400"
                 strokeWidth={1.5}
                 viewBox="0 0 16 16"
               >
@@ -136,10 +133,10 @@ export function SiteFooter() {
             {/* Gmail - Copy functionality */}
             <button
               onClick={copyEmail}
-              className={`group relative flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-300 active:scale-95 ${
+              className={`group relative flex h-10 w-10 items-center justify-center rounded-full border transition-colors ${
                 emailCopied
                   ? "border-green-500/50 bg-green-500/15"
-                  : "border-border/40 bg-card/40 hover:border-border/60 hover:bg-foreground/[0.06] hover:shadow-[0_2px_12px_rgba(0,0,0,0.04)] active:bg-foreground/10 dark:hover:shadow-[0_2px_12px_rgba(0,0,0,0.15)]"
+                  : "border-border/20 bg-transparent hover:bg-foreground/[0.02]"
               }`}
               title={emailTooltip}
             >
@@ -158,7 +155,7 @@ export function SiteFooter() {
                   />
                 </svg>
               ) : (
-                <Mail className="h-4 w-4 text-foreground/60 transition-colors group-hover:text-foreground" />
+                <Mail className="h-4 w-4 text-foreground/40 transition-colors group-hover:text-foreground/80" />
               )}
               <span
                 className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 rounded-lg bg-foreground px-3 py-1.5 text-xs whitespace-nowrap text-background opacity-0 transition-opacity group-hover:opacity-100"
@@ -175,25 +172,25 @@ export function SiteFooter() {
             <a
               target="_blank"
               rel="noopener"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-card/40 transition-all duration-300 hover:scale-110 hover:border-border/60 hover:bg-foreground/[0.06] hover:shadow-[0_2px_12px_rgba(0,0,0,0.04)] dark:hover:shadow-[0_2px_12px_rgba(0,0,0,0.15)]"
+              className="group flex h-10 w-10 items-center justify-center rounded-full border border-border/20 bg-transparent transition-colors hover:bg-foreground/[0.02]"
               title="Resume"
             >
-              <FileText className="h-4 w-4 text-foreground/50" />
+              <FileText className="h-4 w-4 text-foreground/40 transition-colors group-hover:text-foreground/80" />
             </a>
 
             {/* Divider */}
-            <div className="mx-1.5 h-5 w-px bg-gradient-to-b from-transparent via-border/50 to-transparent" />
+            <div className="mx-1 h-4 w-px bg-border/20" />
 
             {/* LinkedIn */}
             <a
               href="https://www.linkedin.com/in/rajdeepsingh5"
               target="_blank"
               rel="noopener"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-card/40 transition-all duration-300 hover:scale-110 hover:border-border/60 hover:bg-foreground/[0.06] hover:shadow-[0_2px_12px_rgba(0,0,0,0.04)] dark:hover:shadow-[0_2px_12px_rgba(0,0,0,0.15)]"
+              className="group flex h-10 w-10 items-center justify-center rounded-full border border-border/20 bg-transparent transition-colors hover:bg-foreground/[0.02]"
               title="LinkedIn"
             >
               <svg
-                className="h-4 w-4 text-foreground/50"
+                className="h-4 w-4 text-foreground/40 transition-colors group-hover:text-foreground/80"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -206,11 +203,11 @@ export function SiteFooter() {
               href="https://x.com/rajdeeptwts"
               target="_blank"
               rel="noopener"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-card/40 transition-all duration-300 hover:scale-110 hover:border-border/60 hover:bg-foreground/[0.06] hover:shadow-[0_2px_12px_rgba(0,0,0,0.04)] dark:hover:shadow-[0_2px_12px_rgba(0,0,0,0.15)]"
+              className="group flex h-10 w-10 items-center justify-center rounded-full border border-border/20 bg-transparent transition-colors hover:bg-foreground/[0.02]"
               title="X"
             >
               <svg
-                className="h-4 w-4 text-foreground/50"
+                className="h-4 w-4 text-foreground/40 transition-colors group-hover:text-foreground/80"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -223,11 +220,11 @@ export function SiteFooter() {
               href="https://github.com/RajdeepKushwaha5"
               target="_blank"
               rel="noopener"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-card/40 transition-all duration-300 hover:scale-110 hover:border-border/60 hover:bg-foreground/[0.06] hover:shadow-[0_2px_12px_rgba(0,0,0,0.04)] dark:hover:shadow-[0_2px_12px_rgba(0,0,0,0.15)]"
+              className="group flex h-10 w-10 items-center justify-center rounded-full border border-border/20 bg-transparent transition-colors hover:bg-foreground/[0.02]"
               title="GitHub"
             >
               <svg
-                className="h-4 w-4 text-foreground/50"
+                className="h-4 w-4 text-foreground/40 transition-colors group-hover:text-foreground/80"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -240,11 +237,11 @@ export function SiteFooter() {
               href="https://rajdeep01.medium.com/"
               target="_blank"
               rel="noopener"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-card/40 transition-all duration-300 hover:scale-110 hover:border-border/60 hover:bg-foreground/[0.06] hover:shadow-[0_2px_12px_rgba(0,0,0,0.04)] dark:hover:shadow-[0_2px_12px_rgba(0,0,0,0.15)]"
+              className="group flex h-10 w-10 items-center justify-center rounded-full border border-border/20 bg-transparent transition-colors hover:bg-foreground/[0.02]"
               title="Medium"
             >
               <svg
-                className="h-4 w-4 text-foreground/50"
+                className="h-4 w-4 text-foreground/40 transition-colors group-hover:text-foreground/80"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
