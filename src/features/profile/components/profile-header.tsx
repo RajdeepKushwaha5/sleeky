@@ -42,7 +42,7 @@ export function ProfileHeader() {
   const istTime = useISTClock();
 
   return (
-    <div className="relative mx-2 my-5 flex flex-col items-center overflow-hidden rounded-[1.75rem] border border-border/25 bg-background/72 p-6 text-center shadow-[0_18px_70px_rgba(0,0,0,0.08),0_1px_0_rgba(255,255,255,0.32)_inset] backdrop-blur-xl sm:flex-row sm:p-8 sm:text-left dark:bg-card/62 dark:shadow-[0_18px_80px_rgba(0,0,0,0.42),0_1px_0_rgba(255,255,255,0.06)_inset]">
+    <div className="relative mx-2 my-5 flex flex-col items-center overflow-hidden rounded-[1.75rem] border border-border/25 bg-background/72 p-6 text-center shadow-[0_18px_70px_rgba(0,0,0,0.08),0_1px_0_rgba(255,255,255,0.32)_inset] backdrop-blur-xl sm:flex-row sm:p-8 sm:text-left dark:border-white/[0.07] dark:bg-black/72 dark:shadow-[0_24px_80px_rgba(0,0,0,0.9)] dark:backdrop-blur-2xl">
       {/* Subtle gradient decoration — enhanced with dual tone */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-foreground/[0.01] via-transparent to-foreground/[0.015]" />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-tl from-primary/[0.008] via-transparent to-transparent" />

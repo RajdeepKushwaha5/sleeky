@@ -11,10 +11,7 @@ import { TestimonialItem } from "./testimonial-item";
 
 export function TestimonialsMarquee() {
   return (
-    <Panel
-      id="testimonials"
-      className="bg-zinc-50 before:z-11 after:z-10 dark:bg-card"
-    >
+    <Panel id="testimonials" className="before:z-11 after:z-10">
       <h2 className="sr-only">Testimonials</h2>
 
       <Marquee>

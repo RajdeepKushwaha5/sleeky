@@ -58,7 +58,7 @@ export function LiveStatus() {
   const isDiscordOnline = data?.discord_status !== "offline";
 
   return (
-    <Panel id="live" className="group/live bg-zinc-50 dark:bg-card">
+    <Panel id="live" className="group/live">
       <PanelHeader className="flex items-center justify-between py-4">
         <motion.div
           initial={{ opacity: 0, x: -20 }}

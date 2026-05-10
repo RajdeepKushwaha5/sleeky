@@ -250,7 +250,7 @@ export function CommandMenu({ posts }: { posts: Post[] }) {
     <>
       <Button
         variant="secondary"
-        className="h-8 w-full gap-2 rounded-lg border border-border/40 bg-muted/50 px-3 text-muted-foreground shadow-sm transition-colors select-none hover:bg-muted/80 dark:bg-zinc-900/60 dark:hover:bg-zinc-800/80"
+        className="h-10 w-full gap-2 rounded-xl border border-border/14 bg-foreground/[0.035] px-3 text-muted-foreground shadow-[0_1px_0_rgba(255,255,255,0.45)_inset] transition-colors select-none hover:bg-foreground/[0.055] dark:border-white/[0.05] dark:bg-white/[0.035] dark:shadow-[0_1px_0_rgba(255,255,255,0.035)_inset] dark:hover:bg-white/[0.055]"
         onClick={() => setOpen(true)}
       >
         <svg
@@ -268,7 +268,7 @@ export function CommandMenu({ posts }: { posts: Post[] }) {
           />
         </svg>
 
-        <span className="flex-1 text-left font-sans text-sm/4 font-normal text-muted-foreground/60">
+        <span className="flex-1 text-left font-sans text-sm/4 font-normal text-muted-foreground/70">
           Search...
         </span>
 
@@ -461,7 +461,7 @@ function CommandMenuKbd({ className, ...props }: React.ComponentProps<"kbd">) {
   return (
     <kbd
       className={cn(
-        "pointer-events-none flex h-5 min-w-6 items-center justify-center gap-1 rounded-full border border-border/20 bg-card/40 px-1.5 font-sans text-[12px] font-normal text-foreground/60 select-none [&_svg:not([class*='size-'])]:size-3",
+        "pointer-events-none flex h-5 min-w-6 items-center justify-center gap-1 rounded-full border border-border/14 bg-background/45 px-1.5 font-sans text-[12px] font-normal text-muted-foreground/70 select-none dark:border-white/[0.045] dark:bg-white/[0.035] [&_svg:not([class*='size-'])]:size-3",
         className
       )}
       {...props}

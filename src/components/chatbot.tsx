@@ -102,7 +102,7 @@ export function Chatbot() {
       {/* Floating Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed right-4 bottom-4 z-50 flex h-14 w-14 items-center justify-center rounded-full border border-border/15 bg-background/60 text-foreground shadow-lg backdrop-blur-xl transition-all hover:scale-110 hover:bg-background/80 dark:bg-[#0b0b0b]/60 dark:hover:bg-[#0b0b0b]/80 md:right-6 md:bottom-6"
+        className="fixed right-4 bottom-4 z-50 flex h-[3.25rem] w-[3.25rem] items-center justify-center rounded-full border border-border/18 bg-background/80 text-foreground shadow-[0_16px_44px_rgba(0,0,0,0.16),0_1px_0_rgba(255,255,255,0.55)_inset] backdrop-blur-2xl transition-all hover:bg-background/95 md:right-6 md:bottom-6 dark:border-white/[0.08] dark:bg-black/75 dark:shadow-[0_18px_54px_rgba(0,0,0,0.88)] dark:backdrop-blur-2xl dark:hover:bg-black/85"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         aria-label="Toggle chatbot"
@@ -116,7 +116,7 @@ export function Chatbot() {
               exit={{ rotate: 90, opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <X className="h-6 w-6" />
+              <X className="h-5 w-5" />
             </motion.div>
           ) : (
             <motion.div
@@ -126,7 +126,7 @@ export function Chatbot() {
               exit={{ rotate: -90, opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <MessageCircle className="h-6 w-6" />
+              <MessageCircle className="h-5 w-5" />
             </motion.div>
           )}
         </AnimatePresence>
@@ -140,14 +140,14 @@ export function Chatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed right-4 bottom-20 z-50 flex h-[500px] w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-2xl border border-border/15 bg-background/95 shadow-2xl backdrop-blur-xl dark:bg-[#0b0b0b]/95 md:right-6 md:bottom-24 md:w-[380px]"
+            className="fixed right-4 bottom-20 z-50 flex h-[500px] w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-[1.75rem] border border-border/18 bg-background/88 shadow-[0_24px_80px_rgba(0,0,0,0.18),0_1px_0_rgba(255,255,255,0.65)_inset] backdrop-blur-2xl md:right-6 md:bottom-24 md:w-[380px] dark:border-white/[0.07] dark:bg-black/80 dark:shadow-[0_28px_90px_rgba(0,0,0,0.94)] dark:backdrop-blur-3xl"
           >
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-border/10 p-4">
+            <div className="flex items-center justify-between border-b border-border/12 p-4 dark:border-white/[0.045]">
               <div className="flex items-center gap-3">
                 <div className="relative shrink-0 grayscale dark:grayscale-0">
-                  <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-[#2c4036] via-[#415d4e] to-[#2c4036] opacity-100 blur-md" />
-                  <div className="relative h-12 w-12 overflow-hidden rounded-full border-2 border-background ring-2 ring-white/10">
+                  <div className="absolute -inset-1 rounded-full bg-emerald-400/18 blur-lg" />
+                  <div className="relative h-12 w-12 overflow-hidden rounded-full border border-border/25 bg-background ring-1 ring-foreground/8 dark:border-white/[0.08] dark:bg-white/[0.04] dark:ring-white/[0.06]">
                     <Image
                       src="/final_about.png"
                       alt="Rajdeep's Assistant"
@@ -156,20 +156,20 @@ export function Chatbot() {
                       className="h-full w-full object-cover transition-transform duration-500 hover:scale-110"
                     />
                   </div>
-                  <div className="absolute right-0 bottom-0 z-10 h-3 w-3 rounded-full border-2 border-card bg-emerald-500" />
+                  <div className="absolute right-0 bottom-0 z-10 h-3 w-3 rounded-full border-2 border-background bg-emerald-500 dark:border-black" />
                 </div>
                 <div>
                   <h3 className="font-serif text-lg font-medium text-foreground/90 italic">
                     RJDP&apos;s Assistant
                   </h3>
-                  <p className="font-mono text-xs text-foreground/40">
+                  <p className="font-mono text-xs text-muted-foreground/70">
                     AI-Powered Helper
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="rounded-full p-2 text-foreground/50 transition-colors hover:bg-foreground/5 hover:text-foreground"
+                className="rounded-full p-2 text-muted-foreground transition-colors hover:bg-foreground/[0.055] hover:text-foreground dark:hover:bg-white/[0.055]"
                 aria-label="Close chat"
               >
                 <X className="h-5 w-5" />
@@ -177,7 +177,10 @@ export function Chatbot() {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 space-y-3 overflow-y-auto p-4">
+            <div
+              data-lenis-prevent
+              className="min-h-0 flex-1 space-y-3 overflow-y-auto p-4"
+            >
               {messages.map((message) => (
                 <div
                   key={message.id}
@@ -186,8 +189,8 @@ export function Chatbot() {
                   <div
                     className={`max-w-[80%] rounded-2xl px-4 py-3 ${
                       message.sender === "user"
-                        ? "bg-foreground/90 text-background"
-                        : "border border-border/15 bg-foreground/[0.03] text-foreground/80"
+                        ? "bg-foreground/88 text-background shadow-[0_10px_28px_rgba(0,0,0,0.12)] dark:bg-white/90 dark:text-black"
+                        : "border border-border/14 bg-foreground/[0.035] text-foreground/82 shadow-[0_1px_0_rgba(255,255,255,0.45)_inset] dark:border-white/[0.06] dark:bg-white/[0.04] dark:shadow-none"
                     }`}
                   >
                     <p className="text-sm leading-relaxed whitespace-pre-wrap">
@@ -210,7 +213,7 @@ export function Chatbot() {
               ))}
               {isLoading && (
                 <div className="flex justify-start">
-                  <div className="max-w-[80%] rounded-2xl border border-border/15 bg-foreground/[0.03] px-4 py-3">
+                  <div className="max-w-[80%] rounded-2xl border border-border/14 bg-foreground/[0.035] px-4 py-3 dark:border-white/[0.06] dark:bg-white/[0.04]">
                     <Loader2 className="h-5 w-5 animate-spin text-foreground/40" />
                   </div>
                 </div>
@@ -219,7 +222,7 @@ export function Chatbot() {
             </div>
 
             {/* Input */}
-            <div className="border-t border-border/10 p-4">
+            <div className="border-t border-border/12 p-4 dark:border-white/[0.045]">
               <div className="flex gap-3">
                 <input
                   type="text"
@@ -229,12 +232,12 @@ export function Chatbot() {
                   placeholder="Ask me anything..."
                   disabled={isLoading}
                   aria-label="Chat message"
-                  className="flex-1 rounded-full border border-border/15 bg-foreground/[0.03] px-4 py-2.5 text-sm text-foreground placeholder:text-foreground/25 focus:border-foreground/15 focus:ring-0 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                  className="flex-1 rounded-full border border-border/14 bg-foreground/[0.035] px-4 py-2.5 text-sm text-foreground shadow-[0_1px_0_rgba(255,255,255,0.45)_inset] placeholder:text-muted-foreground/55 focus:border-foreground/18 focus:ring-0 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/[0.06] dark:bg-white/[0.04] dark:shadow-none"
                 />
                 <button
                   onClick={handleSend}
                   disabled={!inputValue.trim() || isLoading}
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-foreground/80 text-background transition-all hover:bg-foreground/70 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-border/16 bg-foreground/88 text-background shadow-[0_10px_28px_rgba(0,0,0,0.14)] transition-all hover:bg-foreground disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/[0.08] dark:bg-white/[0.1] dark:text-white dark:shadow-[0_12px_34px_rgba(0,0,0,0.7)] dark:hover:bg-white/[0.16]"
                   aria-label="Send message"
                 >
                   <Send className="h-4 w-4" />

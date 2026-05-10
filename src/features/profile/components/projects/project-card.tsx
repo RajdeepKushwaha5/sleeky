@@ -28,16 +28,15 @@ export function ProjectCard({
   return (
     <div
       className={cn(
-        "group/project flex h-full flex-col overflow-hidden rounded-2xl border border-border/15 bg-foreground/[0.02]",
-        "transition-all duration-500 ease-out",
-        "hover:border-border/30 hover:bg-foreground/[0.04]",
-        "hover:shadow-[0_12px_40px_rgba(0,0,0,0.06),0_4px_12px_rgba(0,0,0,0.03)]",
-        "dark:hover:shadow-[0_12px_40px_rgba(0,0,0,0.35),0_0_1px_rgba(255,255,255,0.04)]",
-        "hover:-translate-y-1.5"
+        "group/project flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-border/20 bg-background/70",
+        "shadow-[0_14px_44px_rgba(0,0,0,0.06),0_1px_0_rgba(255,255,255,0.35)_inset] backdrop-blur-sm",
+        "transition-all duration-500 ease-out hover:-translate-y-1 hover:border-border/35 hover:bg-background/88",
+        "hover:shadow-[0_22px_70px_rgba(0,0,0,0.11),0_1px_0_rgba(255,255,255,0.5)_inset]",
+        "dark:bg-card/68 dark:shadow-[0_16px_60px_rgba(0,0,0,0.34),0_1px_0_rgba(255,255,255,0.05)_inset] dark:hover:bg-card/86"
       )}
     >
       {/* Image Section — enhanced with overlay gradient on hover */}
-      <div className="relative aspect-[16/10] w-full overflow-hidden">
+      <div className="relative aspect-[16/10] w-full overflow-hidden bg-muted/40">
         {project.logo ? (
           <>
             <Image
@@ -49,7 +48,7 @@ export function ProjectCard({
               unoptimized
             />
             {/* Subtle bottom gradient for text readability */}
-            <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-500 group-hover/project:opacity-100" />
+            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-background/70 to-transparent opacity-0 transition-opacity duration-500 group-hover/project:opacity-100 dark:from-card/70" />
           </>
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-muted/50 to-muted/20">
@@ -83,7 +82,7 @@ export function ProjectCard({
           {project.skills.slice(0, 4).map((tech) => (
             <div
               key={tech}
-              className="group/tech flex items-center gap-1.5 rounded-full border border-dashed border-border/20 bg-foreground/[0.02] px-2.5 py-1 transition-all duration-300 hover:border-border/40 hover:bg-foreground/[0.05]"
+              className="group/tech flex items-center gap-1.5 rounded-full border border-border/15 bg-foreground/[0.03] px-2.5 py-1 transition-all duration-300 hover:border-border/35 hover:bg-foreground/[0.055]"
               title={tech}
             >
               <TechIcon

@@ -116,11 +116,11 @@ export function TechStack() {
         <div className="flex items-center justify-between">
           <PanelTitle>Stack</PanelTitle>
           {/* View toggle */}
-          <div className="flex items-center gap-0.5 rounded-full border border-border/25 bg-muted/15 p-0.5">
+          <div className="flex items-center gap-0.5 rounded-full border border-border/25 bg-background/70 p-0.5 shadow-sm backdrop-blur-sm dark:bg-card/60">
             <button
               onClick={() => setView("icons")}
               className={cn(
-                "rounded-full px-3.5 py-1 font-mono text-[10px] tracking-[0.1em] uppercase transition-all duration-300",
+                "rounded-full px-3.5 py-1 font-mono text-[10px] tracking-normal uppercase transition-all duration-300",
                 view === "icons"
                   ? "bg-foreground text-background shadow-md"
                   : "text-muted-foreground/50 hover:bg-foreground/[0.04] hover:text-muted-foreground"
@@ -131,7 +131,7 @@ export function TechStack() {
             <button
               onClick={() => setView("category")}
               className={cn(
-                "rounded-full px-3.5 py-1 font-mono text-[10px] tracking-[0.1em] uppercase transition-all duration-300",
+                "rounded-full px-3.5 py-1 font-mono text-[10px] tracking-normal uppercase transition-all duration-300",
                 view === "category"
                   ? "bg-foreground text-background shadow-md"
                   : "text-muted-foreground/50 hover:bg-foreground/[0.04] hover:text-muted-foreground"
@@ -150,7 +150,7 @@ export function TechStack() {
             className={cn(
               "[--pattern-foreground:var(--color-zinc-950)]/3 dark:[--pattern-foreground:var(--color-white)]/3",
               "bg-[radial-gradient(var(--pattern-foreground)_0.5px,transparent_0)] bg-size-[12px_12px] bg-center",
-              "rounded-2xl p-4"
+              "rounded-2xl border border-border/15 bg-background/58 p-4 shadow-[0_12px_40px_rgba(0,0,0,0.045)_inset] dark:bg-card/44"
             )}
           >
             <ul className="flex flex-wrap gap-5 select-none">
@@ -198,7 +198,7 @@ export function TechStack() {
                 <div key={cat.label} className="flex flex-col gap-3">
                   {/* Category header with divider */}
                   <div className="flex items-center gap-3">
-                    <span className="font-mono text-[10px] font-semibold tracking-[0.15em] whitespace-nowrap text-muted-foreground/50 uppercase">
+                    <span className="font-mono text-[10px] font-semibold tracking-normal whitespace-nowrap text-muted-foreground/50 uppercase">
                       {cat.label}
                     </span>
                     <div className="h-px flex-1 bg-border/40" />

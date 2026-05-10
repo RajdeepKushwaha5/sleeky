@@ -34,7 +34,7 @@ const itemVariants = {
 
 export function SocialLinks() {
   return (
-    <Panel id="social" className="bg-zinc-50 dark:bg-card">
+    <Panel id="social">
       <h2 className="sr-only">Social Links</h2>
 
       <div className="relative">

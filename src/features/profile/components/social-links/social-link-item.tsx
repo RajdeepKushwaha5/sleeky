@@ -40,7 +40,7 @@ export function SocialLinkItem({ icon, title, description, href }: SocialLink) {
     <motion.a
       ref={ref}
       className={cn(
-        "group/link flex cursor-pointer items-center gap-4 rounded-2xl border border-zinc-200/50 bg-zinc-100/80 p-4 pr-2 grayscale transition-colors duration-500 select-none hover:bg-zinc-50 hover:grayscale-0 dark:border-transparent dark:bg-card/40 dark:grayscale-0 dark:hover:bg-card"
+        "group/link flex cursor-pointer items-center gap-4 rounded-2xl border border-border/18 bg-background/64 p-4 pr-3 shadow-[0_10px_34px_rgba(0,0,0,0.045),0_1px_0_rgba(255,255,255,0.32)_inset] grayscale transition-colors duration-500 select-none hover:border-border/32 hover:bg-background/88 hover:grayscale-0 dark:bg-card/56 dark:shadow-[0_12px_44px_rgba(0,0,0,0.24),0_1px_0_rgba(255,255,255,0.04)_inset] dark:grayscale-0 dark:hover:bg-card/86"
       )}
       href={href}
       target="_blank"
@@ -74,12 +74,12 @@ export function SocialLinkItem({ icon, title, description, href }: SocialLink) {
       </motion.div>
 
       <div className="flex-1">
-        <h3 className="flex items-center font-[family-name:var(--font-syne)] font-semibold tracking-tight underline-offset-4 group-hover/link:underline">
+        <h3 className="flex items-center font-[family-name:var(--font-syne)] font-semibold tracking-normal text-foreground/86 transition-colors group-hover/link:text-foreground">
           {title}
         </h3>
 
         {description && (
-          <p className="font-[family-name:var(--font-outfit)] text-sm tracking-wide text-muted-foreground">
+          <p className="font-[family-name:var(--font-outfit)] text-sm tracking-normal text-muted-foreground/72">
             {description}
           </p>
         )}

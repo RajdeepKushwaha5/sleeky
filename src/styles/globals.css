@@ -237,7 +237,7 @@ button,
 }
 
 .dark {
-  --background: #030303;
+  --background: #000000;
   --foreground: oklch(0.965 0.004 285);
   --primary: #ffffff;
   --primary-foreground: #000000;
@@ -284,10 +284,9 @@ button,
     @apply bg-selection text-selection-foreground;
   }
 
-  /* Temporarily disabled scroll-smooth (added/changed in Next.js 16) because it prevents the page from scrolling fully to the top during client-side navigation. Re-enable once the upstream behavior is fixed or when navigation/transition handling is adjusted. */
-  /* html {
+  html {
     @apply motion-safe:scroll-smooth;
-  } */
+  }
 
   /* Tablet-specific text adjustments */
   @media (min-width: 768px) and (max-width: 1024px) {
@@ -322,22 +321,25 @@ button,
     background:
       linear-gradient(
         180deg,
-        color-mix(in oklab, var(--accent) 42%, transparent) 0%,
-        transparent 32rem
+        color-mix(in oklab, var(--foreground) 3.5%, transparent) 0%,
+        transparent 24rem
       ),
       linear-gradient(
-        90deg,
-        color-mix(in oklab, var(--foreground) 3%, transparent) 1px,
-        transparent 1px
+        118deg,
+        transparent 0%,
+        transparent 33%,
+        color-mix(in oklab, var(--foreground) 3.5%, transparent) 42%,
+        transparent 58%,
+        transparent 100%
       ),
       linear-gradient(
         180deg,
-        color-mix(in oklab, var(--foreground) 3%, transparent) 1px,
-        transparent 1px
+        var(--background) 0%,
+        color-mix(in oklab, var(--accent) 34%, var(--background)) 100%
       ),
       var(--background);
     background-attachment: fixed;
-    background-size: auto, 72px 72px, 72px 72px, auto;
+    background-size: auto, auto, auto;
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -349,6 +351,10 @@ button,
     /* Responsive font scaling */
     font-size: clamp(0.875rem, 0.84rem + 0.25vw, 1rem);
     line-height: 1.7;
+  }
+
+  .dark body {
+    background: #000000;
   }
 
   /* Custom minimal scrollbar styling */
@@ -724,11 +730,7 @@ button,
 }
 
 .dark .hero-text-gradient {
-  background: linear-gradient(
-    135deg,
-    #fff 0%,
-    rgba(255, 255, 255, 0.75) 100%
-  );
+  background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.75) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -750,8 +752,15 @@ button,
   position: absolute;
   inset: -5rem -0.75rem 0;
   pointer-events: none;
-  border-inline: 1px solid color-mix(in oklab, var(--foreground) 6%, transparent);
-  mask-image: linear-gradient(to bottom, transparent, black 8rem, black 86%, transparent);
+  border-inline: 1px solid
+    color-mix(in oklab, var(--foreground) 3.5%, transparent);
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 8rem,
+    black 86%,
+    transparent
+  );
 }
 
 /* ── Timeline line ────────────────── */
@@ -760,17 +769,13 @@ button,
 }
 
 .timeline-line::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 19px;
   top: 2.5rem;
   bottom: 0;
   width: 1px;
-  background: linear-gradient(
-    to bottom,
-    var(--border) 0%,
-    transparent 100%
-  );
+  background: linear-gradient(to bottom, var(--border) 0%, transparent 100%);
 }
 
 /* ── Respect reduced motion preference ────────────────── */

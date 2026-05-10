@@ -79,16 +79,15 @@ export function ToggleTheme() {
       ref={buttonRef}
       onClick={handleClick}
       aria-label="Toggle Theme"
-      className="relative flex h-8 w-16 cursor-pointer items-center rounded-full border border-border/20 bg-foreground/[0.04] p-1 transition-colors duration-300 dark:border-border/15 dark:bg-white/[0.04]"
+      className="relative flex h-9 w-[4.55rem] cursor-pointer items-center rounded-full border border-foreground/[0.06] bg-foreground/[0.055] p-1 shadow-[0_1px_0_rgba(255,255,255,0.62)_inset] transition-all duration-300 hover:bg-foreground/[0.075] dark:border-white/[0.06] dark:bg-white/[0.07] dark:shadow-[0_1px_0_rgba(255,255,255,0.08)_inset] dark:hover:bg-white/[0.1]"
     >
-      {/* Sliding knob */}
       <span
         suppressHydrationWarning
-        className="absolute top-1 flex h-6 w-6 items-center justify-center rounded-full bg-foreground/80 shadow-md transition-all duration-300 ease-in-out dark:bg-white/20"
-        style={{ left: isDark ? "calc(100% - 1.75rem)" : "0.25rem" }}
+        className="absolute top-1 flex h-7 w-7 items-center justify-center rounded-full bg-background/92 shadow-[0_7px_18px_rgba(0,0,0,0.16),0_1px_0_rgba(255,255,255,0.75)_inset] transition-all duration-300 ease-out dark:bg-white/[0.12] dark:shadow-[0_8px_20px_rgba(0,0,0,0.3),0_1px_0_rgba(255,255,255,0.1)_inset]"
+        style={{ left: isDark ? "calc(100% - 2rem)" : "0.25rem" }}
       >
-        <SunIcon className="h-3.5 w-3.5 text-background transition-opacity duration-300 [html.dark_&]:opacity-0 [html.light_&]:opacity-100" />
-        <MoonStarIcon className="absolute h-3.5 w-3.5 text-background transition-opacity duration-300 [html.dark_&]:opacity-100 [html.light_&]:opacity-0" />
+        <SunIcon className="size-4 text-foreground/70 transition-opacity duration-300 [html.dark_&]:opacity-0 [html.light_&]:opacity-100" />
+        <MoonStarIcon className="absolute size-4 text-white/72 transition-opacity duration-300 [html.dark_&]:opacity-100 [html.light_&]:opacity-0" />
       </span>
     </button>
   );
