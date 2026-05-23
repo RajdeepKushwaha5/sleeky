@@ -58,6 +58,7 @@ export function ProfileCoverEnhanced() {
             strokeDasharray="8 12"
           />
           <line
+            className="hero-scan-axis-v"
             x1="530"
             y1="20"
             x2="530"
@@ -79,6 +80,36 @@ export function ProfileCoverEnhanced() {
             fill="var(--background)"
             stroke="currentColor"
           />
+          {/* Radar sweep arm — rotates around diagram centre (530, 270) */}
+          <g className="hero-radar-sweep-arm">
+            {/* sector fill for glow trail */}
+            <path
+              d="M530,270 L530,75 A195,195 0 0,1 642,110 Z"
+              fill="currentColor"
+              opacity="0.07"
+            />
+            {/* wide soft glow line */}
+            <line
+              x1="530"
+              y1="270"
+              x2="530"
+              y2="75"
+              stroke="currentColor"
+              strokeWidth="8"
+              opacity="0.05"
+            />
+            {/* sharp sweep line */}
+            <line
+              x1="530"
+              y1="270"
+              x2="530"
+              y2="75"
+              stroke="currentColor"
+              strokeWidth="1.2"
+              opacity="0.6"
+            />
+          </g>
+
           <circle
             className="hero-pulse-node"
             cx="720"
@@ -88,6 +119,36 @@ export function ProfileCoverEnhanced() {
             stroke="currentColor"
             strokeWidth="2"
           />
+
+          {/* Ping rings emanating from DB16 node */}
+          <circle
+            className="hero-ping-1"
+            cx="720"
+            cy="276"
+            r="14"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.2"
+          />
+          <circle
+            className="hero-ping-2"
+            cx="720"
+            cy="276"
+            r="14"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1"
+          />
+          <circle
+            className="hero-ping-3"
+            cx="720"
+            cy="276"
+            r="14"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="0.8"
+          />
+
           <path d="M720 292V334" stroke="currentColor" />
           <path d="M455 360V400" stroke="currentColor" strokeWidth="3" />
           <path
@@ -96,6 +157,14 @@ export function ProfileCoverEnhanced() {
             stroke="currentColor"
             strokeDasharray="10 8"
           />
+
+          {/* Orbit dot moving clockwise on the solid ring (r=195) */}
+          <g className="hero-orbit-dot">
+            {/* halo */}
+            <circle cx="530" cy="75" r="6" fill="currentColor" opacity="0.1" />
+            {/* dot */}
+            <circle cx="530" cy="75" r="3" fill="currentColor" opacity="0.75" />
+          </g>
 
           <text
             x="160"

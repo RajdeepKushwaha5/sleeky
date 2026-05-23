@@ -697,6 +697,44 @@ button,
   }
 }
 
+@keyframes hero-radar-sweep {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes hero-orbit-dot {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes hero-ping {
+  0% {
+    opacity: 0.72;
+    transform: scale(1);
+  }
+  75% {
+    opacity: 0.08;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(4);
+  }
+}
+
+@keyframes hero-scan-axis-v {
+  0%,
+  100% {
+    opacity: 0.35;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    opacity: 0.68;
+    stroke-dashoffset: -22;
+  }
+}
+
 @keyframes scroll-indicator-bounce {
   0%,
   100% {
@@ -796,6 +834,38 @@ button,
 
 .hero-dash-flow {
   animation: hero-dash-flow 8s linear infinite;
+}
+
+.hero-radar-sweep-arm {
+  animation: hero-radar-sweep 14s linear infinite;
+  transform-origin: 530px 270px;
+}
+
+.hero-orbit-dot {
+  animation: hero-orbit-dot 32s linear infinite;
+  transform-origin: 530px 270px;
+}
+
+.hero-ping-1 {
+  animation: hero-ping 3.6s ease-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.hero-ping-2 {
+  animation: hero-ping 3.6s ease-out infinite 1.2s;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.hero-ping-3 {
+  animation: hero-ping 3.6s ease-out 2.4s infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.hero-scan-axis-v {
+  animation: hero-scan-axis-v 11s ease-in-out infinite;
 }
 
 .quiet-action {

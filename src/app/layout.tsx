@@ -173,6 +173,7 @@ export default function RootLayout({
       <head>
         {/* JSON-LD structured data */}
         <script
+          key="website-jsonld"
           id="website-jsonld"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -180,6 +181,7 @@ export default function RootLayout({
           }}
         />
         <script
+          key="person-jsonld"
           id="person-jsonld"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -188,6 +190,7 @@ export default function RootLayout({
         />
         {/* Dark-mode meta color + macOS detection — must run before paint */}
         <Script
+          key="dark-mode-script"
           id="dark-mode-script"
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{ __html: darkModeScript }}
