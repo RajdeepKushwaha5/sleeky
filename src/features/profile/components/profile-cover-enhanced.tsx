@@ -97,7 +97,75 @@ export function ProfileCoverEnhanced() {
             d="M140 170H650V276H140V170Z"
             fill="url(#hero-hatch)"
           />
-          <path d="M140 276A155 155 0 0 1 295 121" stroke="currentColor" />
+          {/* ── PCB right-angle trace with vias (replaces smooth arc) ── */}
+          <path
+            d="M140,276 L200,276 L200,200 L260,200 L260,121 L295,121"
+            stroke="currentColor"
+            strokeWidth="0.9"
+            fill="none"
+            opacity="0.65"
+          />
+          <circle
+            cx="200"
+            cy="276"
+            r="2.5"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="0.8"
+            opacity="0.5"
+          />
+          <circle cx="200" cy="276" r="1" fill="currentColor" opacity="0.55" />
+          <circle
+            cx="200"
+            cy="200"
+            r="2.5"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="0.8"
+            opacity="0.5"
+          />
+          <circle cx="200" cy="200" r="1" fill="currentColor" opacity="0.55" />
+          <circle
+            cx="260"
+            cy="200"
+            r="2.5"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="0.8"
+            opacity="0.5"
+          />
+          <circle cx="260" cy="200" r="1" fill="currentColor" opacity="0.55" />
+          <circle
+            cx="260"
+            cy="121"
+            r="2.5"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="0.8"
+            opacity="0.5"
+          />
+          <circle cx="260" cy="121" r="1" fill="currentColor" opacity="0.55" />
+
+          {/* ── CLK sine waveform trace (inside hatch band, y=225 ± 19) ── */}
+          <path
+            className="hero-clk-wave"
+            d="M152,225 C166.6,206 177.4,206 192,225 C206.6,244 217.4,244 232,225 C246.6,206 257.4,206 272,225 C286.6,244 297.4,244 312,225 C326.6,206 337.4,206 352,225 C366.6,244 377.4,244 392,225 C406.6,206 417.4,206 432,225 C446.6,244 457.4,244 472,225"
+            stroke="currentColor"
+            strokeWidth="0.85"
+            fill="none"
+            opacity="0.52"
+            strokeLinecap="round"
+          />
+          {/* CLK label */}
+          <text
+            x="152"
+            y="218"
+            fill="currentColor"
+            className="font-mono text-[8px]"
+            opacity="0.3"
+          >
+            CLK
+          </text>
 
           {/* Scope background circle */}
           <circle
@@ -110,20 +178,6 @@ export function ProfileCoverEnhanced() {
 
           {/* ── Radar sweep arm ── */}
           <g className="hero-radar-sweep-arm">
-            <path
-              d="M530,270 L530,75 A195,195 0 0,1 642,110 Z"
-              fill="currentColor"
-              opacity="0.07"
-            />
-            <line
-              x1="530"
-              y1="270"
-              x2="530"
-              y2="75"
-              stroke="currentColor"
-              strokeWidth="8"
-              opacity="0.05"
-            />
             <line
               x1="530"
               y1="270"
@@ -339,6 +393,58 @@ export function ProfileCoverEnhanced() {
             opacity="0.65"
           />
           <circle cx={CX} cy={CY} r="1.8" fill="currentColor" opacity="0.7" />
+
+          {/* ── Dimension annotation: Ø 164 below scope ── */}
+          {/* Extension lines */}
+          <line
+            x1="373"
+            y1="372"
+            x2="373"
+            y2="384"
+            stroke="currentColor"
+            strokeWidth="0.5"
+            opacity="0.38"
+          />
+          <line
+            x1="537"
+            y1="372"
+            x2="537"
+            y2="384"
+            stroke="currentColor"
+            strokeWidth="0.5"
+            opacity="0.38"
+          />
+          {/* Dimension line with arrowheads */}
+          <line
+            x1="373"
+            y1="379"
+            x2="537"
+            y2="379"
+            stroke="currentColor"
+            strokeWidth="0.5"
+            opacity="0.38"
+          />
+          <path
+            d="M373,379 L379,376 L379,382 Z"
+            fill="currentColor"
+            opacity="0.38"
+          />
+          <path
+            d="M537,379 L531,376 L531,382 Z"
+            fill="currentColor"
+            opacity="0.38"
+          />
+          {/* Dimension text */}
+          <text
+            x={CX}
+            y="378"
+            textAnchor="middle"
+            fill="currentColor"
+            className="font-mono text-[8px]"
+            opacity="0.42"
+          >
+            Ø 164
+          </text>
 
           {/* ── Existing labels ── */}
           <text

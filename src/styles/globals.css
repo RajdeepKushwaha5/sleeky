@@ -842,6 +842,18 @@ button,
   animation: hero-dash-flow 8s linear infinite;
 }
 
+.hero-clk-wave {
+  stroke-dasharray: 6 4;
+  animation: hero-clk-flow 6s linear infinite;
+  will-change: stroke-dashoffset;
+}
+
+@keyframes hero-clk-flow {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
 .hero-radar-sweep-arm {
   animation: hero-radar-sweep 14s linear infinite;
   transform-box: view-box;
@@ -938,7 +950,8 @@ button,
   .hero-scope-outer,
   .hero-scope-ccw,
   .hero-scope-ccw2,
-  .hero-scope-scan {
+  .hero-scope-scan,
+  .hero-clk-wave {
     animation: none;
     will-change: auto;
   }
