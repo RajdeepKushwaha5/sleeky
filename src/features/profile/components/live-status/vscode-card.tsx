@@ -1,7 +1,6 @@
 "use client";
 
 import { FileCode } from "lucide-react";
-import { motion } from "motion/react";
 
 import type { LanyardData } from "@/hooks/use-lanyard";
 
@@ -21,156 +20,75 @@ interface VsCodeCardProps {
   wakaStats: WakaStats;
 }
 
-const languageIcons: Record<string, string> = {
-  javascript: "🟨",
-  typescript: "🔷",
-  python: "🐍",
-  java: "☕",
-  html: "🌐",
-  css: "🎨",
-  json: "📋",
-  markdown: "📝",
-  rust: "🦀",
-  go: "🐹",
-  cpp: "⚙️",
-  c: "⚙️",
-  php: "🐘",
-  ruby: "💎",
-  swift: "🍎",
-  kotlin: "🟣",
-  dart: "🎯",
-  solidity: "💠",
-};
-
-export function VsCodeCard({ activity, status, wakaStats }: VsCodeCardProps) {
-  // Extract file extension from details
-  const getFileExtension = (details?: string) => {
-    if (!details) return null;
-    const match = details.match(/\.([a-zA-Z0-9]+)$/);
-    return match ? match[1].toLowerCase() : null;
-  };
-
-  const getLanguageIcon = (details?: string) => {
-    const extension = getFileExtension(details);
-    if (!extension) return "📄";
-
-    // Map common extensions to language keys
-    const extensionMap: Record<string, string> = {
-      js: "javascript",
-      jsx: "javascript",
-      ts: "typescript",
-      tsx: "typescript",
-      py: "python",
-      md: "markdown",
-      rs: "rust",
-      sol: "solidity",
-    };
-
-    const language = extensionMap[extension] || extension;
-    return languageIcons[language] || "📄";
-  };
-
+export function VsCodeCard({ activity, wakaStats }: VsCodeCardProps) {
   const fileName = activity.details || "Unknown file";
   const workspace = activity.state || "Unknown workspace";
-  const icon = getLanguageIcon(activity.details);
+
+  const ext = fileName.match(/\.([a-zA-Z0-9]+)$/)?.[1]?.toLowerCase();
+  const langMap: Record<string, string> = {
+    ts: "TypeScript",
+    tsx: "TypeScript",
+    js: "JavaScript",
+    jsx: "JavaScript",
+    py: "Python",
+    rs: "Rust",
+    go: "Go",
+    md: "Markdown",
+    css: "CSS",
+    json: "JSON",
+  };
+  const lang = ext ? (langMap[ext] ?? ext.toUpperCase()) : "Code";
 
   return (
-    <motion.div
-      whileHover={{ y: -4, scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      transition={{ type: "spring", stiffness: 400, damping: 20 }}
-      className="group relative overflow-hidden rounded-lg border border-zinc-200/50 bg-zinc-100/80 transition-all duration-500 hover:border-accent/50 hover:shadow-md dark:border-transparent dark:bg-card/40"
-    >
-      {/* VS Code blue animated shimmer */}
-      <motion.div
-        className="pointer-events-none absolute inset-0 -translate-x-full"
-        animate={{ translateX: ["-100%", "200%"] }}
-        transition={{
-          duration: 3,
-          repeat: Infinity,
-          repeatDelay: 5,
-          ease: "easeInOut",
-        }}
-        style={{
-          background:
-            "linear-gradient(90deg, transparent 0%, rgba(0,122,204,0.08) 50%, transparent 100%)",
-        }}
-      />
-      <div className="flex gap-3 p-3">
-        {/* VS Code Logo */}
-        <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-md bg-[#007ACC]/10 ring-1 ring-transparent dark:ring-transparent">
-          <VSCodeLogo className="h-10 w-10" />
+    <div className="relative overflow-hidden border border-foreground/[0.08] bg-foreground/[0.025]">
+      {/* Live pulse */}
+      <div className="absolute top-3 right-3 flex items-center gap-1.5">
+        <span className="relative flex size-[6px]">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#007ACC] opacity-60" />
+          <span className="relative inline-flex size-[6px] rounded-full bg-[#007ACC]" />
+        </span>
+        <span className="font-mono text-[8px] tracking-[0.12em] text-[#007ACC]/70 uppercase">
+          Live
+        </span>
+      </div>
+
+      <div className="flex gap-4 p-4 pr-16">
+        {/* VS Code icon */}
+        <div className="flex size-[88px] flex-shrink-0 items-center justify-center bg-[#007ACC]/[0.07]">
+          <VSCodeLogo className="size-11" />
         </div>
 
-        {/* Activity Info */}
-        <div className="flex min-w-0 flex-1 flex-col justify-center">
-          <div className="flex items-center gap-2">
-            {/* Online status indicator */}
-            <span
-              className={`h-2 w-2 rounded-full ${
-                status === "online"
-                  ? "bg-green-500"
-                  : status === "idle"
-                    ? "bg-yellow-500"
-                    : status === "dnd"
-                      ? "bg-red-500"
-                      : "bg-gray-500"
-              }`}
-            />
-            <span
-              className={`text-xs font-medium ${
-                status === "online"
-                  ? "text-green-600 dark:text-green-500"
-                  : status === "idle"
-                    ? "text-yellow-600 dark:text-yellow-500"
-                    : status === "dnd"
-                      ? "text-red-600 dark:text-red-500"
-                      : "text-gray-600 dark:text-gray-500"
-              }`}
-            >
-              {status === "online"
-                ? "Online"
-                : status === "idle"
-                  ? "Idle"
-                  : status === "dnd"
-                    ? "Do Not Disturb"
-                    : "Offline"}
-            </span>
-            <span className="text-xs text-muted-foreground">•</span>
-            <FileCode className="h-3.5 w-3.5 text-[#007ACC]" />
-            <span className="text-xs font-medium text-[#007ACC]">
-              Coding in VS Code
-            </span>
-          </div>
-
-          <div className="mt-0.5 flex items-center gap-2">
-            <span className="text-base">{icon}</span>
-            <h3 className="truncate font-semibold text-foreground">
+        {/* Activity info */}
+        <div className="flex min-w-0 flex-1 flex-col justify-between py-0.5">
+          <div>
+            <div className="flex items-center gap-1.5 font-mono text-[9px] tracking-[0.12em] text-foreground/30 uppercase">
+              <FileCode className="size-3 text-[#007ACC]/60" />
+              VS Code
+            </div>
+            <h3 className="mt-1.5 truncate font-serif text-[1.1rem] leading-tight font-medium text-foreground/90">
               {fileName}
             </h3>
+            <p className="mt-0.5 truncate font-mono text-[11px] text-foreground/40">
+              {workspace}
+            </p>
           </div>
 
-          <p className="truncate text-sm text-muted-foreground">{workspace}</p>
-
-          {/* Time tracking from WakaTime */}
-          <div className="mt-1 flex items-center gap-2 text-xs">
+          <div className="mt-3 flex items-center gap-3 font-mono text-[9px] text-foreground/28">
+            <span className="rounded-sm border border-[#007ACC]/20 bg-[#007ACC]/[0.06] px-1.5 py-0.5 text-[#007ACC]/60">
+              {lang}
+            </span>
             {activity.timestamps?.start && (
-              <span className="text-muted-foreground/70">
-                Session: {getElapsedTime(activity.timestamps.start)}
-              </span>
+              <span>{getElapsedTime(activity.timestamps.start)}</span>
             )}
             {wakaStats.todaySeconds > 0 && (
-              <>
-                <span className="text-muted-foreground/50">•</span>
-                <span className="text-muted-foreground/70">
-                  Today: {wakaStats.todayFormatted}
-                </span>
-              </>
+              <span className="text-foreground/20">
+                · {wakaStats.todayFormatted} today
+              </span>
             )}
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -178,9 +96,5 @@ function getElapsedTime(startTime: number): string {
   const elapsed = Date.now() - startTime;
   const minutes = Math.floor(elapsed / 60000);
   const hours = Math.floor(minutes / 60);
-
-  if (hours > 0) {
-    return `${hours}h ${minutes % 60}m elapsed`;
-  }
-  return `${minutes}m elapsed`;
+  return hours > 0 ? `${hours}h ${minutes % 60}m` : `${minutes}m`;
 }

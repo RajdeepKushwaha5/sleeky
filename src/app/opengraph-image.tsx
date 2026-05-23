@@ -146,7 +146,7 @@ export default async function Image() {
 
         {/* Bottom row: tech tags */}
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-          {["React", "Next.js", "TypeScript", "Blockchain", "AI"].map((tag) => (
+          {["React", "Next.js", "TypeScript", "LLMs", "AI"].map((tag) => (
             <div
               key={tag}
               style={{

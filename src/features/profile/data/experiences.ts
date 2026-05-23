@@ -11,7 +11,6 @@ export const EXPERIENCES: Experience[] = [
         title: "Google Summer of Code 2026",
         employmentPeriod: {
           start: "05.2026",
-          end: "08.2026",
         },
         employmentType: "GSoC Contributor",
         organization: "CGAL Project",

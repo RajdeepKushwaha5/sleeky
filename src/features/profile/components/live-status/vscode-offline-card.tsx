@@ -1,7 +1,5 @@
 "use client";
 
-import { motion } from "motion/react";
-
 import { VSCodeLogo } from "./vscode-logo";
 
 interface VsCodeOfflineCardProps {
@@ -10,36 +8,25 @@ interface VsCodeOfflineCardProps {
 
 export function VsCodeOfflineCard({ yesterdayTime }: VsCodeOfflineCardProps) {
   return (
-    <motion.div
-      whileHover={{ y: -4, scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      transition={{ type: "spring", stiffness: 400, damping: 20 }}
-      className="relative overflow-hidden rounded-lg border border-zinc-200/50 bg-zinc-100/80 grayscale transition-all duration-500 hover:grayscale-0 dark:border-transparent dark:bg-card/40 dark:grayscale-0"
-    >
-      <div className="flex gap-3 p-3">
-        {/* VS Code Logo */}
-        <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-md bg-[#007ACC]/10 ring-1 ring-zinc-200/50 dark:ring-transparent">
-          <VSCodeLogo className="h-10 w-10 opacity-40" />
+    <div className="relative overflow-hidden border border-foreground/[0.06] bg-foreground/[0.015]">
+      <div className="flex gap-4 p-4">
+        <div className="flex size-[88px] flex-shrink-0 items-center justify-center bg-foreground/[0.03]">
+          <VSCodeLogo className="size-11 opacity-20" />
         </div>
 
-        {/* Status Info */}
-        <div className="flex min-w-0 flex-1 flex-col justify-center">
-          <div className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-muted-foreground/40" />
-            <span className="text-xs font-medium text-muted-foreground/60">
-              Offline
-            </span>
+        <div className="flex min-w-0 flex-1 flex-col justify-center py-0.5">
+          <div className="flex items-center gap-1.5 font-mono text-[9px] tracking-[0.12em] text-foreground/22 uppercase">
+            <span className="size-[5px] rounded-full bg-foreground/20" />
+            Offline
           </div>
-
-          <h3 className="mt-1 font-[family-name:var(--font-syne)] font-semibold tracking-tight text-foreground/80">
+          <h3 className="mt-1.5 font-serif text-[1.1rem] leading-tight font-medium text-foreground/45">
             Not currently coding
           </h3>
-
-          <p className="font-[family-name:var(--font-outfit)] text-sm tracking-wide text-muted-foreground/60">
+          <p className="mt-0.5 font-mono text-[11px] text-foreground/28">
             Yesterday: {yesterdayTime}
           </p>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

@@ -4,7 +4,6 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import type { Person, WebSite, WithContext } from "schema-dts";
 
-import { CustomCursor } from "@/components/custom-cursor";
 import { NoiseOverlay } from "@/components/noise-overlay";
 import { Providers } from "@/components/providers";
 import { META_THEME_COLORS, SITE_INFO } from "@/config/site";
@@ -57,25 +56,25 @@ function getPersonJsonLd(): WithContext<Person> {
     knowsAbout: [
       "Web Development",
       "Full Stack Development",
-      "Blockchain Development",
+      "AI Engineering",
+      "Large Language Models",
       "React",
       "Next.js",
       "Node.js",
       "TypeScript",
-      "Ethereum",
-      "Solana",
+      "Python",
+      "Machine Learning",
     ],
   };
 }
 
-// Thanks @shadcn-ui, @tailwindcss
+// Runs before React hydrates to set dark meta-color and detect macOS
 const darkModeScript = String.raw`
   try {
     if (localStorage.theme === 'dark' || ((!('theme' in localStorage) || localStorage.theme === 'system') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.querySelector('meta[name="theme-color"]').setAttribute('content', '${META_THEME_COLORS.dark}')
     }
   } catch (_) {}
-
   try {
     if (/(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
       document.documentElement.classList.add('os-macos')
@@ -172,48 +171,42 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        {/* JSON-LD structured data */}
+        <script
+          id="website-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(getWebSiteJsonLd()).replace(/</g, "\\u003c"),
+          }}
+        />
+        <script
+          id="person-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(getPersonJsonLd()).replace(/</g, "\\u003c"),
+          }}
+        />
+        {/* Dark-mode meta color + macOS detection — must run before paint */}
         <Script
           id="dark-mode-script"
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{ __html: darkModeScript }}
         />
-        {/*
-          Thanks @tailwindcss. We inject the script via the `<Script/>` tag again,
-          since we found the regular `<script>` tag to not execute when rendering a not-found page.
-         */}
-        <Script src={`data:text/javascript;base64,${btoa(darkModeScript)}`} />
-        <Script src="/oneko/oneko.js" strategy="afterInteractive" />
-        <Script
-          id="website-jsonld"
-          type="application/ld+json"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(getWebSiteJsonLd()).replace(/</g, "\\u003c"),
-          }}
-        />
-        <Script
-          id="person-jsonld"
-          type="application/ld+json"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(getPersonJsonLd()).replace(/</g, "\\u003c"),
-          }}
-        />
       </head>
 
       <body>
-        {/* Skip to main content link for keyboard accessibility */}
+        {/* Skip to main content */}
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground focus:ring-2 focus:ring-ring focus:outline-none"
         >
           Skip to main content
         </a>
+
         <Providers>
           <div className="relative z-10">{children}</div>
         </Providers>
-        {/* Sleek Framer-style elements */}
-        <CustomCursor />
+
         <NoiseOverlay />
       </body>
     </html>

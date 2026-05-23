@@ -9,7 +9,7 @@ import { Panel, PanelHeader, PanelTitle } from "../panel";
 import { ProjectCard } from "./project-card";
 
 export function Projects() {
-  const visibleProjects = PROJECTS.slice(0, 2);
+  const visibleProjects = PROJECTS.slice(0, 4);
 
   return (
     <Panel id="projects">
@@ -18,7 +18,7 @@ export function Projects() {
       </PanelHeader>
 
       <div className="py-5">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           {visibleProjects.map((project, index) => (
             <motion.div
               key={project.id}
@@ -38,13 +38,10 @@ export function Projects() {
       </div>
 
       {PROJECTS.length > 2 && (
-        <div className="flex justify-center pt-2 pb-1">
-          <Link
-            href="/projects"
-            className="group inline-flex items-center gap-2 rounded-full border border-border/25 px-6 py-2 text-[13px] font-medium tracking-wide text-foreground transition-all duration-300 hover:border-border/40 hover:bg-foreground/[0.04]"
-          >
+        <div className="flex justify-center pt-4 pb-1">
+          <Link href="/projects" className="quiet-action group">
             View All Projects
-            <ArrowRightIcon className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+            <ArrowRightIcon />
           </Link>
         </div>
       )}

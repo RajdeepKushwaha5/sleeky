@@ -13,6 +13,7 @@ export function FlipSentences({
   sentences: string[];
 }) {
   const [currentSentence, setCurrentSentence] = useState(0);
+  const [mounted, setMounted] = useState(false);
 
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -23,6 +24,7 @@ export function FlipSentences({
   };
 
   useEffect(() => {
+    setMounted(true);
     startAnimation();
 
     const abortController = new AbortController();
@@ -50,6 +52,20 @@ export function FlipSentences({
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sentences]);
+
+  // Render nothing on the server to avoid hydration mismatch with motion animations
+  if (!mounted) {
+    return (
+      <p
+        className={cn(
+          "font-mono text-sm text-balance text-muted-foreground opacity-0 select-none",
+          className
+        )}
+      >
+        {sentences[0]}
+      </p>
+    );
+  }
 
   return (
     <AnimatePresence mode="wait" initial={false}>

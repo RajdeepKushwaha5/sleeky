@@ -318,28 +318,8 @@ button,
 
   body {
     @apply bg-background font-sans text-foreground antialiased;
-    background:
-      linear-gradient(
-        180deg,
-        color-mix(in oklab, var(--foreground) 3.5%, transparent) 0%,
-        transparent 24rem
-      ),
-      linear-gradient(
-        118deg,
-        transparent 0%,
-        transparent 33%,
-        color-mix(in oklab, var(--foreground) 3.5%, transparent) 42%,
-        transparent 58%,
-        transparent 100%
-      ),
-      linear-gradient(
-        180deg,
-        var(--background) 0%,
-        color-mix(in oklab, var(--accent) 34%, var(--background)) 100%
-      ),
-      var(--background);
+    background: var(--background);
     background-attachment: fixed;
-    background-size: auto, auto, auto;
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -649,6 +629,74 @@ button,
   }
 }
 
+@keyframes hero-engineering-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-10px, 6px, 0) scale(1.015);
+  }
+}
+
+@keyframes hero-ring-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes hero-inner-orbit {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: rotate(-18deg) scale(1.04);
+  }
+}
+
+@keyframes hero-scan-axis {
+  0%,
+  100% {
+    opacity: 0.38;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    opacity: 0.72;
+    stroke-dashoffset: -28;
+  }
+}
+
+@keyframes hero-pulse-node {
+  0%,
+  100% {
+    opacity: 0.58;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.18);
+  }
+}
+
+@keyframes hero-hatch-panel {
+  0%,
+  100% {
+    opacity: 0.62;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes hero-dash-flow {
+  to {
+    stroke-dashoffset: -36;
+  }
+}
+
 @keyframes scroll-indicator-bounce {
   0%,
   100% {
@@ -715,6 +763,83 @@ button,
   animation: scroll-indicator-bounce 2s ease-in-out infinite;
 }
 
+.hero-engineering-drawing {
+  animation: hero-engineering-drift 18s ease-in-out infinite;
+  transform-origin: 62% 50%;
+}
+
+.hero-ring-orbit {
+  animation: hero-ring-orbit 42s linear infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.hero-inner-orbit {
+  animation: hero-inner-orbit 9s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.hero-scan-axis {
+  animation: hero-scan-axis 7s ease-in-out infinite;
+}
+
+.hero-pulse-node {
+  animation: hero-pulse-node 4.8s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.hero-hatch-panel {
+  animation: hero-hatch-panel 6s ease-in-out infinite;
+}
+
+.hero-dash-flow {
+  animation: hero-dash-flow 8s linear infinite;
+}
+
+.quiet-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  border: 0;
+  background: transparent;
+  min-height: 2.25rem;
+  padding: 0.35rem 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--foreground) 38%, transparent);
+  transition:
+    color 180ms ease,
+    transform 180ms ease,
+    opacity 180ms ease;
+}
+
+.quiet-action:hover {
+  color: color-mix(in oklab, var(--foreground) 68%, transparent);
+}
+
+.quiet-action svg {
+  flex: none;
+  width: 0.78rem;
+  height: 0.78rem;
+  opacity: 0.78;
+  transition: transform 180ms ease;
+}
+
+.quiet-action:hover svg {
+  transform: translateX(2px);
+}
+
+.quiet-action[data-direction="down"]:hover svg {
+  transform: translateY(2px);
+}
+
 /* ── Hero text gradient ────────────────── */
 .hero-text-gradient {
   background: linear-gradient(
@@ -748,19 +873,11 @@ button,
 }
 
 .profile-shell::before {
-  content: "";
-  position: absolute;
-  inset: -5rem -0.75rem 0;
-  pointer-events: none;
-  border-inline: 1px solid
-    color-mix(in oklab, var(--foreground) 3.5%, transparent);
-  mask-image: linear-gradient(
-    to bottom,
-    transparent,
-    black 8rem,
-    black 86%,
-    transparent
-  );
+  content: none;
+}
+
+.profile-shell::after {
+  content: none;
 }
 
 /* ── Timeline line ────────────────── */

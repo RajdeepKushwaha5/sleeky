@@ -23,24 +23,19 @@ export function IntroItem({
       await navigator.clipboard.writeText(copyValue);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      console.error("Failed to copy:", err);
+    } catch {
+      /* ignore */
     }
   };
 
   return (
-    <div className="flex items-center gap-4 font-mono text-[13px]">
-      <div
-        className="flex size-7 shrink-0 items-center justify-center rounded-full border border-border/25 bg-muted/40"
-        aria-hidden
-      >
-        <Icon className="pointer-events-none size-3.5 text-foreground/50" />
-      </div>
+    <div className="flex items-center gap-3 py-0.5 font-mono text-[12.5px] text-foreground/55">
+      <Icon className="size-3.5 shrink-0 text-foreground/28" aria-hidden />
 
-      <p className="text-balance">
+      <span className="text-balance">
         {href ? (
           <a
-            className="underline-offset-4 hover:underline"
+            className="underline-offset-4 hover:text-foreground/80 hover:underline"
             href={href}
             target="_blank"
             rel="noopener noreferrer"
@@ -50,17 +45,17 @@ export function IntroItem({
         ) : (
           content
         )}
-      </p>
+      </span>
 
       {copyValue && (
         <button
           onClick={handleCopy}
-          className="ml-auto flex size-6 shrink-0 items-center justify-center rounded-full border border-border/20 bg-card/40 text-foreground/50 transition-colors hover:bg-foreground/10 hover:text-foreground"
-          title={copied ? "Copied!" : "Copy to clipboard"}
+          className="ml-auto flex size-5 shrink-0 items-center justify-center text-foreground/28 transition-colors hover:text-foreground/60"
+          title={copied ? "Copied!" : "Copy"}
           aria-label={copied ? "Copied!" : "Copy to clipboard"}
         >
           {copied ? (
-            <CheckIcon className="size-3 text-green-500" />
+            <CheckIcon className="size-3 text-emerald-500/70" />
           ) : (
             <CopyIcon className="size-3" />
           )}

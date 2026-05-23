@@ -48,7 +48,7 @@ export const TECH_STACK: TechStack[] = [
     key: "solidity",
     title: "Solidity",
     href: "https://soliditylang.org/",
-    categories: ["Language", "Blockchain"],
+    categories: ["Language", "AI"],
     theme: true,
   },
 
@@ -125,22 +125,6 @@ export const TECH_STACK: TechStack[] = [
     title: "Docker",
     href: "https://www.docker.com/",
     categories: ["DevOps", "Containerization"],
-    theme: true,
-  },
-
-  // Blockchain
-  {
-    key: "ethereum",
-    title: "Ethereum",
-    href: "https://ethereum.org/",
-    categories: ["Blockchain", "Platform"],
-    theme: true,
-  },
-  {
-    key: "solana",
-    title: "Solana",
-    href: "https://solana.com/",
-    categories: ["Blockchain", "Platform"],
     theme: true,
   },
 

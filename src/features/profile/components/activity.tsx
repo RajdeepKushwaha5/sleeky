@@ -32,19 +32,6 @@ interface SocialPost {
 // Your actual posts from social media
 const posts: SocialPost[] = [
   {
-    id: 1,
-    author: {
-      name: "Rajdeep Singh",
-      username: "@rajdeeptwts",
-      avatar: "https://github.com/RajdeepKushwaha5.png",
-      platform: "twitter",
-    },
-    content:
-      "Just finished the BLOCKCHAIN BASICS course on Cyfrin Updraft. Learn alot about web3. You're amazing tutor @PatrickAlphaC and #keira #Blockchain #SmartContracts",
-    date: "2024-12-10",
-    url: "https://x.com/rajdeeptwts/status/1866820888261496910",
-  },
-  {
     id: 2,
     author: {
       name: "Rajdeep Singh Kushwaha",

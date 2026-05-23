@@ -1,7 +1,6 @@
 "use client";
 
-import { CheckCircle2, Loader2, Send, XCircle } from "lucide-react";
-import Image from "next/image";
+import { ArrowRight, CheckCircle2, Loader2, XCircle } from "lucide-react";
 import { useState } from "react";
 
 import { Panel, PanelContent, PanelHeader, PanelTitle } from "../panel";
@@ -21,22 +20,14 @@ export function Contact() {
     e.preventDefault();
     setStatus("loading");
     setErrorMessage("");
-
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-
       const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || "Failed to send message");
-      }
-
+      if (!response.ok) throw new Error(data.error || "Failed to send message");
       setStatus("success");
       setFormData({ name: "", email: "", message: "" });
       setTimeout(() => setStatus("idle"), 5000);
@@ -52,10 +43,7 @@ export function Contact() {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   return (
@@ -65,109 +53,113 @@ export function Contact() {
       </PanelHeader>
 
       <PanelContent>
-        {/* Cool Intro Card */}
-        <div className="mb-6 flex items-start gap-4">
-          <div className="relative shrink-0 grayscale dark:grayscale-0">
-            <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-[#2c4036] via-[#415d4e] to-[#2c4036] opacity-100 blur-md" />
-            <div className="relative h-14 w-14 overflow-hidden rounded-full border-2 border-background ring-2 ring-white/10 sm:h-16 sm:w-16">
-              <Image
-                src="/final_about.png"
-                alt="Rajdeep"
-                fill
-                sizes="64px"
-                className="h-full w-full object-cover transition-transform duration-500 hover:scale-110"
+        {/* Editorial intro */}
+        <div className="mb-8 max-w-[40ch]">
+          <p className="font-serif text-[1.65rem] leading-[1.2] font-medium tracking-tight text-foreground/80 sm:text-[2rem]">
+            Let&apos;s build something
+            <br />
+            cool together.
+          </p>
+          <p className="mt-3 font-mono text-[10px] tracking-[0.16em] text-foreground/28 uppercase">
+            Reply within 24 h · India (IST)
+          </p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="max-w-[62ch]">
+          {/* Name + Email */}
+          <div className="grid sm:grid-cols-2">
+            <div className="border-b border-foreground/[0.08] pb-3 sm:border-r sm:pr-6">
+              <label
+                htmlFor="contact-name"
+                className="block font-mono text-[9px] tracking-[0.16em] text-foreground/28 uppercase"
+              >
+                Name
+              </label>
+              <input
+                id="contact-name"
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                placeholder="Your name"
+                className="mt-1.5 w-full bg-transparent text-[13.5px] text-foreground/80 placeholder:text-foreground/20 focus:outline-none"
+              />
+            </div>
+            <div className="border-b border-foreground/[0.08] pt-4 pb-3 sm:pt-0 sm:pl-6">
+              <label
+                htmlFor="contact-email"
+                className="block font-mono text-[9px] tracking-[0.16em] text-foreground/28 uppercase"
+              >
+                Email
+              </label>
+              <input
+                id="contact-email"
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                placeholder="your@email.com"
+                className="mt-1.5 w-full bg-transparent text-[13.5px] text-foreground/80 placeholder:text-foreground/20 focus:outline-none"
               />
             </div>
           </div>
-          <div className="flex-1 rounded-2xl rounded-tl-none border border-border/25 bg-foreground/[0.03] px-5 py-4">
-            <p className="mb-1 font-syne text-xs font-bold tracking-wider text-foreground/50 uppercase">
-              RJDP
-            </p>
-            <p className="font-outfit text-lg text-foreground/80">
-              Let&apos;s build something cool together ↓
-            </p>
-          </div>
-        </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Name and Email - Two Column */}
-          <div className="grid gap-4 sm:grid-cols-2">
-            <label className="sr-only" htmlFor="contact-name">
-              Name
+          {/* Message */}
+          <div className="border-b border-foreground/[0.08] pt-5 pb-3">
+            <label
+              htmlFor="contact-message"
+              className="block font-mono text-[9px] tracking-[0.16em] text-foreground/28 uppercase"
+            >
+              Message
             </label>
-            <input
-              id="contact-name"
-              type="text"
-              name="name"
-              value={formData.name}
+            <textarea
+              id="contact-message"
+              name="message"
+              value={formData.message}
               onChange={handleChange}
               required
-              placeholder="Name"
-              className="w-full rounded-xl border border-border/25 bg-card/40 px-4 py-3 text-sm text-foreground transition-all placeholder:text-foreground/30 focus:border-foreground/20 focus:ring-1 focus:ring-ring/50 focus:outline-none"
-            />
-            <label className="sr-only" htmlFor="contact-email">
-              Email
-            </label>
-            <input
-              id="contact-email"
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              placeholder="Email"
-              className="w-full rounded-xl border border-border/25 bg-card/40 px-4 py-3 text-sm text-foreground transition-all placeholder:text-foreground/30 focus:border-foreground/20 focus:ring-1 focus:ring-ring/50 focus:outline-none"
+              placeholder="What are you working on?"
+              rows={4}
+              className="mt-1.5 w-full resize-none bg-transparent text-[13.5px] leading-relaxed text-foreground/80 placeholder:text-foreground/20 focus:outline-none"
             />
           </div>
 
-          {/* Message Field - Shorter */}
-          <label className="sr-only" htmlFor="contact-message">
-            Message
-          </label>
-          <textarea
-            id="contact-message"
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            required
-            placeholder="Your message..."
-            rows={4}
-            className="w-full resize-none rounded-xl border border-border/25 bg-card/40 px-4 py-3 text-sm text-foreground transition-all placeholder:text-foreground/30 focus:border-foreground/20 focus:ring-1 focus:ring-ring/50 focus:outline-none"
-          />
-
-          {/* Status Messages */}
+          {/* Status messages */}
           {status === "success" && (
-            <div className="flex items-center gap-2 rounded-xl bg-emerald-500/10 px-4 py-3 text-sm text-emerald-500">
-              <CheckCircle2 className="h-4 w-4" />
-              <span>Sent! I&apos;ll get back to you soon.</span>
+            <div className="mt-4 flex items-center gap-2 font-mono text-[11px] text-emerald-500/80">
+              <CheckCircle2 className="size-3.5" />
+              Sent — I&apos;ll get back to you soon.
             </div>
           )}
-
           {status === "error" && (
-            <div className="flex items-center gap-2 rounded-xl bg-red-500/10 px-4 py-3 text-sm text-red-500">
-              <XCircle className="h-4 w-4" />
-              <span>{errorMessage || "Failed to send. Please try again."}</span>
+            <div className="mt-4 flex items-center gap-2 font-mono text-[11px] text-red-400/80">
+              <XCircle className="size-3.5" />
+              {errorMessage || "Failed to send. Please try again."}
             </div>
           )}
 
-          {/* Submit Button */}
-          <button
-            type="submit"
-            disabled={status === "loading"}
-            className="flex w-full items-center justify-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-all hover:bg-foreground/90 disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            {status === "loading" ? (
-              <>
-                <Loader2 className="h-4 w-4 animate-spin" />
-                Sending...
-              </>
-            ) : (
-              <>
-                <Send className="h-4 w-4" />
-                Send Message
-              </>
-            )}
-          </button>
+          {/* Submit */}
+          <div className="mt-6">
+            <button
+              type="submit"
+              disabled={status === "loading"}
+              className="quiet-action group disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              {status === "loading" ? (
+                <>
+                  <Loader2 className="size-3 animate-spin" />
+                  Sending
+                </>
+              ) : (
+                <>
+                  Send message
+                  <ArrowRight />
+                </>
+              )}
+            </button>
+          </div>
         </form>
       </PanelContent>
     </Panel>

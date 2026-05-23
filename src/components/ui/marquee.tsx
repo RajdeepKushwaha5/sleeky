@@ -58,12 +58,8 @@ export const MarqueeContent = ({
         ref={innerRef}
         className="marquee-track flex shrink-0 items-stretch"
         style={{
-          animation: `marquee-scroll ${duration}s linear infinite`,
-          animationDirection: direction === "right" ? "reverse" : "normal",
+          animation: `marquee-scroll ${duration}s linear ${direction === "right" ? "reverse" : "normal"} infinite`,
           willChange: "transform",
-          WebkitAnimation: `marquee-scroll ${duration}s linear infinite`,
-          WebkitAnimationDirection:
-            direction === "right" ? "reverse" : "normal",
         }}
       >
         {children}
@@ -73,12 +69,8 @@ export const MarqueeContent = ({
         className="marquee-track flex shrink-0 items-stretch"
         aria-hidden="true"
         style={{
-          animation: `marquee-scroll ${duration}s linear infinite`,
-          animationDirection: direction === "right" ? "reverse" : "normal",
+          animation: `marquee-scroll ${duration}s linear ${direction === "right" ? "reverse" : "normal"} infinite`,
           willChange: "transform",
-          WebkitAnimation: `marquee-scroll ${duration}s linear infinite`,
-          WebkitAnimationDirection:
-            direction === "right" ? "reverse" : "normal",
         }}
       >
         {children}

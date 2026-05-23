@@ -9,7 +9,6 @@ import {
   VenusIcon,
 } from "lucide-react";
 
-import { VisitorCount } from "@/components/visitor-count";
 import { USER } from "@/features/profile/data/user";
 import { urlToName } from "@/utils/url";
 
@@ -55,10 +54,6 @@ export function Overview() {
           icon={USER.gender === "male" ? MarsIcon : VenusIcon}
           content={USER.pronouns}
         />
-
-        <div className="pt-1">
-          <VisitorCount />
-        </div>
       </PanelContent>
     </Panel>
   );

@@ -1,9 +1,22 @@
 "use client";
 
-import { motion } from "motion/react";
-import Image from "next/image";
-
 import { Panel, PanelContent, PanelHeader, PanelTitle } from "./panel";
+
+function Heading({ children }: { children: React.ReactNode }) {
+  return (
+    <h3 className="mb-3.5 font-serif text-[1.12rem] font-medium text-foreground/88">
+      {children}
+    </h3>
+  );
+}
+
+function Body({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="space-y-4 text-[13.5px] leading-[1.8] text-foreground/55">
+      {children}
+    </div>
+  );
+}
 
 export function About() {
   return (
@@ -13,93 +26,46 @@ export function About() {
       </PanelHeader>
 
       <PanelContent>
-        <div className="flex flex-col items-center gap-6 text-center sm:flex-row sm:items-start sm:gap-7 sm:text-left">
-          {/* Image - Premium Round Style with enhanced glow */}
-          <motion.div
-            className="relative shrink-0 grayscale transition-all duration-700 hover:grayscale-0 dark:grayscale-0"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-          >
-            {/* Outer glow ring */}
-            <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-foreground/[0.06] via-transparent to-foreground/[0.04] blur-md" />
-            <div className="relative aspect-square h-24 w-24 overflow-hidden rounded-full ring-[2px] ring-foreground/12 ring-offset-[3px] ring-offset-background transition-all duration-700 hover:ring-foreground/20 sm:h-28 sm:w-28">
-              <Image
-                src="/final_about.png"
-                alt="About"
-                fill
-                sizes="112px"
-                className="h-full w-full object-cover transition-transform duration-700 ease-out hover:scale-105"
-              />
-            </div>
-          </motion.div>
+        <div className="max-w-[62ch] space-y-9">
+          {/* Background */}
+          <section>
+            <Heading>Background</Heading>
+            <Body>
+              <p>
+                Third-year CS student based in India. Competitive programming
+                got me into this. Expert on Codeforces, Knight on LeetCode,
+                4-star on CodeChef. That habit of thinking a problem through
+                before writing any code has stuck, and I apply it to everything
+                I build.
+              </p>
+              <p>
+                I contribute to open source seriously. Google Summer of Code
+                2026 developer on the CGAL project since May 2026, working on
+                OpenGL shader systems in C++. I&apos;ve also contributed to
+                Accomplish AI, OpenMetadata, KubeEdge, and others.
+              </p>
+            </Body>
+          </section>
 
-          <div className="flex-1 space-y-3.5">
-            <p className="font-serif text-lg leading-[1.7] text-foreground/80 sm:text-xl">
-              Full-stack developer and{" "}
-              <a
-                href="https://en.wikipedia.org/wiki/Competitive_programming"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline decoration-foreground/15 underline-offset-3 transition-all duration-300 hover:text-foreground/90 hover:decoration-foreground/40"
-              >
-                competitive programmer
-              </a>{" "}
-              building clean, reliable web products — from idea to production.
-            </p>
-
-            <p className="text-sm leading-[1.75] text-foreground/45">
-              Currently deep into{" "}
-              <a
-                href="https://en.wikipedia.org/wiki/Large_language_model"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-foreground/60 underline decoration-foreground/10 underline-offset-3 transition-all duration-300 hover:text-foreground/80 hover:decoration-foreground/30"
-              >
-                LLMs &amp; Generative AI
-              </a>
-              , crafting smart integrations that actually work. Equally
-              comfortable in the{" "}
-              <a
-                href="https://en.wikipedia.org/wiki/Blockchain"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-foreground/60 underline decoration-foreground/10 underline-offset-3 transition-all duration-300 hover:text-foreground/80 hover:decoration-foreground/30"
-              >
-                Blockchain &amp; Web3
-              </a>{" "}
-              space — writing{" "}
-              <a
-                href="https://en.wikipedia.org/wiki/Solidity"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-foreground/60 underline decoration-foreground/10 underline-offset-3 transition-all duration-300 hover:text-foreground/80 hover:decoration-foreground/30"
-              >
-                Solidity
-              </a>{" "}
-              contracts, building on{" "}
-              <a
-                href="https://en.wikipedia.org/wiki/Ethereum"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-foreground/60 underline decoration-foreground/10 underline-offset-3 transition-all duration-300 hover:text-foreground/80 hover:decoration-foreground/30"
-              >
-                Ethereum
-              </a>{" "}
-              &amp; Solana, and shipping dApps with real users.
-            </p>
-
-            <p className="text-[12px] leading-relaxed text-muted-foreground/35 italic">
-              ↳ always building something new —{" "}
-              <a
-                href="#projects"
-                className="underline decoration-muted-foreground/15 underline-offset-3 transition-all duration-300 hover:text-muted-foreground/55 hover:decoration-muted-foreground/30"
-              >
-                see projects
-              </a>
-            </p>
-          </div>
+          {/* What I build */}
+          <section>
+            <Heading>What I Build</Heading>
+            <Body>
+              <p>
+                Web side: React, Next.js, Node.js or Python backends,
+                PostgreSQL. I pay attention to the details most people skip.
+                Motion, spacing, interaction states. Whether something feels
+                deliberate or just default.
+              </p>
+              <p>
+                AI side: I go deep on LLMs. I&apos;ve built GPT-2 (124M params),
+                Llama 3.2, Qwen3 MoE, and Gemma 3 from scratch in PyTorch. I
+                work on KV cache compression, fast inference with Triton
+                kernels, and agentic systems. The goal is always something that
+                holds up under real use, not just a demo.
+              </p>
+            </Body>
+          </section>
         </div>
       </PanelContent>
     </Panel>

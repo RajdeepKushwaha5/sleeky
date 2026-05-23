@@ -36,10 +36,6 @@ const CATEGORIES: Category[] = [
     keys: ["nodejs", "mongodb", "postgresql", "mysql", "redis"],
   },
   {
-    label: "Blockchain",
-    keys: ["ethereum", "solana", "solidity"],
-  },
-  {
     label: "Infra & Tools",
     keys: ["docker", "git", "github", "aws", "azure", "postman", "npm", "pnpm"],
   },

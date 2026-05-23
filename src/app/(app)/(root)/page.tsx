@@ -1,11 +1,11 @@
 import dayjs from "dayjs";
+import Script from "next/script";
 import type { ProfilePage as PageSchema, WithContext } from "schema-dts";
 
 import { FadeIn } from "@/components/ui/scroll-animations";
 import { About } from "@/features/profile/components/about";
 import { Awards } from "@/features/profile/components/awards";
 import { Blog } from "@/features/profile/components/blog";
-import { BookCall } from "@/features/profile/components/book-call";
 import { Certifications } from "@/features/profile/components/certifications";
 import { Contact } from "@/features/profile/components/contact";
 import { Experiences } from "@/features/profile/components/experiences";
@@ -13,12 +13,9 @@ import { GitHubContributions } from "@/features/profile/components/github-contri
 import { Library } from "@/features/profile/components/library";
 import { LiveStatus } from "@/features/profile/components/live-status";
 import { OSSContributions } from "@/features/profile/components/oss-contributions";
-import { Overview } from "@/features/profile/components/overview";
 import { PomodoroTimer } from "@/features/profile/components/pomodoro-timer";
 import { ProfileCover } from "@/features/profile/components/profile-cover";
-import { ProfileHeader } from "@/features/profile/components/profile-header";
 import { Projects } from "@/features/profile/components/projects";
-import { SocialLinks } from "@/features/profile/components/social-links";
 import { TechStack } from "@/features/profile/components/tech-stack";
 import { TestimonialsMarquee as Testimonials } from "@/features/profile/components/testimonials-marquee";
 import { USER } from "@/features/profile/data/user";
@@ -27,20 +24,20 @@ import { cn } from "@/lib/utils";
 export default function Page() {
   return (
     <>
-      <script
+      <Script
+        id="profile-page-jsonld"
         type="application/ld+json"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(getPageJsonLd()).replace(/</g, "\\u003c"),
         }}
       />
 
-      <div className="profile-shell mx-auto md:max-w-3xl">
+      <div className="profile-shell relative mx-auto md:max-w-3xl">
         <ProfileCover />
-        <ProfileHeader />
-        <Separator className="h-2" />
 
         <FadeIn>
-          <Overview />
+          <About />
         </FadeIn>
         <Separator />
 
@@ -48,17 +45,6 @@ export default function Page() {
           <LiveStatus />
         </FadeIn>
         <Separator />
-
-        <FadeIn>
-          <SocialLinks />
-        </FadeIn>
-        <Separator />
-
-        <FadeIn>
-          <About />
-        </FadeIn>
-        <Separator />
-
         <FadeIn>
           <Experiences />
         </FadeIn>
@@ -110,11 +96,6 @@ export default function Page() {
         <Separator />
 
         <FadeIn>
-          <BookCall />
-        </FadeIn>
-        <Separator />
-
-        <FadeIn>
           <PomodoroTimer />
         </FadeIn>
         <Separator />
@@ -144,5 +125,5 @@ function getPageJsonLd(): WithContext<PageSchema> {
 }
 
 function Separator({ className }: { className?: string }) {
-  return <div className={cn("h-3 w-full", className)} />;
+  return <div className={cn("h-0 w-full", className)} />;
 }

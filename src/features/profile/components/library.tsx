@@ -1,9 +1,8 @@
 "use client";
 
-import { ArrowRightIcon } from "lucide-react";
+import { ChevronDownIcon } from "lucide-react";
 import { useState } from "react";
 
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 import { Panel, PanelContent, PanelHeader, PanelTitle } from "./panel";
@@ -118,20 +117,21 @@ export function Library() {
           )}
 
           {/* Toggle button */}
-          <div className="flex justify-center pt-2">
-            <Button
-              variant="outline"
-              className="rounded-full border-border/25 px-6 text-[13px] font-medium tracking-wide transition-all duration-300 hover:border-border/40 hover:bg-foreground/[0.04]"
+          <div className="flex items-center justify-center py-2">
+            <button
+              type="button"
+              data-direction="down"
+              className="quiet-action"
               onClick={() => setExpanded((prev) => !prev)}
             >
-              {expanded ? "View Less" : "View More"}
-              <ArrowRightIcon
+              {expanded ? "Show less" : "Show more"}
+              <ChevronDownIcon
                 className={cn(
-                  "ml-1 size-4 transition-transform duration-200",
-                  expanded && "rotate-90"
+                  "transition-transform duration-300",
+                  expanded && "rotate-180"
                 )}
               />
-            </Button>
+            </button>
           </div>
         </div>
       </PanelContent>

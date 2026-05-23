@@ -16,7 +16,7 @@ export const PROJECTS: Project[] = [
       "MongoDB",
       "TypeScript",
       "Tailwind CSS",
-      "Real-time Collaboration",
+      "Real-time",
       "Code Editor",
     ],
     description: `Full-stack collaborative code editor with real-time editing, syntax highlighting, multi-language support, and interview preparation features.

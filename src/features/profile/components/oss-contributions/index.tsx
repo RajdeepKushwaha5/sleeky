@@ -13,7 +13,9 @@ export function OSSContributions() {
   return (
     <Panel id="oss-contributions">
       <PanelHeader>
-        <PanelTitle>Open Source Contributions</PanelTitle>
+        <PanelTitle className="text-2xl sm:text-3xl">
+          Open Source Contributions
+        </PanelTitle>
       </PanelHeader>
 
       <Suspense fallback={<OSSContributionsFallback />}>

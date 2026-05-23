@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+// Import JSON directly (bundler handles this at build time — no fs needed)
+import mediumPostsData from "./medium-posts.json";
 
 export interface MediumPost {
   id: string;
@@ -19,24 +19,15 @@ interface MediumPostsData {
   posts: MediumPost[];
 }
 
-const MEDIUM_POSTS_FILE = path.join(process.cwd(), 'src/features/blog/data/medium-posts.json');
-
 /**
- * Load Medium posts from the JSON file
+ * Load Medium posts from the bundled JSON
  */
 export function getMediumPosts(): MediumPost[] {
   try {
-    if (!fs.existsSync(MEDIUM_POSTS_FILE)) {
-      return [];
-    }
-
-    const data: MediumPostsData = JSON.parse(
-      fs.readFileSync(MEDIUM_POSTS_FILE, 'utf-8')
-    );
-
+    const data = mediumPostsData as MediumPostsData;
     return data.posts || [];
   } catch (error) {
-    console.error('Error loading Medium posts:', error);
+    console.error("Error loading Medium posts:", error);
     return [];
   }
 }
@@ -46,7 +37,7 @@ export function getMediumPosts(): MediumPost[] {
  */
 export function getMediumPostById(id: string): MediumPost | null {
   const posts = getMediumPosts();
-  return posts.find(post => post.id === id) || null;
+  return posts.find((post) => post.id === id) || null;
 }
 
 /**
@@ -54,8 +45,8 @@ export function getMediumPostById(id: string): MediumPost | null {
  */
 export function getMediumPostsByTag(tag: string): MediumPost[] {
   const posts = getMediumPosts();
-  return posts.filter(post =>
-    post.tags.some(postTag => postTag.toLowerCase() === tag.toLowerCase())
+  return posts.filter((post) =>
+    post.tags.some((postTag) => postTag.toLowerCase() === tag.toLowerCase())
   );
 }
 
@@ -65,7 +56,10 @@ export function getMediumPostsByTag(tag: string): MediumPost[] {
 export function getRecentMediumPosts(limit: number = 5): MediumPost[] {
   const posts = getMediumPosts();
   return posts
-    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+    .sort(
+      (a, b) =>
+        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+    )
     .slice(0, limit);
 }
 
@@ -76,10 +70,11 @@ export function searchMediumPosts(query: string): MediumPost[] {
   const posts = getMediumPosts();
   const lowercaseQuery = query.toLowerCase();
 
-  return posts.filter(post =>
-    post.title.toLowerCase().includes(lowercaseQuery) ||
-    post.description.toLowerCase().includes(lowercaseQuery) ||
-    post.tags.some(tag => tag.toLowerCase().includes(lowercaseQuery))
+  return posts.filter(
+    (post) =>
+      post.title.toLowerCase().includes(lowercaseQuery) ||
+      post.description.toLowerCase().includes(lowercaseQuery) ||
+      post.tags.some((tag) => tag.toLowerCase().includes(lowercaseQuery))
   );
 }
 
@@ -91,15 +86,22 @@ export function getMediumPostsStats() {
 
   return {
     total: posts.length,
-    tags: [...new Set(posts.flatMap(post => post.tags))],
-    authors: [...new Set(posts.map(post => post.author))],
-    dateRange: posts.length > 0 ? {
-      earliest: posts.reduce((earliest, post) =>
-        new Date(post.publishedAt) < new Date(earliest.publishedAt) ? post : earliest
-      ).publishedAt,
-      latest: posts.reduce((latest, post) =>
-        new Date(post.publishedAt) > new Date(latest.publishedAt) ? post : latest
-      ).publishedAt
-    } : null
+    tags: [...new Set(posts.flatMap((post) => post.tags))],
+    authors: [...new Set(posts.map((post) => post.author))],
+    dateRange:
+      posts.length > 0
+        ? {
+            earliest: posts.reduce((earliest, post) =>
+              new Date(post.publishedAt) < new Date(earliest.publishedAt)
+                ? post
+                : earliest
+            ).publishedAt,
+            latest: posts.reduce((latest, post) =>
+              new Date(post.publishedAt) > new Date(latest.publishedAt)
+                ? post
+                : latest
+            ).publishedAt,
+          }
+        : null,
   };
 }

@@ -1,19 +1,30 @@
 import dayjs from "dayjs";
-import { FileCheckIcon } from "lucide-react";
+import { ArrowUpRightIcon, ChevronDownIcon } from "lucide-react";
 
-import { Icons } from "@/components/icons";
 import { Markdown } from "@/components/markdown";
 import {
-  CollapsibleChevronsIcon,
   CollapsibleContent,
   CollapsibleTrigger,
   CollapsibleWithContext,
 } from "@/components/ui/collapsible";
-import { Separator } from "@/components/ui/separator";
-import { SimpleTooltip } from "@/components/ui/tooltip";
 import { Prose } from "@/components/ui/typography";
+import { cn } from "@/lib/utils";
 
 import type { Award } from "../../types/awards";
+
+const PRIZE_RANK: Record<string, string> = {
+  "1st Place": "01",
+  Winner: "01",
+  "Runner Up": "02",
+  "2nd Place": "02",
+  "3rd Place": "03",
+  Finalist: "FN",
+  Participant: "—",
+};
+
+function getPrizeCode(prize: string): string {
+  return PRIZE_RANK[prize] ?? prize.slice(0, 2).toUpperCase();
+}
 
 export function AwardItem({
   className,
@@ -26,90 +37,60 @@ export function AwardItem({
 
   return (
     <CollapsibleWithContext disabled={!canExpand} asChild>
-      <div className={className}>
-        <div className="flex items-center hover:bg-accent2">
-          <div
-            className="mx-4 flex size-6 shrink-0 items-center justify-center rounded-full border border-border/25 bg-card/40"
-            aria-hidden
-          >
-            <Icons.award className="pointer-events-none size-4 text-foreground/60" />
+      <div className={cn("border-b border-foreground/[0.055]", className)}>
+        <CollapsibleTrigger
+          className="group/award flex w-full items-center gap-4 py-4 text-left select-none"
+          disabled={!canExpand}
+        >
+          {/* Prize rank label */}
+          <span className="w-6 shrink-0 font-mono text-[10px] text-foreground/25 tabular-nums">
+            {getPrizeCode(award.prize)}
+          </span>
+
+          {/* Main info */}
+          <div className="min-w-0 flex-1">
+            <h3 className="truncate text-[13.5px] font-medium text-foreground/80 group-hover/award:text-foreground/95">
+              {award.title}
+            </h3>
+            <div className="mt-0.5 flex flex-wrap items-center gap-x-2 font-mono text-[10px] text-foreground/30">
+              <span>{award.prize}</span>
+              <span className="text-foreground/15">·</span>
+              <time dateTime={dayjs(award.date).toISOString()}>
+                {dayjs(award.date).format("MM.YYYY")}
+              </time>
+              <span className="text-foreground/15">·</span>
+              <span>{award.grade}</span>
+            </div>
           </div>
 
-          <div className="flex-1 border-l border-dashed border-border/25">
-            <CollapsibleTrigger className="flex w-full items-center gap-4 p-4 pr-2 text-left select-none">
-              <div className="flex-1">
-                <h3 className="mb-1 leading-snug font-medium text-balance">
-                  {award.title}
-                </h3>
+          {/* Reference link */}
+          {award.referenceLink && (
+            <a
+              href={award.referenceLink}
+              target="_blank"
+              rel="noopener"
+              onClick={(e) => e.stopPropagation()}
+              className="shrink-0 text-foreground/25 transition-colors hover:text-foreground/60"
+              aria-label="Open reference"
+            >
+              <ArrowUpRightIcon className="size-3.5" aria-hidden />
+            </a>
+          )}
 
-                <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
-                  <dl>
-                    <dt className="sr-only">Prize</dt>
-                    <dd>{award.prize}</dd>
-                  </dl>
-
-                  <Separator
-                    className="data-[orientation=vertical]:h-4"
-                    orientation="vertical"
-                  />
-
-                  <dl>
-                    <dt className="sr-only">Awarded in</dt>
-                    <dd>
-                      <time dateTime={dayjs(award.date).toISOString()}>
-                        {dayjs(award.date).format("MM.YYYY")}
-                      </time>
-                    </dd>
-                  </dl>
-
-                  <Separator
-                    className="data-[orientation=vertical]:h-4"
-                    orientation="vertical"
-                  />
-
-                  <dl>
-                    <dt className="sr-only">Received in Grade</dt>
-                    <dd>{award.grade}</dd>
-                  </dl>
-                </div>
-              </div>
-
-              {award.referenceLink && (
-                <SimpleTooltip content="Open Reference Attachment">
-                  <a
-                    className="relative flex size-6 shrink-0 items-center justify-center text-muted-foreground after:absolute after:-inset-2 hover:text-foreground"
-                    href={award.referenceLink}
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    <FileCheckIcon
-                      className="pointer-events-none size-4"
-                      aria-hidden
-                    />
-                    <span className="sr-only">Open Reference Attachment</span>
-                  </a>
-                </SimpleTooltip>
-              )}
-
-              {canExpand && (
-                <div
-                  className="shrink-0 text-muted-foreground [&_svg]:size-4"
-                  aria-hidden
-                >
-                  <CollapsibleChevronsIcon />
-                </div>
-              )}
-            </CollapsibleTrigger>
-          </div>
-        </div>
+          {/* Expand chevron */}
+          {canExpand && (
+            <ChevronDownIcon
+              className="size-3.5 shrink-0 text-foreground/20 transition-transform duration-200 group-data-[state=open]/award:rotate-180"
+              aria-hidden
+            />
+          )}
+        </CollapsibleTrigger>
 
         {canExpand && (
-          <CollapsibleContent className="group overflow-hidden duration-300 data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
-            <div className="border-t border-border/25 shadow-inner">
-              <Prose className="p-4 duration-300 group-data-[state=closed]:animate-fade-out group-data-[state=open]:animate-fade-in">
-                <Markdown>{award.description}</Markdown>
-              </Prose>
-            </div>
+          <CollapsibleContent className="overflow-hidden duration-300 data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
+            <Prose className="pb-4 pl-10 text-[13px] text-foreground/50">
+              <Markdown>{award.description}</Markdown>
+            </Prose>
           </CollapsibleContent>
         )}
       </div>

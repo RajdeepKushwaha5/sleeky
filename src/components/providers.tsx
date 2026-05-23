@@ -18,11 +18,11 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <JotaiProvider>
       <ThemeProvider
-        enableSystem
+        enableSystem={false}
         disableTransitionOnChange
         enableColorScheme
         storageKey="theme"
-        defaultTheme="system"
+        defaultTheme="dark"
         attribute="class"
       >
         <SmoothScroll>

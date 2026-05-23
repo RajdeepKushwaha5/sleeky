@@ -1,48 +1,9 @@
-import fs from "fs";
-import matter from "gray-matter";
-import path from "path";
-
 import type { Post, PostMetadata } from "@/features/blog/types/post";
 
 import { getMediumPosts, type MediumPost } from "./medium-posts";
 
-function parseFrontmatter(fileContent: string) {
-  const file = matter(fileContent);
-
-  return {
-    metadata: file.data as PostMetadata,
-    content: file.content,
-  };
-}
-
-function getMDXFiles(dir: string) {
-  // Return empty array if directory doesn't exist (e.g., when using only Medium posts)
-  if (!fs.existsSync(dir)) {
-    return [];
-  }
-  return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
-}
-
-function readMDXFile(filePath: string) {
-  const rawContent = fs.readFileSync(filePath, "utf-8");
-  return parseFrontmatter(rawContent);
-}
-
-function getMDXData(dir: string) {
-  const mdxFiles = getMDXFiles(dir);
-
-  return mdxFiles.map<Post>((file) => {
-    const { metadata, content } = readMDXFile(path.join(dir, file));
-
-    const slug = path.basename(file, path.extname(file));
-
-    return {
-      metadata,
-      slug,
-      content,
-    };
-  });
-}
+// MDX file reading is intentionally removed — posts come from the bundled JSON only.
+// If you need MDX posts, add a server action or API route that reads the file system.
 
 /**
  * Convert Medium posts to Post format for unified blog system
@@ -87,13 +48,10 @@ function convertMediumPostsToPosts(mediumPosts: MediumPost[]): Post[] {
 }
 
 export function getAllPosts() {
-  const mdxPosts = getMDXData(
-    path.join(process.cwd(), "src/features/blog/content")
-  );
   const mediumPosts = convertMediumPostsToPosts(getMediumPosts());
 
-  // Combine and sort all posts
-  const allPosts = [...mdxPosts, ...mediumPosts].sort((a, b) => {
+  // Sort posts: pinned first, then by date (newest first)
+  return mediumPosts.sort((a, b) => {
     if (a.metadata.pinned && !b.metadata.pinned) return -1;
     if (!a.metadata.pinned && b.metadata.pinned) return 1;
 
@@ -102,8 +60,6 @@ export function getAllPosts() {
       new Date(a.metadata.createdAt).getTime()
     );
   });
-
-  return allPosts;
 }
 
 export function getPostBySlug(slug: string) {

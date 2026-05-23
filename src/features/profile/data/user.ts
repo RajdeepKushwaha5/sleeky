@@ -7,37 +7,36 @@ export const USER: User = {
   username: "rajdeepkushwaha5",
   gender: "male",
   pronouns: "he/him",
-  bio: "Passionate about bridging creativity and functionality. Full Stack Web Developer & Blockchain Developer.",
+  bio: "Passionate about bridging creativity and functionality. Full Stack Developer & AI Engineer.",
   flipSentences: [
     "Full Stack Developer",
-    "Blockchain Developer",
+    "AI Engineer",
     "Open Source Contributor",
-    "Artificial Intelligence",
+    "Building with LLMs",
     "Playing with Large Language Models",
   ],
-  address: "India 🇮🇳", // Update with your location
-  email: "cmFqZGVlcHNpbmdoMTA3ODlAZ21haWwuY29t", // Update with your email (base64 encoded)
-  website: "https://rajdeep-singh.vercel.app", // Update with your website URL
-  coverImage: "/assets/cover-image.png", // Add your cover image path here
-  jobTitle: "Full Stack Web Developer & Blockchain Developer", // Update with your job title
+  address: "India 🇮🇳",
+  email: "cmFqZGVlcHNpbmdoMTA3ODlAZ21haWwuY29t",
+  website: "https://rajdeep-singh.vercel.app",
+  coverImage: "/assets/cover-image.png",
+  jobTitle: "Full Stack Developer & AI Engineer",
   jobs: [
     {
       title: "Open to Work",
       company: "",
       website: "https://rajdeep-singh.vercel.app",
     },
-    // Add more jobs as needed
   ],
   about: `
 ## Rajdeep Singh
 
-Full Stack Web Developer and Blockchain Developer building elegant solutions for complex problems.
+Full Stack Developer and AI Engineer building elegant solutions for complex problems.
 
 ### What I Do
 
 - **Modern Web Apps** — Responsive frontends and robust backends using the MERN stack.
-- **Web3 Development** — Decentralized applications on Ethereum and Solana.
-- **Product-Focused** — E-commerce, real-time apps, DeFi protocols that make a difference.
+- **AI Integration** — LLM-powered features, intelligent agents, and Generative AI pipelines.
+- **Product-Focused** — E-commerce, real-time apps, and AI tools that make a difference.
 
 ---
 
@@ -45,8 +44,8 @@ Full Stack Web Developer and Blockchain Developer building elegant solutions for
 
 Available for projects, freelance work, or tech discussions. Let's connect.
   `,
-  avatar: "https://github.com/RajdeepKushwaha5.png", // Update with your avatar URL
-  ogImage: "/assets/og-image.jpg", // Custom OG image for social media sharing
+  avatar: "https://github.com/RajdeepKushwaha5.png",
+  ogImage: "/assets/og-image.jpg",
 
   keywords: [
     "rajdeep",
@@ -54,15 +53,14 @@ Available for projects, freelance work, or tech discussions. Let's connect.
     "rjdp",
     "fullstack",
     "webdeveloper",
-    "blockchain",
-    "ethereum",
-    "solana",
+    "ai engineer",
     "mern",
     "react",
     "nodejs",
-    "dapp",
     "developer",
-    // Add your relevant keywords
+    "llm",
+    "generative ai",
+    "machine learning",
   ],
-  dateCreated: "2023-10-20", // Update with your portfolio creation date
+  dateCreated: "2023-10-20",
 };

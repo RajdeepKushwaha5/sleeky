@@ -31,7 +31,7 @@ export function CollapsibleList<T>({
       {items.slice(0, max).map((award, index) => (
         <Slot
           key={typeof keyExtractor === "function" ? keyExtractor(award) : index}
-          className="border-b border-border/25"
+          className=""
         >
           {renderItem(award)}
         </Slot>
@@ -45,7 +45,7 @@ export function CollapsibleList<T>({
                 ? keyExtractor(award)
                 : max + index
             }
-            className="border-b border-border/25"
+            className=""
           >
             {renderItem(award)}
           </Slot>
@@ -53,22 +53,22 @@ export function CollapsibleList<T>({
       </CollapsibleContent>
 
       {items.length > max && (
-        <div className="flex h-12 items-center justify-center pb-px">
+        <div className="flex items-center justify-center py-4 text-center">
           <CollapsibleTrigger asChild>
             <Button
-              className="group/collapsible-trigger flex border border-border/25 bg-card/40 text-foreground/80 hover:bg-foreground/10 hover:text-foreground"
+              className="quiet-action group/collapsible-trigger mx-auto h-auto w-auto hover:bg-transparent"
+              data-direction="down"
               variant="ghost"
+              size="sm"
             >
               <span className="hidden group-data-[state=closed]/collapsible-trigger:block">
-                Show More
+                Show more
               </span>
-
               <span className="hidden group-data-[state=open]/collapsible-trigger:block">
-                Show Less
+                Show less
               </span>
-
               <ChevronDownIcon
-                className="group-data-[state=open]/collapsible-trigger:rotate-180"
+                className="transition-transform group-data-[state=open]/collapsible-trigger:rotate-180"
                 aria-hidden
               />
             </Button>

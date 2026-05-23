@@ -1,7 +1,6 @@
 "use client";
 
 import dayjs from "dayjs";
-import { LoaderIcon } from "lucide-react";
 import { use } from "react";
 
 import type { Activity } from "@/components/ui/contribution-graph";
@@ -51,9 +50,12 @@ export function GitHubContributionGraph({
               </g>
             </TooltipTrigger>
 
-            <TooltipContent className="font-sans" sideOffset={0}>
-              <p>
-                {activity.count} contribution{activity.count > 1 ? "s" : null}{" "}
+            <TooltipContent
+              sideOffset={0}
+              className="rounded-none border border-foreground/[0.1] bg-background px-2.5 py-1.5 shadow-none"
+            >
+              <p className="font-mono text-[10px] text-foreground/60">
+                {activity.count} contribution{activity.count !== 1 ? "s" : ""}{" "}
                 on {dayjs(activity.date).format("DD.MM.YYYY")}
               </p>
             </TooltipContent>
@@ -61,13 +63,13 @@ export function GitHubContributionGraph({
         )}
       </ContributionGraphCalendar>
 
-      <ContributionGraphFooter className="px-2">
+      <ContributionGraphFooter className="mt-3 px-2">
         <ContributionGraphTotalCount>
           {({ totalCount, year }) => (
-            <div className="text-muted-foreground">
+            <p className="font-mono text-[10px] text-foreground/35">
               {totalCount.toLocaleString("en")} contributions in {year} on{" "}
               <a
-                className="font-medium underline underline-offset-4"
+                className="text-foreground/55 underline-offset-3 hover:underline"
                 href={`https://github.com/${GITHUB_USERNAME}`}
                 target="_blank"
                 rel="noopener"
@@ -75,7 +77,7 @@ export function GitHubContributionGraph({
                 GitHub
               </a>
               .
-            </div>
+            </p>
           )}
         </ContributionGraphTotalCount>
 
@@ -88,7 +90,7 @@ export function GitHubContributionGraph({
 export function GitHubContributionFallback() {
   return (
     <div className="flex h-[162px] w-full items-center justify-center">
-      <LoaderIcon className="animate-spin text-muted-foreground" />
+      <div className="h-4 w-4 animate-spin rounded-full border-2 border-foreground/20 border-t-foreground/50" />
     </div>
   );
 }

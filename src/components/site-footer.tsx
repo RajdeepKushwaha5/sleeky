@@ -1,259 +1,160 @@
 "use client";
 
-import { FileText, Mail } from "lucide-react";
-import { motion } from "motion/react";
+import { ArrowUpRight, CheckIcon, CopyIcon } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 
+import { USER } from "@/features/profile/data/user";
+
+const DESIGN_SPECS = [
+  { label: "Heading", value: "Playfair Display" },
+  { label: "Body", value: "Inter" },
+  { label: "Mono", value: "IBM Plex Mono" },
+  { label: "Icons", value: "Lucide" },
+];
+
+const ENGINEER_SPECS = [
+  { label: "Framework", value: "Next.js 16" },
+  { label: "Styling", value: "Tailwind CSS v4" },
+  { label: "AI/ML", value: "PyTorch & Triton" },
+  { label: "Deploy", value: "Vercel" },
+];
+
 export function SiteFooter() {
-  const currentYear = new Date().getFullYear();
-  const [emailTooltip, setEmailTooltip] = useState("Click to copy email");
-  const [emailCopied, setEmailCopied] = useState(false);
-
-  // Fallback copy function for mobile devices
-  const fallbackCopyText = (text: string): boolean => {
-    const textArea = document.createElement("textarea");
-    textArea.value = text;
-
-    // Avoid scrolling to bottom
-    textArea.style.top = "0";
-    textArea.style.left = "0";
-    textArea.style.position = "fixed";
-    textArea.style.opacity = "0";
-
-    document.body.appendChild(textArea);
-    textArea.focus();
-    textArea.select();
-
-    let success = false;
-    try {
-      success = document.execCommand("copy");
-    } catch {
-      success = false;
-    }
-
-    document.body.removeChild(textArea);
-    return success;
-  };
-
-  const copyToClipboard = async (text: string): Promise<boolean> => {
-    // Try modern clipboard API first
-    if (navigator.clipboard && window.isSecureContext) {
-      try {
-        await navigator.clipboard.writeText(text);
-        return true;
-      } catch {
-        // Fall through to fallback
-      }
-    }
-
-    // Fallback for mobile and older browsers
-    return fallbackCopyText(text);
-  };
+  const year = new Date().getFullYear();
+  const [copied, setCopied] = useState(false);
 
   const copyEmail = async () => {
-    const success = await copyToClipboard("rajdeepsingh10789@gmail.com");
-    setEmailTooltip(success ? "Copied!" : "Failed to copy");
-    setEmailCopied(success);
-    setTimeout(() => {
-      setEmailTooltip("Click to copy email");
-      setEmailCopied(false);
-    }, 2000);
+    try {
+      await navigator.clipboard.writeText("rajdeepsingh10789@gmail.com");
+    } catch {
+      const ta = document.createElement("textarea");
+      ta.value = "rajdeepsingh10789@gmail.com";
+      Object.assign(ta.style, { position: "fixed", opacity: "0" });
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+    }
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   return (
-    <footer className="max-w-screen overflow-x-hidden px-4 py-10">
-      <motion.div
-        className="mx-auto max-w-4xl"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-40px" }}
-        transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-      >
-        {/* Inspiring CTA Section */}
-        <motion.div
-          className="mb-6 flex flex-col items-center justify-center rounded-[2rem] border border-border/10 bg-white px-8 py-16 text-center sm:px-10 dark:border-white/5 dark:bg-black"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
-          <h2 className="mb-4 font-serif text-3xl font-bold tracking-tight text-foreground/90 italic sm:text-4xl">
-            Let&apos;s build something great.
-          </h2>
-          <p className="mx-auto max-w-md text-[15px] leading-relaxed text-foreground/40">
-            My inbox is always open. Whether you have a project idea, a
-            question, or just want to say hi — reach out and let&apos;s start
-            building.
-          </p>
-        </motion.div>
+    <footer className="relative overflow-hidden bg-background px-6 pt-16 pb-16 text-foreground">
+      <div className="absolute inset-x-0 top-0 h-px bg-foreground/[0.08]" />
+      <div className="absolute inset-x-0 top-0 h-8 bg-[repeating-linear-gradient(45deg,color-mix(in_oklab,var(--foreground)_6%,transparent),color-mix(in_oklab,var(--foreground)_6%,transparent)_1px,transparent_1px,transparent_10px)]" />
 
-        {/* Main Footer Card */}
-        <div className="flex flex-col gap-6 rounded-[2rem] border border-border/10 bg-white px-8 py-6 sm:flex-row sm:items-center sm:justify-between dark:border-white/5 dark:bg-black">
-          {/* Left Side - Copyright and Tagline */}
-          <motion.div
-            className="space-y-1.5"
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <p className="font-outfit text-[15px] font-semibold tracking-tight text-foreground/90">
-              © {currentYear} Rajdeep Singh
+      <div className="mx-auto max-w-3xl">
+        {/* ── Name + subtitle + copyright ── */}
+        <div className="flex flex-col gap-8 border-b border-foreground/[0.08] pb-12 sm:flex-row sm:items-start sm:justify-between">
+          {/* Left: big serif name */}
+          <div>
+            <h2 className="font-serif text-[2.6rem] leading-[1] font-medium tracking-tight text-foreground sm:text-[3.2rem]">
+              {USER.firstName}
+              <br />
+              {USER.lastName}
+              <sup className="ml-1 align-super font-mono text-[0.16em] text-foreground/30 not-italic">
+                io
+              </sup>
+            </h2>
+            <p className="mt-3 font-mono text-[10px] tracking-[0.12em] text-foreground/40 uppercase">
+              Full Stack Developer &amp; AI Engineer
             </p>
-            <p className="font-outfit text-[13px] text-foreground/40">
-              Made with focus, endless iterations, and lots of coke.
-            </p>
-          </motion.div>
+          </div>
 
-          {/* Right Side - Social Buttons */}
-          <motion.div
-            className="flex flex-wrap items-center justify-center gap-2.5 sm:justify-end"
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            {/* Sponsor */}
-            <a
-              href="https://github.com/sponsors/RajdeepKushwaha5"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex h-10 w-10 items-center justify-center rounded-full border border-pink-500/15 bg-pink-500/[0.04] transition-colors hover:bg-pink-500/[0.08]"
-              title="Sponsor"
-            >
-              <svg
-                className="h-4 w-4 fill-none stroke-pink-400/60 transition-colors group-hover:stroke-pink-400"
-                strokeWidth={1.5}
-                viewBox="0 0 16 16"
+          {/* Right: copyright + link */}
+          <div className="sm:text-right">
+            <p className="font-mono text-[10px] tracking-wider text-foreground/35 uppercase">
+              © Copyright
+            </p>
+            <div className="mt-2 flex items-center gap-4 font-mono text-[11px] text-foreground/48 sm:justify-end">
+              <span>{year}</span>
+              <Link
+                href={USER.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 transition-colors hover:text-foreground"
               >
-                <path d="M4.25 2.5c-1.336 0-2.75 1.164-2.75 3 0 2.15 1.58 4.144 3.365 5.682A20.57 20.57 0 008 13.393a20.57 20.57 0 003.135-2.211C12.92 9.644 14.5 7.65 14.5 5.5c0-1.836-1.414-3-2.75-3-1.373 0-2.609.986-3.029 2.456a.75.75 0 01-1.442 0C6.859 3.486 5.623 2.5 4.25 2.5z" />
-              </svg>
-            </a>
-
-            {/* Gmail - Copy functionality */}
+                {USER.website.replace(/^https?:\/\//, "")}
+                <ArrowUpRight className="size-3 opacity-50" />
+              </Link>
+            </div>
+            {/* Email copy */}
             <button
+              type="button"
               onClick={copyEmail}
-              className={`group relative flex h-10 w-10 items-center justify-center rounded-full border transition-colors ${
-                emailCopied
-                  ? "border-green-500/50 bg-green-500/15"
-                  : "border-border/20 bg-transparent hover:bg-foreground/[0.02]"
-              }`}
-              title={emailTooltip}
+              className="mt-3 inline-flex items-center gap-1.5 font-mono text-[10px] text-foreground/38 transition-colors hover:text-foreground/70"
             >
-              {emailCopied ? (
-                <svg
-                  className="h-4 w-4 text-green-500"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
+              {copied ? (
+                <CheckIcon className="size-3 text-foreground/70" />
               ) : (
-                <Mail className="h-4 w-4 text-foreground/40 transition-colors group-hover:text-foreground/80" />
+                <CopyIcon className="size-3" />
               )}
-              <span
-                className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 rounded-lg bg-foreground px-3 py-1.5 text-xs whitespace-nowrap text-background opacity-0 transition-opacity group-hover:opacity-100"
-                aria-hidden="true"
-              >
-                {emailTooltip}
-              </span>
-              <span className="sr-only" role="status" aria-live="polite">
-                {emailCopied ? "Email copied to clipboard" : ""}
-              </span>
+              rajdeepsingh10789@gmail.com
             </button>
-
-            {/* CV - Drive Link */}
-            <a
-              target="_blank"
-              rel="noopener"
-              className="group flex h-10 w-10 items-center justify-center rounded-full border border-border/20 bg-transparent transition-colors hover:bg-foreground/[0.02]"
-              title="Resume"
-            >
-              <FileText className="h-4 w-4 text-foreground/40 transition-colors group-hover:text-foreground/80" />
-            </a>
-
-            {/* Divider */}
-            <div className="mx-1 h-4 w-px bg-border/20" />
-
-            {/* LinkedIn */}
-            <a
-              href="https://www.linkedin.com/in/rajdeepsingh5"
-              target="_blank"
-              rel="noopener"
-              className="group flex h-10 w-10 items-center justify-center rounded-full border border-border/20 bg-transparent transition-colors hover:bg-foreground/[0.02]"
-              title="LinkedIn"
-            >
-              <svg
-                className="h-4 w-4 text-foreground/40 transition-colors group-hover:text-foreground/80"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-              </svg>
-            </a>
-
-            {/* X (Twitter) */}
-            <a
-              href="https://x.com/rajdeeptwts"
-              target="_blank"
-              rel="noopener"
-              className="group flex h-10 w-10 items-center justify-center rounded-full border border-border/20 bg-transparent transition-colors hover:bg-foreground/[0.02]"
-              title="X"
-            >
-              <svg
-                className="h-4 w-4 text-foreground/40 transition-colors group-hover:text-foreground/80"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
-            </a>
-
-            {/* GitHub */}
-            <a
-              href="https://github.com/RajdeepKushwaha5"
-              target="_blank"
-              rel="noopener"
-              className="group flex h-10 w-10 items-center justify-center rounded-full border border-border/20 bg-transparent transition-colors hover:bg-foreground/[0.02]"
-              title="GitHub"
-            >
-              <svg
-                className="h-4 w-4 text-foreground/40 transition-colors group-hover:text-foreground/80"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-              </svg>
-            </a>
-
-            {/* Medium */}
-            <a
-              href="https://rajdeep01.medium.com/"
-              target="_blank"
-              rel="noopener"
-              className="group flex h-10 w-10 items-center justify-center rounded-full border border-border/20 bg-transparent transition-colors hover:bg-foreground/[0.02]"
-              title="Medium"
-            >
-              <svg
-                className="h-4 w-4 text-foreground/40 transition-colors group-hover:text-foreground/80"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z" />
-              </svg>
-            </a>
-          </motion.div>
+          </div>
         </div>
-      </motion.div>
-      <div className="pb-[env(safe-area-inset-bottom,0px)]">
-        <div className="flex h-2" />
+
+        {/* ── Colophon ── */}
+        <div className="mt-10">
+          <p className="mb-8 font-mono text-[10px] tracking-[0.16em] text-foreground/30 uppercase">
+            Colophon
+          </p>
+
+          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2">
+            {/* Design column */}
+            <div>
+              <h3 className="mb-5 font-serif text-[1.6rem] font-medium text-foreground/90">
+                Design
+              </h3>
+              <div className="space-y-3.5">
+                {DESIGN_SPECS.map(({ label, value }) => (
+                  <div key={label} className="flex items-baseline gap-5">
+                    <span className="min-w-[56px] font-mono text-[10px] text-foreground/40">
+                      {label}
+                    </span>
+                    <span className="text-[13px] text-foreground/70">
+                      {value}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Engineer column */}
+            <div>
+              <h3 className="mb-5 font-serif text-[1.6rem] font-medium text-foreground/90">
+                Engineer
+              </h3>
+              <div className="space-y-3.5">
+                {ENGINEER_SPECS.map(({ label, value }) => (
+                  <div key={label} className="flex items-baseline gap-5">
+                    <span className="min-w-[72px] font-mono text-[10px] text-foreground/40">
+                      {label}
+                    </span>
+                    <span className="text-[13px] text-foreground/70">
+                      {value}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ── Bottom rule ── */}
+        <div className="mt-14 flex items-center justify-between border-t border-foreground/[0.08] pt-6">
+          <span className="font-mono text-[9px] tracking-widest text-foreground/28 uppercase">
+            RJDP-{year}
+          </span>
+          <span className="font-mono text-[9px] text-foreground/28">
+            Built with Next.js &amp; Tailwind
+          </span>
+        </div>
       </div>
+
+      <div className="pb-28" />
     </footer>
   );
 }

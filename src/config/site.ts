@@ -5,7 +5,7 @@ export const SITE_INFO = {
   name: USER.displayName,
   url: process.env.APP_URL || "https://rajdeep-singh.vercel.app",
   ogImage: USER.ogImage,
-  description: `${USER.displayName} - ${USER.jobTitle}. Building modern web applications with React, Next.js, Node.js, and blockchain technologies. Based in ${USER.address}.`,
+  description: `${USER.displayName} - ${USER.jobTitle}. Building modern web applications and AI-powered tools with React, Next.js, Node.js, and LLMs. Based in ${USER.address}.`,
   keywords: [
     // Personal branding
     "Rajdeep Singh",
@@ -14,7 +14,7 @@ export const SITE_INFO = {
     "RajdeepKushwaha5",
     // Professional skills
     "Full Stack Developer",
-    "Blockchain Developer",
+    "AI Engineer",
     "Web Developer",
     "MERN Stack Developer",
     "React Developer",
@@ -26,17 +26,16 @@ export const SITE_INFO = {
     "TypeScript",
     "Node.js",
     "MongoDB",
-    "Ethereum",
-    "Solana",
-    "Web3",
-    "dApp Developer",
+    "LLM",
+    "Generative AI",
+    "Machine Learning",
     // Location
     "Developer in Jaipur",
     "Developer in India",
     "Freelance Developer India",
     // Services
     "Hire Full Stack Developer",
-    "Hire Blockchain Developer",
+    "Hire AI Engineer",
     "Web Development Services",
     ...USER.keywords,
   ],
