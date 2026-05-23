@@ -146,10 +146,10 @@ export function TechStack() {
             className={cn(
               "[--pattern-foreground:var(--color-zinc-950)]/3 dark:[--pattern-foreground:var(--color-white)]/3",
               "bg-[radial-gradient(var(--pattern-foreground)_0.5px,transparent_0)] bg-size-[12px_12px] bg-center",
-              "rounded-2xl border border-border/15 bg-background/58 p-4 shadow-[0_12px_40px_rgba(0,0,0,0.045)_inset] dark:bg-card/44"
+              "rounded-2xl border border-border/15 bg-background/58 p-3 shadow-[0_12px_40px_rgba(0,0,0,0.045)_inset] sm:p-4 dark:bg-card/44"
             )}
           >
-            <ul className="flex flex-wrap gap-5 select-none">
+            <ul className="flex flex-wrap gap-3 select-none sm:gap-5">
               {TECH_STACK.map((tech) => (
                 <li key={tech.key} className="flex">
                   <SimpleTooltip content={tech.title}>
@@ -179,7 +179,7 @@ export function TechStack() {
 
         {/* ── CATEGORY VIEW (justaditya style) ─────────── */}
         {view === "category" && (
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3">
             {CATEGORIES.map((cat) => {
               const seenInCat = new Set<string>();
               const techs = cat.keys

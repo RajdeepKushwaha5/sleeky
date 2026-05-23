@@ -804,32 +804,38 @@ button,
 .hero-engineering-drawing {
   animation: hero-engineering-drift 18s ease-in-out infinite;
   transform-origin: 62% 50%;
+  will-change: transform;
 }
 
 .hero-ring-orbit {
   animation: hero-ring-orbit 42s linear infinite;
   transform-box: fill-box;
   transform-origin: center;
+  will-change: transform;
 }
 
 .hero-inner-orbit {
   animation: hero-inner-orbit 9s ease-in-out infinite;
   transform-box: fill-box;
   transform-origin: center;
+  will-change: transform;
 }
 
 .hero-scan-axis {
   animation: hero-scan-axis 7s ease-in-out infinite;
+  will-change: opacity;
 }
 
 .hero-pulse-node {
   animation: hero-pulse-node 4.8s ease-in-out infinite;
   transform-box: fill-box;
   transform-origin: center;
+  will-change: transform, opacity;
 }
 
 .hero-hatch-panel {
   animation: hero-hatch-panel 6s ease-in-out infinite;
+  will-change: opacity;
 }
 
 .hero-dash-flow {
@@ -838,34 +844,104 @@ button,
 
 .hero-radar-sweep-arm {
   animation: hero-radar-sweep 14s linear infinite;
+  transform-box: view-box;
   transform-origin: 530px 270px;
+  will-change: transform;
 }
 
 .hero-orbit-dot {
   animation: hero-orbit-dot 32s linear infinite;
+  transform-box: view-box;
   transform-origin: 530px 270px;
+  will-change: transform;
 }
 
 .hero-ping-1 {
   animation: hero-ping 3.6s ease-out infinite;
   transform-box: fill-box;
   transform-origin: center;
+  will-change: transform, opacity;
 }
 
 .hero-ping-2 {
   animation: hero-ping 3.6s ease-out infinite 1.2s;
   transform-box: fill-box;
   transform-origin: center;
+  will-change: transform, opacity;
 }
 
 .hero-ping-3 {
   animation: hero-ping 3.6s ease-out 2.4s infinite;
   transform-box: fill-box;
   transform-origin: center;
+  will-change: transform, opacity;
 }
 
 .hero-scan-axis-v {
   animation: hero-scan-axis-v 11s ease-in-out infinite;
+  will-change: opacity;
+}
+
+/* ── HUD scope ─────────────────────────────────────────── */
+.hero-scope-bg {
+  fill: var(--background);
+}
+
+.hero-scope-outer {
+  animation: hero-radar-sweep 80s linear infinite;
+  transform-box: view-box;
+  transform-origin: 455px 276px;
+  will-change: transform;
+}
+
+.hero-scope-ccw {
+  animation: hero-scope-ccw 45s linear infinite;
+  transform-box: view-box;
+  transform-origin: 455px 276px;
+  will-change: transform;
+}
+
+.hero-scope-ccw2 {
+  animation: hero-scope-ccw 25s linear infinite;
+  transform-box: view-box;
+  transform-origin: 455px 276px;
+  will-change: transform;
+}
+
+.hero-scope-scan {
+  animation: hero-radar-sweep 18s linear infinite;
+  transform-box: view-box;
+  transform-origin: 455px 276px;
+  will-change: transform;
+}
+
+@keyframes hero-scope-ccw {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-engineering-drawing,
+  .hero-ring-orbit,
+  .hero-inner-orbit,
+  .hero-scan-axis,
+  .hero-pulse-node,
+  .hero-hatch-panel,
+  .hero-dash-flow,
+  .hero-radar-sweep-arm,
+  .hero-orbit-dot,
+  .hero-ping-1,
+  .hero-ping-2,
+  .hero-ping-3,
+  .hero-scan-axis-v,
+  .hero-scope-outer,
+  .hero-scope-ccw,
+  .hero-scope-ccw2,
+  .hero-scope-scan {
+    animation: none;
+    will-change: auto;
+  }
 }
 
 .quiet-action {
@@ -875,10 +951,10 @@ button,
   gap: 0.55rem;
   border: 0;
   background: transparent;
-  min-height: 2.25rem;
-  padding: 0.35rem 0.25rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.375rem;
   font-family: var(--font-mono);
-  font-size: 0.625rem;
+  font-size: 0.6875rem;
   font-weight: 500;
   line-height: 1;
   letter-spacing: 0.2em;
@@ -890,16 +966,31 @@ button,
     opacity 180ms ease;
 }
 
+@media (min-width: 640px) {
+  .quiet-action {
+    min-height: 2.25rem;
+    padding: 0.35rem 0.25rem;
+    font-size: 0.625rem;
+  }
+}
+
 .quiet-action:hover {
   color: color-mix(in oklab, var(--foreground) 68%, transparent);
 }
 
 .quiet-action svg {
   flex: none;
-  width: 0.78rem;
-  height: 0.78rem;
+  width: 0.85rem;
+  height: 0.85rem;
   opacity: 0.78;
   transition: transform 180ms ease;
+}
+
+@media (min-width: 640px) {
+  .quiet-action svg {
+    width: 0.78rem;
+    height: 0.78rem;
+  }
 }
 
 .quiet-action:hover svg {

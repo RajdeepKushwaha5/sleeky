@@ -101,13 +101,13 @@ export function ScrollTop({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "[--bottom:1rem] lg:[--bottom:2rem]",
-        "fixed bottom-[calc(var(--bottom,1rem)+env(safe-area-inset-bottom,0px))] left-4 z-50 lg:left-8",
-        "flex items-center gap-1.5",
+        /* all sizes: bottom-left, floats above the dock on mobile */
+        "fixed bottom-[4.75rem] left-4 z-50 flex items-center gap-1.5",
+        "sm:bottom-[calc(1rem+env(safe-area-inset-bottom,0px))] lg:bottom-[calc(2rem+env(safe-area-inset-bottom,0px))] lg:left-8",
         className
       )}
     >
-      {/* Back / Forward */}
+      {/* Back / Forward — all screen sizes */}
       <div className="flex items-center overflow-hidden rounded-full border border-border/50 bg-background/80 shadow-lg backdrop-blur-xl">
         <button
           onClick={() => canGoBack && router.back()}
@@ -150,7 +150,7 @@ export function ScrollTop({ className }: { className?: string }) {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
-            className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-border/50 bg-background/80 shadow-lg backdrop-blur-xl transition-colors duration-300 hover:bg-accent"
+            className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-border/50 bg-background/80 shadow-lg backdrop-blur-xl transition-colors duration-300 hover:bg-accent sm:h-10 sm:w-10"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
             <ArrowUpIcon className="size-5" />

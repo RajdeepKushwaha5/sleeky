@@ -24,7 +24,7 @@ export function TestimonialsMarquee() {
           ).map((item) => (
             <MarqueeItem
               key={item.handle}
-              className="group/testimonial mx-2 h-full w-72 rounded-2xl border border-zinc-200/50 bg-zinc-100/80 grayscale transition-all duration-500 hover:grayscale-0 sm:w-sm dark:border-transparent dark:bg-card/40 dark:grayscale-0"
+              className="group/testimonial mx-1.5 h-full w-60 rounded-2xl border border-zinc-200/50 bg-zinc-100/80 grayscale transition-all duration-500 hover:grayscale-0 sm:mx-2 sm:w-72 dark:border-transparent dark:bg-card/40 dark:grayscale-0"
             >
               <TestimonialItem {...item} />
             </MarqueeItem>
@@ -44,7 +44,7 @@ export function TestimonialsMarquee() {
           ).map((item) => (
             <MarqueeItem
               key={item.handle}
-              className="group/testimonial mx-2 h-full w-72 rounded-2xl border border-zinc-200/50 bg-zinc-100/80 grayscale transition-all duration-500 hover:grayscale-0 sm:w-sm dark:border-transparent dark:bg-card/40 dark:grayscale-0"
+              className="group/testimonial mx-1.5 h-full w-60 rounded-2xl border border-zinc-200/50 bg-zinc-100/80 grayscale transition-all duration-500 hover:grayscale-0 sm:mx-2 sm:w-72 dark:border-transparent dark:bg-card/40 dark:grayscale-0"
             >
               <TestimonialItem {...item} />
             </MarqueeItem>

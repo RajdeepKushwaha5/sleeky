@@ -12,7 +12,7 @@ function Heading({ children }: { children: React.ReactNode }) {
 
 function Body({ children }: { children: React.ReactNode }) {
   return (
-    <div className="space-y-4 text-[13.5px] leading-[1.8] text-foreground/55">
+    <div className="space-y-4 text-[13.5px] leading-[1.75] text-foreground/55 sm:leading-[1.8]">
       {children}
     </div>
   );
@@ -26,7 +26,7 @@ export function About() {
       </PanelHeader>
 
       <PanelContent>
-        <div className="max-w-[62ch] space-y-9">
+        <div className="max-w-[62ch] space-y-7 sm:space-y-9">
           {/* Background */}
           <section>
             <Heading>Background</Heading>

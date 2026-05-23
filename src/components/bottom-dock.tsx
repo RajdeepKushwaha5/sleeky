@@ -6,12 +6,13 @@ import {
   MailIcon,
   MoonIcon,
   SunIcon,
+  X as CloseIcon,
 } from "lucide-react";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
-import { useCallback } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { META_THEME_COLORS } from "@/config/site";
 import { useMetaColor } from "@/hooks/use-meta-color";
@@ -51,6 +52,27 @@ function DiscordIcon({ className }: { className?: string }) {
   );
 }
 
+function NineDotsIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 14 14"
+      className={className}
+      fill="currentColor"
+      aria-hidden
+    >
+      <circle cx="2" cy="2" r="1.5" />
+      <circle cx="7" cy="2" r="1.5" />
+      <circle cx="12" cy="2" r="1.5" />
+      <circle cx="2" cy="7" r="1.5" />
+      <circle cx="7" cy="7" r="1.5" />
+      <circle cx="12" cy="7" r="1.5" />
+      <circle cx="2" cy="12" r="1.5" />
+      <circle cx="7" cy="12" r="1.5" />
+      <circle cx="12" cy="12" r="1.5" />
+    </svg>
+  );
+}
+
 function CalComIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={className} fill="currentColor">
@@ -81,7 +103,7 @@ function DockItem({
       whileTap={{ scale: 0.92 }}
       transition={{ type: "spring", stiffness: 420, damping: 20 }}
       className={cn(
-        "group relative flex size-9 cursor-pointer items-center justify-center rounded-xl transition-colors duration-150",
+        "group relative flex size-8 cursor-pointer items-center justify-center rounded-xl transition-colors duration-150 sm:size-9",
         active
           ? "bg-foreground/[0.12] text-foreground"
           : "text-foreground/40 hover:bg-foreground/[0.07] hover:text-foreground/80"
@@ -124,12 +146,119 @@ function DockDivider() {
   return <div className="mx-1 h-5 w-px shrink-0 bg-foreground/[0.08]" />;
 }
 
+/* ── MorePanel ──────────────────────────────────────────── */
+function MorePanel({
+  open,
+  onClose,
+  pathname,
+}: {
+  open: boolean;
+  onClose: () => void;
+  pathname: string | null;
+}) {
+  const panelRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    function handle(e: MouseEvent) {
+      if (panelRef.current && !panelRef.current.contains(e.target as Node)) {
+        onClose();
+      }
+    }
+    document.addEventListener("mousedown", handle);
+    return () => document.removeEventListener("mousedown", handle);
+  }, [open, onClose]);
+
+  const items = [
+    {
+      icon: <BookOpenIcon className="size-[15px]" />,
+      label: "Blog",
+      href: "/blog",
+      external: false,
+    },
+    {
+      icon: <MailIcon className="size-[15px]" />,
+      label: "Contact",
+      href: "/#contact",
+      external: false,
+    },
+    {
+      icon: <DiscordIcon className="size-[15px]" />,
+      label: "Discord",
+      href: "https://discord.com/users/rajdeepsingh",
+      external: true,
+    },
+    {
+      icon: <CalComIcon className="size-[15px]" />,
+      label: "Book a Call",
+      href: "https://cal.com/rajdeepsingh5",
+      external: true,
+    },
+  ];
+
+  return (
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          ref={panelRef}
+          initial={{ opacity: 0, y: 8, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 8, scale: 0.96 }}
+          transition={{ duration: 0.18, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="absolute bottom-full left-1/2 mb-2 -translate-x-1/2"
+        >
+          <div className="rounded-[16px] bg-gradient-to-b from-foreground/[0.13] to-foreground/[0.05] p-px shadow-[0_20px_50px_rgba(0,0,0,0.18)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.88)]">
+            <div className="w-[9.5rem] rounded-[15px] bg-white/[0.94] p-2 backdrop-blur-2xl dark:bg-[#0c0c0c]/[0.95]">
+              <p className="mb-1.5 px-2 font-mono text-[8px] tracking-[0.2em] text-foreground/30 uppercase">
+                More
+              </p>
+              {items.map((item) =>
+                item.external ? (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={onClose}
+                    className="flex items-center gap-2.5 rounded-lg px-2 py-1.5 text-foreground/50 transition-colors hover:bg-foreground/[0.055] hover:text-foreground/85"
+                  >
+                    {item.icon}
+                    <span className="font-mono text-[10px] tracking-wide">
+                      {item.label}
+                    </span>
+                  </a>
+                ) : (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    onClick={onClose}
+                    className={cn(
+                      "flex items-center gap-2.5 rounded-lg px-2 py-1.5 text-foreground/50 transition-colors hover:bg-foreground/[0.055] hover:text-foreground/85",
+                      pathname === item.href && "text-foreground/85"
+                    )}
+                  >
+                    {item.icon}
+                    <span className="font-mono text-[10px] tracking-wide">
+                      {item.label}
+                    </span>
+                  </Link>
+                )
+              )}
+            </div>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
 /* ── BottomDock ─────────────────────────────────────────── */
 export function BottomDock() {
   const { setTheme } = useTheme();
   const { setMetaColor } = useMetaColor();
   const pathname = usePathname();
   const playClick = useSound("/audio/ui-sounds/click.wav");
+  const [moreOpen, setMoreOpen] = useState(false);
 
   const switchTheme = useCallback(
     (theme: "light" | "dark") => {
@@ -181,7 +310,16 @@ export function BottomDock() {
   );
 
   return (
-    <div className="fixed bottom-5 left-1/2 z-50 -translate-x-1/2 pb-[env(safe-area-inset-bottom,0px)]">
+    <div className="fixed bottom-4 left-1/2 z-50 -translate-x-1/2 pb-[env(safe-area-inset-bottom,0px)] sm:bottom-5">
+      {/* More panel — mobile only, floats above dock */}
+      <div className="relative sm:hidden">
+        <MorePanel
+          open={moreOpen}
+          onClose={() => setMoreOpen(false)}
+          pathname={pathname}
+        />
+      </div>
+
       <motion.div
         initial={{ y: 24, opacity: 0, scale: 0.96 }}
         animate={{ y: 0, opacity: 1, scale: 1 }}
@@ -193,7 +331,7 @@ export function BottomDock() {
       >
         {/* Gradient-border wrapper */}
         <div className="rounded-[20px] bg-gradient-to-b from-foreground/[0.13] to-foreground/[0.05] p-px shadow-[0_28px_70px_rgba(0,0,0,0.15),0_4px_16px_rgba(0,0,0,0.08)] dark:shadow-[0_28px_70px_rgba(0,0,0,0.9),0_0_0_0.5px_rgba(255,255,255,0.06)]">
-          <div className="flex items-center gap-0.5 rounded-[19px] bg-white/[0.92] px-2.5 py-2 backdrop-blur-2xl dark:bg-[#0c0c0c]/[0.93]">
+          <div className="flex items-center gap-0.5 rounded-[19px] bg-white/[0.92] px-2 py-1.5 backdrop-blur-2xl sm:px-2.5 sm:py-2 dark:bg-[#0c0c0c]/[0.93]">
             {/* ── Nav ── */}
             <DockItem
               icon={<HomeIcon className="size-[17px]" />}
@@ -201,17 +339,20 @@ export function BottomDock() {
               href="/"
               active={pathname === "/"}
             />
-            <DockItem
-              icon={<BookOpenIcon className="size-[17px]" />}
-              label="Blog"
-              href="/blog"
-              active={pathname?.startsWith("/blog")}
-            />
-            <DockItem
-              icon={<MailIcon className="size-[17px]" />}
-              label="Contact"
-              href="/#contact"
-            />
+            {/* Blog + Mail hidden on mobile — accessible via More panel */}
+            <span className="hidden sm:contents">
+              <DockItem
+                icon={<BookOpenIcon className="size-[17px]" />}
+                label="Blog"
+                href="/blog"
+                active={pathname?.startsWith("/blog")}
+              />
+              <DockItem
+                icon={<MailIcon className="size-[17px]" />}
+                label="Contact"
+                href="/#contact"
+              />
+            </span>
 
             <DockDivider />
 
@@ -234,18 +375,20 @@ export function BottomDock() {
               href="https://x.com/rajdeeptwts"
               external
             />
-            <DockItem
-              icon={<DiscordIcon className="size-[16px]" />}
-              label="Discord"
-              href="https://discord.com/users/rajdeepsingh"
-              external
-            />
-            <DockItem
-              icon={<CalComIcon className="size-[16px]" />}
-              label="Book a Call"
-              href="https://cal.com/rajdeepsingh5"
-              external
-            />
+            <span className="hidden sm:contents">
+              <DockItem
+                icon={<DiscordIcon className="size-[16px]" />}
+                label="Discord"
+                href="https://discord.com/users/rajdeepsingh"
+                external
+              />
+              <DockItem
+                icon={<CalComIcon className="size-[16px]" />}
+                label="Book a Call"
+                href="https://cal.com/rajdeepsingh5"
+                external
+              />
+            </span>
 
             <DockDivider />
 
@@ -260,6 +403,34 @@ export function BottomDock() {
               label="Dark"
               onClick={(e) => toggleTheme(e, "dark")}
             />
+
+            {/* ── More (mobile only) ── */}
+            <span className="contents sm:hidden">
+              <DockDivider />
+              <motion.button
+                type="button"
+                whileHover={{ scale: 1.18, y: -4 }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ type: "spring", stiffness: 420, damping: 20 }}
+                aria-label="More options"
+                onClick={() => setMoreOpen((v) => !v)}
+                className={cn(
+                  "group relative flex size-8 cursor-pointer items-center justify-center rounded-xl transition-colors duration-150",
+                  moreOpen
+                    ? "bg-foreground/[0.12] text-foreground"
+                    : "text-foreground/40 hover:bg-foreground/[0.07] hover:text-foreground/80"
+                )}
+              >
+                {moreOpen ? (
+                  <CloseIcon className="size-[14px]" />
+                ) : (
+                  <NineDotsIcon className="size-[17px]" />
+                )}
+                <span className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 rounded-lg border border-foreground/[0.08] bg-background/96 px-2.5 py-1 font-mono text-[9px] tracking-wide whitespace-nowrap text-foreground/65 opacity-0 shadow-xl backdrop-blur-xl transition-all duration-150 group-hover:-translate-y-0.5 group-hover:opacity-100">
+                  {moreOpen ? "Close" : "More"}
+                </span>
+              </motion.button>
+            </span>
           </div>
         </div>
       </motion.div>

@@ -13,7 +13,7 @@ function Panel({ className, id, ...props }: React.ComponentProps<"section">) {
       id={id}
       data-slot="panel"
       className={cn(
-        "relative border-b border-foreground/[0.08] px-2 py-9 sm:py-11",
+        "relative border-b border-foreground/[0.08] px-4 py-8 sm:py-11 md:px-2",
         className
       )}
       {...props}

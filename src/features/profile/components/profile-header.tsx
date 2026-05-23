@@ -34,7 +34,7 @@ export function ProfileHeader() {
   return (
     <div
       suppressHydrationWarning
-      className="relative mx-2 mt-4 flex items-center gap-3 border-b border-foreground/[0.055] pt-1 pb-4"
+      className="relative mx-3 mt-4 flex items-center gap-3 border-b border-foreground/[0.055] pt-1 pb-4 md:mx-2"
     >
       {/* Flip sentences */}
       <div className="flex-1 font-mono text-[10px] text-foreground/45">

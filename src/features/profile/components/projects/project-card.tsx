@@ -46,7 +46,7 @@ export function ProjectCard({
           <MoveRight className="size-3 transition-transform group-hover/action:translate-x-0.5" />
         </button>
       </DialogTrigger>
-      <DialogContent className="max-h-[85vh] w-[calc(100vw-2rem)] max-w-2xl overflow-y-auto rounded-lg border-foreground/10 bg-background p-4 text-foreground sm:p-6">
+      <DialogContent className="max-h-[90vh] w-[calc(100vw-1.5rem)] max-w-2xl overflow-y-auto rounded-lg border-foreground/10 bg-background p-4 text-foreground sm:max-h-[85vh] sm:w-[calc(100vw-2rem)] sm:p-6">
         <DialogHeader>
           <div className="mb-2 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-3">
             {project.logo && (
@@ -134,7 +134,7 @@ export function ProjectCard({
 
       <div className="flex flex-1 flex-col gap-4 p-4">
         <div>
-          <h3 className="font-serif text-[1.2rem] leading-snug font-medium text-foreground/86 italic transition-colors group-hover/project:text-foreground">
+          <h3 className="font-serif text-[1.05rem] leading-snug font-medium text-foreground/86 italic transition-colors group-hover/project:text-foreground sm:text-[1.2rem]">
             {title}
           </h3>
           <p className="mt-1 font-mono text-[10px] leading-relaxed text-foreground/42">
@@ -146,13 +146,13 @@ export function ProjectCard({
           {project.skills.slice(0, 2).map((skill) => (
             <span
               key={skill}
-              className="border border-foreground/8 bg-background/35 px-2 py-0.5 font-mono text-[8.5px] text-foreground/42"
+              className="border border-foreground/8 bg-background/35 px-2 py-0.5 font-mono text-[9px] text-foreground/42"
             >
               {skill}
             </span>
           ))}
           {project.skills.length > 2 && (
-            <span className="font-mono text-[8.5px] text-foreground/30">
+            <span className="font-mono text-[9px] text-foreground/30">
               +{project.skills.length - 2}
             </span>
           )}

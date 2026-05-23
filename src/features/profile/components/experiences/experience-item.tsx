@@ -128,7 +128,7 @@ export function ExperienceItem({
             transition={{ duration: 0.22, ease: [0.4, 0, 0.2, 1] }}
             className="overflow-hidden"
           >
-            <div className="pb-5 pl-[52px]">
+            <div className="pb-5 pl-[40px] sm:pl-[52px]">
               {position.link && (
                 <Link
                   href={position.link.href}

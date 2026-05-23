@@ -54,7 +54,7 @@ export function Contact() {
 
       <PanelContent>
         {/* Editorial intro */}
-        <div className="mb-8 max-w-[40ch]">
+        <div className="mb-6 max-w-[40ch] sm:mb-8">
           <p className="font-serif text-[1.65rem] leading-[1.2] font-medium tracking-tight text-foreground/80 sm:text-[2rem]">
             Let&apos;s build something
             <br />
@@ -71,7 +71,7 @@ export function Contact() {
             <div className="border-b border-foreground/[0.08] pb-3 sm:border-r sm:pr-6">
               <label
                 htmlFor="contact-name"
-                className="block font-mono text-[9px] tracking-[0.16em] text-foreground/28 uppercase"
+                className="block font-mono text-[9px] tracking-[0.16em] text-foreground/28 uppercase sm:text-[10px]"
               >
                 Name
               </label>
@@ -89,7 +89,7 @@ export function Contact() {
             <div className="border-b border-foreground/[0.08] pt-4 pb-3 sm:pt-0 sm:pl-6">
               <label
                 htmlFor="contact-email"
-                className="block font-mono text-[9px] tracking-[0.16em] text-foreground/28 uppercase"
+                className="block font-mono text-[9px] tracking-[0.16em] text-foreground/28 uppercase sm:text-[10px]"
               >
                 Email
               </label>
@@ -110,7 +110,7 @@ export function Contact() {
           <div className="border-b border-foreground/[0.08] pt-5 pb-3">
             <label
               htmlFor="contact-message"
-              className="block font-mono text-[9px] tracking-[0.16em] text-foreground/28 uppercase"
+              className="block font-mono text-[9px] tracking-[0.16em] text-foreground/28 uppercase sm:text-[10px]"
             >
               Message
             </label>
