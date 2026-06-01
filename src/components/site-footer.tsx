@@ -6,20 +6,6 @@ import { useState } from "react";
 
 import { USER } from "@/features/profile/data/user";
 
-const DESIGN_SPECS = [
-  { label: "Heading", value: "Playfair Display" },
-  { label: "Body", value: "Inter" },
-  { label: "Mono", value: "IBM Plex Mono" },
-  { label: "Icons", value: "Lucide" },
-];
-
-const ENGINEER_SPECS = [
-  { label: "Framework", value: "Next.js 16" },
-  { label: "Styling", value: "Tailwind CSS v4" },
-  { label: "AI/ML", value: "PyTorch & Triton" },
-  { label: "Deploy", value: "Vercel" },
-];
-
 export function SiteFooter() {
   const year = new Date().getFullYear();
   const [copied, setCopied] = useState(false);
@@ -96,55 +82,8 @@ export function SiteFooter() {
           </div>
         </div>
 
-        {/* ── Colophon ── */}
-        <div className="mt-10">
-          <p className="mb-8 font-mono text-[10px] tracking-[0.16em] text-foreground/30 uppercase">
-            Colophon
-          </p>
-
-          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2">
-            {/* Design column */}
-            <div>
-              <h3 className="mb-5 font-serif text-[1.6rem] font-medium text-foreground/90">
-                Design
-              </h3>
-              <div className="space-y-3.5">
-                {DESIGN_SPECS.map(({ label, value }) => (
-                  <div key={label} className="flex items-baseline gap-5">
-                    <span className="min-w-[56px] font-mono text-[10px] text-foreground/40">
-                      {label}
-                    </span>
-                    <span className="text-[13px] text-foreground/70">
-                      {value}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Engineer column */}
-            <div>
-              <h3 className="mb-5 font-serif text-[1.6rem] font-medium text-foreground/90">
-                Engineer
-              </h3>
-              <div className="space-y-3.5">
-                {ENGINEER_SPECS.map(({ label, value }) => (
-                  <div key={label} className="flex items-baseline gap-5">
-                    <span className="min-w-[72px] font-mono text-[10px] text-foreground/40">
-                      {label}
-                    </span>
-                    <span className="text-[13px] text-foreground/70">
-                      {value}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* ── Bottom rule ── */}
-        <div className="mt-14 flex items-center justify-between border-t border-foreground/[0.08] pt-6">
+        <div className="mt-10 flex items-center justify-between border-t border-foreground/[0.08] pt-6">
           <span className="font-mono text-[9px] tracking-widest text-foreground/28 uppercase">
             RJDP-{year}
           </span>

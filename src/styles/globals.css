@@ -933,6 +933,28 @@ button,
   }
 }
 
+.hero-scope-spiral {
+  animation: hero-radar-sweep 120s linear infinite;
+  transform-box: view-box;
+  transform-origin: 455px 276px;
+  will-change: transform;
+}
+
+.hero-nn {
+  animation: hero-nn-flicker 5s ease-in-out infinite;
+  will-change: opacity;
+}
+
+@keyframes hero-nn-flicker {
+  0%,
+  100% {
+    opacity: 0.62;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-engineering-drawing,
   .hero-ring-orbit,
@@ -951,6 +973,8 @@ button,
   .hero-scope-ccw,
   .hero-scope-ccw2,
   .hero-scope-scan,
+  .hero-scope-spiral,
+  .hero-nn,
   .hero-clk-wave {
     animation: none;
     will-change: auto;
