@@ -27,7 +27,7 @@ export function PostItem({
       prefetch={true}
       className={cn(
         "group/post flex flex-col gap-0 border border-foreground/[0.08] bg-foreground/[0.02] transition-colors duration-200 hover:bg-foreground/[0.04]",
-        compact && "flex-row items-center"
+        compact && "h-full justify-center"
       )}
     >
       {post.metadata.image && !compact && (
@@ -45,10 +45,10 @@ export function PostItem({
         </div>
       )}
 
-      <div className={cn("flex flex-col gap-2 p-4", compact && "py-3")}>
+      <div className={cn("flex flex-col gap-2.5 p-4", compact && "py-4")}>
         <h3
           className={cn(
-            "font-serif leading-snug font-medium text-foreground/80 italic transition-colors group-hover/post:text-foreground/95",
+            "font-serif leading-snug font-medium break-words text-foreground/80 italic transition-colors group-hover/post:text-foreground/95",
             compact ? "text-[13.5px]" : "text-[1.05rem]"
           )}
         >
@@ -58,17 +58,22 @@ export function PostItem({
           )}
         </h3>
 
-        <div className="flex items-center gap-3 font-mono text-[10px] text-foreground/30">
-          <time dateTime={dayjs(post.metadata.createdAt).toISOString()}>
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 font-mono text-[10px] text-foreground/30">
+          <time
+            dateTime={dayjs(post.metadata.createdAt).toISOString()}
+            className="whitespace-nowrap"
+          >
             {dayjs(post.metadata.createdAt).format("DD.MM.YYYY")}
           </time>
           <span className="text-foreground/15">·</span>
-          <span className="flex items-center gap-1">
-            <Clock className="size-2.5" aria-hidden="true" />
+          <span className="flex items-center gap-1 whitespace-nowrap">
+            <Clock className="size-2.5 shrink-0" aria-hidden="true" />
             {formatReadingTime(readingTime)}
           </span>
           <span className="text-foreground/15">·</span>
-          <PostViewCountReadOnly slug={post.slug} />
+          <div className="whitespace-nowrap">
+            <PostViewCountReadOnly slug={post.slug} />
+          </div>
         </div>
       </div>
     </Link>

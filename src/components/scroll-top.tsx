@@ -34,9 +34,11 @@ export function ScrollTop({ className }: { className?: string }) {
 
   useEffect(() => {
     const updateButtons = () => {
-      startTransition(() => {
-        setCanGoBack(indexRef.current > 0);
-        setCanGoForward(indexRef.current < maxIndexRef.current);
+      queueMicrotask(() => {
+        startTransition(() => {
+          setCanGoBack(indexRef.current > 0);
+          setCanGoForward(indexRef.current < maxIndexRef.current);
+        });
       });
     };
 

@@ -26,7 +26,7 @@ export function About() {
       </PanelHeader>
 
       <PanelContent>
-        <div className="max-w-[62ch] space-y-7 sm:space-y-9">
+        <div className="space-y-7 sm:space-y-9">
           {/* Background */}
           <section>
             <Heading>Background</Heading>

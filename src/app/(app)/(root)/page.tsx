@@ -23,7 +23,7 @@ import { cn } from "@/lib/utils";
 
 export default function Page() {
   return (
-    <>
+    <div className="profile-shell relative mx-auto md:max-w-3xl">
       <Script
         id="profile-page-jsonld"
         type="application/ld+json"
@@ -32,80 +32,77 @@ export default function Page() {
           __html: JSON.stringify(getPageJsonLd()).replace(/</g, "\\u003c"),
         }}
       />
+      <ProfileCover />
 
-      <div className="profile-shell relative mx-auto md:max-w-3xl">
-        <ProfileCover />
+      <FadeIn>
+        <About />
+      </FadeIn>
+      <Separator />
 
-        <FadeIn>
-          <About />
-        </FadeIn>
-        <Separator />
+      <FadeIn>
+        <LiveStatus />
+      </FadeIn>
+      <Separator />
+      <FadeIn>
+        <Experiences />
+      </FadeIn>
+      <Separator />
 
-        <FadeIn>
-          <LiveStatus />
-        </FadeIn>
-        <Separator />
-        <FadeIn>
-          <Experiences />
-        </FadeIn>
-        <Separator />
+      <FadeIn>
+        <Projects />
+      </FadeIn>
+      <Separator />
 
-        <FadeIn>
-          <Projects />
-        </FadeIn>
-        <Separator />
+      <FadeIn>
+        <TechStack />
+      </FadeIn>
+      <Separator />
 
-        <FadeIn>
-          <TechStack />
-        </FadeIn>
-        <Separator />
+      <FadeIn>
+        <Testimonials />
+      </FadeIn>
+      <Separator />
 
-        <FadeIn>
-          <Testimonials />
-        </FadeIn>
-        <Separator />
+      <FadeIn>
+        <Blog />
+      </FadeIn>
+      <Separator />
 
-        <FadeIn>
-          <Blog />
-        </FadeIn>
-        <Separator />
+      <FadeIn>
+        <GitHubContributions />
+      </FadeIn>
+      <Separator />
 
-        <FadeIn>
-          <GitHubContributions />
-        </FadeIn>
-        <Separator />
+      <FadeIn>
+        <OSSContributions />
+      </FadeIn>
+      <Separator />
 
-        <FadeIn>
-          <OSSContributions />
-        </FadeIn>
-        <Separator />
+      <FadeIn>
+        <Awards />
+      </FadeIn>
+      <Separator />
 
-        <FadeIn>
-          <Awards />
-        </FadeIn>
-        <Separator />
+      <FadeIn>
+        <Certifications />
+      </FadeIn>
+      <Separator />
 
-        <FadeIn>
-          <Certifications />
-        </FadeIn>
-        <Separator />
+      <FadeIn>
+        <Library />
+      </FadeIn>
+      <Separator />
 
-        <FadeIn>
-          <Library />
-        </FadeIn>
-        <Separator />
+      <FadeIn>
+        <PomodoroTimer />
+      </FadeIn>
+      <Separator />
 
-        <FadeIn>
-          <PomodoroTimer />
-        </FadeIn>
-        <Separator />
-
-        <FadeIn>
-          <Contact />
-        </FadeIn>
-        <Separator />
-      </div>
-    </>
+      <FadeIn>
+        <Contact />
+      </FadeIn>
+      <Separator />
+    </div>
   );
 }
 
