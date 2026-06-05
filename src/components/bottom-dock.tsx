@@ -268,11 +268,17 @@ function MorePanel({
 
 /* ── BottomDock ─────────────────────────────────────────── */
 export function BottomDock() {
-  const { setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   const { setMetaColor } = useMetaColor();
   const pathname = usePathname();
   const playClick = useSound("/audio/ui-sounds/click.wav");
   const [moreOpen, setMoreOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
+  }, []);
 
   const switchTheme = useCallback(
     (theme: "light" | "dark") => {
@@ -285,8 +291,9 @@ export function BottomDock() {
   );
 
   const toggleTheme = useCallback(
-    (e: React.MouseEvent, theme: "light" | "dark") => {
+    (e: React.MouseEvent) => {
       playClick?.();
+      const nextTheme = resolvedTheme === "light" ? "dark" : "light";
       const x = e.clientX;
       const y = e.clientY;
       const endRadius = Math.hypot(
@@ -295,7 +302,7 @@ export function BottomDock() {
       );
 
       if (!document.startViewTransition) {
-        switchTheme(theme);
+        switchTheme(nextTheme);
         return;
       }
 
@@ -312,7 +319,7 @@ export function BottomDock() {
         `${endRadius}px`
       );
 
-      const t = document.startViewTransition(() => switchTheme(theme));
+      const t = document.startViewTransition(() => switchTheme(nextTheme));
       t.ready.then(() =>
         document.documentElement.classList.add("theme-transitioning")
       );
@@ -320,7 +327,7 @@ export function BottomDock() {
         document.documentElement.classList.remove("theme-transitioning")
       );
     },
-    [playClick, switchTheme]
+    [playClick, switchTheme, resolvedTheme]
   );
 
   return (
@@ -414,14 +421,32 @@ export function BottomDock() {
 
             {/* ── Theme ── */}
             <DockItem
-              icon={<SunIcon className="size-[17px]" />}
-              label="Light"
-              onClick={(e) => toggleTheme(e, "light")}
-            />
-            <DockItem
-              icon={<MoonIcon className="size-[17px]" />}
-              label="Dark"
-              onClick={(e) => toggleTheme(e, "dark")}
+              icon={
+                <div className="relative flex size-[17px] items-center justify-center overflow-hidden">
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.div
+                      key={mounted ? resolvedTheme : "dark"}
+                      initial={{ opacity: 0, rotate: -45, scale: 0.8 }}
+                      animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                      exit={{ opacity: 0, rotate: 45, scale: 0.8 }}
+                      transition={{ duration: 0.18, ease: "easeInOut" }}
+                      className="flex size-[17px] items-center justify-center"
+                    >
+                      {mounted && resolvedTheme === "light" ? (
+                        <SunIcon className="size-[17px]" />
+                      ) : (
+                        <MoonIcon className="size-[17px]" />
+                      )}
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+              }
+              label={
+                mounted && resolvedTheme === "light"
+                  ? "Light Mode"
+                  : "Dark Mode"
+              }
+              onClick={toggleTheme}
             />
 
             {/* ── More (mobile only) ── */}

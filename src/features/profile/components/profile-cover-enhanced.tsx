@@ -113,7 +113,7 @@ export function ProfileCoverEnhanced() {
 
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <svg
-          className="hero-engineering-drawing absolute top-8 right-[-9rem] h-[26rem] w-[40rem] text-foreground opacity-[0.2] sm:top-10 sm:right-[-10rem] sm:h-[28rem] sm:w-[48rem] sm:opacity-[0.22] md:right-[-8rem] md:h-[31rem] md:w-[55rem] md:opacity-[0.24] dark:opacity-[0.15] dark:sm:opacity-[0.16] dark:md:opacity-[0.18]"
+          className="hero-engineering-drawing absolute top-8 right-[-9rem] h-[26rem] w-[40rem] text-foreground opacity-[0.32] sm:top-10 sm:right-[-10rem] sm:h-[28rem] sm:w-[48rem] sm:opacity-[0.35] md:right-[-8rem] md:h-[31rem] md:w-[55rem] md:opacity-[0.38] dark:opacity-[0.15] dark:sm:opacity-[0.16] dark:md:opacity-[0.18]"
           viewBox="0 0 920 560"
           fill="none"
           aria-hidden="true"
@@ -135,11 +135,62 @@ export function ProfileCoverEnhanced() {
                 strokeWidth="2"
               />
             </pattern>
+            <pattern
+              id="hero-dot-grid"
+              width="30"
+              height="30"
+              patternUnits="userSpaceOnUse"
+            >
+              <circle
+                cx="1.5"
+                cy="1.5"
+                r="0.75"
+                fill="currentColor"
+                opacity="0.1"
+              />
+            </pattern>
             <radialGradient id="hero-core-glow" cx="50%" cy="50%" r="50%">
               <stop offset="0%" stopColor="currentColor" stopOpacity="0.5" />
               <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
             </radialGradient>
           </defs>
+
+          {/* ═══ BACKGROUND DOT GRID ═══ */}
+          <rect
+            x="0"
+            y="0"
+            width="920"
+            height="560"
+            fill="url(#hero-dot-grid)"
+          />
+
+          {/* ═══ CORNER BRACKETS ═══ */}
+          <g opacity="0.25">
+            <path
+              d="M 25,45 L 25,25 L 45,25"
+              stroke="currentColor"
+              strokeWidth="1.2"
+              fill="none"
+            />
+            <path
+              d="M 895,45 L 895,25 L 875,25"
+              stroke="currentColor"
+              strokeWidth="1.2"
+              fill="none"
+            />
+            <path
+              d="M 25,515 L 25,535 L 45,535"
+              stroke="currentColor"
+              strokeWidth="1.2"
+              fill="none"
+            />
+            <path
+              d="M 895,515 L 895,535 L 875,535"
+              stroke="currentColor"
+              strokeWidth="1.2"
+              fill="none"
+            />
+          </g>
 
           {/* ═══ ORBITAL FRAME ═══ */}
           <circle
@@ -688,6 +739,596 @@ export function ProfileCoverEnhanced() {
             className="font-mono text-[15px]"
           >
             2026
+          </text>
+
+          {/* ═══ SYSTEM METRICS MONITOR (Top Left) ═══ */}
+          <g opacity="0.4">
+            <rect
+              x="40"
+              y="80"
+              width="180"
+              height="75"
+              stroke="currentColor"
+              strokeWidth="0.8"
+              fill="none"
+              strokeDasharray="4 4"
+            />
+            <path
+              d="M40 80 H90 L100 90 H220 V155 H40 Z"
+              stroke="currentColor"
+              strokeWidth="0.8"
+              fill="none"
+              opacity="0.4"
+            />
+            <text
+              x="50"
+              y="103"
+              fill="currentColor"
+              className="font-mono text-[9px] font-bold"
+            >
+              {"SYS_MON // EXE"}
+            </text>
+            <text
+              x="50"
+              y="117"
+              fill="currentColor"
+              className="font-mono text-[8px]"
+            >
+              {"CORE_TEMP : 38.6 C"}
+            </text>
+            <text
+              x="50"
+              y="129"
+              fill="currentColor"
+              className="font-mono text-[8px]"
+            >
+              {"BUS_LOAD  : 14.2%"}
+            </text>
+            <text
+              x="50"
+              y="141"
+              fill="currentColor"
+              className="font-mono text-[8px]"
+            >
+              {"FPS_VAL   : 144Hz"}
+            </text>
+
+            <rect
+              x="145"
+              y="110"
+              width="60"
+              height="6"
+              stroke="currentColor"
+              strokeWidth="0.5"
+              fill="none"
+            />
+            <rect x="147" y="112" width="38" height="2" fill="currentColor" />
+            <rect
+              x="145"
+              y="122"
+              width="60"
+              height="6"
+              stroke="currentColor"
+              strokeWidth="0.5"
+              fill="none"
+            />
+            <rect x="147" y="124" width="12" height="2" fill="currentColor" />
+            <rect
+              x="145"
+              y="134"
+              width="60"
+              height="6"
+              stroke="currentColor"
+              strokeWidth="0.5"
+              fill="none"
+            />
+            <rect x="147" y="136" width="50" height="2" fill="currentColor" />
+          </g>
+
+          {/* Decorative circuit path on left */}
+          <path
+            d="M 40,65 H 180 L 200,85 M 120,65 V 50"
+            stroke="currentColor"
+            strokeWidth="0.8"
+            fill="none"
+            opacity="0.3"
+          />
+          <circle cx="200" cy="85" r="1.5" fill="currentColor" opacity="0.3" />
+          <circle cx="120" cy="50" r="1.5" fill="currentColor" opacity="0.3" />
+          <text
+            x="210"
+            y="88"
+            fill="currentColor"
+            className="font-mono text-[7px]"
+            opacity="0.3"
+          >
+            BUS_A
+          </text>
+
+          {/* ═══ BINARY/HEX TELEMETRY DUMP (Bottom Left) ═══ */}
+          <g opacity="0.38">
+            <rect
+              x="40"
+              y="380"
+              width="280"
+              height="150"
+              stroke="currentColor"
+              strokeWidth="0.8"
+              fill="none"
+            />
+
+            {/* Grid corner markers */}
+            <line
+              x1="35"
+              y1="380"
+              x2="45"
+              y2="380"
+              stroke="currentColor"
+              strokeWidth="0.8"
+            />
+            <line
+              x1="40"
+              y1="375"
+              x2="40"
+              y2="385"
+              stroke="currentColor"
+              strokeWidth="0.8"
+            />
+            <line
+              x1="315"
+              y1="380"
+              x2="325"
+              y2="380"
+              stroke="currentColor"
+              strokeWidth="0.8"
+            />
+            <line
+              x1="320"
+              y1="375"
+              x2="320"
+              y2="385"
+              stroke="currentColor"
+              strokeWidth="0.8"
+            />
+            <line
+              x1="35"
+              y1="530"
+              x2="45"
+              y2="530"
+              stroke="currentColor"
+              strokeWidth="0.8"
+            />
+            <line
+              x1="40"
+              y1="525"
+              x2="40"
+              y2="535"
+              stroke="currentColor"
+              strokeWidth="0.8"
+            />
+            <line
+              x1="315"
+              y1="530"
+              x2="325"
+              y2="530"
+              stroke="currentColor"
+              strokeWidth="0.8"
+            />
+            <line
+              x1="320"
+              y1="525"
+              x2="320"
+              y2="535"
+              stroke="currentColor"
+              strokeWidth="0.8"
+            />
+
+            <text
+              x="50"
+              y="398"
+              fill="currentColor"
+              className="font-mono text-[9px] font-bold"
+            >
+              {"MEMORY_DUMP // SEG_07"}
+            </text>
+            <text
+              x="50"
+              y="415"
+              fill="currentColor"
+              className="font-mono text-[8px]"
+            >
+              {"0x00FF01  7A 9C F3 B2 D4 E8  [INIT]"}
+            </text>
+            <text
+              x="50"
+              y="427"
+              fill="currentColor"
+              className="font-mono text-[8px]"
+            >
+              {"0x00FF0E  12 A0 D2 FE C8 B1  [RUN_OK]"}
+            </text>
+            <text
+              x="50"
+              y="439"
+              fill="currentColor"
+              className="font-mono text-[8px]"
+            >
+              {"0x00FF1B  FF FF FF 00 2C 19  [STAGE]"}
+            </text>
+            <text
+              x="50"
+              y="451"
+              fill="currentColor"
+              className="font-mono text-[8px]"
+            >
+              {"0x00FF28  8B 3F 22 5D A4 0C  [PIPE_L]"}
+            </text>
+            <text
+              x="50"
+              y="463"
+              fill="currentColor"
+              className="font-mono text-[8px]"
+            >
+              {"0x00FF35  C6 D0 E4 91 1E AB  [CALIB]"}
+            </text>
+
+            {/* Simple ALU/Registers Block Diagram */}
+            <rect
+              x="210"
+              y="410"
+              width="30"
+              height="20"
+              stroke="currentColor"
+              strokeWidth="0.8"
+              fill="none"
+            />
+            <text
+              x="215"
+              y="422"
+              fill="currentColor"
+              className="font-mono text-[7px]"
+            >
+              REG_A
+            </text>
+            <rect
+              x="210"
+              y="435"
+              width="30"
+              height="20"
+              stroke="currentColor"
+              strokeWidth="0.8"
+              fill="none"
+            />
+            <text
+              x="215"
+              y="447"
+              fill="currentColor"
+              className="font-mono text-[7px]"
+            >
+              REG_B
+            </text>
+            <rect
+              x="248"
+              y="410"
+              width="62"
+              height="45"
+              stroke="currentColor"
+              strokeWidth="0.8"
+              fill="none"
+            />
+            <text
+              x="265"
+              y="436"
+              fill="currentColor"
+              className="font-mono text-[9px]"
+            >
+              ALU_01
+            </text>
+            {/* Bus traces */}
+            <path
+              d="M 240,420 H 248 M 240,445 H 248 M 310,432 H 318"
+              stroke="currentColor"
+              strokeWidth="0.8"
+            />
+            <circle cx="318" cy="432" r="1.5" fill="currentColor" />
+
+            {/* Personalized India Coordinates GPS tele */}
+            <text
+              x="50"
+              y="495"
+              fill="currentColor"
+              className="font-mono text-[8px] font-bold"
+            >
+              {"GEO_LOCK: 28°37'02\" N / 77°12'19\" E"}
+            </text>
+            <text
+              x="50"
+              y="507"
+              fill="currentColor"
+              className="font-mono text-[8px]"
+            >
+              {"LOC_REF : NEW DELHI, IND"}
+            </text>
+            <text
+              x="50"
+              y="519"
+              fill="currentColor"
+              className="font-mono text-[8px]"
+            >
+              {"SIGNAL_STRENGTH : 98.4% (EXCELLENT)"}
+            </text>
+          </g>
+
+          {/* ═══ HARMONIC FREQUENCY SPECTRUM (Bottom Right) ═══ */}
+          <g opacity="0.45">
+            <rect
+              x="620"
+              y="360"
+              width="260"
+              height="150"
+              stroke="currentColor"
+              strokeWidth="0.8"
+              fill="none"
+            />
+            <text
+              x="630"
+              y="378"
+              fill="currentColor"
+              className="font-mono text-[9px] font-bold"
+            >
+              {"SPECTRUM_ANALYSIS // f(t)"}
+            </text>
+
+            {/* Fine grids */}
+            <line
+              x1="620"
+              y1="410"
+              x2="880"
+              y2="410"
+              stroke="currentColor"
+              strokeWidth="0.4"
+              strokeDasharray="2 4"
+            />
+            <line
+              x1="620"
+              y1="460"
+              x2="880"
+              y2="460"
+              stroke="currentColor"
+              strokeWidth="0.4"
+              strokeDasharray="2 4"
+            />
+            <line
+              x1="670"
+              y1="390"
+              x2="670"
+              y2="510"
+              stroke="currentColor"
+              strokeWidth="0.4"
+              strokeDasharray="2 4"
+            />
+            <line
+              x1="720"
+              y1="390"
+              x2="720"
+              y2="510"
+              stroke="currentColor"
+              strokeWidth="0.4"
+              strokeDasharray="2 4"
+            />
+            <line
+              x1="770"
+              y1="390"
+              x2="770"
+              y2="510"
+              stroke="currentColor"
+              strokeWidth="0.4"
+              strokeDasharray="2 4"
+            />
+            <line
+              x1="820"
+              y1="390"
+              x2="820"
+              y2="510"
+              stroke="currentColor"
+              strokeWidth="0.4"
+              strokeDasharray="2 4"
+            />
+
+            {/* Complex static harmonic wave */}
+            <path
+              d="M 620,435 Q 640,390 660,435 T 700,435 T 740,435 T 780,435 T 820,435 T 860,435 T 880,435"
+              stroke="currentColor"
+              strokeWidth="0.8"
+              fill="none"
+              opacity="0.3"
+            />
+            {/* Fast moving harmonic wave */}
+            <path
+              className="hero-wave-fast"
+              d="M 620,435 Q 635,465 650,435 T 680,435 T 710,435 T 740,435 T 770,435 T 800,435 T 830,435 T 860,435 T 880,435"
+              stroke="currentColor"
+              strokeWidth="1.2"
+              fill="none"
+              opacity="0.5"
+            />
+            {/* Slow moving harmonic wave */}
+            <path
+              className="hero-wave-slow"
+              d="M 620,435 Q 650,370 680,435 T 740,435 T 800,435 T 860,435 T 880,435"
+              stroke="currentColor"
+              strokeWidth="0.6"
+              fill="none"
+              opacity="0.4"
+            />
+
+            {/* Dynamic frequency equalizer bars (animated via CSS keyframes) */}
+            <g transform="translate(630, 480)" className="hero-bars">
+              <rect
+                x="0"
+                y="0"
+                width="4"
+                height="25"
+                fill="currentColor"
+                className="hero-bar-1"
+                transform="scale(1, -1)"
+              />
+              <rect
+                x="8"
+                y="0"
+                width="4"
+                height="15"
+                fill="currentColor"
+                className="hero-bar-2"
+                transform="scale(1, -1)"
+              />
+              <rect
+                x="16"
+                y="0"
+                width="4"
+                height="32"
+                fill="currentColor"
+                className="hero-bar-3"
+                transform="scale(1, -1)"
+              />
+              <rect
+                x="24"
+                y="0"
+                width="4"
+                height="20"
+                fill="currentColor"
+                className="hero-bar-4"
+                transform="scale(1, -1)"
+              />
+              <rect
+                x="32"
+                y="0"
+                width="4"
+                height="8"
+                fill="currentColor"
+                className="hero-bar-5"
+                transform="scale(1, -1)"
+              />
+              <rect
+                x="40"
+                y="0"
+                width="4"
+                height="28"
+                fill="currentColor"
+                className="hero-bar-6"
+                transform="scale(1, -1)"
+              />
+              <rect
+                x="48"
+                y="0"
+                width="4"
+                height="18"
+                fill="currentColor"
+                className="hero-bar-7"
+                transform="scale(1, -1)"
+              />
+              <rect
+                x="56"
+                y="0"
+                width="4"
+                height="12"
+                fill="currentColor"
+                className="hero-bar-8"
+                transform="scale(1, -1)"
+              />
+            </g>
+
+            <text
+              x="695"
+              y="495"
+              fill="currentColor"
+              className="font-mono text-[8px] opacity-75"
+            >
+              {"f(t) = Σ A_n sin(nωt + φ_n)"}
+            </text>
+            <text
+              x="695"
+              y="504"
+              fill="currentColor"
+              className="font-mono text-[7px] opacity-45"
+            >
+              {"SAMPLING RATE: 48.0 kSa/s"}
+            </text>
+          </g>
+
+          {/* ═══ HUD TARGETING RETICLE OVERLAY (TRK-07) ═══ */}
+          <g opacity="0.45" className="hero-scope-lock">
+            {/* Corner bracket lock markers */}
+            <path
+              d="M 360,181 L 350,181 L 350,191"
+              stroke="currentColor"
+              strokeWidth="1.2"
+              fill="none"
+            />
+            <path
+              d="M 550,181 L 560,181 L 560,191"
+              stroke="currentColor"
+              strokeWidth="1.2"
+              fill="none"
+            />
+            <path
+              d="M 360,371 L 350,371 L 350,361"
+              stroke="currentColor"
+              strokeWidth="1.2"
+              fill="none"
+            />
+            <path
+              d="M 550,371 L 560,371 L 560,361"
+              stroke="currentColor"
+              strokeWidth="1.2"
+              fill="none"
+            />
+          </g>
+
+          {/* ═══ NEURAL NETWORK LABELS & WEIGHTS ═══ */}
+          <g opacity="0.4" className="font-mono text-[7px]">
+            <text x="642" y="77">
+              IN_5
+            </text>
+            <text x="735" y="77">
+              HID_6
+            </text>
+            <text x="795" y="77">
+              OUT_3
+            </text>
+            <text x="668" y="124" opacity="0.5">
+              w:0.72
+            </text>
+            <text x="668" y="172" opacity="0.5">
+              w:-0.34
+            </text>
+            <text x="712" y="142" opacity="0.5">
+              w:1.05
+            </text>
+            <text x="768" y="222" opacity="0.5">
+              w:0.88
+            </text>
+          </g>
+
+          {/* Extra diagonal calibration line */}
+          <line
+            x1="620"
+            y1="120"
+            x2="650"
+            y2="150"
+            stroke="currentColor"
+            strokeWidth="0.5"
+            opacity="0.3"
+          />
+          <circle cx="650" cy="150" r="1.5" fill="currentColor" opacity="0.3" />
+          <text
+            x="654"
+            y="153"
+            fill="currentColor"
+            className="font-mono text-[7px]"
+            opacity="0.3"
+          >
+            CAL_T
           </text>
         </svg>
       </div>

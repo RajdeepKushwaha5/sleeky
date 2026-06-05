@@ -955,6 +955,75 @@ button,
   }
 }
 
+/* Spectrum analyzer wave animations */
+.hero-wave-fast {
+  stroke-dasharray: 8 6;
+  animation: hero-wave-flow-fast 4s linear infinite;
+  will-change: stroke-dashoffset;
+}
+
+.hero-wave-slow {
+  stroke-dasharray: 12 8;
+  animation: hero-wave-flow-slow 10s linear infinite;
+  will-change: stroke-dashoffset;
+}
+
+@keyframes hero-wave-flow-fast {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+@keyframes hero-wave-flow-slow {
+  to {
+    stroke-dashoffset: 100;
+  }
+}
+
+/* Frequency spectrum bar animations */
+.hero-bars rect {
+  transform-box: fill-box;
+  transform-origin: bottom;
+  will-change: transform;
+}
+
+.hero-bar-1 { animation: hero-bar-grow-1 1.2s ease-in-out infinite alternate; }
+.hero-bar-2 { animation: hero-bar-grow-2 0.8s ease-in-out infinite alternate; }
+.hero-bar-3 { animation: hero-bar-grow-3 1.5s ease-in-out infinite alternate; }
+.hero-bar-4 { animation: hero-bar-grow-4 0.9s ease-in-out infinite alternate; }
+.hero-bar-5 { animation: hero-bar-grow-5 1.1s ease-in-out infinite alternate; }
+.hero-bar-6 { animation: hero-bar-grow-6 0.7s ease-in-out infinite alternate; }
+.hero-bar-7 { animation: hero-bar-grow-7 1.4s ease-in-out infinite alternate; }
+.hero-bar-8 { animation: hero-bar-grow-8 1.0s ease-in-out infinite alternate; }
+
+@keyframes hero-bar-grow-1 { 0% { transform: scaleY(0.2); } 100% { transform: scaleY(0.85); } }
+@keyframes hero-bar-grow-2 { 0% { transform: scaleY(0.9); } 100% { transform: scaleY(0.3); } }
+@keyframes hero-bar-grow-3 { 0% { transform: scaleY(0.15); } 100% { transform: scaleY(0.95); } }
+@keyframes hero-bar-grow-4 { 0% { transform: scaleY(0.7); } 100% { transform: scaleY(0.25); } }
+@keyframes hero-bar-grow-5 { 0% { transform: scaleY(0.3); } 100% { transform: scaleY(0.8); } }
+@keyframes hero-bar-grow-6 { 0% { transform: scaleY(0.85); } 100% { transform: scaleY(0.15); } }
+@keyframes hero-bar-grow-7 { 0% { transform: scaleY(0.4); } 100% { transform: scaleY(0.9); } }
+@keyframes hero-bar-grow-8 { 0% { transform: scaleY(0.6); } 100% { transform: scaleY(0.2); } }
+
+/* Breathing target locking lock brackets */
+.hero-scope-lock {
+  animation: hero-scope-lock-pulse 3s ease-in-out infinite;
+  transform-box: view-box;
+  transform-origin: 455px 276px;
+  will-change: transform, opacity;
+}
+
+@keyframes hero-scope-lock-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.45;
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 0.8;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-engineering-drawing,
   .hero-ring-orbit,
@@ -975,8 +1044,20 @@ button,
   .hero-scope-scan,
   .hero-scope-spiral,
   .hero-nn,
-  .hero-clk-wave {
-    animation: none;
+  .hero-clk-wave,
+  .hero-wave-fast,
+  .hero-wave-slow,
+  .hero-bars rect,
+  .hero-bar-1,
+  .hero-bar-2,
+  .hero-bar-3,
+  .hero-bar-4,
+  .hero-bar-5,
+  .hero-bar-6,
+  .hero-bar-7,
+  .hero-bar-8,
+  .hero-scope-lock {
+    animation: none !important;
     will-change: auto;
   }
 }
