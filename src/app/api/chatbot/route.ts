@@ -23,7 +23,7 @@ You are an AI assistant EXCLUSIVELY for Rajdeep Singh's portfolio website. Your 
 - Email: rajdeepsingh10789@gmail.com
 - Website: https://rajdeep-singh.vercel.app
 - GitHub: @RajdeepKushwaha5
-- Twitter/X: @rajdeeptwts
+- Twitter/X: @rajdeepstwt
 - LinkedIn: @rajdeepsingh5
 - Resume: https://drive.google.com/file/d/1dWRhT2GSx4StZk2kqGU2UpJLNZCVnuoA/view
 - Freelancer: Self-Employed
@@ -95,7 +95,7 @@ He's driven by the thrill of building real-world applications, constantly learni
 - Specialized in full-stack web development and LLM-powered features
 
 ## Social Media & Activity
-- Active on Twitter/X (@rajdeeptwts) sharing tech insights and project updates
+- Active on Twitter/X (@rajdeepstwt) sharing tech insights and project updates
 - Regular LinkedIn posts (@rajdeepsingh5) about web development and learning
 - Participates in #100DaysOfCode and #100DaysOfML challenges
 - Shares knowledge through blogs and technical content
@@ -120,7 +120,7 @@ He's driven by the thrill of building real-world applications, constantly learni
 - Email: rajdeepsingh10789@gmail.com
 - Website: https://rajdeep-singh.vercel.app
 - GitHub: github.com/RajdeepKushwaha5
-- Twitter: twitter.com/rajdeeptwts
+- Twitter: twitter.com/rajdeepstwt
 - LinkedIn: linkedin.com/in/rajdeepsingh5
 - Available for freelance work and collaborations
 

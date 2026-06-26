@@ -2,6 +2,7 @@
 
 import {
   BookOpenIcon,
+  FileTextIcon,
   HomeIcon,
   MailIcon,
   MoonIcon,
@@ -186,9 +187,15 @@ function MorePanel({
     },
     {
       icon: <MailIcon className="size-[15px]" />,
-      label: "Contact",
-      href: "/#contact",
+      label: "Mail",
+      href: "mailto:rajdeepsingh10789@gmail.com",
       external: false,
+    },
+    {
+      icon: <FileTextIcon className="size-[15px]" />,
+      label: "Resume",
+      href: "https://drive.google.com/file/d/1dWRhT2GSx4StZk2kqGU2UpJLNZCVnuoA/view",
+      external: true,
     },
     {
       icon: <MediumIcon className="size-[15px]" />,
@@ -370,8 +377,14 @@ export function BottomDock() {
               />
               <DockItem
                 icon={<MailIcon className="size-[17px]" />}
-                label="Contact"
-                href="/#contact"
+                label="Mail"
+                href="mailto:rajdeepsingh10789@gmail.com"
+              />
+              <DockItem
+                icon={<FileTextIcon className="size-[16px]" />}
+                label="Resume"
+                href="https://drive.google.com/file/d/1dWRhT2GSx4StZk2kqGU2UpJLNZCVnuoA/view"
+                external
               />
             </span>
 
@@ -393,7 +406,7 @@ export function BottomDock() {
             <DockItem
               icon={<XIcon className="size-[15px]" />}
               label="X / Twitter"
-              href="https://x.com/rajdeeptwts"
+              href="https://x.com/rajdeepstwt"
               external
             />
             <span className="hidden sm:contents">

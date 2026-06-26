@@ -10,8 +10,8 @@ export const SOCIAL_LINKS: SocialLink[] = [
   {
     icon: "/images/social/X.png",
     title: "X (Twitter)",
-    description: "@rajdeeptwts",
-    href: "https://x.com/rajdeeptwts",
+    description: "@rajdeepstwt",
+    href: "https://x.com/rajdeepstwt",
   },
   {
     icon: "/images/social/LinkedIn.png",

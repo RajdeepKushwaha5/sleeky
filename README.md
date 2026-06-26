@@ -166,8 +166,8 @@ This project is licensed under the MIT License. Feel free to use it for your per
   <a href="https://github.com/RajdeepKushwaha5">
     <img src="https://img.shields.io/badge/GitHub-@RajdeepKushwaha5-181717?style=flat&logo=github" />
   </a>
-  <a href="https://twitter.com/rajdeeptwts">
-    <img src="https://img.shields.io/badge/Twitter-@rajdeeptwts-1DA1F2?style=flat&logo=twitter" />
+  <a href="https://twitter.com/rajdeepstwt">
+    <img src="https://img.shields.io/badge/Twitter-@rajdeepstwt-1DA1F2?style=flat&logo=twitter" />
   </a>
   <a href="https://linkedin.com/in/rajdeepsingh5">
     <img src="https://img.shields.io/badge/LinkedIn-Rajdeep_Singh-0A66C2?style=flat&logo=linkedin" />

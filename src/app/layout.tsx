@@ -51,7 +51,7 @@ function getPersonJsonLd(): WithContext<Person> {
     sameAs: [
       "https://github.com/RajdeepKushwaha5",
       "https://linkedin.com/in/rajdeepsingh5",
-      "https://twitter.com/rajdeeptwts",
+      "https://twitter.com/rajdeepstwt",
     ],
     knowsAbout: [
       "Web Development",
@@ -119,8 +119,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@rajdeeptwts",
-    creator: "@rajdeeptwts",
+    site: "@rajdeepstwt",
+    creator: "@rajdeepstwt",
     title: `${USER.displayName} – ${USER.jobTitle}`,
     description: SITE_INFO.description,
     images: [

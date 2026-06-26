@@ -15,7 +15,8 @@ import { SpotifyOfflineCard } from "./spotify-offline-card";
 import { VsCodeCard } from "./vscode-card";
 import { VsCodeOfflineCard } from "./vscode-offline-card";
 
-const DISCORD_USER_ID = "993454036751745125";
+const DISCORD_USER_ID =
+  process.env.NEXT_PUBLIC_DISCORD_USER_ID ?? "993454036751745125";
 
 export function LiveStatus() {
   const { data, isLoading } = useLanyard(DISCORD_USER_ID);
