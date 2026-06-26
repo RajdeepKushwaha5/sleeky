@@ -113,7 +113,7 @@ export function ProfileCoverEnhanced() {
 
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <svg
-          className="hero-engineering-drawing absolute top-8 right-[-9rem] h-[26rem] w-[40rem] text-foreground opacity-[0.32] sm:top-10 sm:right-[-10rem] sm:h-[28rem] sm:w-[48rem] sm:opacity-[0.35] md:right-[-8rem] md:h-[31rem] md:w-[55rem] md:opacity-[0.38] dark:opacity-[0.15] dark:sm:opacity-[0.16] dark:md:opacity-[0.18]"
+          className="hero-engineering-drawing absolute top-8 right-[-6rem] h-[26rem] w-[40rem] text-foreground opacity-[0.34] sm:top-10 sm:right-[-7rem] sm:h-[28rem] sm:w-[48rem] sm:opacity-[0.37] md:right-[-5rem] md:h-[31rem] md:w-[55rem] md:opacity-[0.40] dark:opacity-[0.20] dark:sm:opacity-[0.22] dark:md:opacity-[0.24]"
           viewBox="0 0 920 560"
           fill="none"
           aria-hidden="true"
@@ -200,8 +200,9 @@ export function ProfileCoverEnhanced() {
             r="275"
             stroke="currentColor"
             strokeDasharray="9 10"
+            opacity="0.55"
           />
-          <circle cx={MX} cy={MY} r="195" stroke="currentColor" />
+          <circle cx={MX} cy={MY} r="195" stroke="currentColor" opacity="0.6" />
 
           {/* Satellite services riding the primary orbit */}
           {SATELLITES.map((s, i) => (
@@ -458,19 +459,6 @@ export function ProfileCoverEnhanced() {
           <g className="hero-orbit-dot">
             <circle cx={MX} cy="75" r="6" fill="currentColor" opacity="0.1" />
             <circle cx={MX} cy="75" r="3" fill="currentColor" opacity="0.75" />
-          </g>
-
-          {/* radar sweep arm */}
-          <g className="hero-radar-sweep-arm">
-            <line
-              x1={MX}
-              y1={MY}
-              x2={MX}
-              y2="75"
-              stroke="currentColor"
-              strokeWidth="1.2"
-              opacity="0.6"
-            />
           </g>
 
           {/* ═══════════════════════════════════════════════
