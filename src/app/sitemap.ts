@@ -6,15 +6,15 @@ import { getAllPosts, getPostsByCategory } from "@/features/blog/data/posts";
 import { PROJECTS } from "@/features/profile/data/projects";
 import { getCaseStudy } from "@/features/projects/data/case-studies";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const posts = getAllPosts().map((post) => ({
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const posts = (await getAllPosts()).map((post) => ({
     url: `${SITE_INFO.url}/blog/${post.slug}`,
     lastModified: dayjs(post.metadata.updatedAt).toISOString(),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
 
-  const components = getPostsByCategory("components").map((post) => ({
+  const components = (await getPostsByCategory("components")).map((post) => ({
     url: `${SITE_INFO.url}/components/${post.slug}`,
     lastModified: dayjs(post.metadata.updatedAt).toISOString(),
     changeFrequency: "monthly" as const,
@@ -60,4 +60,3 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [...routes, ...posts, ...components, ...projectCaseStudies];
 }
-

@@ -24,7 +24,7 @@ import { USER } from "@/features/profile/data/user";
 import { cn } from "@/lib/utils";
 
 export async function generateStaticParams() {
-  const posts = getPostsByCategory("components");
+  const posts = await getPostsByCategory("components");
   return posts.map((post) => ({
     slug: post.slug,
   }));
@@ -36,7 +36,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const slug = (await params).slug;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     return notFound();
@@ -101,7 +101,7 @@ export default async function Page({
   }>;
 }) {
   const slug = (await params).slug;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     notFound();
@@ -113,7 +113,7 @@ export default async function Page({
 
   const toc = getTableOfContents(post.content);
 
-  const allPosts = getPostsByCategory("components");
+  const allPosts = await getPostsByCategory("components");
   const { previous, next } = findNeighbour(allPosts, slug);
 
   return (
@@ -171,7 +171,7 @@ export default async function Page({
         </div>
       </div>
 
-      <div className="screen-line-before screen-line-after">
+      <div className="screen-line-after screen-line-before">
         <div
           className={cn(
             "h-8",

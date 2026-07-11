@@ -1,6 +1,6 @@
 "use client";
 
-import { ExternalLink, Github, MoveRight } from "lucide-react";
+import { ExternalLink, Github, MoveRight, Trophy } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -115,6 +115,12 @@ export function ProjectCard({
   return (
     <article className="group/project flex min-h-full flex-col overflow-hidden border border-foreground/[0.08] bg-foreground/[0.018] transition-colors duration-200 hover:bg-foreground/[0.04]">
       <div className="relative overflow-hidden border-b border-foreground/[0.06] bg-foreground/[0.025] select-none">
+        {project.award && (
+          <div className="absolute top-2 left-2 z-10 inline-flex items-center gap-1 rounded-full border border-amber-400/30 bg-background/80 px-2.5 py-1 font-mono text-[9px] font-medium text-amber-500 shadow-sm backdrop-blur-md">
+            <Trophy className="size-3" />
+            {project.award}
+          </div>
+        )}
         {project.logo ? (
           <Image
             src={project.logo}

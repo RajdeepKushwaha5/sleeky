@@ -2,6 +2,155 @@ import type { Project } from "../types/projects";
 
 export const PROJECTS: Project[] = [
   {
+    id: "treebio",
+    title: "TreeBio – Modern Bio-Link Platform",
+    period: {
+      start: "2025-09-03",
+    },
+    link: "https://treebio1.vercel.app/",
+    githubUrl: "https://github.com/RajdeepKushwaha5/TreeBio",
+    skills: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "PostgreSQL",
+      "Prisma",
+      "Bio-Link",
+      "Analytics",
+    ],
+    description: `Customizable bio-link platform with unlimited links, bulk import/export, link scheduling, and real-time analytics.
+- Unlimited customizable links
+- Bulk import/export functionality
+- Link scheduling capabilities
+- Real-time analytics dashboard
+- Modern, clean user interface`,
+    logo: "/images/projects/TreeBio.png",
+  },
+  {
+    id: "metaflow",
+    title: "MetaFlow – AI Control Plane for OpenMetadata",
+    period: {
+      start: "2025-12-05",
+    },
+    link: "https://meta-flow-ten.vercel.app/",
+    githubUrl: "https://github.com/RajdeepKushwaha5/MetaFlow",
+    award: "Hackathon Winner",
+    skills: [
+      "React",
+      "TypeScript",
+      "FastAPI",
+      "LangGraph",
+      "Google Gemini",
+      "OpenMetadata",
+    ],
+    description: `Winning entry at the OpenMetadata Hackathon (MCP Ecosystem & AI Agents track). Turns OpenMetadata into an autonomous operations platform that detects issues, reasons about impact, and orchestrates resolution across tools without human intervention.
+- Continuous data steward with autonomous health scoring
+- Data contract copilot for quality tests
+- Self-healing remediation with root-cause tracing and PR proposals
+- Multi-specialist LangGraph orchestrator across 12 agents
+- 15 pre-built one-click playbooks and webhook auto-triage`,
+    logo: "/images/projects/metaflow.png",
+  },
+  {
+    id: "dragonbrain",
+    title: "DragonBrain – Neural Net Explorer",
+    period: {
+      start: "2026-02-10",
+    },
+    link: "https://dragonbrain.vercel.app/",
+    githubUrl: "https://github.com/RajdeepKushwaha5/dragonbrain",
+    award: "Hackathon Winner",
+    skills: [
+      "Svelte",
+      "PyTorch",
+      "ONNX Runtime Web",
+      "D3.js",
+      "WebAssembly",
+      "AI/ML",
+    ],
+    description: `Interactive, browser-based explorer that compares the Baby Dragon Hatchling (BDH) post-transformer architecture against a GPT baseline in real time — all inference runs client-side via WebAssembly.
+- Side-by-side sparse activation panels (BDH ~5-15% vs GPT ~97-100%)
+- Force-directed D3.js graph of emergent internal wiring
+- Hebbian memory co-activation heatmap
+- Memory-scaling comparison and text generation panels
+- Guided 12-step interactive tour`,
+    logo: "/images/projects/dragonbrain.png",
+  },
+  {
+    id: "redline",
+    title: "Redline – AI Policy Governance",
+    period: {
+      start: "2026-01-15",
+    },
+    link: "https://github.com/RajdeepKushwaha5/redline",
+    githubUrl: "https://github.com/RajdeepKushwaha5/redline",
+    award: "Hackathon Winner",
+    skills: [
+      "JavaScript",
+      "Node.js",
+      "Google Gemini",
+      "GitHub Actions",
+      "Compliance",
+      "AI Agents",
+    ],
+    description: `1st-place winner at the GitAgent Hackathon. Turns company policies into version-controlled, auditable documents in git, with AI agents that detect compliance gaps, draft fixes, and enforce strict segregation of duties.
+- Gap analysis against GDPR and SOC2 regulatory checklists
+- Compliance scorecards with regulatory citations
+- Automated drafting with annotated, traceable changes
+- Append-only immutable audit trail
+- CI/CD validation via GitHub Actions`,
+    logo: "/images/projects/redline.png",
+  },
+  {
+    id: "stepwise",
+    title: "StepWise – Wolfram-Verified Math Tutor",
+    period: {
+      start: "2025-11-20",
+    },
+    link: "https://step-wise-taupe.vercel.app/",
+    githubUrl: "https://github.com/RajdeepKushwaha5/StepWise",
+    award: "Hackathon Winner",
+    skills: [
+      "Next.js",
+      "TypeScript",
+      "FastAPI",
+      "Wolfram Language",
+      "Google Gemini",
+      "KaTeX",
+    ],
+    description: `An AI math tutor that verifies every computation with Wolfram Language instead of trusting the LLM — separating deterministic computation from explanation to eliminate confident, subtly-wrong answers.
+- Wolfram-verified answers with side-by-side AI-alone comparison
+- On-demand worked steps for derivatives and integrals
+- Multilingual explanations (English, Hindi, Bengali, Tamil, and more)
+- Practice mode with progressive hints and misconception tracking
+- Photo input for handwritten or printed problems`,
+    logo: "/images/projects/stepwise.png",
+  },
+  {
+    id: "llms-from-scratch",
+    title: "LLMs from Scratch – GPT Implementation",
+    period: {
+      start: "2025-11-01",
+    },
+    link: "https://github.com/RajdeepKushwaha5/LLMs-from-scratch",
+    githubUrl: "https://github.com/RajdeepKushwaha5/LLMs-from-scratch",
+    skills: [
+      "Python",
+      "PyTorch",
+      "tiktoken",
+      "JupyterLab",
+      "Transformers",
+      "AI/ML",
+    ],
+    description: `A step-by-step, from-scratch implementation of GPT-like language models in PyTorch — covering tokenization, attention, the transformer architecture, pretraining, and finetuning.
+- Full transformer build: tokenization, attention, text generation
+- Pretraining plus classification and instruction finetuning
+- Modern architectures implemented from scratch (Llama 3.2, Qwen3, Gemma 3)
+- Advanced techniques: LoRA, DPO, KV Cache, Grouped-Query Attention, MoE
+- Interactive chat and classification UIs`,
+    logo: "/images/projects/llms-from-scratch.png",
+  },
+  {
     id: "upcode",
     title: "UPCODE – Collaborative Coding Platform",
     period: {
@@ -26,31 +175,6 @@ export const PROJECTS: Project[] = [
 - Modern, responsive UI with Tailwind CSS`,
     logo: "/images/projects/upcode.png",
     isExpanded: true,
-  },
-  {
-    id: "treebio",
-    title: "TreeBio – Modern Bio-Link Platform",
-    period: {
-      start: "2025-09-03",
-    },
-    link: "https://treebio1.vercel.app/",
-    githubUrl: "https://github.com/RajdeepKushwaha5/TreeBio",
-    skills: [
-      "Next.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "PostgreSQL",
-      "Prisma",
-      "Bio-Link",
-      "Analytics",
-    ],
-    description: `Customizable bio-link platform with unlimited links, bulk import/export, link scheduling, and real-time analytics.
-- Unlimited customizable links
-- Bulk import/export functionality
-- Link scheduling capabilities
-- Real-time analytics dashboard
-- Modern, clean user interface`,
-    logo: "/images/projects/TreeBio.png",
   },
   {
     id: "bharatos",
@@ -129,6 +253,7 @@ export const PROJECTS: Project[] = [
     },
     link: "https://rajdeepkushwaha5.github.io/strike/",
     githubUrl: "https://github.com/RajdeepKushwaha5/strike",
+    award: "Hackathon Winner",
     skills: [
       "React",
       "TypeScript",

@@ -1,6 +1,6 @@
 "use client";
 
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, Trophy } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -50,6 +50,16 @@ export function ProjectItem({
           <div className="absolute top-3 left-3">
             <span className="rounded-full bg-primary/90 px-2.5 py-1 text-[10px] font-medium text-primary-foreground backdrop-blur-sm">
               Case Study
+            </span>
+          </div>
+        )}
+
+        {/* Award Badge */}
+        {project.award && (
+          <div className="absolute top-3 right-3 z-10">
+            <span className="inline-flex items-center gap-1 rounded-full border border-amber-400/30 bg-background/80 px-2.5 py-1 text-[10px] font-medium text-amber-500 backdrop-blur-md">
+              <Trophy className="size-3" />
+              {project.award}
             </span>
           </div>
         )}

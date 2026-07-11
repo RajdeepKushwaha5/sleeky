@@ -3,10 +3,10 @@ import dayjs from "dayjs";
 import { SITE_INFO } from "@/config/site";
 import { getAllPosts } from "@/features/blog/data/posts";
 
-export const dynamic = "force-static";
+export const revalidate = 3600;
 
-export function GET() {
-  const allPosts = getAllPosts();
+export async function GET() {
+  const allPosts = await getAllPosts();
 
   const itemsXml = allPosts
     .map(

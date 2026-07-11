@@ -14,8 +14,8 @@ export const metadata: Metadata = {
   description: "A collection of reusable components.",
 };
 
-export default function Page() {
-  const posts = getPostsByCategory("components");
+export default async function Page() {
+  const posts = await getPostsByCategory("components");
 
   return (
     <div className="min-h-svh">

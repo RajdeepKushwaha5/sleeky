@@ -30,4 +30,6 @@ export type Project = {
   caseStudy?: CaseStudy;
   /** Short tagline for the project */
   tagline?: string;
+  /** Award/recognition label shown as a badge over the project image (e.g. "Hackathon Winner"). */
+  award?: string;
 };

@@ -1,6 +1,7 @@
 import type { Post, PostMetadata } from "@/features/blog/types/post";
 
-import { getMediumPosts, type MediumPost } from "./medium-posts";
+import { getLiveMediumPosts } from "../lib/fetch-medium";
+import type { MediumPost } from "./medium-posts";
 
 // MDX file reading is intentionally removed — posts come from the bundled JSON only.
 // If you need MDX posts, add a server action or API route that reads the file system.
@@ -47,8 +48,8 @@ function convertMediumPostsToPosts(mediumPosts: MediumPost[]): Post[] {
   }) as Post[];
 }
 
-export function getAllPosts() {
-  const mediumPosts = convertMediumPostsToPosts(getMediumPosts());
+export async function getAllPosts() {
+  const mediumPosts = convertMediumPostsToPosts(await getLiveMediumPosts());
 
   // Sort posts: pinned first, then by date (newest first)
   return mediumPosts.sort((a, b) => {
@@ -62,12 +63,14 @@ export function getAllPosts() {
   });
 }
 
-export function getPostBySlug(slug: string) {
-  return getAllPosts().find((post) => post.slug === slug);
+export async function getPostBySlug(slug: string) {
+  return (await getAllPosts()).find((post) => post.slug === slug);
 }
 
-export function getPostsByCategory(category: string) {
-  return getAllPosts().filter((post) => post.metadata?.category === category);
+export async function getPostsByCategory(category: string) {
+  return (await getAllPosts()).filter(
+    (post) => post.metadata?.category === category
+  );
 }
 
 export function findNeighbour(posts: Post[], slug: string) {

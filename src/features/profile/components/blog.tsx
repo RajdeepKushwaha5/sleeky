@@ -7,8 +7,8 @@ import { getAllPosts } from "@/features/blog/data/posts";
 
 import { Panel, PanelHeader, PanelTitle } from "./panel";
 
-export function Blog() {
-  const allPosts = getAllPosts();
+export async function Blog() {
+  const allPosts = await getAllPosts();
 
   return (
     <Panel id="blog">

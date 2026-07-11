@@ -41,22 +41,22 @@ smooth scrolling, a macOS‑style dock, dark/light themes, and a generated CAD�
 
 ## Features
 
-| Status                                                                  | Feature                | Description                                                            |
-| :---------------------------------------------------------------------- | :--------------------- | :-------------------------------------------------------------------- |
-| ![Performance](https://img.shields.io/badge/Performance-High-blue)      | **Lightning Fast**     | Next.js 16 App Router + Turbopack, React Server Components             |
-| ![Design](https://img.shields.io/badge/Design-Premium-vibrantgreen)     | **Sleek UI**           | Tailwind v4, shadcn/ui, Radix primitives, dark/light themes           |
-| ![Animation](https://img.shields.io/badge/Motion-Framer-ff0080)         | **Motion**             | Framer Motion, Lenis smooth scroll, scroll‑driven reveals             |
-| ![Intelligence](https://img.shields.io/badge/AI-Gemini_2.5-brightgreen) | **AI Assistant**       | In‑page chatbot powered by Google Gemini 2.5 Flash                    |
-| ![Real-time](https://img.shields.io/badge/Real--time-Active-success)    | **Live Status**        | Real‑time Discord, Spotify & VS Code activity via the Lanyard API     |
-| ![Music](https://img.shields.io/badge/Spotify-Now_Playing-1DB954)       | **Spotify**            | Now‑playing and recently‑played tracks via the Spotify Web API        |
-| ![Analytics](https://img.shields.io/badge/Stats-WakaTime-informational) | **Coding Metrics**     | Coding activity tracking via the WakaTime API                         |
-| ![Content](https://img.shields.io/badge/Content-MDX_Blog-blueviolet)    | **MDX Blog**           | Feature‑rich blog with MDX, syntax highlighting, and Medium sync      |
-| ![Registry](https://img.shields.io/badge/Registry-shadcn-000000)        | **Component Registry** | Distribute components via shadcn + the `rajfolio` CLI                 |
-| ![Navigation](https://img.shields.io/badge/Nav-Cmd_K_·_J%2FK-yellowgreen) | **Command & Keys**   | Command menu (⌘K) and J/K keyboard section navigation                 |
-| ![Optimization](https://img.shields.io/badge/SEO-Optimized-red)         | **SEO & PWA**          | JSON‑LD structured data, sitemap, robots, RSS, OG images, web manifest |
-| ![Security](https://img.shields.io/badge/Security-Hardened-critical)    | **Secure**             | Security headers, rate‑limited APIs, input validation with Zod        |
-| ![Contact](https://img.shields.io/badge/Contact-Telegram-26A5E4)        | **Contact Form**       | Messages delivered straight to Telegram with rate limiting            |
-| ![vCard](https://img.shields.io/badge/Extras-vCard-lightgrey)           | **Extras**             | Downloadable vCard, visitor counter, custom cursor, oneko cat         |
+| Status                                                                    | Feature                | Description                                                            |
+| :------------------------------------------------------------------------ | :--------------------- | :--------------------------------------------------------------------- |
+| ![Performance](https://img.shields.io/badge/Performance-High-blue)        | **Lightning Fast**     | Next.js 16 App Router + Turbopack, React Server Components             |
+| ![Design](https://img.shields.io/badge/Design-Premium-vibrantgreen)       | **Sleek UI**           | Tailwind v4, shadcn/ui, Radix primitives, dark/light themes            |
+| ![Animation](https://img.shields.io/badge/Motion-Framer-ff0080)           | **Motion**             | Framer Motion, Lenis smooth scroll, scroll‑driven reveals              |
+| ![Intelligence](https://img.shields.io/badge/AI-Gemini_2.5-brightgreen)   | **AI Assistant**       | In‑page chatbot powered by Google Gemini 2.5 Flash                     |
+| ![Real-time](https://img.shields.io/badge/Real--time-Active-success)      | **Live Status**        | Real‑time Discord, Spotify & VS Code activity via the Lanyard API      |
+| ![Music](https://img.shields.io/badge/Spotify-Now_Playing-1DB954)         | **Spotify**            | Now‑playing and recently‑played tracks via the Spotify Web API         |
+| ![Analytics](https://img.shields.io/badge/Stats-WakaTime-informational)   | **Coding Metrics**     | Coding activity tracking via the WakaTime API                          |
+| ![Content](https://img.shields.io/badge/Content-MDX_Blog-blueviolet)      | **MDX Blog**           | Feature‑rich blog with MDX, syntax highlighting, and Medium sync       |
+| ![Registry](https://img.shields.io/badge/Registry-shadcn-000000)          | **Component Registry** | Distribute components via shadcn + the `rajfolio` CLI                  |
+| ![Navigation](https://img.shields.io/badge/Nav-Cmd_K_·_J%2FK-yellowgreen) | **Command & Keys**     | Command menu (⌘K) and J/K keyboard section navigation                  |
+| ![Optimization](https://img.shields.io/badge/SEO-Optimized-red)           | **SEO & PWA**          | JSON‑LD structured data, sitemap, robots, RSS, OG images, web manifest |
+| ![Security](https://img.shields.io/badge/Security-Hardened-critical)      | **Secure**             | Security headers, rate‑limited APIs, input validation with Zod         |
+| ![Contact](https://img.shields.io/badge/Contact-Telegram-26A5E4)          | **Contact Form**       | Messages delivered straight to Telegram with rate limiting             |
+| ![vCard](https://img.shields.io/badge/Extras-vCard-lightgrey)             | **Extras**             | Downloadable vCard, visitor counter, custom cursor, oneko cat          |
 
 ---
 
@@ -66,16 +66,16 @@ smooth scrolling, a macOS‑style dock, dark/light themes, and a generated CAD�
   <img src="https://skillicons.dev/icons?i=nextjs,react,typescript,tailwind,nodejs,vercel" alt="Tech Stack" />
 </p>
 
-| Category           | Technologies                                                        |
-| :----------------- | :------------------------------------------------------------------ |
+| Category           | Technologies                                                         |
+| :----------------- | :------------------------------------------------------------------- |
 | **Framework**      | Next.js 16 (App Router), React 19, TypeScript 5.8                    |
 | **Styling**        | Tailwind CSS v4, shadcn/ui, Radix UI, `tailwind-merge`, CVA          |
 | **Animation**      | Framer Motion (`motion`), Lenis smooth scroll                        |
 | **State & Data**   | Jotai, SWR, `next-themes`                                            |
 | **Content**        | MDX (`next-mdx-remote`, `fumadocs-core`), Shiki / rehype‑pretty‑code |
-| **AI Engine**      | Google Gemini 2.5 Flash (`@google/genai`, `@google/generative-ai`)  |
+| **AI Engine**      | Google Gemini 2.5 Flash (`@google/genai`, `@google/generative-ai`)   |
 | **Integrations**   | Lanyard, Spotify Web API, WakaTime, GitHub                           |
-| **Data Store**     | Upstash Redis (visitor counter & rate limiting)                     |
+| **Data Store**     | Upstash Redis (visitor counter & rate limiting)                      |
 | **Validation**     | Zod, React Hook Form                                                 |
 | **Tooling**        | ESLint, Prettier, Husky, lint‑staged, tsx                            |
 | **Infrastructure** | Vercel (Analytics + Speed Insights)                                  |
@@ -201,20 +201,20 @@ sleeky/
 
 ## Available Scripts
 
-| Command                  | Description                                          |
-| :----------------------- | :--------------------------------------------------- |
-| `npm run dev`            | Start the dev server (Turbopack) on port **1729**    |
-| `npm run build`          | Production build                                     |
-| `npm run start`          | Start the production server                          |
-| `npm run preview`        | Build and serve the production output on port 1729   |
-| `npm run lint`           | Run ESLint                                            |
-| `npm run lint:fix`       | Run ESLint with autofix                              |
-| `npm run check-types`    | Type‑check with `tsc --noEmit`                       |
-| `npm run format:check`   | Check formatting with Prettier                       |
-| `npm run format:write`   | Format files with Prettier                           |
-| `npm run registry:build` | Build the component registry (shadcn)                |
-| `npm run medium:sync`    | Sync blog posts from Medium                          |
-| `npm run capture`        | Capture screenshots / OG assets                      |
+| Command                  | Description                                        |
+| :----------------------- | :------------------------------------------------- |
+| `npm run dev`            | Start the dev server (Turbopack) on port **1729**  |
+| `npm run build`          | Production build                                   |
+| `npm run start`          | Start the production server                        |
+| `npm run preview`        | Build and serve the production output on port 1729 |
+| `npm run lint`           | Run ESLint                                         |
+| `npm run lint:fix`       | Run ESLint with autofix                            |
+| `npm run check-types`    | Type‑check with `tsc --noEmit`                     |
+| `npm run format:check`   | Check formatting with Prettier                     |
+| `npm run format:write`   | Format files with Prettier                         |
+| `npm run registry:build` | Build the component registry (shadcn)              |
+| `npm run medium:sync`    | Sync blog posts from Medium                        |
+| `npm run capture`        | Capture screenshots / OG assets                    |
 
 ---
 
