@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { PROJECTS } from "@/features/profile/data/projects";
-import { ProjectItem } from "@/features/projects/components/project-item";
+import { ProjectsGrid } from "@/features/projects/components/projects-grid";
 import { hasCaseStudy } from "@/features/projects/data/case-studies";
 
 export const metadata: Metadata = {
@@ -11,7 +11,8 @@ export const metadata: Metadata = {
 };
 
 export default function ProjectsPage() {
-  // Sort projects: case studies first, then by date
+  // Sort projects: case studies first (keeps flagship work prominent), then
+  // preserve authored order for the rest.
   const sortedProjects = [...PROJECTS].sort((a, b) => {
     const aHasStudy = hasCaseStudy(a.id);
     const bHasStudy = hasCaseStudy(b.id);
@@ -19,9 +20,6 @@ export default function ProjectsPage() {
     if (!aHasStudy && bHasStudy) return 1;
     return 0;
   });
-
-  const featuredProjects = sortedProjects.filter((p) => hasCaseStudy(p.id));
-  const otherProjects = sortedProjects.filter((p) => !hasCaseStudy(p.id));
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-8">
@@ -39,52 +37,13 @@ export default function ProjectsPage() {
         </p>
       </div>
 
-      {/* Featured Projects with Case Studies */}
-      {featuredProjects.length > 0 && (
-        <section className="mb-16">
-          <div className="mb-6 flex items-center gap-3">
-            <h2 className="font-mono text-xs font-medium tracking-wider text-foreground/50 uppercase">
-              Featured Case Studies
-            </h2>
-            <div className="h-px flex-1 bg-border/50" />
-          </div>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2">
-            {featuredProjects.map((project, index) => (
-              <ProjectItem
-                key={project.id}
-                project={project}
-                shouldPreloadImage={index < 4}
-              />
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Other Projects */}
-      {otherProjects.length > 0 && (
-        <section>
-          <div className="mb-6 flex items-center gap-3">
-            <h2 className="font-mono text-xs font-medium tracking-wider text-foreground/50 uppercase">
-              All Projects
-            </h2>
-            <div className="h-px flex-1 bg-border/30" />
-          </div>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {otherProjects.map((project, index) => (
-              <ProjectItem
-                key={project.id}
-                project={project}
-                shouldPreloadImage={index < 6}
-              />
-            ))}
-          </div>
-        </section>
-      )}
+      {/* Filterable projects grid (case studies sorted first) */}
+      <ProjectsGrid projects={sortedProjects} />
 
       {/* GitHub CTA */}
       <section className="mt-16 rounded-2xl border border-border/15 bg-foreground/[0.02] p-8 text-center">
         <div className="mx-auto max-w-md space-y-4">
-            <div className="mx-auto flex size-12 items-center justify-center rounded-full border border-border/15 bg-foreground/[0.04]">
+          <div className="mx-auto flex size-12 items-center justify-center rounded-full border border-border/15 bg-foreground/[0.04]">
             <svg
               viewBox="0 0 24 24"
               fill="currentColor"
