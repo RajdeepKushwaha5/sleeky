@@ -2,6 +2,16 @@ import type { Award } from "../types/awards";
 
 export const AWARDS: Award[] = [
   {
+    id: "hangover-hackathon-2026",
+    prize: "Winner — Best Use of Cognee Cloud",
+    title: "The Hangover Hackathon — WeMakeDevs × Cognee",
+    date: "2026-07",
+    grade: "Hackathon",
+    description:
+      "Won the **Best Use of Cognee Cloud** track at **The Hangover Hackathon** organized by [WeMakeDevs](https://www.wemakedevs.org/) in collaboration with [Cognee](https://www.cognee.ai/). Competed against thousands of developers building AI agents with persistent memory, knowledge graphs, and real-world context using Cognee.",
+    referenceLink: "https://www.wemakedevs.org/",
+  },
+  {
     id: "back-to-metadata-hackathon-2026",
     prize: "Winner",
     title: "Back to the Metadata Hackathon — WeMakeDevs × OpenMetadata",

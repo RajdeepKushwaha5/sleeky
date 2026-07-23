@@ -2,6 +2,31 @@ import type { Project } from "../types/projects";
 
 export const PROJECTS: Project[] = [
   {
+    id: "classroom-memory",
+    title: "Classroom Memory – Graph-Native Learning System",
+    period: {
+      start: "2026-07-15",
+    },
+    link: "https://github.com/RajdeepKushwaha5/ClassroomMemory",
+    githubUrl: "https://github.com/RajdeepKushwaha5/ClassroomMemory",
+    award: "Hackathon Winner",
+    skills: [
+      "Python",
+      "FastAPI",
+      "Cognee Cloud",
+      "Knowledge Graphs",
+      "vis-network",
+      "JavaScript",
+    ],
+    description: `Winning entry (Best Use of Cognee Cloud) at The Hangover Hackathon by WeMakeDevs × Cognee. A Cognee Cloud-powered learning system that builds isolated long-term memory for each student while giving teachers class-level insights via graph reasoning.
+- Per-student concept graphs with mastery tracking and memory-based recall
+- Class-wide heat maps and graph-reasoned, prerequisite-aware teaching plans
+- Adaptive quizzes, learning timelines, and targeted review assignments
+- JSON curriculum import with prerequisite mapping and validation
+- Multi-tenant memory: isolated student datasets alongside a shared class graph`,
+    logo: "/images/projects/classroommemory.png",
+  },
+  {
     id: "treebio",
     title: "TreeBio – Modern Bio-Link Platform",
     period: {
