@@ -8,8 +8,9 @@ export const AWARDS: Award[] = [
     date: "2026-07",
     grade: "Hackathon",
     description:
-      "Won the **Best Use of Cognee Cloud** track at **The Hangover Hackathon** organized by [WeMakeDevs](https://www.wemakedevs.org/) in collaboration with [Cognee](https://www.cognee.ai/). Competed against thousands of developers building AI agents with persistent memory, knowledge graphs, and real-world context using Cognee.",
-    referenceLink: "https://www.wemakedevs.org/",
+      "Won the **Best Use of Cognee Cloud** track at **The Hangover Hackathon** organized by [WeMakeDevs](https://www.wemakedevs.org/) in collaboration with [Cognee](https://www.cognee.ai/). Competed against thousands of developers building AI agents with persistent memory, knowledge graphs, and real-world context using Cognee.\n\n[Winner Announcement](https://www.linkedin.com/posts/wemakedevs_the-hangover-hackathon-track-winners-activity-7486026563558391808-BW5c)",
+    referenceLink:
+      "https://www.linkedin.com/posts/wemakedevs_the-hangover-hackathon-track-winners-activity-7486026563558391808-BW5c",
   },
   {
     id: "back-to-metadata-hackathon-2026",
