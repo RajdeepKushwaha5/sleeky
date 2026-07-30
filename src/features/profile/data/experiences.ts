@@ -40,6 +40,71 @@ Producing regression tests and a comparison report on how MeshLab and ParaView a
     ],
   },
   {
+    id: "cognee",
+    companyName: "Cognee",
+    companyLogo: "/company/cognee.png",
+    positions: [
+      {
+        id: "cognee-oss-contributor",
+        title: "Open Source Contributor",
+        employmentPeriod: {
+          start: "07.2026",
+          end: "07.2026",
+        },
+        employmentType: "Part-time",
+        icon: "code",
+        description: `Contributed to Cognee, the open-source AI memory engine for building knowledge graphs and persistent context, across both the Rust core ([cognee-rs](https://github.com/topoteretes/cognee-rs/pulls?q=is%3Apr+author%3ARajdeepKushwaha5+is%3Amerged)) and the Python platform ([cognee](https://github.com/topoteretes/cognee/pull/3762)).
+
+**LLM Provider Layer (Rust):** Extended the engine's model support by adding a native Anthropic Messages API adapter (system-message hoisting, forced-tool structured output, prefix stripping) and an Azure OpenAI adapter, then routed Ollama, Mistral, Gemini, and custom OpenAI-compatible providers through a single shared adapter factory — refactored out of duplicated construction logic across the component manager and HTTP server.
+
+**Performance & Reliability (Rust):** Bounded summarization concurrency with equal-jitter backoff to eliminate rate-limit stalls and thundering-herd retries, added batched multi-chunk graph extraction to cut extraction requests from N to ceil(N / group_size), and built a deterministic ThrottleLlm rate-limit instrument for measuring cognify behavior under provider limits.
+
+**Tokenization (Python):** Centralized model-to-tokenizer resolution across OpenAI, Mistral, FastEmbed, and Ollama with safe TikToken fallbacks and warnings, fixing incorrect token counts that skewed chunk sizing and dry-run cost estimates.`,
+        skills: [
+          "Open Source",
+          "Rust",
+          "Python",
+          "LLM",
+          "Async",
+          "Knowledge Graphs",
+          "Performance",
+        ],
+        isExpanded: false,
+      },
+    ],
+  },
+  {
+    id: "mllam",
+    companyName: "MLLAM",
+    companyLogo: "/company/mllam.png",
+    positions: [
+      {
+        id: "mllam-oss-contributor",
+        title: "Open Source Contributor",
+        employmentPeriod: {
+          start: "02.2026",
+          end: "04.2026",
+        },
+        employmentType: "Part-time",
+        icon: "code",
+        description: `Contributed to [neural-lam](https://github.com/mllam/neural-lam/pulls?q=is%3Apr+author%3ARajdeepKushwaha5+is%3Amerged), MLLAM's graph-based neural weather prediction framework for limited-area modeling, built on PyTorch and PyTorch Lightning.
+
+**Distributed Training Correctness:** Fixed silent tensor-shape corruption and an IndexError in distributed standardization statistics (world_size > 1) by using proper concatenation and indexing, and added a dimension guard to \`all_gather_cat\` so single-device runs no longer flatten tensors into the wrong shapes.
+
+**Testing & Packaging:** Reset the \`plotted_examples\` counter in \`on_test_epoch_end\` so example plotting works across repeated \`trainer.test()\` calls, moved torch to mutually exclusive CPU/GPU extras with uv sources to simplify CI installs, and fixed a malformed loss-weighting error message.`,
+        skills: [
+          "Open Source",
+          "Python",
+          "PyTorch",
+          "PyTorch Lightning",
+          "Distributed Training",
+          "Testing",
+        ],
+        isExpanded: false,
+      },
+    ],
+  },
+  {
     id: "openmetadata",
     companyName: "OpenMetadata",
     companyLogo: "/company/openmetadata.png",

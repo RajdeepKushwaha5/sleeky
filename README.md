@@ -88,7 +88,7 @@ The portfolio renders as a single scrollable page composed of focused sections:
 
 **Hero** · **About** · **Live Status** · **Experience** · **Projects** · **Tech Stack** ·
 **Testimonials** · **Blog** · **GitHub Contributions** · **Open‑Source Contributions** ·
-**Awards** · **Certifications** · **Library** · **Pomodoro Timer** · **Contact**
+**Awards** · **Certifications** · **Library** · **Contact**
 
 ---
 

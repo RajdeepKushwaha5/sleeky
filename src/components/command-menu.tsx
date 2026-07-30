@@ -17,7 +17,6 @@ import {
   Share2Icon,
   SunIcon,
   TextIcon,
-  TimerIcon,
   UserIcon,
   ZapIcon,
 } from "lucide-react";
@@ -159,11 +158,6 @@ const RJDP_LINKS: CommandLinkItem[] = [
     title: "Book a Call",
     href: "/#book-call",
     icon: CalendarCheckIcon,
-  },
-  {
-    title: "Pomodoro Timer",
-    href: "/#pomodoro",
-    icon: TimerIcon,
   },
   {
     title: "Contact Me",
