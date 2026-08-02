@@ -9,7 +9,15 @@ import {
   SunIcon,
   X as CloseIcon,
 } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
+import {
+  AnimatePresence,
+  motion,
+  type MotionValue,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+  useTransform,
+} from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
@@ -19,6 +27,13 @@ import { META_THEME_COLORS } from "@/config/site";
 import { useMetaColor } from "@/hooks/use-meta-color";
 import { useSound } from "@/hooks/use-sound";
 import { cn } from "@/lib/utils";
+
+/* ── Magnification tuning ───────────────────────────────── */
+const DOCK_BASE_SIZE = 40; // resting icon-button size (px)
+const DOCK_MAX_SIZE = 56; // size at cursor center
+const DOCK_ICON_MAX_SCALE = 1.42; // icon growth at cursor center
+const DOCK_RANGE = 120; // px of cursor influence on either side
+const DOCK_SPRING = { mass: 0.1, stiffness: 160, damping: 13 };
 
 /* ── Social icon SVGs ───────────────────────────────────── */
 function GitHubIcon({ className }: { className?: string }) {
@@ -98,6 +113,8 @@ function DockItem({
   href,
   active,
   external,
+  mouseX,
+  magnify,
 }: {
   icon: React.ReactNode;
   label: string;
@@ -105,24 +122,63 @@ function DockItem({
   href?: string;
   active?: boolean;
   external?: boolean;
+  mouseX: MotionValue<number>;
+  magnify: boolean;
 }) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  // Signed horizontal distance from the cursor to this item's center.
+  const distance = useTransform(mouseX, (val) => {
+    const bounds = ref.current?.getBoundingClientRect();
+    if (!bounds) return DOCK_RANGE + 1;
+    return val - bounds.x - bounds.width / 2;
+  });
+
+  const sizeTarget = useTransform(
+    distance,
+    [-DOCK_RANGE, 0, DOCK_RANGE],
+    [DOCK_BASE_SIZE, DOCK_MAX_SIZE, DOCK_BASE_SIZE]
+  );
+  const size = useSpring(sizeTarget, DOCK_SPRING);
+
+  const iconScaleTarget = useTransform(
+    distance,
+    [-DOCK_RANGE, 0, DOCK_RANGE],
+    [1, DOCK_ICON_MAX_SCALE, 1]
+  );
+  const iconScale = useSpring(iconScaleTarget, DOCK_SPRING);
+
   const inner = (
     <motion.div
-      whileHover={{ scale: 1.22, y: -5 }}
-      whileTap={{ scale: 0.92 }}
-      transition={{ type: "spring", stiffness: 420, damping: 20 }}
+      ref={ref}
+      style={magnify ? { width: size, height: size } : undefined}
+      whileTap={{ scale: 0.88 }}
       className={cn(
-        "group relative flex size-8 cursor-pointer items-center justify-center rounded-xl transition-colors duration-150 sm:size-9",
-        active
-          ? "bg-foreground/[0.12] text-foreground"
-          : "text-foreground/40 hover:bg-foreground/[0.07] hover:text-foreground/80"
+        "group relative flex cursor-pointer items-center justify-center rounded-xl",
+        !magnify && "size-9",
+        active ? "text-foreground" : "text-foreground/45"
       )}
     >
-      {icon}
+      {/* Inset hover / active surface */}
+      <span
+        className={cn(
+          "absolute inset-1 rounded-[10px] transition-colors duration-200",
+          active
+            ? "bg-foreground/[0.1] ring-1 ring-foreground/[0.06]"
+            : "bg-transparent group-hover:bg-foreground/[0.06]"
+        )}
+      />
 
-      {/* Active dot */}
+      <motion.span
+        style={magnify ? { scale: iconScale } : undefined}
+        className="relative flex items-center justify-center transition-colors duration-200 group-hover:text-foreground/90"
+      >
+        {icon}
+      </motion.span>
+
+      {/* Active indicator */}
       {active && (
-        <span className="absolute -bottom-1 left-1/2 size-[3px] -translate-x-1/2 rounded-full bg-foreground/55" />
+        <span className="absolute -bottom-0.5 left-1/2 h-[3px] w-[3px] -translate-x-1/2 rounded-full bg-foreground/60" />
       )}
 
       {/* Tooltip */}
@@ -138,6 +194,7 @@ function DockItem({
         href={href}
         target={external ? "_blank" : undefined}
         rel={external ? "noopener noreferrer" : undefined}
+        aria-label={label}
       >
         {inner}
       </Link>
@@ -145,14 +202,16 @@ function DockItem({
   }
 
   return (
-    <button type="button" onClick={onClick}>
+    <button type="button" onClick={onClick} aria-label={label}>
       {inner}
     </button>
   );
 }
 
 function DockDivider() {
-  return <div className="mx-1 h-5 w-px shrink-0 bg-foreground/[0.08]" />;
+  return (
+    <div className="mx-1 h-6 w-px shrink-0 self-center bg-foreground/[0.09]" />
+  );
 }
 
 /* ── MorePanel ──────────────────────────────────────────── */
@@ -282,6 +341,10 @@ export function BottomDock() {
   const [moreOpen, setMoreOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
+  const prefersReducedMotion = useReducedMotion();
+  const magnify = !prefersReducedMotion;
+  const mouseX = useMotionValue(Number.POSITIVE_INFINITY);
+
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
@@ -358,14 +421,25 @@ export function BottomDock() {
         }}
       >
         {/* Gradient-border wrapper */}
-        <div className="rounded-[20px] bg-gradient-to-b from-foreground/[0.13] to-foreground/[0.05] p-px shadow-[0_28px_70px_rgba(0,0,0,0.15),0_4px_16px_rgba(0,0,0,0.08)] dark:shadow-[0_28px_70px_rgba(0,0,0,0.9),0_0_0_0.5px_rgba(255,255,255,0.06)]">
-          <div className="flex items-center gap-0.5 rounded-[19px] bg-white/[0.92] px-2 py-1.5 backdrop-blur-2xl sm:px-2.5 sm:py-2 dark:bg-[#0c0c0c]/[0.93]">
+        <div className="relative rounded-[22px] bg-gradient-to-b from-foreground/[0.16] to-foreground/[0.04] p-px shadow-[0_28px_70px_rgba(0,0,0,0.16),0_4px_16px_rgba(0,0,0,0.08)] dark:shadow-[0_28px_70px_rgba(0,0,0,0.9),0_0_0_0.5px_rgba(255,255,255,0.06)]">
+          {/* Specular top highlight */}
+          <div className="pointer-events-none absolute inset-x-8 top-0 z-10 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent dark:via-white/20" />
+
+          <div
+            onMouseMove={(e) => {
+              if (magnify) mouseX.set(e.clientX);
+            }}
+            onMouseLeave={() => mouseX.set(Number.POSITIVE_INFINITY)}
+            className="relative flex items-center gap-0.5 rounded-[21px] bg-white/[0.9] px-2.5 py-1.5 [backdrop-filter:blur(22px)_saturate(1.7)] sm:px-3 sm:py-2 dark:bg-[#0b0b0b]/[0.92]"
+          >
             {/* ── Nav ── */}
             <DockItem
               icon={<HomeIcon className="size-[17px]" />}
               label="Home"
               href="/"
               active={pathname === "/"}
+              mouseX={mouseX}
+              magnify={magnify}
             />
             {/* Blog + Mail hidden on mobile — accessible via More panel */}
             <span className="hidden sm:contents">
@@ -374,17 +448,23 @@ export function BottomDock() {
                 label="Blog"
                 href="/blog"
                 active={pathname?.startsWith("/blog")}
+                mouseX={mouseX}
+                magnify={magnify}
               />
               <DockItem
                 icon={<MailIcon className="size-[17px]" />}
                 label="Mail"
                 href="mailto:rajdeepsingh10789@gmail.com"
+                mouseX={mouseX}
+                magnify={magnify}
               />
               <DockItem
                 icon={<FileTextIcon className="size-[16px]" />}
                 label="Resume"
                 href="https://drive.google.com/file/d/1dWRhT2GSx4StZk2kqGU2UpJLNZCVnuoA/view"
                 external
+                mouseX={mouseX}
+                magnify={magnify}
               />
             </span>
 
@@ -396,18 +476,24 @@ export function BottomDock() {
               label="GitHub"
               href="https://github.com/RajdeepKushwaha5"
               external
+              mouseX={mouseX}
+              magnify={magnify}
             />
             <DockItem
               icon={<LinkedInIcon className="size-[15px]" />}
               label="LinkedIn"
               href="https://www.linkedin.com/in/rajdeepsingh5/"
               external
+              mouseX={mouseX}
+              magnify={magnify}
             />
             <DockItem
               icon={<XIcon className="size-[15px]" />}
               label="X / Twitter"
               href="https://x.com/rajdeepstwt"
               external
+              mouseX={mouseX}
+              magnify={magnify}
             />
             <span className="hidden sm:contents">
               <DockItem
@@ -415,18 +501,24 @@ export function BottomDock() {
                 label="Medium"
                 href="https://medium.com/@rajdeep01"
                 external
+                mouseX={mouseX}
+                magnify={magnify}
               />
               <DockItem
                 icon={<DiscordIcon className="size-[16px]" />}
                 label="Discord"
                 href="https://discord.com/users/rajdeepsingh"
                 external
+                mouseX={mouseX}
+                magnify={magnify}
               />
               <DockItem
                 icon={<CalComIcon className="size-[16px]" />}
                 label="Book a Call"
                 href="https://cal.com/rajdeepsingh5"
                 external
+                mouseX={mouseX}
+                magnify={magnify}
               />
             </span>
 
@@ -460,6 +552,8 @@ export function BottomDock() {
                   : "Dark Mode"
               }
               onClick={toggleTheme}
+              mouseX={mouseX}
+              magnify={magnify}
             />
 
             {/* ── More (mobile only) ── */}
@@ -467,16 +561,14 @@ export function BottomDock() {
               <DockDivider />
               <motion.button
                 type="button"
-                whileHover={{ scale: 1.18, y: -4 }}
                 whileTap={{ scale: 0.9 }}
-                transition={{ type: "spring", stiffness: 420, damping: 20 }}
                 aria-label="More options"
                 onClick={() => setMoreOpen((v) => !v)}
                 className={cn(
-                  "group relative flex size-8 cursor-pointer items-center justify-center rounded-xl transition-colors duration-150",
+                  "group relative flex size-9 cursor-pointer items-center justify-center rounded-xl transition-colors duration-150",
                   moreOpen
                     ? "bg-foreground/[0.12] text-foreground"
-                    : "text-foreground/40 hover:bg-foreground/[0.07] hover:text-foreground/80"
+                    : "text-foreground/45 hover:bg-foreground/[0.07] hover:text-foreground/80"
                 )}
               >
                 {moreOpen ? (
