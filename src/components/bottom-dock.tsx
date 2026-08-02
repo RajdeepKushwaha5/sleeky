@@ -6,6 +6,7 @@ import {
   HomeIcon,
   MailIcon,
   MoonIcon,
+  PaletteIcon,
   SunIcon,
   X as CloseIcon,
 } from "lucide-react";
@@ -27,6 +28,8 @@ import { META_THEME_COLORS } from "@/config/site";
 import { useMetaColor } from "@/hooks/use-meta-color";
 import { useSound } from "@/hooks/use-sound";
 import { cn } from "@/lib/utils";
+
+import { CustomThemePanel, useCustomTheme } from "./custom-theme";
 
 /* ── Magnification tuning ───────────────────────────────── */
 const DOCK_BASE_SIZE = 40; // resting icon-button size (px)
@@ -115,6 +118,7 @@ function DockItem({
   external,
   mouseX,
   magnify,
+  dataTrigger,
 }: {
   icon: React.ReactNode;
   label: string;
@@ -124,6 +128,7 @@ function DockItem({
   external?: boolean;
   mouseX: MotionValue<number>;
   magnify: boolean;
+  dataTrigger?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -202,7 +207,12 @@ function DockItem({
   }
 
   return (
-    <button type="button" onClick={onClick} aria-label={label}>
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={label}
+      data-ct-trigger={dataTrigger ? "" : undefined}
+    >
       {inner}
     </button>
   );
@@ -339,7 +349,10 @@ export function BottomDock() {
   const pathname = usePathname();
   const playClick = useSound("/audio/ui-sounds/click.wav");
   const [moreOpen, setMoreOpen] = useState(false);
+  const [customizeOpen, setCustomizeOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+
+  const customTheme = useCustomTheme();
 
   const prefersReducedMotion = useReducedMotion();
   const magnify = !prefersReducedMotion;
@@ -408,6 +421,19 @@ export function BottomDock() {
           open={moreOpen}
           onClose={() => setMoreOpen(false)}
           pathname={pathname}
+        />
+      </div>
+
+      {/* Custom Theme panel — floats centered above the dock */}
+      <div className="relative">
+        <CustomThemePanel
+          open={customizeOpen}
+          onClose={() => setCustomizeOpen(false)}
+          values={customTheme.values}
+          theme={customTheme.theme}
+          customized={customTheme.customized}
+          setValue={customTheme.setValue}
+          reset={customTheme.reset}
         />
       </div>
 
@@ -554,6 +580,17 @@ export function BottomDock() {
               onClick={toggleTheme}
               mouseX={mouseX}
               magnify={magnify}
+            />
+
+            {/* ── Customize theme ── */}
+            <DockItem
+              icon={<PaletteIcon className="size-[16px]" />}
+              label="Customize"
+              onClick={() => setCustomizeOpen((v) => !v)}
+              active={customizeOpen || customTheme.customized}
+              mouseX={mouseX}
+              magnify={magnify}
+              dataTrigger
             />
 
             {/* ── More (mobile only) ── */}
