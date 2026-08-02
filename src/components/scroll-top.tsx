@@ -103,9 +103,12 @@ export function ScrollTop({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        /* all sizes: bottom-left, floats above the dock on mobile */
-        "fixed bottom-[4.75rem] left-4 z-50 flex items-center gap-1.5",
-        "sm:bottom-[calc(1rem+env(safe-area-inset-bottom,0px))] lg:bottom-[calc(2rem+env(safe-area-inset-bottom,0px))] lg:left-8",
+        /* Float above the centered dock on mobile + tablet (where the wider
+           dock would otherwise collide with this left cluster); drop back to
+           the bottom-left corner on large screens where there's ample room. */
+        "fixed left-4 z-50 flex items-center gap-1.5",
+        "bottom-[calc(5.5rem+env(safe-area-inset-bottom,0px))]",
+        "lg:bottom-[calc(2rem+env(safe-area-inset-bottom,0px))] lg:left-8",
         className
       )}
     >
