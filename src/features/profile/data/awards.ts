@@ -13,6 +13,17 @@ export const AWARDS: Award[] = [
       "https://www.linkedin.com/posts/wemakedevs_the-hangover-hackathon-track-winners-activity-7486026563558391808-BW5c",
   },
   {
+    id: "moonshot-hackathon-2026",
+    prize: "Winner",
+    title: "Moonshot Hackathon: Moonshots Only — Aethra",
+    date: "2026-07",
+    grade: "Hackathon",
+    description:
+      "Won the **Moonshot Hackathon: Moonshots Only — Zero to One Ideas** hosted by [Aethra](https://moonshot-aethra.devpost.com/) with **SignBridge**, an AI literacy bridge that helps Deaf and sign-first learners turn visual-spatial language thinking into written English. The event challenged builders to prototype genuinely transformative, first-principles ideas rather than incremental products, judged on originality, technical depth, and long-term impact.\n\n[Featured Project](https://moonshot-aethra.devpost.com/submissions/search?utf8=%E2%9C%93&terms=signbridge&sort=recent)",
+    referenceLink:
+      "https://moonshot-aethra.devpost.com/submissions/search?utf8=%E2%9C%93&terms=signbridge&sort=recent",
+  },
+  {
     id: "back-to-metadata-hackathon-2026",
     prize: "Winner",
     title: "Back to the Metadata Hackathon — WeMakeDevs × OpenMetadata",
