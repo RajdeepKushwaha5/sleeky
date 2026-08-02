@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { getGitHubContributions } from "../../data/github-contributions";
 import { Panel } from "../panel";
 import { GitHubContributionFallback, GitHubContributionGraph } from "./graph";
+import { TopContributions } from "./top-contributions";
 
 export function GitHubContributions() {
   const contributions = getGitHubContributions();
@@ -14,6 +15,8 @@ export function GitHubContributions() {
       <Suspense fallback={<GitHubContributionFallback />}>
         <GitHubContributionGraph contributions={contributions} />
       </Suspense>
+
+      <TopContributions />
     </Panel>
   );
 }
