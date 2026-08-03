@@ -6,7 +6,7 @@ import {
   HomeIcon,
   MailIcon,
   MoonIcon,
-  PaletteIcon,
+  SlidersHorizontalIcon,
   SunIcon,
   X as CloseIcon,
 } from "lucide-react";
@@ -584,7 +584,7 @@ export function BottomDock() {
 
             {/* ── Customize theme ── */}
             <DockItem
-              icon={<PaletteIcon className="size-[16px]" />}
+              icon={<SlidersHorizontalIcon className="size-[16px]" />}
               label="Customize"
               onClick={() => setCustomizeOpen((v) => !v)}
               active={customizeOpen || customTheme.customized}
