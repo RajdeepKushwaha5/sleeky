@@ -1184,6 +1184,14 @@ button,
   transform: translateY(2px);
 }
 
+.quiet-action[data-direction="up"] svg {
+  transform: rotate(180deg);
+}
+
+.quiet-action[data-direction="up"]:hover svg {
+  transform: translateY(-2px) rotate(180deg);
+}
+
 /* ── Hero text gradient ────────────────── */
 .hero-text-gradient {
   background: linear-gradient(

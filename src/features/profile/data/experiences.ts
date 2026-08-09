@@ -160,44 +160,4 @@ Producing regression tests and a comparison report on how MeshLab and ParaView a
       },
     ],
   },
-  {
-    id: "oumi-ai",
-    companyName: "Oumi",
-    companyLogo: "/company/oumi.png",
-    positions: [
-      {
-        id: "oumi-oss-contributor",
-        title: "Open Source Contributor",
-        employmentPeriod: {
-          start: "12.2025",
-          end: "12.2025",
-        },
-        employmentType: "Part-time",
-        icon: "code",
-        description: `Added visual loading spinners for user feedback during inference operations. Implemented "Generating response..." and "Running inference..." indicators using Rich library. [PR #2085](https://github.com/oumi-ai/oumi/pull/2085)`,
-        skills: ["Python", "Rich", "Unit Testing", "CLI Development"],
-        isExpanded: false,
-      },
-    ],
-  },
-  {
-    id: "devops-daily",
-    companyName: "DevOps Daily",
-    companyLogo: "/company/devops-daily.png",
-    positions: [
-      {
-        id: "devops-daily-oss-contributor",
-        title: "Open Source Contributor",
-        employmentPeriod: {
-          start: "10.2025",
-          end: "10.2025",
-        },
-        employmentType: "Part-time",
-        icon: "code",
-        description: `Built a CLI command index generator that creates commands.json from eBook markdown files. Implemented JSON loading with fallback for show/search commands, covering 101 Linux commands. [Repository](https://github.com/The-DevOps-Daily/devops-daily)`,
-        skills: ["Python", "Typer", "JSON", "Markdown", "CLI Development"],
-        isExpanded: false,
-      },
-    ],
-  },
 ];

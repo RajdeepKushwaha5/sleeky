@@ -37,16 +37,16 @@ export function Experiences() {
         })}
       </div>
 
-      {!isExpanded && remaining > 0 && (
+      {remaining > 0 && (
         <div className="flex justify-center">
           <button
             type="button"
             className="quiet-action mt-3"
-            data-direction="down"
-            onClick={() => setIsExpanded(true)}
+            data-direction={isExpanded ? "up" : "down"}
+            onClick={() => setIsExpanded((prev) => !prev)}
           >
-            Show {remaining} more
-            <ChevronDownIcon />
+            {isExpanded ? "Show less" : `Show ${remaining} more`}
+            <ChevronDownIcon aria-hidden />
           </button>
         </div>
       )}
