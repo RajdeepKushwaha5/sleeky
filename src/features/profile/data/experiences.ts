@@ -19,11 +19,7 @@ export const EXPERIENCES: Experience[] = [
           href: "https://exord.systems",
         },
         icon: "code",
-        description: `Building operational AI infrastructure at [Exord Systems](https://exord.systems) — a new programming paradigm for agentic systems that moves AI beyond answering questions and into reliably executing real operational work.
-
-Working on the core engineering team across the models, runtimes, abstractions, evaluation systems, and infrastructure that make intelligent systems programmable, reliable, and capable of running in production.
-
-Contributing to problems at the intersection of AI, programming languages, distributed systems, and production infrastructure, working directly with the founders out of Delhi.`,
+        description: `Building operational AI infrastructure at [Exord Systems](https://exord.systems).`,
         skills: [
           "AI Engineering",
           "LLM",
