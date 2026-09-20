@@ -2,6 +2,43 @@ import type { Experience } from "../types/experiences";
 
 export const EXPERIENCES: Experience[] = [
   {
+    id: "exord-systems",
+    companyName: "Exord Systems",
+    companyLogo: "/company/exord.png",
+    isCurrentEmployer: true,
+    positions: [
+      {
+        id: "exord-ai-engineer",
+        title: "AI Engineer",
+        employmentPeriod: {
+          start: "09.2026",
+        },
+        employmentType: "Full-time",
+        link: {
+          label: "exord.systems",
+          href: "https://exord.systems",
+        },
+        icon: "code",
+        description: `Building operational AI infrastructure at [Exord Systems](https://exord.systems) — a new programming paradigm for agentic systems that moves AI beyond answering questions and into reliably executing real operational work.
+
+Working on the core engineering team across the models, runtimes, abstractions, evaluation systems, and infrastructure that make intelligent systems programmable, reliable, and capable of running in production.
+
+Contributing to problems at the intersection of AI, programming languages, distributed systems, and production infrastructure, working directly with the founders out of Delhi.`,
+        skills: [
+          "AI Engineering",
+          "LLM",
+          "Agents",
+          "Evals",
+          "Runtimes",
+          "Distributed Systems",
+          "Infrastructure",
+          "Python",
+        ],
+        isExpanded: false,
+      },
+    ],
+  },
+  {
     id: "cgal-gsoc-2026",
     companyName: "Google Summer of Code",
     companyLogo: "/company/gsoc-sun.svg",
