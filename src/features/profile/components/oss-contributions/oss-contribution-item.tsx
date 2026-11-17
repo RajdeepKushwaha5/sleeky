@@ -13,7 +13,7 @@ export function OSSContributionItem({
   return (
     <div className="group/oss flex items-center transition-colors hover:bg-foreground/[0.025]">
       <div
-        className="mx-4 flex size-8 shrink-0 items-center justify-center text-foreground/34 transition-colors group-hover/oss:text-foreground/60"
+        className="mx-4 flex size-8 shrink-0 items-center justify-center text-[#8250df] transition-colors dark:text-[#a371f7]"
         aria-hidden
       >
         <GitPullRequestArrowIcon className="size-4" />
