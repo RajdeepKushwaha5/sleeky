@@ -2,6 +2,17 @@ import type { Award } from "../types/awards";
 
 export const AWARDS: Award[] = [
   {
+    id: "nerdy-ai-hackathon-2026",
+    prize: "Winner",
+    title: "Nerdy AI Hackathon Challenge",
+    date: "2026-10",
+    grade: "Hackathon",
+    description:
+      "Named one of the winners of the **Nerdy AI Hackathon Challenge**, where builders were asked to create an AI learning product and walk through the thinking behind it. Recognized for innovation and creativity in shaping the future of learning.\n\n[Winner Announcement](https://www.linkedin.com/feed/update/urn:li:activity:7512982076120461314/)",
+    referenceLink:
+      "https://www.linkedin.com/feed/update/urn:li:activity:7512982076120461314/",
+  },
+  {
     id: "hangover-hackathon-2026",
     prize: "Winner — Best Use of Cognee Cloud",
     title: "The Hangover Hackathon — WeMakeDevs × Cognee",
