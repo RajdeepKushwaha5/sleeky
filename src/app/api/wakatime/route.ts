@@ -13,11 +13,14 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Too many requests" }, { status: 429 });
   }
   try {
-    const apiKey = process.env.WAKATIME_API_KEY;
+    // WakaTime no longer accepts plugin API keys here. Use either a public
+    // "Coding Activity" JSON share link or a personal OAuth token.
+    const shareUrl = process.env.WAKATIME_SHARE_URL;
+    const accessToken = process.env.WAKATIME_ACCESS_TOKEN;
 
-    if (!apiKey) {
+    if (!shareUrl && !accessToken) {
       return NextResponse.json(
-        { error: "WakaTime API key not configured" },
+        { error: "WakaTime is not configured" },
         { status: 500 }
       );
     }
@@ -26,11 +29,10 @@ export async function GET(request: NextRequest) {
     const timeout = setTimeout(() => controller.abort(), 10000);
 
     const response = await fetch(
-      "https://wakatime.com/api/v1/users/current/summaries?range=last_7_days",
+      shareUrl ??
+        "https://wakatime.com/api/v1/users/current/summaries?range=last_7_days",
       {
-        headers: {
-          Authorization: `Basic ${Buffer.from(apiKey).toString("base64")}`,
-        },
+        headers: shareUrl ? {} : { Authorization: `Bearer ${accessToken}` },
         next: { revalidate: 300 }, // Cache for 5 minutes
         signal: controller.signal,
       }

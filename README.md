@@ -145,7 +145,7 @@ SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
 SPOTIFY_REFRESH_TOKEN=your_spotify_refresh_token
 
 # ── Coding Stats (WakaTime) ────────────────────────────
-WAKATIME_API_KEY=your_wakatime_key
+WAKATIME_SHARE_URL=your_wakatime_share_json_url
 
 # ── Visitor Counter & Rate Limiting (Upstash Redis) ────
 UPSTASH_REDIS_REST_URL=your_upstash_redis_url
@@ -162,7 +162,7 @@ TELEGRAM_CHAT_ID=your_chat_id
 | `GEMINI_API_KEY`                                   | AI assistant                               |
 | `NEXT_PUBLIC_DISCORD_USER_ID`                      | Discord live status (Lanyard)              |
 | `SPOTIFY_CLIENT_ID` / `_SECRET` / `_REFRESH_TOKEN` | Spotify now‑playing & recently‑played      |
-| `WAKATIME_API_KEY`                                 | Coding metrics                             |
+| `WAKATIME_SHARE_URL`                               | Coding metrics                             |
 | `UPSTASH_REDIS_REST_URL` / `_TOKEN`                | Visitor counter & API rate limiting        |
 | `TELEGRAM_BOT_TOKEN` / `TELEGRAM_CHAT_ID`          | Contact form delivery                      |
 
