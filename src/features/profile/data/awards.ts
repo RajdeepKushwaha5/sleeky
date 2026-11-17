@@ -2,6 +2,15 @@ import type { Award } from "../types/awards";
 
 export const AWARDS: Award[] = [
   {
+    id: "mergetober-2026",
+    prize: "Winner",
+    title: "Mergetober — Open Source Month",
+    date: "2026-11",
+    grade: "Open Source",
+    description:
+      "Won **Mergetober**, a month-long open source contribution challenge. Recognized by the judges for the quality and impact of my merged pull requests.",
+  },
+  {
     id: "nerdy-ai-hackathon-2026",
     prize: "Winner",
     title: "Nerdy AI Hackathon Challenge",
